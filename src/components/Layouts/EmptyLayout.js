@@ -1,10 +1,6 @@
 import React, {Component} from 'react';
 
-import AuthHeader from './SubLayout/AuthHeader';
-
-import Footer from '../Layouts/SubLayout/Footer';
-
-class AuthLayout extends Component {
+class EmptyLayout extends Component {
 
     constructor(props) {
 
@@ -31,12 +27,10 @@ class AuthLayout extends Component {
 
         return (
             <div className="wrapper">
-               {/* <AuthHeader /> */}
                {React.cloneElement(this.props.children, {eventEmitter : this.eventEmitter, data : isAuthenticated})}
-               <Footer />
             </div>
         )
     }
 }
-export default AuthLayout;
+export default EmptyLayout;
 

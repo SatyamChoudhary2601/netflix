@@ -17,7 +17,6 @@ class Home extends Component {
     }
 
     render() {
-
         return (
             <div>
                 <div className="banner-sec">
@@ -27,10 +26,10 @@ class Home extends Component {
                         </div>
                         <div className="col-9 col-md-9 col-lg-9 col-xl-9 p-0">
                             <div className="banner-home relative">
-                                <img className="banner_right_img" src="assets/img/slider-img1 /.jpg"
-                                srcSet="assets/img/slider-img1 /.jpg 1x,
-                                        assets/img/slider-img1 /.jpg 1.5x,
-                                        assets/img/slider-img1 /.jpg 2x" alt="banner img" />
+                                <img className="banner_right_img" src="assets/img/slider-img1.jpg"
+                                srcSet="assets/img/slider-img1.jpg 1x,
+                                        assets/img/slider-img1.jpg 1.5x,
+                                        assets/img/slider-img1.jpg 2x" alt="banner img" />
                                 <div className="banner_right_overlay"></div>
                             </div>   
                         </div>
@@ -594,7 +593,7 @@ class Home extends Component {
                         </section>
                     </div>
 
-                    <div style="height: 100px;"></div>
+                    <div className="height-100"></div>
                     
                     <div className="slider-content">
                         <div className="row m-0">
@@ -603,10 +602,10 @@ class Home extends Component {
                             </div>
                             <div className="col-9 col-md-9 col-lg-9 col-xl-9 p-0">
                                 <div className="banner-home relative">
-                                    <img className="banner_right_img" src="assets/img/slider-img1 /.jpg"
-                                    srcSet="assets/img/slider-img1 /.jpg 1x,
-                                            assets/img/slider-img1 /.jpg 1.5x,
-                                            assets/img/slider-img1 /.jpg 2x" alt="slider-img" />
+                                    <img className="banner_right_img" src="assets/img/slider-img1.jpg"
+                                    srcSet="assets/img/slider-img1.jpg 1x,
+                                            assets/img/slider-img1.jpg 1.5x,
+                                            assets/img/slider-img1.jpg 2x" alt="slider-img" />
                                     <div className="banner_right_overlay"></div>
                                 </div>   
                             </div>
@@ -673,7 +672,7 @@ class Home extends Component {
                                         <div className="pr-4per pl-4per">
                                             <h1 className="banner_video_title">frozen</h1>
                                             <form>
-                                                <div className="custom-select" style="width:200px;">
+                                                <div className="custom-select width-200">
                                                     <select>
                                                         <option value="0">season 1</option>
                                                         <option value="1">season 2</option>
@@ -1171,7 +1170,7 @@ class Home extends Component {
                             </div>
                         </div>
                     </div>
-                    <div style="height: 100px;"></div>
+                    <div className="height-100"></div>
                 </div>
             </div>
         );

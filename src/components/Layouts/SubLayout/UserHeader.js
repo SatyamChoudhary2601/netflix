@@ -165,7 +165,7 @@ class UserHeader extends Component {
                         </li>
                     </ul>
                 </nav>
-                <div className="landing-header-height"></div>
+                <div className="header-height"></div>
 
                 <div className="mobile-sidebar" id="menu_content">
                     <div className="sidebar-content">

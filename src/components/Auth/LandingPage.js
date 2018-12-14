@@ -20,6 +20,12 @@ class LandingPage extends Component {
 
         return (
             <div>
+                <div className="landing-page-header">
+                    <Link to="index.html">
+                        <img src="assets/img/streamview1.png" className="site-logo" />
+                    </Link>
+                    <Link to="auth/login.html" className="btn btn-danger">sign in</Link>
+                </div>
                 <div className="landing-banner-sec">
                     <img className="landing-banner-img" src="assets/img/banner_small.jpg" 
                         srcset="assets/img/banner_small.jpg 1000w, 
