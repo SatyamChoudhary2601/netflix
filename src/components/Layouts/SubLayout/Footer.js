@@ -35,22 +35,22 @@ class Footer extends Component {
                             <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
                                 <ul className="footer-link">
                                     <li className="footer-link-list">
-                                        <Link to="static-pages/about-us.html">about us</Link>
+                                        <Link to="/page">about us</Link>
                                     </li>
                                     <li className="footer-link-list">
-                                        <Link to="static-pages/terms-and-conditions.html">terms and conditions</Link>
+                                        <Link to="/page">terms and conditions</Link>
                                     </li>
                                     <li className="footer-link-list">
-                                        <Link to="static-pages/contact-us.html">contact us</Link>
+                                        <Link to="/page">contact us</Link>
                                     </li>
                                     <li className="footer-link-list">
-                                        <Link to="static-pages/refund-policy.html">refund policy</Link>
+                                        <Link to="/page">refund policy</Link>
                                     </li>
                                     <li className="footer-link-list">
-                                        <Link to="static-pages/help.html">help</Link>
+                                        <Link to="/page">help</Link>
                                     </li>
                                     <li className="footer-link-list">
-                                        <Link to="static-pages/privacy-policy.html">privacy policy</Link>
+                                        <Link to="/page">privacy policy</Link>
                                     </li>
                                 </ul>
                             </div>

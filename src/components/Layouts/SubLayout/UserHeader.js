@@ -28,9 +28,9 @@ class UserHeader extends Component {
             <div>
                 <nav className="navbar navbar-expand navbar-dark trans-bg main-nav fixed-top" id="header">
                     <span className="menu-icon" id="menu_icon">
-                        <img src="assets/img/menu.png" />
+                        <img src="assets/img/menu.png" alt="menu_img" />
                     </span>
-                    <Link className="navbar-brand abs" to="home.html">
+                    <Link className="navbar-brand abs" to="/home">
                         <img src="assets/img/streamview.png" className="logo-img desktop-logo" alt="Streamview" />
                         <img src="assets/img/streamview-icon.png" className="logo-img mobile-logo" alt="Streamview" />
                     </Link>
@@ -131,36 +131,36 @@ class UserHeader extends Component {
                             </Link>
                             <div className="dropdown-menu profile-drop">
                                 <div className="pro-sec-height">
-                                    <Link className="dropdown-item" to="#">
+                                    <Link className="dropdown-item" to="/view-profiles">
                                         <div className="display-inline">
                                             <div className="left-sec"><img src="assets/img/icon2.png" /></div>
                                             <div className="right-name">ronan</div>
                                         </div>
                                     </Link>
-                                    <Link className="dropdown-item" to="#">
+                                    <Link className="dropdown-item" to="/view-profiles">
                                         <div className="display-inline">
                                             <div className="left-sec"><img src="assets/img/icon3.png" /></div>
                                             <div className="right-name">brayden</div>
                                         </div>
                                     </Link>
-                                    <Link className="dropdown-item" to="#">
+                                    <Link className="dropdown-item" to="/view-profiles">
                                         <div className="display-inline">
                                             <div className="left-sec"><img src="assets/img/icon4.png" /></div>
                                             <div className="right-name">hugo</div>
                                         </div>
                                     </Link>
-                                    <Link className="dropdown-item" to="#">
+                                    <Link className="dropdown-item" to="/view-profiles">
                                         <div className="display-inline">
                                             <div className="left-sec"><img src="assets/img/icon5.png" alt=""/></div>
                                             <div className="right-name">diego</div>
                                         </div>
                                     </Link>
-                                    <Link className="dropdown-item" to="account/manage-profiles.html">manage profiles</Link>
+                                    <Link className="dropdown-item" to="/manage-profiles">manage profiles</Link>
                                 </div>
                                 <p className="profile-drop-line"></p>
-                                <Link className="dropdown-item" to="account/index.html">your account</Link>
-                                <Link className="dropdown-item" to="payment/payment-history.html">payment history</Link>
-                                <Link className="dropdown-item" to="index.html">signout</Link>
+                                <Link className="dropdown-item" to="/account">your account</Link>
+                                <Link className="dropdown-item" to="/payment-history">payment history</Link>
+                                <Link className="dropdown-item" to="/">signout</Link>
                             </div>
                         </li>
                     </ul>
@@ -170,7 +170,7 @@ class UserHeader extends Component {
                 <div className="mobile-sidebar" id="menu_content">
                     <div className="sidebar-content">
                         <div className="p-3">
-                            <Link to="account/view-profiles.html">
+                            <Link to="/view-profiles">
                                 <div className="display-inline">
                                     <div className="left-sec"><img src="assets/img/icon1.png" alt="User "/></div>
                                     <div className="right-name">
@@ -182,14 +182,14 @@ class UserHeader extends Component {
                         </div>
                         <ul className="sidebar-menu">
                             <li className="active">
-                                <Link to="#">account</Link>
+                                <Link to="/account">account</Link>
                             </li>
                             <li>
-                                <Link to="#">logout</Link>
+                                <Link to="/">logout</Link>
                             </li>
                             <li className="line"></li>
                             <li>
-                                <Link to="#">home</Link>
+                                <Link to="/home">home</Link>
                             </li>
                             <li>
                                 <Link to="#">my list</Link>

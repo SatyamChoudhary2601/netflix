@@ -21,10 +21,10 @@ class LandingPage extends Component {
         return (
             <div>
                 <div className="landing-page-header">
-                    <Link to="index.html">
+                    <Link to="/">
                         <img src="assets/img/streamview1.png" className="site-logo" />
                     </Link>
-                    <Link to="auth/login.html" className="btn btn-danger">sign in</Link>
+                    <Link to="/login" className="btn btn-danger">sign in</Link>
                 </div>
                 <div className="landing-banner-sec">
                     <img className="landing-banner-img" src="assets/img/banner_small.jpg" 
@@ -35,7 +35,7 @@ class LandingPage extends Component {
                         <div className="text-center">
                             <h1 className="benner-text-head">see what’s next.</h1>
                             <h4 className="banner-text-para">WATCH anywhere. CANCEL at any time.</h4>
-                            <Link to="auth/register.html" className="btn btn-danger banner-large-btn">join free for a month<i className="fas fa-chevron-right ml-3"></i></Link>
+                            <Link to="/register" className="btn btn-danger banner-large-btn">join free for a month<i className="fas fa-chevron-right ml-3"></i></Link>
                         </div>
                     </div>
                 </div>

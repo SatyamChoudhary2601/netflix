@@ -11,12 +11,39 @@ import createHistory from 'history/createBrowserHistory';
 import AuthLayout from '../src/components/Layouts/AuthLayout';
 import StaticLayout from '../src/components/Layouts/StaticLayout';
 import UserLayout from '../src/components/Layouts/UserLayout';
+import EmptyLayout from '../src/components/Layouts/EmptyLayout';
 
 // Auth Layout
 import LandingPage from '../src/components/Auth/LandingPage';
+import RegisterComponent from '../src/components/Auth/Register';
+import LoginCommponent from '../src/components/Auth/Login';
+import ForgotPasswordComponent from '../src/components/Auth/ForgotPassword';
+
+//Empty layout
+import Sample from '../src/components/Static/Sample';
+import ErrorComponent from '../src/components/Static/Error';
+import ViewProfilesComponent from '../src/components/User/Account/ViewProfiles';
+import ManageProfilesComponent  from '../src/components/User/Account/ManageProfiles';
+import EditProfilesComponent from '../src/components/User/Account/Editprofile';
 
 // User Layout
 import Home from '../src/components/User/Home';
+import AccountComponent from '../src/components/User/Account/Account';
+import EditAccountComponent from '../src/components/User/Account/EditAccount';
+import ChangePasswordComponent from '../src/components/User/Account/ChangePassword';
+import DeleteAccountComponent from '../src/components/User/Account/DeleteAccount';
+
+import SubscriptionComponent from '../src/components/User/Settings/Subscription';
+import BillingDetailsComponent from '../src/components/User/Settings/BillingDetails';
+import AddCardComponent from '../src/components/User/Settings/AddCard';
+import CardDetailsComponent from '../src/components/User/Settings/CardDetails';
+import InvoiceComponent from '../src/components/User/Settings/Invoice';
+import PayPerView from '../src/components/User/Settings/PayPerView';
+import PaymentHistory from '../src/components/User/Settings/PaymentHistory';
+import PaymentOptions from '../src/components/User/Settings/PaymentOptions';
+import PaymentSuccess from '../src/components/User/Settings/PaymentSuccess';
+import PaymentFailure from '../src/components/User/Settings/PaymentFailure';
+
 
 // Static layout
 import Page from '../src/components/Static/Page';
@@ -105,7 +132,7 @@ class App extends Component {
                       <li></li>
                       <li></li>
                   </ul>
-                </div>
+              </div>
             </div>
           </div>
         );
@@ -118,10 +145,35 @@ class App extends Component {
               { /***Auth layout - Having only footer ****/}
 
               <AppRoute exact path={"/"} component={LandingPage} layout={AuthLayout} screenProps={this.eventEmitter}/>
-  
-              { /***user layout - Having differnt header and footer ****/}
+              <AppRoute path={"/register"} component={RegisterComponent} layout={AuthLayout} screenProps={this.eventEmitter} />
+              <AppRoute path={"/login"} component={LoginCommponent} layout={AuthLayout} screenProps={this.eventEmitter} />
+              <AppRoute path={'/forgot-password'} component={ForgotPasswordComponent} layout={AuthLayout} screenProps={this.eventEmitter} />
 
-              <AppRoute authentication={this.state.authentication} path={"/home"} component={Home} layout={UserLayout} screenProps={this.eventEmitter}/>
+              { /***Empty layout ****/}
+              <AppRoute path={'/sample'} component={Sample} layout={EmptyLayout} screenProps={this.screenProps} />
+              <AppRoute path={'/error'} component={ErrorComponent} layout={EmptyLayout} screenProps={this.eventEmitter} />
+              <AppRoute path={"/view-profiles"} component={ViewProfilesComponent} layout={EmptyLayout} screenProps={this.EmptyLayout} />
+              <AppRoute path={'/manage-profiles'} component={ManageProfilesComponent} layout={EmptyLayout} screenProps={this.eventEmitter} />
+              <AppRoute path={'/edit-profile'} component={EditProfilesComponent} layout={EmptyLayout} screenProps={this.eventEmitter} />
+
+              { /***user layout - Having differnt header and footer ****/}
+              {/* <AppRoute authentication={this.state.authentication} path={"/home"} component={Home} layout={UserLayout} screenProps={this.eventEmitter}/> */}
+
+              <AppRoute path={"/home"} component={Home} layout={UserLayout} screenProps={this.eventEmitter}/>
+              <AppRoute path={'/account'} component={AccountComponent} layout={UserLayout} screenProps={this.eventEmitter} />
+              <AppRoute path={'/edit-account'} component={EditAccountComponent} layout={UserLayout} screenProps={this.eventEmitter} />
+              <AppRoute path={'/change-password'} component={ChangePasswordComponent} layout={UserLayout} screenProps={this.eventEmitter} />
+              <AppRoute path={'/delete-account'} component={DeleteAccountComponent} layout={UserLayout} screenProps={this.eventEmitter} />
+              <AppRoute path={'/subscription'} component={SubscriptionComponent} layout={UserLayout} screenProps={this.eventEmitter} />
+              <AppRoute path={'/billing-details'} component={BillingDetailsComponent} layout={UserLayout} screenProps={this.eventEmitter} />
+              <AppRoute path={'/add-card'} component={AddCardComponent} layout={UserLayout} screenProps={this.eventEmitter} />
+              <AppRoute path={'/card-details'} component={CardDetailsComponent} layout={UserLayout} screenProps={this.eventEmitter} />
+              <AppRoute path={'/invoice'} component={InvoiceComponent} layout={UserLayout} screenProps={this.eventEmitter} />
+              <AppRoute path={'/pay-per-view'} component={PayPerView} layout={UserLayout} screenProps={this.eventEmitter} />
+              <AppRoute path={'/payment-history'} component={PaymentHistory} layout={UserLayout} screenProps={this.eventEmitter} />
+              <AppRoute path={'/payment-options'} component={PaymentOptions} layout={UserLayout} screenProps={this.eventEmitter} />
+              <AppRoute path={'/payment-success'} component={PaymentSuccess} layout={UserLayout} screenProps={this.eventEmitter} />
+              <AppRoute path={'/payment-failure'} component={PaymentFailure} layout={UserLayout} screenProps={this.eventEmitter} />
 
               { /***static layout - Having differnt header and footer ****/}
 

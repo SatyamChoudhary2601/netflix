@@ -2524,3 +2524,15 @@ a:active, a:focus, .slick-slide:focus, .slick-slide:active{
 .height-100{
     height:100px;
 }
+.confirmation-popup .modal-content{
+    background-color: #222;
+}
+.confirmation-popup  .modal-header, .confirmation-popup .modal-footer{
+	border:0;
+}
+.confirmation-popup  .modal-header h4::first-letter, .confirmation-popup .modal-body h5::first-letter{
+    text-transform: capitalize;
+}
+.confirmation-popup .modal-body h5{
+    color: #999;
+}

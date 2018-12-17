@@ -26,7 +26,7 @@ class AuthHeader extends Component {
 
         return (
             <div className="landing-page-header">
-                <Link to="index.html">
+                <Link to="/">
                     <img src="../../../assets/img/streamview1.png" className="site-logo" alt="Logo"/>
                 </Link>
                 <a href="auth/login.html" className="btn btn-danger">sign in</a>
