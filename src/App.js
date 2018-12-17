@@ -35,6 +35,7 @@ import DeleteAccountComponent from '../src/components/User/Account/DeleteAccount
 
 import SubscriptionComponent from '../src/components/User/Settings/Subscription';
 import BillingDetailsComponent from '../src/components/User/Settings/BillingDetails';
+import BillingDetailsView from '../src/components/User/Settings/billing-view-details';
 import AddCardComponent from '../src/components/User/Settings/AddCard';
 import CardDetailsComponent from '../src/components/User/Settings/CardDetails';
 import InvoiceComponent from '../src/components/User/Settings/Invoice';
@@ -166,6 +167,7 @@ class App extends Component {
               <AppRoute path={'/delete-account'} component={DeleteAccountComponent} layout={UserLayout} screenProps={this.eventEmitter} />
               <AppRoute path={'/subscription'} component={SubscriptionComponent} layout={UserLayout} screenProps={this.eventEmitter} />
               <AppRoute path={'/billing-details'} component={BillingDetailsComponent} layout={UserLayout} screenProps={this.eventEmitter} />
+              <AppRoute path={'/billing-details/view'} component={BillingDetailsView} layout={UserLayout} screenProps={this.eventEmitter} />
               <AppRoute path={'/add-card'} component={AddCardComponent} layout={UserLayout} screenProps={this.eventEmitter} />
               <AppRoute path={'/card-details'} component={CardDetailsComponent} layout={UserLayout} screenProps={this.eventEmitter} />
               <AppRoute path={'/invoice'} component={InvoiceComponent} layout={UserLayout} screenProps={this.eventEmitter} />

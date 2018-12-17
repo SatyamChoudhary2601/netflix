@@ -1065,7 +1065,7 @@ input:checked + .switch-slider:before {
     text-transform: uppercase;
 }
 .account-sec .email{
-    color: #333;
+    color: #ccc;
     font-family: 'montserrat-regular';
     font-size: 1.14em;
     line-height: 1.375;
@@ -1094,13 +1094,13 @@ input:checked + .switch-slider:before {
     font-size: 1.14em;
     line-height: 1.375; 
     text-transform: capitalize;
-    color:#0080ff;
+    color:#70b7fd;
 }
 .size-16{
     font-size: 1.14em;
 }
 .account-nav-link li a:hover, .account-nav-link li a:focus, .account-nav-link li a:active{
-    color:#0080ff;
+    color:#70b7fd;
     text-decoration: underline;
 }
 .account-profile-img{
@@ -1382,6 +1382,11 @@ input:checked + .switch-slider:before {
     display: inline-block;
     color: #333;
 }
+#spam-popup [type="radio"]:checked + label,
+#spam-popup [type="radio"]:not(:checked) + label
+{
+    color: #999;
+}
 [type="radio"]:checked + label:before,
 [type="radio"]:not(:checked) + label:before {
     content: '';
@@ -1393,7 +1398,6 @@ input:checked + .switch-slider:before {
     border: 1px solid #999;
     border-radius: 100%;
     background: #fff;
-    margin-top: .1em;
 }
 [type="radio"]:checked + label:after,
 [type="radio"]:not(:checked) + label:after {
@@ -1402,12 +1406,11 @@ input:checked + .switch-slider:before {
     height: .85em;
     background: #e50914;
     position: absolute;
-    top: .21em;
-    left: .21em;
+    top: .22em;
+    left: .22em;
     border-radius: 100%;
     -webkit-transition: all 0.2s ease;
     transition: all 0.2s ease;
-    margin-top: .1em;
 }
 [type="radio"]:not(:checked) + label:after {
     opacity: 0;
@@ -2535,4 +2538,40 @@ a:active, a:focus, .slick-slide:focus, .slick-slide:active{
 }
 .confirmation-popup .modal-body h5{
     color: #999;
+}
+.cancel-form label{
+    color:#fff;
+}
+.cancel-form input{
+    background-color: transparent;
+}
+.cancel-form input:focus{
+    background-color: transparent;
+    color: #ddd;
+}
+.no-result-img{
+    height: 100px;
+    width:100px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
+}
+.edit-profile-content .grey-outline-btn{
+    margin-left: .75em;
+}
+.subsciprion-details-sec h4{
+    margin-top:0;
+    margin-bottom: .75em;
+}
+.subsciprion-details-sec p{
+    margin:0;
+    color: #ccc;
+    margin-bottom: .75em;
+}
+.subsciprion-details-sec h4::first-letter, .subsciprion-details-sec p::first-letter, .subcsription-details h5{
+    text-transform: capitalize;
+}
+.sub-line{
+    border-bottom: 1px solid #333;
+    margin-bottom: 1.14em !important;
 }
