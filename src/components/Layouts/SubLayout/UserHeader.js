@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 
 import {Link} from 'react-router-dom';
 
+const $ = window.$;
+
 class UserHeader extends Component {
 
     constructor(props) {
@@ -17,6 +19,9 @@ class UserHeader extends Component {
     }
 
     componentDidMount() {
+        var headerHeight = $('#header').outerHeight();
+
+        $('.header-height').height(headerHeight);
 
         // Call api function
 
@@ -26,7 +31,7 @@ class UserHeader extends Component {
 
         return (
             <div>
-                <nav className="navbar navbar-expand navbar-dark trans-bg main-nav fixed-top" id="header">
+                <nav className="navbar navbar-expand navbar-dark main-nav fixed-top" id="header">
                     <span className="menu-icon" id="menu_icon">
                         <img src="assets/img/menu.png" alt="menu_img" />
                     </span>

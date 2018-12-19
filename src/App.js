@@ -41,6 +41,7 @@ import CardDetailsComponent from '../src/components/User/Settings/CardDetails';
 import InvoiceComponent from '../src/components/User/Settings/Invoice';
 import PayPerView from '../src/components/User/Settings/PayPerView';
 import PaymentHistory from '../src/components/User/Settings/PaymentHistory';
+import PaymentViewDetails from '../src/components/User/Settings/payment-view-details';
 import PaymentOptions from '../src/components/User/Settings/PaymentOptions';
 import PaymentSuccess from '../src/components/User/Settings/PaymentSuccess';
 import PaymentFailure from '../src/components/User/Settings/PaymentFailure';
@@ -167,12 +168,13 @@ class App extends Component {
               <AppRoute path={'/delete-account'} component={DeleteAccountComponent} layout={UserLayout} screenProps={this.eventEmitter} />
               <AppRoute path={'/subscription'} component={SubscriptionComponent} layout={UserLayout} screenProps={this.eventEmitter} />
               <AppRoute path={'/billing-details'} component={BillingDetailsComponent} layout={UserLayout} screenProps={this.eventEmitter} />
-              <AppRoute path={'/billing-details/view'} component={BillingDetailsView} layout={UserLayout} screenProps={this.eventEmitter} />
+              <AppRoute path={'/billing-detail/view'} component={BillingDetailsView} layout={UserLayout} screenProps={this.eventEmitter} />
               <AppRoute path={'/add-card'} component={AddCardComponent} layout={UserLayout} screenProps={this.eventEmitter} />
               <AppRoute path={'/card-details'} component={CardDetailsComponent} layout={UserLayout} screenProps={this.eventEmitter} />
               <AppRoute path={'/invoice'} component={InvoiceComponent} layout={UserLayout} screenProps={this.eventEmitter} />
               <AppRoute path={'/pay-per-view'} component={PayPerView} layout={UserLayout} screenProps={this.eventEmitter} />
               <AppRoute path={'/payment-history'} component={PaymentHistory} layout={UserLayout} screenProps={this.eventEmitter} />
+              <AppRoute path={'/payment/view-details'} component={PaymentViewDetails} layout={UserLayout} screenProps={this.eventEmitter} />
               <AppRoute path={'/payment-options'} component={PaymentOptions} layout={UserLayout} screenProps={this.eventEmitter} />
               <AppRoute path={'/payment-success'} component={PaymentSuccess} layout={UserLayout} screenProps={this.eventEmitter} />
               <AppRoute path={'/payment-failure'} component={PaymentFailure} layout={UserLayout} screenProps={this.eventEmitter} />

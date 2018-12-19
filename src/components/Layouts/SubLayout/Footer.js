@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 
 import {Link} from 'react-router-dom';
 
+const $ = window.$;
+
 class Footer extends Component {
 
     constructor(props) {
@@ -17,7 +19,9 @@ class Footer extends Component {
     }
 
     componentDidMount() {
+        var footerHeight = $('#footer').outerHeight();
 
+        $('.bottom-height').height(footerHeight);
         // Call api function
 
     }

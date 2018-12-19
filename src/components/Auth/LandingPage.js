@@ -45,7 +45,7 @@ class LandingPage extends Component {
                         <div className="landing-nav-list">
                             <ul className="nav nav-pills" role="tablist">
                                 <li className="nav-item">
-                                    <Link className="nav-link active" data-toggle="pill" to="#home">
+                                    <a className="nav-link active" data-toggle="pill" href="#home">
                                         <p className="m-0"><i className="fas fa-copy"></i></p>
                                         <p className="hide-xs landing-nav-list-text">
                                             No commitments
@@ -53,21 +53,21 @@ class LandingPage extends Component {
                                             Cancel online at any time
                                         </p>
                                         <p className="show-xs landing-nav-list-text-xs">cancel</p>
-                                    </Link>
+                                    </a>
                                 </li>
                                 <li className="nav-item">
-                                    <Link className="nav-link" data-toggle="pill" to="#menu1">
+                                    <a className="nav-link" data-toggle="pill" href="#menu1">
                                         <p className="m-0"><i className="fas fa-mobile-alt"></i></p>
                                         <p className="hide-xs landing-nav-list-text">Watch anywhere</p>
                                         <p className="show-xs landing-nav-list-text-xs">devices</p>
-                                    </Link>
+                                    </a>
                                 </li>
                                 <li className="nav-item">
-                                    <Link className="nav-link" data-toggle="pill" to="#menu2">
+                                    <a className="nav-link" data-toggle="pill" href="#menu2">
                                         <i className="fas fa-tags"></i>
                                         <p className="hide-xs landing-nav-list-text">Pick your price</p>
                                         <p className="show-xs landing-nav-list-text-xs">devices</p>
-                                    </Link>
+                                    </a>
                                 </li>
                             </ul>
                         </div>

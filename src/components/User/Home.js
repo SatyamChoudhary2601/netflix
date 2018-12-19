@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 
+import Slider from 'react-slick';
+
 import {Link} from 'react-router-dom';
 
 class Home extends Component {
@@ -17,6 +19,32 @@ class Home extends Component {
     }
 
     render() {
+
+        var episodeSlider = {
+            dots: false,
+            arrow: true,
+            infinite: true,
+            slidesToShow: 4,
+            slidesToScroll: 4,
+            infinite:false,
+        };
+        
+        var trailerSlider = {
+            dots: false,
+            arrow: true,
+            infinite: false,
+            slidesToShow: 4,
+            slidesToScroll: 1
+        };
+
+        var morelikeSlider = {
+            dots: false,
+            arrow: true,
+            infinite: false,
+            slidesToShow: 4,
+            slidesToScroll: 1
+        };
+
         return (
             <div>
                 <div className="banner-sec">
@@ -49,7 +77,7 @@ class Home extends Component {
                 </div>
 
                 <div className="main p-40">
-                    <div className="main-slidersec">
+                    {/* <div className="main-slidersec">
                         <h3>recently viewed<i className="fas fa-angle-right ml-2"></i></h3>
                         <section className="mylist-slider home-slider slider">
                             <div className="sliderthumb">
@@ -319,279 +347,7 @@ class Home extends Component {
                                 </div>
                             </div>
                         </section>
-                    </div>
-
-                    <div className="main-slidersec">
-                        <h3>Recent uploads<i className="fas fa-angle-right ml-2"></i></h3>
-                        <section className="recent-slider home-slider slider">
-                            <div className="sliderthumb">
-                                <img className="sliderthumb-img hoverout-img" src="assets/img/thumb1.jpg"
-                                srcSet="assets/img/thumb1.jpg 1x,
-                                        assets/img/thumb1.jpg 1.5x,
-                                        assets/img/thumb1.jpg 2x" alt="slider-img" />	
-                                <img className="sliderthumb-img hoverin-img" src="assets/img/thumb8.jpg"
-                                srcSet="assets/img/thumb8.jpg 1x,
-                                        assets/img/thumb8.jpg 1.5x,
-                                        assets/img/thumb8.jpg 2x" alt="slider-img" />	
-                                <div className="sliderthumb-text">
-                                    <div className="width-100">
-                                        <Link to="#">
-                                            <div className="thumb-playicon">
-                                                <i className="fas fa-play"></i>
-                                            </div>
-                                        </Link>
-                                        <h4 className="thumb-title">frozen</h4>
-                                        <h5 className="thumb-details">
-                                            <span className="green-clr">Aug 2018</span>
-                                            <span className="grey-box">7<i className="fas fa-plus small"></i> / 25 <span className="small">Views</span></span>
-                                        </h5>
-                                        <p className="thumb-desc">An ordinary teen. An ancient relic pulled from the rubble. And an underground civilization that needs a hero.An ordinary teen. An ancient relic pulled from the rubble. And an underground </p>
-                                        <Link to="#">
-                                            <div className="text-center thumbarrow-sec">
-                                                <img src="assets/img/arrow-white.png" className="thumbarrow thumbarrow-white" />
-                                                <img src="assets/img/arrow-red.png" className="thumbarrow thumbarrow-red" />
-                                            </div>
-                                        </Link>
-                                    </div>
-                                </div>
-                                <div className="slider-play-sec">
-                                    <div>
-                                        <Link to="#">
-                                            <div className="slider-play-sec-outline">
-                                                <i className="fas fa-play"></i>
-                                            </div>
-                                        </Link>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="sliderthumb">
-                                <img className="sliderthumb-img hoverout-img" src="assets/img/thumb2.jpg"
-                                srcSet="assets/img/thumb2.jpg 1x,
-                                        assets/img/thumb2.jpg 1.5x,
-                                        assets/img/thumb2.jpg 2x" alt="slider-img" />	
-                                <img className="sliderthumb-img hoverin-img" src="assets/img/thumb7.jpg"
-                                srcSet="assets/img/thumb7.jpg 1x,
-                                        assets/img/thumb7.jpg 1.5x,
-                                        assets/img/thumb7.jpg 2x" alt="slider-img" />	
-                                <div className="sliderthumb-text">
-                                    <div className="width-100">
-                                        <Link to="#">
-                                            <div className="thumb-playicon">
-                                                <i className="fas fa-play"></i>
-                                            </div>
-                                        </Link>
-                                        <h4 className="thumb-title">frozen</h4>
-                                        <h5 className="thumb-details">
-                                            <span className="green-clr">Aug 2018</span>
-                                            <span className="grey-box">7<i className="fas fa-plus small"></i> / 25 <span className="small">Views</span></span>
-                                        </h5>
-                                        <p className="thumb-desc">An ordinary teen. An ancient relic pulled from the rubble. And an underground civilization that needs a hero.An ordinary teen. An ancient relic pulled from the rubble. And an underground </p>
-                                        <Link to="#">
-                                            <div className="text-center thumbarrow-sec">
-                                                <img src="assets/img/arrow-white.png" className="thumbarrow thumbarrow-white" />
-                                                <img src="assets/img/arrow-red.png" className="thumbarrow thumbarrow-red" />
-                                            </div>
-                                        </Link>
-                                    </div>
-                                </div>
-                                <div className="slider-play-sec">
-                                    <div>
-                                        <Link to="#">
-                                            <div className="slider-play-sec-outline">
-                                                <i className="fas fa-play"></i>
-                                            </div>
-                                        </Link>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="sliderthumb">
-                                <img className="sliderthumb-img hoverout-img" src="assets/img/thumb3.jpg"
-                                srcSet="assets/img/thumb3.jpg 1x,
-                                        assets/img/thumb3.jpg 1.5x,
-                                        assets/img/thumb3.jpg 2x" alt="slider-img" />
-                                <img className="sliderthumb-img hoverin-img" src="assets/img/thumb6.jpg"
-                                srcSet="assets/img/thumb6.jpg 1x,
-                                        assets/img/thumb6.jpg 1.5x,
-                                        assets/img/thumb6.jpg 2x" alt="slider-img" />
-                                <div className="sliderthumb-text">
-                                    <div className="width-100">
-                                        <Link to="#">
-                                            <div className="thumb-playicon">
-                                                <i className="fas fa-play"></i>
-                                            </div>
-                                        </Link>
-                                        <h4 className="thumb-title">frozen</h4>
-                                        <h5 className="thumb-details">
-                                            <span className="green-clr">Aug 2018</span>
-                                            <span className="grey-box">7<i className="fas fa-plus small"></i> / 25 <span className="small">Views</span></span>
-                                        </h5>
-                                        <p className="thumb-desc">An ordinary teen. An ancient relic pulled from the rubble. And an underground civilization that needs a hero.An ordinary teen. An ancient relic pulled from the rubble. And an underground </p>
-                                        <Link to="#">
-                                            <div className="text-center thumbarrow-sec">
-                                                <img src="assets/img/arrow-white.png" className="thumbarrow thumbarrow-white" />
-                                                <img src="assets/img/arrow-red.png" className="thumbarrow thumbarrow-red" />
-                                            </div>
-                                        </Link>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="sliderthumb">
-                                <img className="sliderthumb-img hoverout-img" src="assets/img/thumb4.jpg"
-                                srcSet="assets/img/thumb4.jpg 1x,
-                                        assets/img/thumb4.jpg 1.5x,
-                                        assets/img/thumb4.jpg 2x" alt="slider-img" />	
-                                <img className="sliderthumb-img hoverin-img" src="assets/img/thumb5.jpg"
-                                srcSet="assets/img/thumb5.jpg 1x,
-                                        assets/img/thumb5.jpg 1.5x,
-                                        assets/img/thumb5.jpg 2x" alt="slider-img" />
-                                <div className="sliderthumb-text">
-                                    <div className="width-100">
-                                        <Link to="#">
-                                            <div className="thumb-playicon">
-                                                <i className="fas fa-play"></i>
-                                            </div>
-                                        </Link>
-                                        <h4 className="thumb-title">frozen</h4>
-                                        <h5 className="thumb-details">
-                                            <span className="green-clr">Aug 2018</span>
-                                            <span className="grey-box">7<i className="fas fa-plus small"></i> / 25 <span className="small">Views</span></span>
-                                        </h5>
-                                        <p className="thumb-desc">An ordinary teen. An ancient relic pulled from the rubble. And an underground civilization that needs a hero.An ordinary teen. An ancient relic pulled from the rubble. And an underground </p>
-                                        <Link to="#">
-                                            <div className="text-center thumbarrow-sec">
-                                                <img src="assets/img/arrow-white.png" className="thumbarrow thumbarrow-white" />
-                                                <img src="assets/img/arrow-red.png" className="thumbarrow thumbarrow-red" />
-                                            </div>
-                                        </Link>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="sliderthumb">
-                                <img className="sliderthumb-img hoverout-img" src="assets/img/thumb5.jpg"
-                                srcSet="assets/img/thumb5.jpg 1x,
-                                        assets/img/thumb5.jpg 1.5x,
-                                        assets/img/thumb5.jpg 2x" alt="slider-img" />	
-                                <img className="sliderthumb-img hoverin-img" src="assets/img/thumb4.jpg"
-                                srcSet="assets/img/thumb4.jpg 1x,
-                                        assets/img/thumb4.jpg 1.5x,
-                                        assets/img/thumb4.jpg 2x" alt="slider-img" />
-                                <div className="sliderthumb-text">
-                                    <div className="width-100">
-                                        <Link to="#">
-                                            <div className="thumb-playicon">
-                                                <i className="fas fa-play"></i>
-                                            </div>
-                                        </Link>
-                                        <h4 className="thumb-title">frozen</h4>
-                                        <h5 className="thumb-details">
-                                            <span className="green-clr">Aug 2018</span>
-                                            <span className="grey-box">7<i className="fas fa-plus small"></i> / 25 <span className="small">Views</span></span>
-                                        </h5>
-                                        <p className="thumb-desc">An ordinary teen. An ancient relic pulled from the rubble. And an underground civilization that needs a hero.An ordinary teen. An ancient relic pulled from the rubble. And an underground </p>
-                                        <Link to="#">
-                                            <div className="text-center thumbarrow-sec">
-                                                <img src="assets/img/arrow-white.png" className="thumbarrow thumbarrow-white" />
-                                                <img src="assets/img/arrow-red.png" className="thumbarrow thumbarrow-red" />
-                                            </div>
-                                        </Link>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="sliderthumb">
-                                <img className="sliderthumb-img hoverout-img" src="assets/img/thumb6.jpg"
-                                srcSet="assets/img/thumb6.jpg 1x,
-                                        assets/img/thumb6.jpg 1.5x,
-                                        assets/img/thumb6.jpg 2x" alt="slider-img" />
-                                <img className="sliderthumb-img hoverin-img" src="assets/img/thumb3.jpg"
-                                srcSet="assets/img/thumb3.jpg 1x,
-                                        assets/img/thumb3.jpg 1.5x,
-                                        assets/img/thumb3.jpg 2x" alt="slider-img" />	
-                                <div className="sliderthumb-text">
-                                    <div className="width-100">
-                                        <Link to="#">
-                                            <div className="thumb-playicon">
-                                                <i className="fas fa-play"></i>
-                                            </div>
-                                        </Link>
-                                        <h4 className="thumb-title">frozen</h4>
-                                        <h5 className="thumb-details">
-                                            <span className="green-clr">Aug 2018</span>
-                                            <span className="grey-box">7<i className="fas fa-plus small"></i> / 25 <span className="small">Views</span></span>
-                                        </h5>
-                                        <p className="thumb-desc">An ordinary teen. An ancient relic pulled from the rubble. And an underground civilization that needs a hero.An ordinary teen. An ancient relic pulled from the rubble. And an underground </p>
-                                        <Link to="#">
-                                            <div className="text-center thumbarrow-sec">
-                                                <img src="assets/img/arrow-white.png" className="thumbarrow thumbarrow-white" />
-                                                <img src="assets/img/arrow-red.png" className="thumbarrow thumbarrow-red" />
-                                            </div>
-                                        </Link>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="sliderthumb">
-                                <img className="sliderthumb-img hoverout-img" src="assets/img/thumb7.jpg"
-                                srcSet="assets/img/thumb7.jpg 1x,
-                                        assets/img/thumb7.jpg 1.5x,
-                                        assets/img/thumb7.jpg 2x" alt="slider-img" />	
-                                <img className="sliderthumb-img hoverin-img" src="assets/img/thumb2.jpg"
-                                srcSet="assets/img/thumb2.jpg 1x,
-                                        assets/img/thumb2.jpg 1.5x,
-                                        assets/img/thumb2.jpg 2x" alt="slider-img" />
-                                <div className="sliderthumb-text">
-                                    <div className="width-100">
-                                        <Link to="#">
-                                            <div className="thumb-playicon">
-                                                <i className="fas fa-play"></i>
-                                            </div>
-                                        </Link>
-                                        <h4 className="thumb-title">frozen</h4>
-                                        <h5 className="thumb-details">
-                                            <span className="green-clr">Aug 2018</span>
-                                            <span className="grey-box">7<i className="fas fa-plus small"></i> / 25 <span className="small">Views</span></span>
-                                        </h5>
-                                        <p className="thumb-desc">An ordinary teen. An ancient relic pulled from the rubble. And an underground civilization that needs a hero.An ordinary teen. An ancient relic pulled from the rubble. And an underground </p>
-                                        <Link to="#">
-                                            <div className="text-center thumbarrow-sec">
-                                                <img src="assets/img/arrow-white.png" className="thumbarrow thumbarrow-white" />
-                                                <img src="assets/img/arrow-red.png" className="thumbarrow thumbarrow-red" />
-                                            </div>
-                                        </Link>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="sliderthumb">
-                                <img className="sliderthumb-img hoverout-img" src="assets/img/thumb8.jpg"
-                                srcSet="assets/img/thumb8.jpg 1x,
-                                        assets/img/thumb8.jpg 1.5x,
-                                        assets/img/thumb8.jpg 2x" alt="slider-img" />
-                                <img className="sliderthumb-img hoverin-img" src="assets/img/thumb1.jpg"
-                                srcSet="assets/img/thumb1.jpg 1x,
-                                        assets/img/thumb1.jpg 1.5x,
-                                        assets/img/thumb1.jpg 2x" alt="slider-img" />	
-                                <div className="sliderthumb-text">
-                                    <div className="width-100">
-                                        <Link to="#">
-                                            <div className="thumb-playicon">
-                                                <i className="fas fa-play"></i>
-                                            </div>
-                                        </Link>
-                                        <h4 className="thumb-title">frozen</h4>
-                                        <h5 className="thumb-details">
-                                            <span className="green-clr">Aug 2018</span>
-                                            <span className="grey-box">7<i className="fas fa-plus small"></i> / 25 <span className="small">Views</span></span>
-                                        </h5>
-                                        <p className="thumb-desc">An ordinary teen. An ancient relic pulled from the rubble. And an underground civilization that needs a hero.An ordinary teen. An ancient relic pulled from the rubble. And an underground </p>
-                                        <Link to="#">
-                                            <div className="text-center thumbarrow-sec">
-                                                <img src="assets/img/arrow-white.png" className="thumbarrow thumbarrow-white" />
-                                                <img src="assets/img/arrow-red.png" className="thumbarrow thumbarrow-red" />
-                                            </div>
-                                        </Link>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-                    </div>
+                    </div> */}
 
                     <div className="height-100"></div>
                     
@@ -614,23 +370,79 @@ class Home extends Component {
                         <div className="slider-content-tabsec">
                             <ul className="nav nav-pills" role="tablist">
                                 <li className="nav-item">
-                                    <Link className="nav-link active" data-toggle="pill" to="#overview">overview</Link>
+                                    <a className="nav-link active" data-toggle="pill" href="#overview">overview</a>
                                 </li>
                                 <li className="nav-item">
-                                    <Link className="nav-link" data-toggle="pill" to="#episode">episodes</Link>
+                                    <a className="nav-link" data-toggle="pill" href="#episode">episodes</a>
                                 </li>
                                 <li className="nav-item">
-                                    <Link className="nav-link" data-toggle="pill" to="#trailers">trailers & more</Link>
+                                    <a className="nav-link" data-toggle="pill" href="#trailers">trailers & more</a>
                                 </li>
                                 <li className="nav-item">
-                                    <Link className="nav-link" data-toggle="pill" to="#more_link">more like this</Link>
+                                    <a className="nav-link" data-toggle="pill" href="#more_link">more like this</a>
                                 </li>
                                 <li className="nav-item">
-                                    <Link className="nav-link" data-toggle="pill" to="#details">details</Link>
+                                    <a className="nav-link" data-toggle="pill" href="#details">details</a>
                                 </li>
                             </ul>
                         </div> 
 
+                        <div className="modal fade confirmation-popup" id="spam-popup">
+                            <div className="modal-dialog modal-dialog-centered">
+                                <div className="modal-content">
+                                    <form>
+                                        <div className="modal-header">
+                                            <h4 className="modal-title">Report This Video</h4>
+                                            <button type="button" className="close" data-dismiss="modal">&times;</button>
+                                        </div>
+                                    
+                                        <div className="modal-body">
+                                            <p>Note:If you report this video, you won't see again the same video in anywhere in your account except "Spam Videos". If you want to continue to report this video as same. Click continue and proceed the same.</p>
+                                    
+                                            <div className="form-check">
+                                                <input type="radio" id="test1" name="radio-group" checked />
+                                                <label for="test1">Sexual content</label>
+                                            </div>
+                                            <div className="form-check">
+                                                <input type="radio" id="test2" name="radio-group" />
+                                                <label for="test2">Violent or repulsive content.</label>
+                                            </div>
+                                            <div className="form-check">
+                                                <input type="radio" id="test3" name="radio-group" />
+                                                <label for="test3">Hateful or abusive content.</label>
+                                            </div>
+                                            <div className="form-check">
+                                                <input type="radio" id="test4" name="radio-group" />
+                                                <label for="test4">Harmful dangerous acts.</label>
+                                            </div>
+                                            <div className="form-check">
+                                                <input type="radio" id="test5" name="radio-group" />
+                                                <label for="test5">Child abuse.</label>
+                                            </div>
+                                            <div className="form-check">
+                                                <input type="radio" id="test6" name="radio-group" />
+                                                <label for="test6">Spam or misleading.</label>
+                                            </div>
+                                            <div className="form-check">
+                                                <input type="radio" id="test7" name="radio-group" />
+                                                <label for="test7">Infringes my rights.</label>
+                                            </div>
+                                            <div className="form-check">
+                                                <input type="radio" id="test8" name="radio-group" />
+                                                <label for="test8">Captions issue.</label>
+                                            </div>
+                                        </div>
+                                    
+                                        <div className="modal-footer">
+                                            <button type="button" className="btn btn-danger">submit</button>
+                                        </div>
+
+                                    </form>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        
                         <div className="slider-content-tabcontent">
                             <div className="tab-content">
                                 <div id="overview" className="tab-pane active">
@@ -662,6 +474,7 @@ class Home extends Component {
                                                     <Link to="#" className="btn btn-outline-secondary btn-right-space"><i className="fas fa-plus mr-2"></i>my list</Link>
                                                     <Link to="#" className="btn express-btn mr-2"><i className="far fa-thumbs-up"></i></Link>
                                                     <Link to="#" className="btn express-btn btn-right-space"><i className="far fa-thumbs-down"></i></Link>
+                                                    <Link to="#" data-toggle="modal" data-target="#spam-popup" className="btn express-btn btn-right-space"><i className="fas fa-info"></i></Link>
                                                 </div>
                                             </div>
                                         </div>
@@ -683,7 +496,7 @@ class Home extends Component {
                                             </form>
                                         </div>
                                         <div>
-                                            <section className="episode-slider slider">
+                                            <Slider {...episodeSlider} className="episode-slider slider">
                                                 <div>
                                                     <div className="relative">
                                                         <img className="trailers-img" src="assets/img/thumb1.jpg"
@@ -846,7 +659,7 @@ class Home extends Component {
                                                         <h4 className="episode-content-desc">During their search for the escaped Dagur the Deranged, Hiccup and the Dragon Riders discover a mysterious object -- one that holds their destiny.</h4>
                                                     </div>
                                                 </div>
-                                            </section>
+                                            </Slider>
                                         </div>
                                     </div>
                                 </div>
@@ -856,7 +669,7 @@ class Home extends Component {
                                             <h1 className="banner_video_title">frozen</h1>
                                         </div>
                                         <div>
-                                            <section className="trailer-slider slider">
+                                            <Slider {...trailerSlider} className="trailer-slider slider">
                                                 <div>
                                                     <div className="relative">
                                                         <img className="trailers-img" src="assets/img/thumb8.jpg"
@@ -965,7 +778,7 @@ class Home extends Component {
                                                         <h4 className="episode-content-head">eye of the beholder</h4>		
                                                     </div>
                                                 </div>
-                                            </section>
+                                            </Slider>
                                         </div>
                                     </div>
                                 </div>
@@ -975,7 +788,7 @@ class Home extends Component {
                                             <h1 className="banner_video_title">frozen</h1>
                                         </div>
                                         <div>
-                                            <section className="more-like-slider slider">
+                                            <Slider {...morelikeSlider} className="more-like-slider slider">
                                                 <div>
                                                     <div className="relative">
                                                         <img className="trailers-img" src="assets/img/thumb1.jpg"
@@ -1132,7 +945,7 @@ class Home extends Component {
                                                         <h4 className="episode-content-desc">During their search for the escaped Dagur the Deranged, Hiccup and the Dragon Riders discover a mysterious object -- one that holds their destiny.</h4>
                                                     </div>
                                                 </div>
-                                            </section>
+                                            </Slider>
                                         </div>
                                     </div>
                                 </div>

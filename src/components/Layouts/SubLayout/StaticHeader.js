@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 
 import {Link} from 'react-router-dom';
 
+const $ = window.$;
+
 class Header extends Component {
 
     constructor(props) {
@@ -17,6 +19,10 @@ class Header extends Component {
     }
 
     componentDidMount() {
+        
+        var headerHeight = $('#header').outerHeight();
+
+        $('.header-height').height(headerHeight);
 
         // Call api function
 
