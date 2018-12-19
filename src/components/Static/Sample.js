@@ -15,6 +15,8 @@ class Sample extends Component{
                     <h4 className="mt-3 mb-3">No results found</h4>
                 </div>
 
+                <div class="loader"></div>
+
                 <div className="modal fade confirmation-popup" id="myModal">
                     <div className="modal-dialog modal-dialog-centered">
                         <div className="modal-content">

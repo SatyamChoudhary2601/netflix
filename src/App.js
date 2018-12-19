@@ -25,6 +25,7 @@ import ErrorComponent from '../src/components/Static/Error';
 import ViewProfilesComponent from '../src/components/User/Account/ViewProfiles';
 import ManageProfilesComponent  from '../src/components/User/Account/ManageProfiles';
 import EditProfilesComponent from '../src/components/User/Account/Editprofile';
+import LoaderComponent from './components/Static/Loader';
 
 // User Layout
 import Home from '../src/components/User/Home';
@@ -157,6 +158,7 @@ class App extends Component {
               <AppRoute path={"/view-profiles"} component={ViewProfilesComponent} layout={EmptyLayout} screenProps={this.EmptyLayout} />
               <AppRoute path={'/manage-profiles'} component={ManageProfilesComponent} layout={EmptyLayout} screenProps={this.eventEmitter} />
               <AppRoute path={'/edit-profile'} component={EditProfilesComponent} layout={EmptyLayout} screenProps={this.eventEmitter} />
+              <AppRoute path={'/loader'} component={LoaderComponent} layout={LoaderComponent} screenProps={this.eventEmitter} />
 
               { /***user layout - Having differnt header and footer ****/}
               {/* <AppRoute authentication={this.state.authentication} path={"/home"} component={Home} layout={UserLayout} screenProps={this.eventEmitter}/> */}

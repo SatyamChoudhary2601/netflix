@@ -350,7 +350,8 @@ class Home extends Component {
                     </div> */}
 
                     <div className="height-100"></div>
-                    
+                
+
                     <div className="slider-content">
                         <div className="row m-0">
                             <div className="col-3 col-md-3 col-lg-3 col-xl-3 p-0">
@@ -442,7 +443,7 @@ class Home extends Component {
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div className="slider-content-tabcontent">
                             <div className="tab-content">
                                 <div id="overview" className="tab-pane active">
