@@ -119,12 +119,17 @@ body,html{
     width: 230px;
     background-color: rgba(0,0,0,.9);
     border: 1px solid #fff;
-    padding: .4em 1em .4em 1em;
+    padding: .4em 1em .4em 1em !important;
     background-image: none;
     margin-top: 0;
 }
-.search-form{
+.white-search-form{
+    width: 230px;
+    background-color: white;
+    border: 1px solid #4d4d4d;
     padding: .4em 1em .4em 1em !important;
+    background-image: none;
+    margin-top: 0;
 }
 .menu-icon img{
     height: 1.7em;
@@ -137,6 +142,12 @@ body,html{
 }
 .sidebar-content{
     height: calc(100vh - 45px);
+}
+.white-footer .footer-link-list{
+    width: 100%;
+}
+.hidden-kids-nav{
+    display: none;
 }
 }
 
@@ -240,12 +251,17 @@ body,html{
     width: 230px;
     background-color: rgba(0,0,0,.9);
     border: 1px solid #fff;
-    padding: .4em 1em .4em 1em;
+    padding: .4em 1em .4em 1em !important;
     background-image: none;
     margin-top: 0;
 }
-.search-form{
+.white-search-form{
+    width: 230px;
+    background-color: white;
+    border: 1px solid #4d4d4d;
     padding: .4em 1em .4em 1em !important;
+    background-image: none;
+    margin-top: 0;
 }
 .menu-icon img{
     height: 1.7em;
@@ -258,6 +274,9 @@ body,html{
 }
 .sidebar-content{
     height: calc(100vh - 48px);
+}
+.hidden-kids-nav{
+    display: none;
 }
 }
 
@@ -340,18 +359,26 @@ body,html{
     width: 230px;
     background-color: rgba(0,0,0,.9);
     border: 1px solid #fff;
-    padding: .5em 1em .5em 1em;
+    padding: .5em 1em .5em 1em !important;
     background-image: none;
     margin-top: 0;
 }
-.search-form{
+.white-search-form{
+    width: 230px;
+    background-color: white;
+    border: 1px solid #4d4d4d;
     padding: .5em 1em .5em 1em !important;
+    background-image: none;
+    margin-top: 0;
 }
 .menu-icon img{
     height: 2em;
     width: 2em;
     margin-right: 1em;
     display: inline-block;
+}
+.hidden-kids-nav{
+    display: none;
 }
 }
 

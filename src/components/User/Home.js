@@ -4,21 +4,86 @@ import Slider from 'react-slick';
 
 import {Link} from 'react-router-dom';
 
+const $ = window.$;
+
 class Home extends Component {
 
     constructor(props) {
 
         super(props);
 
-    }
+    }   
+    
+   
 
     componentDidMount() {
 
-        // Call api function
+        var scaling = 1.5;
+
+        var videoWidth = $('.sliderthumb').outerWidth();
+        
+        var videoHeight = Math.round(videoWidth / (16/9));
+
+        var videoSecHeight = (videoHeight * scaling);
+
+        var videoHeightDiff = videoSecHeight - videoHeight;
+
+        $('.mylist-slider').height(videoSecHeight);
+
+        $('.home-slider .slick-slide .sliderthumb-img').height(videoHeight);
+
+        $('.home-slider .slick-slide').css("margin-top", (videoHeightDiff / 2));
 
     }
 
+    mouseOver() {
+
+    }
+
+    mouseOut() {
+        
+    }
+
     render() {
+
+        var mylistsSlider = {
+            dots: false,
+            arrow: true,
+            infinite: true,
+            slidesToShow: 6,
+            slidesToScroll: 6,
+            infinite:false,
+            responsive: [
+                {
+                    breakpoint: 1440,
+                    settings: {
+                        slidesToShow: 5,
+                        slidesToScroll: 5,
+                    }
+                }, 
+                {
+                    breakpoint: 1100,
+                    settings: {
+                        slidesToShow: 4,
+                        slidesToScroll: 4,
+                    }
+                }, 
+                {
+                    breakpoint: 768,
+                    settings: {
+                        slidesToShow: 3,
+                        slidesToScroll: 3,
+                    }
+                }, 
+                {
+                    breakpoint: 576,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 2,
+                    }
+                }, 
+            ]
+        }
 
         var episodeSlider = {
             dots: false,
@@ -77,10 +142,11 @@ class Home extends Component {
                 </div>
 
                 <div className="main p-40">
-                    {/* <div className="main-slidersec">
-                        <h3>recently viewed<i className="fas fa-angle-right ml-2"></i></h3>
-                        <section className="mylist-slider home-slider slider">
-                            <div className="sliderthumb">
+                    <div className="main-slidersec">
+                        <h3 className="">recently viewed<i className="fas fa-angle-right ml-2"></i></h3>
+                       
+                        <Slider {...mylistsSlider}  className="mylist-slider home-slider slider">
+                            <div className="sliderthumb" onMouseOut={() => this.mouseOut()} onMouseOver={() => this.mouseOver()}>
                                 <img className="sliderthumb-img hoverout-img" src="assets/img/thumb1.jpg"
                                 srcSet="assets/img/thumb1.jpg 1x,
                                         assets/img/thumb1.jpg 1.5x,
@@ -346,8 +412,9 @@ class Home extends Component {
                                     </div>
                                 </div>
                             </div>
-                        </section>
-                    </div> */}
+                        </Slider>
+                       
+                    </div>
 
                     <div className="height-100"></div>
                 
