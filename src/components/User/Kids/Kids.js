@@ -89,7 +89,30 @@ class Kids extends Component{
             infinite: false,
             speed: 500,
             slidesToShow: 6,
-            slidesToScroll: 6
+            slidesToScroll: 6,
+            responsive: [
+                {
+                    breakpoint: 992,
+                    settings: {
+                        slidesToShow: 5,
+                        slidesToScroll: 5,
+                    }
+                }, 
+                {
+                    breakpoint: 768,
+                    settings: {
+                        slidesToShow: 4,
+                        slidesToScroll: 4,
+                    }
+                }, 
+                {
+                    breakpoint: 576,
+                    settings: {
+                        slidesToShow: 3,
+                        slidesToScroll: 3,
+                    }
+                }, 
+            ]
         };
 
         return(
@@ -98,31 +121,49 @@ class Kids extends Component{
                     <div>
                         <Slider {...categories} className="kids-category-slider slider">
                             <div>
-                                <img src="assets/img/thumb1.jpg" alt="category-img" />
+                                <Link to="" data-toggle="modal" data-target="#kids-char">
+                                    <img src="assets/img/thumb1.jpg" alt="category-img" />
+                                </Link>
                             </div>
                             <div>
-                                <img src="assets/img/thumb2.jpg" alt="category-img" />
+                                <Link to="">
+                                    <img src="assets/img/thumb2.jpg" alt="category-img" />
+                                </Link>
                             </div>
                             <div>
-                                <img src="assets/img/thumb3.jpg" alt="category-img" />
+                                <Link to="">
+                                    <img src="assets/img/thumb3.jpg" alt="category-img" />
+                                </Link>
                             </div>
                             <div>
-                                <img src="assets/img/thumb4.jpg" alt="category-img" />
+                                <Link to="">
+                                    <img src="assets/img/thumb4.jpg" alt="category-img" />
+                                </Link>
                             </div>
                             <div>
-                                <img src="assets/img/thumb5.jpg" alt="category-img" />
+                                <Link to="">
+                                    <img src="assets/img/thumb5.jpg" alt="category-img" />
+                                </Link>
                             </div>
                             <div>
-                                <img src="assets/img/thumb6.jpg" alt="category-img" />
+                                <Link to="">
+                                    <img src="assets/img/thumb6.jpg" alt="category-img" />
+                                </Link>
                             </div>
                             <div>
-                                <img src="assets/img/thumb7.jpg" alt="category-img" />
+                                <Link to="">
+                                    <img src="assets/img/thumb7.jpg" alt="category-img" />
+                                </Link>
                             </div>
                             <div>
-                                <img src="assets/img/thumb8.jpg" alt="category-img" />
+                                <Link to="">
+                                    <img src="assets/img/thumb8.jpg" alt="category-img" />
+                                </Link>
                             </div>
                             <div>
-                                <img src="assets/img/thumb9.jpg" alt="category-img" />
+                                <Link to="">
+                                    <img src="assets/img/thumb9.jpg" alt="category-img" />
+                                </Link>
                             </div>
                         </Slider>
                     </div>
@@ -346,22 +387,222 @@ class Kids extends Component{
                     <div className="height-100"></div>
                 </div>
 
-                <div class="modal fade" id="kids-episode">
+                <div class="modal fade kids" id="kids-char">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
                             <div class="modal-header">
-                                {/* <h4 class="modal-title">Modal Heading</h4> */}
-                                <img src='assets/img/thumb1.jpg' className="kids-episode-img" alt="image" />
+                                <div className="kids-char-bg width-100">
+                                    <div>
+                                        <h3 className="txt-overflow capz mb-5">the boss baby</h3>
+                                        <div className="relative width-70">
+                                            <img src='assets/img/thumb1.jpg' className="kids-char-img" alt="image" />
+                                            <div className="kids-banner-details">
+                                                <div>
+                                                    <h5>
+                                                        <span className="white-outline">7&nbsp;+</span>&nbsp;&nbsp;
+                                                        <span className="capitalize">the boss baby: back in business</span>
+                                                    </h5>
+                                                </div>
+                                            </div>
+                                            <div className="kids-banner-playbtn">
+                                                <img src="assets/img/play-button.png" alt="play-button" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                             </div>
                             
                             <div class="modal-body">
-                                Modal body..
+                                <h5 className="black-clr bold capz mb-3">season1</h5>
+                               <div className="row">
+                                   <div className="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
+                                        <Link to="/">
+                                            <div className="relative">
+                                                <img src="assets/img/thumb2.jpg" className="kids-episodesec-img" alt="episode_img" />
+                                                <div className="kidssec-play-icon">
+                                                    <img src="assets/img/play-button.png" alt="play_icon" />
+                                                </div>
+                                            </div>
+                                            <h5 className="capz dark-grey-clr mt-2 mb-3 txt-overflow">as the diaper changes</h5>
+                                        </Link>
+                                   </div>
+                                   <div className="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
+                                        <Link to="/">
+                                            <div className="relative">
+                                                <img src="assets/img/thumb3.jpg" className="kids-episodesec-img" alt="episode_img" />
+                                                <div className="kidssec-play-icon">
+                                                    <img src="assets/img/play-button.png" alt="play_icon" />
+                                                </div>
+                                            </div>
+                                            <h5 className="capz dark-grey-clr mt-2 mb-3 txt-overflow">as the diaper changes</h5>
+                                        </Link>
+                                   </div>
+                                   <div className="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
+                                        <Link to="/">
+                                            <div className="relative">
+                                                <img src="assets/img/thumb4.jpg" className="kids-episodesec-img" alt="episode_img" />
+                                                <div className="kidssec-play-icon">
+                                                    <img src="assets/img/play-button.png" alt="play_icon" />
+                                                </div>
+                                            </div>
+                                            <h5 className="capz dark-grey-clr mt-2 mb-3 txt-overflow">as the diaper changes</h5>
+                                        </Link>
+                                   </div>
+                                   <div className="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
+                                        <Link to="/">
+                                            <div className="relative">
+                                                <img src="assets/img/thumb5.jpg" className="kids-episodesec-img" alt="episode_img" />
+                                                <div className="kidssec-play-icon">
+                                                    <img src="assets/img/play-button.png" alt="play_icon" />
+                                                </div>
+                                            </div>
+                                            <h5 className="capz dark-grey-clr mt-2 mb-3 txt-overflow">as the diaper changes</h5>
+                                        </Link>
+                                   </div>
+                                   <div className="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
+                                        <Link to="/">
+                                            <div className="relative">
+                                                <img src="assets/img/thumb6.jpg" className="kids-episodesec-img" alt="episode_img" />
+                                                <div className="kidssec-play-icon">
+                                                    <img src="assets/img/play-button.png" alt="play_icon" />
+                                                </div>
+                                            </div>
+                                            <h5 className="capz dark-grey-clr mt-2 mb-3 txt-overflow">as the diaper changes</h5>
+                                        </Link>
+                                   </div>
+                                   <div className="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
+                                        <Link to="/">
+                                            <div className="relative">
+                                                <img src="assets/img/thumb7.jpg" className="kids-episodesec-img" alt="episode_img" />
+                                                <div className="kidssec-play-icon">
+                                                    <img src="assets/img/play-button.png" alt="play_icon" />
+                                                </div>
+                                            </div>
+                                            <h5 className="capz dark-grey-clr mt-2 mb-3 txt-overflow">as the diaper changes</h5>
+                                        </Link>
+                                   </div>
+                                </div>
+
+                                
+                                
+                            </div>
+            
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade kids" id="kids-episode">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <div className="relative width-100">
+                                    <img src='assets/img/thumb1.jpg' className="kids-episode-img" alt="image" />
+                                    <div className="kids-banner-details">
+                                        <div>
+                                            <h5>
+                                                <span className="white-outline">7&nbsp;+</span>&nbsp;&nbsp;
+                                                <span className="capitalize">the boss baby: back in business</span>
+                                            </h5>
+                                        </div>
+                                    </div>
+                                    <div className="kids-banner-playbtn">
+                                        <img src="assets/img/play-button.png" alt="play-button" />
+                                    </div>
+                                </div>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
                             </div>
                             
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <div class="modal-body">
+                               <div className="row">
+                                   <div className="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
+                                        <Link to="/">
+                                            <div className="relative">
+                                                <img src="assets/img/thumb2.jpg" className="kids-episodesec-img" alt="episode_img" />
+                                                <div className="kidssec-play-icon">
+                                                    <img src="assets/img/play-button.png" alt="play_icon" />
+                                                </div>
+                                            </div>
+                                            <h5 className="capz dark-grey-clr mt-2 mb-3 txt-overflow">as the diaper changes</h5>
+                                        </Link>
+                                   </div>
+                                   <div className="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
+                                        <Link to="/">
+                                            <div className="relative">
+                                                <img src="assets/img/thumb3.jpg" className="kids-episodesec-img" alt="episode_img" />
+                                                <div className="kidssec-play-icon">
+                                                    <img src="assets/img/play-button.png" alt="play_icon" />
+                                                </div>
+                                            </div>
+                                            <h5 className="capz dark-grey-clr mt-2 mb-3 txt-overflow">as the diaper changes</h5>
+                                        </Link>
+                                   </div>
+                                   <div className="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
+                                        <Link to="/">
+                                            <div className="relative">
+                                                <img src="assets/img/thumb4.jpg" className="kids-episodesec-img" alt="episode_img" />
+                                                <div className="kidssec-play-icon">
+                                                    <img src="assets/img/play-button.png txt-overflow" alt="play_icon" />
+                                                </div>
+                                            </div>
+                                            <h5 className="capz dark-grey-clr mt-2 mb-3">as the diaper changes</h5>
+                                        </Link>
+                                   </div>
+                                   <div className="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
+                                        <Link to="/">
+                                            <div className="relative">
+                                                <img src="assets/img/thumb5.jpg" className="kids-episodesec-img" alt="episode_img" />
+                                                <div className="kidssec-play-icon">
+                                                    <img src="assets/img/play-button.png txt-overflow" alt="play_icon" />
+                                                </div>
+                                            </div>
+                                            <h5 className="capz dark-grey-clr mt-2 mb-3">as the diaper changes</h5>
+                                        </Link>
+                                   </div>
+                                   <div className="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
+                                        <Link to="/">
+                                            <div className="relative">
+                                                <img src="assets/img/thumb6.jpg" className="kids-episodesec-img" alt="episode_img" />
+                                                <div className="kidssec-play-icon">
+                                                    <img src="assets/img/play-button.png txt-overflow" alt="play_icon" />
+                                                </div>
+                                            </div>
+                                            <h5 className="capz dark-grey-clr mt-2 mb-3">as the diaper changes</h5>
+                                        </Link>
+                                   </div>
+                                   <div className="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
+                                        <Link to="/">
+                                            <div className="relative">
+                                                <img src="assets/img/thumb7.jpg" className="kids-episodesec-img" alt="episode_img" />
+                                                <div className="kidssec-play-icon">
+                                                    <img src="assets/img/play-button.png" alt="play_icon" />
+                                                </div>
+                                            </div>
+                                            <h5 className="capz dark-grey-clr mt-2 mb-3 txt-overflow">as the diaper changes</h5>
+                                        </Link>
+                                   </div>
+                                </div>
+
+                                <h5 className="black-clr bold capz mt-3 mb-3">more like boss baby</h5>
+                                <div className="row">
+                                   <div className="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 mb-3">
+                                        <Link to="/">
+                                            <img src="assets/img/thumb2.jpg" className="kids-episodesec-img" alt="episode_img" />
+                                        </Link>
+                                   </div>
+                                   <div className="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 mb-3">
+                                        <Link to="/">
+                                            <img src="assets/img/thumb3.jpg" className="kids-episodesec-img" alt="episode_img" />
+                                        </Link>
+                                   </div>
+                                   <div className="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 mb-3">
+                                        <Link to="/">
+                                            <img src="assets/img/thumb4.jpg" className="kids-episodesec-img" alt="episode_img" />
+                                        </Link>
+                                   </div>
+                                </div>
                             </div>
+            
                         </div>
                     </div>
                 </div>

@@ -45,10 +45,55 @@ class KidsHeader extends Component {
                         </li>
                         <li className="nav-item dropdown">
                             <Link className="nav-link dropdown-toggle" to="#" data-toggle="dropdown">categories</Link>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#">Link 1</a>
-                                <a class="dropdown-item" href="#">Link 2</a>
-                                <a class="dropdown-item" href="#">Link 3</a>
+                            <div class="dropdown-menu kids-dropmenu">
+                                <div className="row m-0">
+                                    <div className="col-md-3 p-0">
+                                        <ul className="kids-category-list">
+                                            <li>characters</li>
+                                            <li>originals</li>
+                                        </ul>
+                                    </div>
+                                    <div className="col-md-9 p-0">
+                                        <ul className="kids-category-list2">
+                                            <li className="section">
+                                                <ul className="kids-category-list3">
+                                                    <li>christmas</li>
+                                                    <li>action</li>
+                                                    <li>adventures</li>
+                                                    <li>animals</li>
+                                                    <li>sports</li>
+                                                </ul>
+                                            </li>
+                                            <li className="section">
+                                                <ul className="kids-category-list3">
+                                                    <li>christmas</li>
+                                                    <li>action</li>
+                                                    <li>adventures</li>
+                                                    <li>animals</li>
+                                                    <li>sports</li>
+                                                </ul>
+                                            </li>
+                                            <li className="section">
+                                                <ul className="kids-category-list3">
+                                                    <li>christmas</li>
+                                                    <li>action</li>
+                                                    <li>adventures</li>
+                                                    <li>animals</li>
+                                                    <li>sports</li>
+                                                </ul>
+                                            </li>
+                                            <li className="section">
+                                                <ul className="kids-category-list3">
+                                                    <li>christmas</li>
+                                                    <li>action</li>
+                                                    <li>adventures</li>
+                                                    <li>animals</li>
+                                                    <li>sports</li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
                         </li>
                     </ul>
