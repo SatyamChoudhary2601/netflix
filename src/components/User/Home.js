@@ -37,7 +37,23 @@ class Home extends Component {
     }
 
     mouseOver() {
+        // var scaling = 1.5;
 
+        // var videoWidth = $('.sliderthumb').outerWidth();
+        
+        // var videoHeight = Math.round(videoWidth / (16/9));
+
+        // var videoSecHeight = (videoHeight * scaling);
+
+        // var videoHeightDiff = videoSecHeight - videoHeight;
+
+        // $('.mylist-slider').height(videoSecHeight);
+
+        // $('.home-slider .slick-slide').width(videoWidth * scaling);
+
+        // $('.home-slider .slick-slide .sliderthumb-img').height(videoHeight * scaling);
+
+        // $('.home-slider .slick-slide').css("margin-top", 0);
     }
 
     mouseOut() {

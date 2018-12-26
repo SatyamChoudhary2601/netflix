@@ -2987,26 +2987,6 @@ a:active, a:focus, .slick-slide:focus, .slick-slide:active{
                 transform: translateZ(-10vh);
     }
 }
-.video-container{
-    display: flex;
-    width: 100%;
-}
-.video-container .video-sec{
-    width: 20%;
-    height:140px;
-    flex-grow:1;
-    border: 2px solid #ddd;
-    transition: .4s all linear;
-    background-color: #ccc;
-}
-.video-container .video-sec:hover{
-    /* transform: scale(1.5);
-    flex-shrink: 0; */
-    /* width: 30%; */
-    flex-grow:2;
-    height:210px;
-    margin-top:-35px;
-}
 .slider-thumb-img{
     height: 136px;
     width: 100%;
@@ -3351,3 +3331,21 @@ a:active, a:focus, .slick-slide:focus, .slick-slide:active{
     right:90%;
     z-index: 10;
 }
+.video-container{
+    width: 100%;
+}
+.video-container .video-sec{
+    width: 20%;
+    float: left;
+    flex-grow:1;
+}
+.sliderthumb-img{
+    border:2px solid #222;
+    border-width: 0 2px;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: .2s all ease-in-out;
+    cursor: pointer;
+} 
