@@ -49,7 +49,8 @@ import PaymentViewDetails from '../src/components/User/Settings/payment-view-det
 import PaymentOptions from '../src/components/User/Settings/PaymentOptions';
 import PaymentSuccess from '../src/components/User/Settings/PaymentSuccess';
 import PaymentFailure from '../src/components/User/Settings/PaymentFailure';
-
+import Category from '../src/components/User/Video/Category';
+import SubCategory from '../src/components/User/Video/SubCategory';
 
 // Kids layout
 import Kids from '../src/components/User/Kids/Kids';
@@ -188,6 +189,8 @@ class App extends Component {
               <AppRoute path={'/payment-options'} component={PaymentOptions} layout={UserLayout} screenProps={this.eventEmitter} />
               <AppRoute path={'/payment-success'} component={PaymentSuccess} layout={UserLayout} screenProps={this.eventEmitter} />
               <AppRoute path={'/payment-failure'} component={PaymentFailure} layout={UserLayout} screenProps={this.eventEmitter} />
+              <AppRoute path={'/category'} component={Category} layout={UserLayout} screenProps={this.eventEmitter} />
+              <AppRoute path={'/sub-category'} component={SubCategory} layout={UserLayout} screenProps={this.eventEmitter} />
 
               { /***kids layout - Having white header and footer ****/}
 

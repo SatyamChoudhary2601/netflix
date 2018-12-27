@@ -64,8 +64,15 @@ class UserHeader extends Component {
                         <li className="nav-item">
                             <Link className="nav-link" to="#">recently added</Link>
                         </li>
-                        <li className="nav-item">
-                            <Link className="nav-link" to="#">my list</Link>
+                        <li className="nav-item dropdown">
+                            <Link className="nav-link dropdown-toggle" data-toggle="dropdown" to="#">my list</Link>
+                            <div className="dropdown-menu browse">
+                                <Link className="dropdown-item" to="#">home</Link>
+                                <Link className="dropdown-item" to="#">tV programmes</Link>
+                                <Link className="dropdown-item" to="#">flims</Link>
+                                <Link className="dropdown-item" to="#">recently added</Link>
+                                <Link className="dropdown-item" to="#">my list</Link>
+                            </div>
                         </li>
                     </ul>
                     <ul className="navbar-nav ml-auto">
