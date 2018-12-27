@@ -8,11 +8,11 @@ const $ = window.$;
 
 class Home extends Component {
 
-    constructor(props) {
+    // constructor(props) {
 
-        super(props);
+    //     super(props);
 
-    }   
+    // }   
     
    
 
@@ -65,7 +65,6 @@ class Home extends Component {
         var mylistsSlider = {
             dots: false,
             arrow: true,
-            infinite: true,
             slidesToShow: 6,
             slidesToScroll: 6,
             infinite:false,
@@ -104,7 +103,6 @@ class Home extends Component {
         var episodeSlider = {
             dots: false,
             arrow: true,
-            infinite: true,
             slidesToShow: 4,
             slidesToScroll: 4,
             infinite:false,
@@ -186,8 +184,8 @@ class Home extends Component {
                                         <p className="thumb-desc">An ordinary teen. An ancient relic pulled from the rubble. And an underground civilization that needs a hero.An ordinary teen. An ancient relic pulled from the rubble. And an underground </p>
                                         <Link to="#">
                                             <div className="text-center thumbarrow-sec">
-                                                <img src="assets/img/arrow-white.png" className="thumbarrow thumbarrow-white" />
-                                                <img src="assets/img/arrow-red.png" className="thumbarrow thumbarrow-red" />
+                                                <img src="assets/img/arrow-white.png" className="thumbarrow thumbarrow-white" alt="play_img" />
+                                                <img src="assets/img/arrow-red.png" className="thumbarrow thumbarrow-red" alt="play_img" />
                                             </div>
                                         </Link>
                                     </div>
@@ -226,8 +224,8 @@ class Home extends Component {
                                         <p className="thumb-desc">An ordinary teen. An ancient relic pulled from the rubble. And an underground civilization that needs a hero.An ordinary teen. An ancient relic pulled from the rubble. And an underground </p>
                                         <Link to="#">
                                             <div className="text-center thumbarrow-sec">
-                                                <img src="assets/img/arrow-white.png" className="thumbarrow thumbarrow-white" />
-                                                <img src="assets/img/arrow-red.png" className="thumbarrow thumbarrow-red" />
+                                                <img src="assets/img/arrow-white.png" className="thumbarrow thumbarrow-white" alt="play_img" />
+                                                <img src="assets/img/arrow-red.png" className="thumbarrow thumbarrow-red" alt="play_img" />
                                             </div>
                                         </Link>
                                     </div>
@@ -266,8 +264,8 @@ class Home extends Component {
                                         <p className="thumb-desc">An ordinary teen. An ancient relic pulled from the rubble. And an underground civilization that needs a hero.An ordinary teen. An ancient relic pulled from the rubble. And an underground </p>
                                         <Link to="#">
                                             <div className="text-center thumbarrow-sec">
-                                                <img src="assets/img/arrow-white.png" className="thumbarrow thumbarrow-white" />
-                                                <img src="assets/img/arrow-red.png" className="thumbarrow thumbarrow-red" />
+                                                <img src="assets/img/arrow-white.png" className="thumbarrow thumbarrow-white" alt="play_img" />
+                                                <img src="assets/img/arrow-red.png" className="thumbarrow thumbarrow-red" alt="play_img" />
                                             </div>
                                         </Link>
                                     </div>
@@ -297,8 +295,8 @@ class Home extends Component {
                                         <p className="thumb-desc">An ordinary teen. An ancient relic pulled from the rubble. And an underground civilization that needs a hero.An ordinary teen. An ancient relic pulled from the rubble. And an underground </p>
                                         <Link to="#">
                                             <div className="text-center thumbarrow-sec">
-                                                <img src="assets/img/arrow-white.png" className="thumbarrow thumbarrow-white" />
-                                                <img src="assets/img/arrow-red.png" className="thumbarrow thumbarrow-red" />
+                                                <img src="assets/img/arrow-white.png" className="thumbarrow thumbarrow-white" alt="play_img" />
+                                                <img src="assets/img/arrow-red.png" className="thumbarrow thumbarrow-red" alt="play_img" />
                                             </div>
                                         </Link>
                                     </div>
@@ -328,8 +326,8 @@ class Home extends Component {
                                         <p className="thumb-desc">An ordinary teen. An ancient relic pulled from the rubble. And an underground civilization that needs a hero.An ordinary teen. An ancient relic pulled from the rubble. And an underground </p>
                                         <Link to="#">
                                             <div className="text-center thumbarrow-sec">
-                                                <img src="assets/img/arrow-white.png" className="thumbarrow thumbarrow-white" />
-                                                <img src="assets/img/arrow-red.png" className="thumbarrow thumbarrow-red" />
+                                                <img src="assets/img/arrow-white.png" className="thumbarrow thumbarrow-white" alt="play_img" />
+                                                <img src="assets/img/arrow-red.png" className="thumbarrow thumbarrow-red" alt="play_img" />
                                             </div>
                                         </Link>
                                     </div>
@@ -359,8 +357,8 @@ class Home extends Component {
                                         <p className="thumb-desc">An ordinary teen. An ancient relic pulled from the rubble. And an underground civilization that needs a hero.An ordinary teen. An ancient relic pulled from the rubble. And an underground </p>
                                         <Link to="#">
                                             <div className="text-center thumbarrow-sec">
-                                                <img src="assets/img/arrow-white.png" className="thumbarrow thumbarrow-white" />
-                                                <img src="assets/img/arrow-red.png" className="thumbarrow thumbarrow-red" />
+                                                <img src="assets/img/arrow-white.png" className="thumbarrow thumbarrow-white" alt="play_img" />
+                                                <img src="assets/img/arrow-red.png" className="thumbarrow thumbarrow-red" alt="play_img" />
                                             </div>
                                         </Link>
                                     </div>
@@ -390,8 +388,8 @@ class Home extends Component {
                                         <p className="thumb-desc">An ordinary teen. An ancient relic pulled from the rubble. And an underground civilization that needs a hero.An ordinary teen. An ancient relic pulled from the rubble. And an underground </p>
                                         <Link to="#">
                                             <div className="text-center thumbarrow-sec">
-                                                <img src="assets/img/arrow-white.png" className="thumbarrow thumbarrow-white" />
-                                                <img src="assets/img/arrow-red.png" className="thumbarrow thumbarrow-red" />
+                                                <img src="assets/img/arrow-white.png" className="thumbarrow thumbarrow-white" alt="play_img" />
+                                                <img src="assets/img/arrow-red.png" className="thumbarrow thumbarrow-red" alt="play_img" />
                                             </div>
                                         </Link>
                                     </div>
@@ -421,8 +419,8 @@ class Home extends Component {
                                         <p className="thumb-desc">An ordinary teen. An ancient relic pulled from the rubble. And an underground civilization that needs a hero.An ordinary teen. An ancient relic pulled from the rubble. And an underground </p>
                                         <Link to="#">
                                             <div className="text-center thumbarrow-sec">
-                                                <img src="assets/img/arrow-white.png" className="thumbarrow thumbarrow-white" />
-                                                <img src="assets/img/arrow-red.png" className="thumbarrow thumbarrow-red" />
+                                                <img src="assets/img/arrow-white.png" className="thumbarrow thumbarrow-white" alt="play_img" />
+                                                <img src="assets/img/arrow-red.png" className="thumbarrow thumbarrow-red" alt="play_img" />
                                             </div>
                                         </Link>
                                     </div>

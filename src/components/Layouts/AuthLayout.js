@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-import AuthHeader from './SubLayout/AuthHeader';
+// import AuthHeader from './SubLayout/AuthHeader';
 
 import Footer from '../Layouts/SubLayout/Footer';
 

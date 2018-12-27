@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
 
-import {Link} from 'react-router-dom';
-
 class DeleteAccountComponent extends Component{
     render(){
         var bgImg = {
@@ -16,7 +14,7 @@ class DeleteAccountComponent extends Component{
                             <div className="col-sm-9 col-md-7 col-lg-5 col-xl-4 auto-margin">
                                 <div className="register-box">
                                     <h3 className="register-box-head">delete account</h3>
-                                    <form className="auth-form" action="../index.html">
+                                    <form className="auth-form" action="">
                                         <p className="note"><b>Note:</b> Once your account is deleted, you would be losing your history and Wish-List details.</p>
                                         <div className="form-group">
                                             <input type="password" className="form-control" placeholder="enter password" />

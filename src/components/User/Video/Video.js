@@ -1,15 +1,20 @@
 import React, {Component} from 'react';
 
-import {Link} from 'react-router-dom';
+// import {Link} from 'react-router-dom';
 
-import JWPlayer from 'react-jwplayer';
+// import JWPlayer from 'react-jwplayer'; 
+import ReactJWPlayer from 'react-jw-player';     
 
 class VideoComponent extends Component{
     render(){
         return(
             <div>
-                <JWPlayer videoId="http://streamtube.streamhash.com/uploads/videos/b7c02b4382db1ed499eed77601eb5d56294d83b4.mp4" />
-                {/* file */}
+                {/* <JWPlayer videoId="M2NCefPoiiKsaVB8nTttvMBxfb1J3Xl7PDXSaw==" /> */}
+                <ReactJWPlayer
+                    playerId='M2NCefPoiiKsaVB8nTttvMBxfb1J3Xl7PDXSaw=='
+                    playerScript='/assets/jwplayer/jwplayer.js'
+                    file='http://vjs.zencdn.net/v/oceans.mp4'
+                />
             </div>
         )
     }

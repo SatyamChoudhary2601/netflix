@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 
-import {Link} from 'react-router-dom';
 
 class EditAccountComponent extends Component{
     render(){
@@ -15,7 +14,7 @@ class EditAccountComponent extends Component{
                             <div className="col-sm-9 col-md-7 col-lg-5 col-xl-4 auto-margin">
                                 <div className="register-box">
                                     <h3 className="register-box-head">edit profile</h3>
-                                    <form className="auth-form" action="../account/index.html">
+                                    <form className="auth-form" action="">
                                         <div className="form-group">
                                             <label for="name">name</label>
                                             <input type="text" className="form-control" id="name" />

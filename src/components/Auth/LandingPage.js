@@ -4,11 +4,11 @@ import {Link} from 'react-router-dom';
 
 class LandingPage extends Component {
 
-    constructor(props) {
+    // constructor(props) {
 
-        super(props);
+    //     super(props);
 
-    }
+    // }
 
     componentDidMount() {
 
@@ -22,7 +22,7 @@ class LandingPage extends Component {
             <div>
                 <div className="landing-page-header">
                     <Link to="/">
-                        <img src="assets/img/streamview1.png" className="site-logo" />
+                        <img src="assets/img/streamview1.png" className="site-logo" alt="site_logo" />
                     </Link>
                     <Link to="/login" className="btn btn-danger">sign in</Link>
                 </div>

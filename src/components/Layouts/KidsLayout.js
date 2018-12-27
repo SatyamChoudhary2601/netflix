@@ -6,11 +6,11 @@ import KidsFooter from '../Layouts/SubLayout/KidsFooter';
 
 class KidsLayout extends Component {
 
-    constructor(props) {
+    // constructor(props) {
 
-        super(props);
+    //     super(props);
 
-    }
+    // }
 
 
     render() {

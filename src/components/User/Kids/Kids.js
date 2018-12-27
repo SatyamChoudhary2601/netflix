@@ -47,7 +47,6 @@ class Kids extends Component{
         var mylistsSlider = {
             dots: false,
             arrow: true,
-            infinite: true,
             slidesToShow: 6,
             slidesToScroll: 6,
             infinite:false,
@@ -395,7 +394,7 @@ class Kids extends Component{
                                     <div>
                                         <h3 className="txt-overflow capz mb-5">the boss baby</h3>
                                         <div className="relative width-70">
-                                            <img src='assets/img/thumb1.jpg' className="kids-char-img" alt="image" />
+                                            <img src='assets/img/thumb1.jpg' className="kids-char-img" alt="banner_image" />
                                             <div className="kids-banner-details">
                                                 <div>
                                                     <h5>
@@ -497,7 +496,7 @@ class Kids extends Component{
                         <div class="modal-content">
                             <div class="modal-header">
                                 <div className="relative width-100">
-                                    <img src='assets/img/thumb1.jpg' className="kids-episode-img" alt="image" />
+                                    <img src='assets/img/thumb1.jpg' className="kids-episode-img" alt="banner_image" />
                                     <div className="kids-banner-details">
                                         <div>
                                             <h5>

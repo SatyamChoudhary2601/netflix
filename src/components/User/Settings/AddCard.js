@@ -18,7 +18,7 @@ class AddCardComponent extends Component{
                                 <div className="col-sm-12 col-md-5 col-lg-5 col-xl-5 p-0">
                                     <div className="billing-img relative" style={billingImg}>
                                         <div className="view-cards d-none d-md-block do-lg-block d-xl-block">
-                                            <a href="card-details.html" className="capitalize"><i className="fas fa-chevron-right mr-1"></i>card details</a>
+                                            <Link to="/card-details" className="capitalize"><i className="fas fa-chevron-right mr-1"></i>card details</Link>
                                         </div>
                                     </div>
                                 </div>

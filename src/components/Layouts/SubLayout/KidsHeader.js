@@ -105,7 +105,7 @@ class KidsHeader extends Component {
                         </li>
                         <li className="nav-item mobile-view">
                             <Link className="nav-link" to="#">
-                                <img src="assets/img/icon1.png" className="nav-profile-img" />
+                                <img src="assets/img/icon1.png" className="nav-profile-img" alt="profile_img" />
                             </Link>
                         </li>
                         <li className="nav-item mobile-view">

@@ -1166,7 +1166,7 @@ input:checked + .switch-slider:before {
     background-color: #fff;
 }
 .subcsription-card{
-    background-color: #eeee`;
+    background-color: #eee;
     border-radius: 5px;
     overflow: hidden;
     margin-bottom: 1em;

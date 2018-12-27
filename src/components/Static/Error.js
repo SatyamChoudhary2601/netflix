@@ -11,7 +11,7 @@ class ErrorComponent extends Component{
                         <div>
                             <img src="assets/img/error.png" class="error-img" alt="error_img" />
                             <h4 class="error-text">An error Occurred in the Application And Your Page could not be Served</h4>
-                            <a href="index.html" class="btn btn-danger mb-5">go back</a>
+                            <Link to="/" class="btn btn-danger mb-5">go back</Link>
                         </div>
                     </div>
                 </div>

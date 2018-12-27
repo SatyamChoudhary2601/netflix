@@ -132,31 +132,31 @@ class UserHeader extends Component {
                         </li>
                         <li className="nav-item dropdown mobile-view">
                             <Link className="nav-link dropdown-toggle" to="#" data-toggle="dropdown">
-                                <img src="assets/img/icon1.png" className="nav-profile-img" />
+                                <img src="assets/img/icon1.png" className="nav-profile-img" alt="profile_img" />
                             </Link>
                             <div className="dropdown-menu profile-drop">
                                 <div className="pro-sec-height">
                                     <Link className="dropdown-item" to="/view-profiles">
                                         <div className="display-inline">
-                                            <div className="left-sec"><img src="assets/img/icon2.png" /></div>
+                                            <div className="left-sec"><img src="assets/img/icon2.png"  alt="profile_img" /></div>
                                             <div className="right-name">ronan</div>
                                         </div>
                                     </Link>
                                     <Link className="dropdown-item" to="/view-profiles">
                                         <div className="display-inline">
-                                            <div className="left-sec"><img src="assets/img/icon3.png" /></div>
+                                            <div className="left-sec"><img src="assets/img/icon3.png"  alt="profile_img" /></div>
                                             <div className="right-name">brayden</div>
                                         </div>
                                     </Link>
                                     <Link className="dropdown-item" to="/view-profiles">
                                         <div className="display-inline">
-                                            <div className="left-sec"><img src="assets/img/icon4.png" /></div>
+                                            <div className="left-sec"><img src="assets/img/icon4.png"  alt="profile_img" /></div>
                                             <div className="right-name">hugo</div>
                                         </div>
                                     </Link>
                                     <Link className="dropdown-item" to="/view-profiles">
                                         <div className="display-inline">
-                                            <div className="left-sec"><img src="assets/img/icon5.png" alt=""/></div>
+                                            <div className="left-sec"><img src="assets/img/icon5.png"  alt="profile_img" /></div>
                                             <div className="right-name">diego</div>
                                         </div>
                                     </Link>

@@ -34,8 +34,8 @@ class Header extends Component {
             <div>
                 <nav className="navbar navbar-expand navbar-dark main-nav fixed-top" id="header">
                     <Link className="navbar-brand" to="/home">
-                        <img src="../../../assets/img/streamview.png" className="logo-img desktop-logo" />
-                        <img src="../../../assets/img/streamview-icon.png" className="logo-img mobile-logo" />
+                        <img src="../../../assets/img/streamview.png" className="logo-img desktop-logo"  alt="logo_img" />
+                        <img src="../../../assets/img/streamview-icon.png" className="logo-img mobile-logo" alt="logo_img" />
                     </Link>
                 </nav>
                 <div className="header-height"></div>

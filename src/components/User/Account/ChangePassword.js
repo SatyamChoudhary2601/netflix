@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
 
-import {Link} from 'react-router-dom';
-
 class ChangePasswordComponent extends Component{
     render(){
         var bgImg = {
@@ -15,7 +13,7 @@ class ChangePasswordComponent extends Component{
                             <div className="col-sm-9 col-md-7 col-lg-5 col-xl-4 auto-margin">
                                 <div className="register-box">
                                     <h3 className="register-box-head">change password</h3>
-                                    <form className="auth-form" action="../index.html">
+                                    <form className="auth-form" action="">
                                         <div className="form-group">
                                             <label for="old">old password</label>
                                             <input type="password" className="form-control" id="old" />

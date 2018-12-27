@@ -18,7 +18,7 @@ class CardDetailsComponent extends Component{
                                     <div className="col-sm-12 col-md-5 col-lg-5 col-xl-5 p-0">
                                         <div className="billing-img relative" style={billingImg}>
                                             <div className="view-cards d-none d-md-block do-lg-block d-xl-block">
-                                                <a href="add-card.html" className="capitalize"><i className="fas fa-chevron-right mr-1"></i>add card</a>
+                                                <Link to="/add-card" className="capitalize"><i className="fas fa-chevron-right mr-1"></i>add card</Link>
                                             </div>
                                         </div>
                                     </div>
@@ -33,9 +33,9 @@ class CardDetailsComponent extends Component{
                                                         <img src="../assets/img/credit-card.png" alt='card_img' />
                                                     </div>
                                                     <div className="card-deatils">
-                                                        <a href="#" className="float-right"><i className="far fa-trash-alt"></i></a>
+                                                        <Link to="" className="float-right"><i className="far fa-trash-alt"></i></Link>
                                                         <h5>XXXX XXXX XXXX 4242</h5>
-                                                        <p className="m-0"><a href="#" className="green-clr">default card</a></p>
+                                                        <p className="m-0"><Link to="" className="green-clr">default card</Link></p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -47,9 +47,9 @@ class CardDetailsComponent extends Component{
                                                         <img src="../assets/img/credit-card.png" alt='card_img' />
                                                     </div>
                                                     <div className="card-deatils">
-                                                        <a href="#" className="float-right"><i className="far fa-trash-alt"></i></a>
+                                                        <Link to="" className="float-right"><i className="far fa-trash-alt"></i></Link>
                                                         <h5>XXXX XXXX XXXX 4242</h5>
-                                                        <p className="m-0"><a href="#" className="red-clr">set as default</a></p>
+                                                        <p className="m-0"><Link to="" className="red-clr">set as default</Link></p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -62,7 +62,7 @@ class CardDetailsComponent extends Component{
                                                     </div>
                                                     <div className="card-deatils">
                                                         <div className="add-card">
-                                                            <a href="#" className="btn-link">add card</a>
+                                                            <Link to="" className="btn-link">add card</Link>
                                                         </div>
                                                     </div>
                                                 </div>

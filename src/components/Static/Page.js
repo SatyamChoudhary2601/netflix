@@ -2,17 +2,17 @@ import React, {Component} from 'react';
 
 class Page extends Component {
 
-    constructor(props) {
+    // constructor(props) {
 
-        super(props);
+    //     super(props);
 
-    }
+    // }
 
-    componentDidMount() {
+    // componentDidMount() {
 
-        // Call api function
+    //     // Call api function
 
-    }
+    // }
 
     render() {
 

@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 
-import {Link} from 'react-router-dom';
+// import {Link} from 'react-router-dom';
 
 class PayPerView extends Component{
     render(){
         var billingImg = {
-            backgroundImage: 'url(../assets/img/billing.jpg)'
+            backgroundImage: 'url(assets/img/billing.jpg)'
         };
         return(
             <div>

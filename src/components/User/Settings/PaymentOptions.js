@@ -23,7 +23,7 @@ class PaymentOptions extends Component{
                                         </div>
                                         <div className="right">
                                             <h4>subscription plan</h4>
-                                            <a href="subscription.html" className="btn-link">click here to subscribe</a>
+                                            <Link to="/subscription" className="btn-link">click here to subscribe</Link>
                                         </div>
                                     </div>
 
@@ -33,7 +33,7 @@ class PaymentOptions extends Component{
                                         </div>
                                         <div className="right">
                                             <h4>pay per video (Onetime payment)</h4>
-                                            <a href="pay-per-view.html" className="btn-link">click here to pay per video</a>
+                                            <Link to="/pay-per-view" className="btn-link">click here to pay per video</Link>
                                         </div>
                                     </div>
                                 </div>

@@ -30,7 +30,7 @@ class SubscriptionComponent extends Component{
                                                 cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
                                                 proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                                                 <div className="text-right mt-4">
-                                                    <a href="invoice.html" className="btn btn-black">pay now</a>
+                                                    <Link to="/invoice" className="btn btn-black">pay now</Link>
                                                 </div>
                                             </div>
                                         </div>
@@ -53,7 +53,7 @@ class SubscriptionComponent extends Component{
                                                 cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
                                                 proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                                                 <div className="text-right mt-4">
-                                                    <a href="invoice.html" className="btn btn-black">pay now</a>
+                                                    <Link to="/invoice" className="btn btn-black">pay now</Link>
                                                 </div>
                                             </div>
                                         </div>
@@ -76,7 +76,7 @@ class SubscriptionComponent extends Component{
                                                 cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
                                                 proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                                                 <div className="text-right mt-4">
-                                                    <a href="invoice.html" className="btn btn-danger">pay now</a>
+                                                    <Link to="/invoice" className="btn btn-danger">pay now</Link>
                                                 </div>
                                             </div>
                                         </div>
