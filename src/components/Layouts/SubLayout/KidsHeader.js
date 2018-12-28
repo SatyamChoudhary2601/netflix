@@ -49,46 +49,46 @@ class KidsHeader extends Component {
                                 <div className="row m-0">
                                     <div className="col-md-3 p-0">
                                         <ul className="kids-category-list">
-                                            <li>characters</li>
-                                            <li>originals</li>
+                                            <Link to="/kids/characters"><li>characters</li></Link>
+                                            <Link to="/kids/originals"><li>originals</li></Link>
                                         </ul>
                                     </div>
                                     <div className="col-md-9 p-0">
                                         <ul className="kids-category-list2">
                                             <li className="section">
                                                 <ul className="kids-category-list3">
-                                                    <li>christmas</li>
-                                                    <li>action</li>
-                                                    <li>adventures</li>
-                                                    <li>animals</li>
-                                                    <li>sports</li>
+                                                    <Link to="/kids/category"><li>christmas</li></Link>
+                                                    <Link to="/kids/category"><li>action</li></Link>
+                                                    <Link to="/kids/category"><li>adventures</li></Link>
+                                                    <Link to="/kids/category"><li>animals</li></Link>
+                                                    <Link to="/kids/category"><li>sports</li></Link>
                                                 </ul>
                                             </li>
                                             <li className="section">
                                                 <ul className="kids-category-list3">
-                                                    <li>christmas</li>
-                                                    <li>action</li>
-                                                    <li>adventures</li>
-                                                    <li>animals</li>
-                                                    <li>sports</li>
+                                                    <Link to="/kids/category"><li>christmas</li></Link>
+                                                    <Link to="/kids/category"><li>action</li></Link>
+                                                    <Link to="/kids/category"><li>adventures</li></Link>
+                                                    <Link to="/kids/category"><li>animals</li></Link>
+                                                    <Link to="/kids/category"><li>sports</li></Link>
                                                 </ul>
                                             </li>
                                             <li className="section">
                                                 <ul className="kids-category-list3">
-                                                    <li>christmas</li>
-                                                    <li>action</li>
-                                                    <li>adventures</li>
-                                                    <li>animals</li>
-                                                    <li>sports</li>
+                                                    <Link to="/kids/category"><li>christmas</li></Link>
+                                                    <Link to="/kids/category"><li>action</li></Link>
+                                                    <Link to="/kids/category"><li>adventures</li></Link>
+                                                    <Link to="/kids/category"><li>animals</li></Link>
+                                                    <Link to="/kids/category"><li>sports</li></Link>
                                                 </ul>
                                             </li>
                                             <li className="section">
                                                 <ul className="kids-category-list3">
-                                                    <li>christmas</li>
-                                                    <li>action</li>
-                                                    <li>adventures</li>
-                                                    <li>animals</li>
-                                                    <li>sports</li>
+                                                    <Link to="/kids/category"><li>christmas</li></Link>
+                                                    <Link to="/kids/category"><li>action</li></Link>
+                                                    <Link to="/kids/category"><li>adventures</li></Link>
+                                                    <Link to="/kids/category"><li>animals</li></Link>
+                                                    <Link to="/kids/category"><li>sports</li></Link>
                                                 </ul>
                                             </li>
                                         </ul>
@@ -109,7 +109,7 @@ class KidsHeader extends Component {
                             </Link>
                         </li>
                         <li className="nav-item mobile-view">
-                            <Link className="nav-link" to="#">
+                            <Link className="nav-link" to="/home">
                                 <button class="btn btn-danger exit-btn">exit Children</button>
                             </Link>
                         </li>
@@ -132,47 +132,47 @@ class KidsHeader extends Component {
                         </div>
                         <ul className="sidebar-menu">
                             <li>
-                                <Link to="/">categories</Link>
+                                <Link to="/kids/characters">characters</Link>
                             </li>
                             <li>
-                                <Link to="/">originals</Link>
+                                <Link to="/kids/originals">originals</Link>
                             </li>
                             <li>
-                                <Link to="/">exit chidren</Link>
+                                <Link to="/home">exit chidren</Link>
                             </li>
                             <li className="line"></li>
                             <li>
-                                <Link to="/home">holidays</Link>
+                                <Link to="/kids/category">holidays</Link>
                             </li>
                             <li>
-                                <Link to="#">actions</Link>
+                                <Link to="/kids/category">actions</Link>
                             </li>
                             <li>
-                                <Link to="#">adventures</Link>
+                                <Link to="/kids/category">adventures</Link>
                             </li>
                             <li>
-                                <Link to="#">animals</Link>
+                                <Link to="/kids/category">animals</Link>
                             </li>
                             <li>
-                                <Link to="#">sports</Link>
+                                <Link to="/kids/category">sports</Link>
                             </li>
                             <li>
-                                <Link to="#">sports</Link>
+                                <Link to="/kids/category">sports</Link>
                             </li>
                             <li>
-                                <Link to="#">cute</Link>
+                                <Link to="/kids/category">cute</Link>
                             </li>
                             <li>
-                                <Link to="#">funny</Link>
+                                <Link to="/kids/category">funny</Link>
                             </li>
                             <li>
-                                <Link to="#">animated</Link>
+                                <Link to="/kids/category">animated</Link>
                             </li>
                             <li>
-                                <Link to="#">early learning</Link>
+                                <Link to="/kids/category">early learning</Link>
                             </li>
                             <li>
-                                <Link to="#">fantasy</Link>
+                                <Link to="/kids/category">fantasy</Link>
                             </li>
                         </ul>
                     </div>

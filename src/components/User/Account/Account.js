@@ -35,9 +35,9 @@ class AccountComponent extends Component{
 										</div>
 										<div className="col-12 col-sm-4 col-md-4 col-lg-4 col-xl-4">
 											<ul className="account-nav-link">
-												<li><Link to="edit-account.html">edit profile</Link></li>
-												<li><Link to="change-password.html">change password</Link></li>
-												<li><Link to="delete-account.html">delete account</Link></li>
+												<li><Link to="/edit-account">edit profile</Link></li>
+												<li><Link to="/change-password">change password</Link></li>
+												<li><Link to="/delete-account">delete account</Link></li>
 											</ul>
 										</div>
 									</div>
@@ -53,8 +53,8 @@ class AccountComponent extends Component{
 										</div>
 										<div className="col-12 col-sm-4 col-md-4 col-lg-4 col-xl-4">
 											<ul className="account-nav-link">
-												<li><Link to="../payment/subscription.html">change plan</Link></li>
-												<li><Link to="../payment/billing-details.html">billing details</Link></li>
+												<li><Link to="/subscription">change plan</Link></li>
+												<li><Link to="/billing-details">billing details</Link></li>
 											</ul>
 										</div>
 									</div>
@@ -73,7 +73,7 @@ class AccountComponent extends Component{
 										</div>
 										<div className="col-12 col-sm-4 col-md-4 col-lg-4 col-xl-4">
 											<ul className="account-nav-link">
-												<li><Link to="manage-profiles.html">manange profile</Link></li>
+												<li><Link to="/manage-profiles">manage profile</Link></li>
 											</ul>
 										</div>
 									</div>
@@ -89,8 +89,8 @@ class AccountComponent extends Component{
 										</div>
 										<div className="col-12 col-sm-4 col-md-4 col-lg-4 col-xl-4">
 											<ul className="account-nav-link">
-												<li><Link to="../payment/add-card.html">add card</Link></li>
-												<li><Link to="../payment/card-details.html">card details</Link></li>
+												<li><Link to="/add-card">add card</Link></li>
+												<li><Link to="/card-details">card details</Link></li>
 											</ul>
 										</div>
 									</div>

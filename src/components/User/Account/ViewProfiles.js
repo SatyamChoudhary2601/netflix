@@ -12,7 +12,7 @@ class ViewProfilesComponent extends Component{
             <div>
                 <div className="common-bg-img" style={bgImg}>
                     <div className="account-page-header">
-                        <Link to="../home.html">
+                        <Link to="/home">
                             <img src="../assets/img/streamview1.png" className="logo-img" alt="logo_img" />
                         </Link>
                     </div>
@@ -25,38 +25,38 @@ class ViewProfilesComponent extends Component{
                                 </div>
                                 <ul className="choose-profile">
                                     <li className="profile">
-                                        <Link to="../home.html">
+                                        <Link to="/home">
                                             <img src="../assets/img/icon1.png" className="profile-img" alt="profile_img" />
                                             <p className="profile-name">Ronan</p>
                                         </Link>
                                     </li>
                                     <li className="profile">
-                                        <Link to="../home.html">
+                                        <Link to="/home">
                                             <img src="../assets/img/icon2.png" className="profile-img" alt="profile_img" />
                                             <p className="profile-name">Brayden</p>
                                         </Link>
                                     </li>
                                     <li className="profile">
-                                        <Link to="../home.html">
+                                        <Link to="/home">
                                             <img src="../assets/img/icon3.png" className="profile-img" alt="profile_img" />
                                             <p className="profile-name">Hugo</p>
                                         </Link>
                                     </li>
                                     <li className="profile">
-                                        <Link to="../home.html">
+                                        <Link to="/home">
                                             <img src="../assets/img/icon4.png" className="profile-img" alt="profile_img" />
                                             <p className="profile-name">Diego</p>
                                         </Link>
                                     </li>
                                     <li className="profile">
-                                        <Link to="../home.html">
+                                        <Link to="/home">
                                             <img src="../assets/img/icon5.png" className="profile-img" alt="profile_img" />
                                             <p className="profile-name">Antonio</p>
                                         </Link>
                                     </li>
                                 </ul>
                                 <div>
-                                    <Link to="manage-profiles.html" className="grey-outline-btn">manage profiles</Link>
+                                    <Link to="/manage-profiles" className="grey-outline-btn">manage profiles</Link>
                                 </div>
                             </div>
                         </div>

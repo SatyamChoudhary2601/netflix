@@ -53,25 +53,25 @@ class UserHeader extends Component {
                     </ul>
                     <ul className="navbar-nav desktop-nav ">
                         <li className="nav-item active">
-                            <Link className="nav-link" to="#">home</Link>
+                            <Link className="nav-link" to="/sub-category">home</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to="#">tV programmes</Link>
+                            <Link className="nav-link" to="/sub-category">tV programmes</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to="#">flims</Link>
+                            <Link className="nav-link" to="/sub-category">flims</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to="#">recently added</Link>
+                            <Link className="nav-link" to="/sub-category">recently added</Link>
                         </li>
                         <li className="nav-item dropdown">
                             <Link className="nav-link dropdown-toggle" data-toggle="dropdown" to="#">my list</Link>
                             <div className="dropdown-menu browse">
-                                <Link className="dropdown-item" to="#">home</Link>
-                                <Link className="dropdown-item" to="#">tV programmes</Link>
-                                <Link className="dropdown-item" to="#">flims</Link>
-                                <Link className="dropdown-item" to="#">recently added</Link>
-                                <Link className="dropdown-item" to="#">my list</Link>
+                                <Link className="dropdown-item" to="/sub-category">home</Link>
+                                <Link className="dropdown-item" to="/sub-category">tV programmes</Link>
+                                <Link className="dropdown-item" to="/sub-category">flims</Link>
+                                <Link className="dropdown-item" to="/sub-category">recently added</Link>
+                                <Link className="dropdown-item" to="/sub-category">my list</Link>
                             </div>
                         </li>
                     </ul>
@@ -204,16 +204,16 @@ class UserHeader extends Component {
                                 <Link to="/home">home</Link>
                             </li>
                             <li>
-                                <Link to="#">my list</Link>
+                                <Link to="/sub-category">my list</Link>
                             </li>
                             <li>
-                                <Link to="#">series</Link>
+                                <Link to="/sub-category">series</Link>
                             </li>
                             <li>
-                                <Link to="#">comedies</Link>
+                                <Link to="/sub-category">comedies</Link>
                             </li>
                             <li>
-                                <Link to="#">crime flims</Link>
+                                <Link to="/sub-category">crime flims</Link>
                             </li>
                         </ul>
                     </div>

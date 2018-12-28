@@ -11,7 +11,7 @@ class ManageProfilesComponent extends Component{
             <div className="common-bg-img" style={bgImg}>
 
                 <div className="account-page-header">
-                    <Link to="../home.html">
+                    <Link to="/home">
                         <img src="../assets/img/streamview1.png" className="logo-img" alt="logo_img" />
                     </Link>
                 </div>
@@ -24,7 +24,7 @@ class ManageProfilesComponent extends Component{
                             </div>
                             <ul className="choose-profile">
                                 <li className="profile">
-                                    <Link to="edit-profile.html">
+                                    <Link to="/edit-profile">
                                         <div className="relative">
                                             <img src="../assets/img/icon1.png" className="profile-img" alt="profile_img" />
                                             <div className="edit-overlay">
@@ -37,7 +37,7 @@ class ManageProfilesComponent extends Component{
                                     </Link>
                                 </li>
                                 <li className="profile">
-                                    <Link to="edit-profile.html">
+                                    <Link to="/edit-profile">
                                         <div className="relative">
                                             <img src="../assets/img/icon2.png" className="profile-img" alt="profile_img" />
                                             <div className="edit-overlay">
@@ -50,7 +50,7 @@ class ManageProfilesComponent extends Component{
                                     </Link>
                                 </li>
                                 <li className="profile">
-                                    <Link to="edit-profile.html">
+                                    <Link to="/edit-profile">
                                         <div className="relative">
                                             <img src="../assets/img/icon3.png" className="profile-img" alt="profile_img" />
                                             <div className="edit-overlay">
@@ -63,7 +63,7 @@ class ManageProfilesComponent extends Component{
                                     </Link>
                                 </li>
                                 <li className="profile">
-                                    <Link to="edit-profile.html">
+                                    <Link to="/edit-profile">
                                         <div className="relative">
                                             <img src="../assets/img/icon4.png" className="profile-img" alt="profile_img" />
                                             <div className="edit-overlay">
@@ -76,7 +76,7 @@ class ManageProfilesComponent extends Component{
                                     </Link>
                                 </li>
                                 <li className="profile">
-                                    <Link to="edit-profile.html">
+                                    <Link to="/edit-profile">
                                         <div className="relative">
                                             <img src="../assets/img/icon5.png" className="profile-img" alt="profile_img" />
                                             <div className="edit-overlay">
@@ -90,7 +90,7 @@ class ManageProfilesComponent extends Component{
                                 </li>
                             </ul>
                             <div>
-                                <Link to="view-profiles.html" className="white-btn">Done</Link>
+                                <Link to="/view-profiles" className="white-btn">Done</Link>
                             </div>
                         </div>
                     </div>

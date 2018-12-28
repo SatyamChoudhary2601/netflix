@@ -416,7 +416,7 @@ class Kids extends Component{
                                 <h5 className="black-clr bold capz mb-3">season1</h5>
                                <div className="row">
                                    <div className="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
-                                        <Link to="/">
+                                        <Link to="/video">
                                             <div className="relative">
                                                 <img src="assets/img/thumb2.jpg" className="kids-episodesec-img" alt="episode_img" />
                                                 <div className="kidssec-play-icon">
@@ -427,7 +427,7 @@ class Kids extends Component{
                                         </Link>
                                    </div>
                                    <div className="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
-                                        <Link to="/">
+                                        <Link to="/video">
                                             <div className="relative">
                                                 <img src="assets/img/thumb3.jpg" className="kids-episodesec-img" alt="episode_img" />
                                                 <div className="kidssec-play-icon">
@@ -438,7 +438,7 @@ class Kids extends Component{
                                         </Link>
                                    </div>
                                    <div className="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
-                                        <Link to="/">
+                                        <Link to="/video">
                                             <div className="relative">
                                                 <img src="assets/img/thumb4.jpg" className="kids-episodesec-img" alt="episode_img" />
                                                 <div className="kidssec-play-icon">
@@ -449,7 +449,7 @@ class Kids extends Component{
                                         </Link>
                                    </div>
                                    <div className="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
-                                        <Link to="/">
+                                        <Link to="/video">
                                             <div className="relative">
                                                 <img src="assets/img/thumb5.jpg" className="kids-episodesec-img" alt="episode_img" />
                                                 <div className="kidssec-play-icon">
@@ -460,7 +460,7 @@ class Kids extends Component{
                                         </Link>
                                    </div>
                                    <div className="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
-                                        <Link to="/">
+                                        <Link to="/video">
                                             <div className="relative">
                                                 <img src="assets/img/thumb6.jpg" className="kids-episodesec-img" alt="episode_img" />
                                                 <div className="kidssec-play-icon">
@@ -471,7 +471,7 @@ class Kids extends Component{
                                         </Link>
                                    </div>
                                    <div className="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
-                                        <Link to="/">
+                                        <Link to="/video">
                                             <div className="relative">
                                                 <img src="assets/img/thumb7.jpg" className="kids-episodesec-img" alt="episode_img" />
                                                 <div className="kidssec-play-icon">
@@ -515,7 +515,7 @@ class Kids extends Component{
                             <div class="modal-body">
                                <div className="row">
                                    <div className="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
-                                        <Link to="/">
+                                        <Link to="/video">
                                             <div className="relative">
                                                 <img src="assets/img/thumb2.jpg" className="kids-episodesec-img" alt="episode_img" />
                                                 <div className="kidssec-play-icon">
@@ -526,7 +526,7 @@ class Kids extends Component{
                                         </Link>
                                    </div>
                                    <div className="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
-                                        <Link to="/">
+                                        <Link to="/video">
                                             <div className="relative">
                                                 <img src="assets/img/thumb3.jpg" className="kids-episodesec-img" alt="episode_img" />
                                                 <div className="kidssec-play-icon">
@@ -537,40 +537,40 @@ class Kids extends Component{
                                         </Link>
                                    </div>
                                    <div className="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
-                                        <Link to="/">
+                                        <Link to="/video">
                                             <div className="relative">
                                                 <img src="assets/img/thumb4.jpg" className="kids-episodesec-img" alt="episode_img" />
                                                 <div className="kidssec-play-icon">
-                                                    <img src="assets/img/play-button.png txt-overflow" alt="play_icon" />
+                                                    <img src="assets/img/play-button.png" alt="play_icon" />
                                                 </div>
                                             </div>
-                                            <h5 className="capz dark-grey-clr mt-2 mb-3">as the diaper changes</h5>
+                                            <h5 className="capz dark-grey-clr mt-2 mb-3 txt-overflow">as the diaper changes</h5>
                                         </Link>
                                    </div>
                                    <div className="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
-                                        <Link to="/">
+                                        <Link to="/video">
                                             <div className="relative">
                                                 <img src="assets/img/thumb5.jpg" className="kids-episodesec-img" alt="episode_img" />
                                                 <div className="kidssec-play-icon">
-                                                    <img src="assets/img/play-button.png txt-overflow" alt="play_icon" />
+                                                    <img src="assets/img/play-button.png" alt="play_icon" />
                                                 </div>
                                             </div>
-                                            <h5 className="capz dark-grey-clr mt-2 mb-3">as the diaper changes</h5>
+                                            <h5 className="capz dark-grey-clr mt-2 mb-3 txt-overflow">as the diaper changes</h5>
                                         </Link>
                                    </div>
                                    <div className="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
-                                        <Link to="/">
+                                        <Link to="/video">
                                             <div className="relative">
                                                 <img src="assets/img/thumb6.jpg" className="kids-episodesec-img" alt="episode_img" />
                                                 <div className="kidssec-play-icon">
-                                                    <img src="assets/img/play-button.png txt-overflow" alt="play_icon" />
+                                                    <img src="assets/img/play-button.png " alt="play_icon" />
                                                 </div>
                                             </div>
-                                            <h5 className="capz dark-grey-clr mt-2 mb-3">as the diaper changes</h5>
+                                            <h5 className="capz dark-grey-clr mt-2 mb-3 txt-overflow">as the diaper changes</h5>
                                         </Link>
                                    </div>
                                    <div className="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
-                                        <Link to="/">
+                                        <Link to="/video">
                                             <div className="relative">
                                                 <img src="assets/img/thumb7.jpg" className="kids-episodesec-img" alt="episode_img" />
                                                 <div className="kidssec-play-icon">
@@ -585,17 +585,17 @@ class Kids extends Component{
                                 <h5 className="black-clr bold capz mt-3 mb-3">more like boss baby</h5>
                                 <div className="row">
                                    <div className="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 mb-3">
-                                        <Link to="/">
+                                        <Link to="/video">
                                             <img src="assets/img/thumb2.jpg" className="kids-episodesec-img" alt="episode_img" />
                                         </Link>
                                    </div>
                                    <div className="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 mb-3">
-                                        <Link to="/">
+                                        <Link to="/video">
                                             <img src="assets/img/thumb3.jpg" className="kids-episodesec-img" alt="episode_img" />
                                         </Link>
                                    </div>
                                    <div className="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 mb-3">
-                                        <Link to="/">
+                                        <Link to="/video">
                                             <img src="assets/img/thumb4.jpg" className="kids-episodesec-img" alt="episode_img" />
                                         </Link>
                                    </div>

@@ -54,6 +54,9 @@ import SubCategory from '../src/components/User/Video/SubCategory';
 
 // Kids layout
 import Kids from '../src/components/User/Kids/Kids';
+import KidsOriginals from '../src/components/User/Kids/Originals';
+import KidsCharacters from '../src/components/User/Kids/Characters';
+import KidsCategory from '../src/components/User/Kids/Category';
 
 // Static layout
 import Page from '../src/components/Static/Page';
@@ -194,7 +197,10 @@ class App extends Component {
 
               { /***kids layout - Having white header and footer ****/}
 
-              <AppRoute path="/kids" component={Kids} layout={KidsLayout} screenProps={this.eventEmitter} />
+              <AppRoute path="/kids" exact component={Kids} layout={KidsLayout} screenProps={this.eventEmitter} />
+              <AppRoute path="/kids/originals" component={ KidsOriginals } layout={KidsLayout} screenProps={this.eventEmitter} />
+              <AppRoute path="/kids/characters" component={KidsCharacters} layout={KidsLayout} screenProps={this.eventEmitter} />
+              <AppRoute path="/kids/category" component={KidsCategory} layout={KidsLayout} screenProps={this.eventEmitter} />
 
               { /***static layout - Having differnt header and footer ****/}
 

@@ -84,7 +84,7 @@ class Category extends Component{
                                         assets/img/thumb8.jpg 2x" alt="slider-img" />	
                                 <div className="sliderthumb-text">
                                     <div className="width-100">
-                                        <Link to="#">
+                                        <Link to="/">
                                             <div className="thumb-playicon">
                                                 <i className="fas fa-play"></i>
                                             </div>

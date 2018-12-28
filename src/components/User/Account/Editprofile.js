@@ -12,7 +12,7 @@ class EditProfilesComponent extends Component{
             <div className="common-bg-img" style={bgImg}>
 
                 <div className="account-page-header">
-                    <Link to="../home.html">
+                    <Link to="/home">
                         <img src="../assets/img/streamview1.png" className="logo-img" alt="logo_img" />
                     </Link>
                 </div>
