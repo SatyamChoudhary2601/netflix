@@ -1,17 +1,26 @@
 import React, {Component} from 'react';
 
+import {Link} from 'react-router-dom';
+
 import ReactJWPlayer from 'react-jw-player';     
 
 class VideoComponent extends Component{
     render(){
         return(
             <div>
-                {/* <JWPlayer videoId="M2NCefPoiiKsaVB8nTttvMBxfb1J3Xl7PDXSaw==" /> */}
-                <ReactJWPlayer
-                    playerId='M2NCefPoiiKsaVB8nTttvMBxfb1J3Xl7PDXSaw=='
-                    playerScript='/assets/jwplayer/jwplayer.js'
-                    file='http://vjs.zencdn.net/v/oceans.mp4'
-                />
+                <div className="single-video">
+                    
+                    <ReactJWPlayer
+                        playerId='X6vykLrnos0UM2n1ga4pH+8MqPQO11a5d8wBeccRsfqkd06F'
+                        playerScript='localhost:3000/assets/jwplayer/jwplayer.js'
+                        file='assets/video/sample.mp4'
+                    />
+                    <div className="back-arrowsec">
+                        <Link to="/home">
+                            <img src="assets/img/left-arrow.png" alt="arrow" />
+                        </Link>
+                    </div>
+                </div>
             </div>
         )
     }

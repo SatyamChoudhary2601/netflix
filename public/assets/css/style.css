@@ -3349,3 +3349,20 @@ a:active, a:focus, .slick-slide:focus, .slick-slide:active{
     transition: .2s all ease-in-out;
     cursor: pointer;
 } 
+.single-video .jwplayer {
+    height: 100vh !important;
+    width: 100% !important;
+}
+.back-arrowsec{
+    position: absolute;
+    top:4vh;
+    left: 4vh;
+}
+.back-arrowsec img{
+    height: 20px;
+    width: 20px;
+    transition: .2s linear;
+}
+.back-arrowsec img:hover{
+    transform: scale(1.2);
+}
