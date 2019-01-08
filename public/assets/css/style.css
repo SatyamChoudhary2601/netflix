@@ -2740,6 +2740,7 @@ a:active, a:focus, .slick-slide:focus, .slick-slide:active{
     display: flex;
     flex-direction: column;
     align-items: center;
+    transform: scale(.7);
 }
 .dank-ass-loader .row {
     display: flex;
@@ -3046,6 +3047,7 @@ a:active, a:focus, .slick-slide:focus, .slick-slide:active{
     object-fit: cover;
     object-position: center;
     transition: .2s all linear;
+    width: 100%;
 }
 .kids-category-slider img:hover{
     transform: scale(1.2);
@@ -3365,4 +3367,13 @@ a:active, a:focus, .slick-slide:focus, .slick-slide:active{
 }
 .back-arrowsec img:hover{
     transform: scale(1.2);
+}
+.kids-char{
+    display: inline-block;
+    width: 100%
+}
+.kids-char .kids-char-sec{
+    width: 16.6%;
+    float: left;
+    padding: 20px 10px;
 }

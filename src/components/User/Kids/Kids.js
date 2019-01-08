@@ -10,6 +10,14 @@ class Kids extends Component{
 
     componentDidMount() {
 
+        // kids slider
+
+        var kidsSliderWidth =  $('.kids-category-slider img').outerWidth();
+
+        $('.kids-category-slider img').height(kidsSliderWidth);
+
+        //category slider
+
         var scaling = 1.5;
 
         var videoWidth = $('.sliderthumb').outerWidth();
@@ -22,24 +30,42 @@ class Kids extends Component{
 
         $('.mylist-slider').height(videoSecHeight);
 
-        $('.home-slider .slick-slide .sliderthumb-img').height(videoHeight);
+        $('.home-slider .slick-slide .sliderthumb').height(videoHeight);
 
         $('.home-slider .slick-slide').css("margin-top", (videoHeightDiff / 2));
 
-        // kids slider
+        $(".home-slider .slick-slide").mouseover(function() {
 
-        var kidsSliderWidth =  $('.kids-category-slider img').outerWidth();
+            $(this).css("width", videoWidth * scaling);
+            
+            $(this).css("height", videoHeight * scaling);
 
-        $('.kids-category-slider img').height(kidsSliderWidth);
+            $('.home-slider .slick-slide').css("margin-top", 0);
+
+        })
+
+        $(".home-slider .slick-slide .sliderthumb").mouseover(function() {
+
+            $(this).css("height", videoHeight * scaling);
+
+        })
+
+        $(".home-slider .slick-slide").mouseout(function() {
+
+		    $(this).css("width", videoWidth * 1);
+
+            $(this).css("height", videoHeight * 1);
+            
+            $('.home-slider .slick-slide').css("margin-top", (videoHeightDiff / 2));
+
+        });
         
-    }
+        $(".home-slider .slick-slide .sliderthumb").mouseout(function() {
 
-    mouseOver() {
+            $(this).css("height", videoHeight * 1);
 
-    }
+        })
 
-    mouseOut() {
-        
     }
 
     render(){
@@ -171,7 +197,7 @@ class Kids extends Component{
                         <h3 className="dark-grey-clr">new releases<i className="fas fa-angle-right ml-2"></i></h3>
                        
                         <Slider {...mylistsSlider}  className="mylist-slider kids-sec-slider home-slider slider">
-                            <div className="sliderthumb" onMouseOut={() => this.mouseOut()} onMouseOver={() => this.mouseOver()}>
+                            <div className="sliderthumb">
                                 <img className="sliderthumb-img hoverout-img" src="assets/img/thumb1.jpg"
                                 srcSet="assets/img/thumb1.jpg 1x,
                                         assets/img/thumb1.jpg 1.5x,

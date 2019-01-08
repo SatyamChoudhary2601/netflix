@@ -22,11 +22,44 @@ class Category extends Component{
 
         $('.mylist-slider').height(videoSecHeight);
 
-        $('.home-slider .slick-slide .sliderthumb-img').height(videoHeight);
+        $('.home-slider .slick-slide .sliderthumb').height(videoHeight);
 
         $('.home-slider .slick-slide').css("margin-top", (videoHeightDiff / 2));
 
+        $(".home-slider .slick-slide").mouseover(function() {
+
+            $(this).css("width", videoWidth * scaling);
+            
+            $(this).css("height", videoHeight * scaling);
+
+            $('.home-slider .slick-slide').css("margin-top", 0);
+
+        })
+
+        $(".home-slider .slick-slide .sliderthumb").mouseover(function() {
+
+            $(this).css("height", videoHeight * scaling);
+
+        })
+
+        $(".home-slider .slick-slide").mouseout(function() {
+
+		    $(this).css("width", videoWidth * 1);
+
+            $(this).css("height", videoHeight * 1);
+            
+            $('.home-slider .slick-slide').css("margin-top", (videoHeightDiff / 2));
+
+        });
+        
+        $(".home-slider .slick-slide .sliderthumb").mouseout(function() {
+
+            $(this).css("height", videoHeight * 1);
+
+        })
+
     }
+
 
     render(){
         var mylistsSlider = {

@@ -33,21 +33,34 @@ class SubCategory extends Component{
 
         $('.mylist-slider').height(videoSecHeight);
 
-        $('.home-slider .sliderthumb-img').height(videoHeight);
+        $('.home-slider .sliderthumb').height(videoHeight);
 
-        $('.home-slider').css("margin-top", (videoHeightDiff / 2));
+        $('.home-slider .sliderthumb').css("margin-top", (videoHeightDiff / 2));
 
-    }
+        $(".home-slider .sliderthumb").mouseover(function() {
 
+            $(this).css("width", videoWidth * scaling);
+            
+            $(this).css("height", videoHeight * scaling);
 
-    mouseOut() {
-        console.log("Mouse out!!!");
-        this.setState({flipped: false});
-    }
-      
-    mouseOver() {
-        console.log("Mouse over!!!");
-        this.setState({flipped: true});
+            $(this).css("z-index", 100);
+
+            $(this).css("margin-top", 0);
+
+        })
+
+        $(".home-slider .sliderthumb").mouseout(function() {
+
+            $(this).css("width", videoWidth * 1);
+            
+            $(this).css("height", videoHeight * 1);
+
+            $(this).css("z-index", 0);
+
+            $(this).css("margin-top", (videoHeightDiff / 2));
+
+        })
+
     }
 
     render(){
@@ -57,7 +70,7 @@ class SubCategory extends Component{
                     <div className="video-container">
 
                         <div className="video-sec mylist-slider home-slider slider">
-                            <div className="sliderthumb" onMouseOut={() => this.mouseOut()} onMouseOver={() => this.mouseOver()}>
+                            <div className="sliderthumb">
                                 <img className="sliderthumb-img hoverout-img" src="assets/img/thumb1.jpg"
                                 srcSet="assets/img/thumb1.jpg 1x,
                                         assets/img/thumb1.jpg 1.5x,
@@ -100,7 +113,7 @@ class SubCategory extends Component{
                         </div>  
 
                         <div className="video-sec mylist-slider home-slider slider">
-                            <div className="sliderthumb" onMouseOut={() => this.mouseOut()} onMouseOver={() => this.mouseOver()}>
+                            <div className="sliderthumb">
                                 <img className="sliderthumb-img hoverout-img" src="assets/img/thumb2.jpg"
                                 srcSet="assets/img/thumb2.jpg 1x,
                                         assets/img/thumb2.jpg 1.5x,
@@ -143,7 +156,7 @@ class SubCategory extends Component{
                         </div>
 
                         <div className="video-sec mylist-slider home-slider slider">
-                            <div className="sliderthumb" onMouseOut={() => this.mouseOut()} onMouseOver={() => this.mouseOver()}>
+                            <div className="sliderthumb">
                                 <img className="sliderthumb-img hoverout-img" src="assets/img/thumb3.jpg"
                                 srcSet="assets/img/thumb3.jpg 1x,
                                         assets/img/thumb3.jpg 1.5x,
@@ -186,7 +199,7 @@ class SubCategory extends Component{
                         </div>
 
                         <div className="video-sec mylist-slider home-slider slider">
-                            <div className="sliderthumb" onMouseOut={() => this.mouseOut()} onMouseOver={() => this.mouseOver()}>
+                            <div className="sliderthumb">
                                 <img className="sliderthumb-img hoverout-img" src="assets/img/thumb4.jpg"
                                 srcSet="assets/img/thumb4.jpg 1x,
                                         assets/img/thumb4.jpg 1.5x,
@@ -229,7 +242,7 @@ class SubCategory extends Component{
                         </div>
 
                         <div className="video-sec mylist-slider home-slider slider">
-                            <div className="sliderthumb" onMouseOut={() => this.mouseOut()} onMouseOver={() => this.mouseOver()}>
+                            <div className="sliderthumb">
                                 <img className="sliderthumb-img hoverout-img" src="assets/img/thumb5.jpg"
                                 srcSet="assets/img/thumb5.jpg 1x,
                                         assets/img/thumb5.jpg 1.5x,

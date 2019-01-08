@@ -13,8 +13,7 @@ class Home extends Component {
     //     super(props);
 
     // }   
-    
-   
+      
 
     componentDidMount() {
 
@@ -30,34 +29,42 @@ class Home extends Component {
 
         $('.mylist-slider').height(videoSecHeight);
 
-        $('.home-slider .slick-slide .sliderthumb-img').height(videoHeight);
+        $('.home-slider .slick-slide .sliderthumb').height(videoHeight);
 
         $('.home-slider .slick-slide').css("margin-top", (videoHeightDiff / 2));
 
-    }
+        $(".home-slider .slick-slide").mouseover(function() {
 
-    mouseOver() {
-        // var scaling = 1.5;
+            $(this).css("width", videoWidth * scaling);
+            
+            $(this).css("height", videoHeight * scaling);
 
-        // var videoWidth = $('.sliderthumb').outerWidth();
+            $('.home-slider .slick-slide').css("margin-top", 0);
+
+        })
+
+        $(".home-slider .slick-slide .sliderthumb").mouseover(function() {
+
+            $(this).css("height", videoHeight * scaling);
+
+        })
+
+        $(".home-slider .slick-slide").mouseout(function() {
+
+		    $(this).css("width", videoWidth * 1);
+
+            $(this).css("height", videoHeight * 1);
+            
+            $('.home-slider .slick-slide').css("margin-top", (videoHeightDiff / 2));
+
+        });
         
-        // var videoHeight = Math.round(videoWidth / (16/9));
+        $(".home-slider .slick-slide .sliderthumb").mouseout(function() {
 
-        // var videoSecHeight = (videoHeight * scaling);
+            $(this).css("height", videoHeight * 1);
 
-        // var videoHeightDiff = videoSecHeight - videoHeight;
+        })
 
-        // $('.mylist-slider').height(videoSecHeight);
-
-        // $('.home-slider .slick-slide').width(videoWidth * scaling);
-
-        // $('.home-slider .slick-slide .sliderthumb-img').height(videoHeight * scaling);
-
-        // $('.home-slider .slick-slide').css("margin-top", 0);
-    }
-
-    mouseOut() {
-        
     }
 
     render() {
@@ -160,7 +167,7 @@ class Home extends Component {
                         <h3 className="">recently viewed<i className="fas fa-angle-right ml-2"></i></h3>
                        
                         <Slider {...mylistsSlider}  className="mylist-slider home-slider slider">
-                            <div className="sliderthumb" onMouseOut={() => this.mouseOut()} onMouseOver={() => this.mouseOver()}>
+                            <div className="sliderthumb">
                                 <img className="sliderthumb-img hoverout-img" src="assets/img/thumb1.jpg"
                                 srcSet="assets/img/thumb1.jpg 1x,
                                         assets/img/thumb1.jpg 1.5x,
