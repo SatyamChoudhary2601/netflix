@@ -20,6 +20,8 @@ class Kids extends Component{
 
         var scaling = 1.5;
 
+        var windowWidth = $('body').width();
+
         var videoWidth = $('.sliderthumb').outerWidth();
         
         var videoHeight = Math.round(videoWidth / (16/9));
@@ -34,37 +36,41 @@ class Kids extends Component{
 
         $('.home-slider .slick-slide').css("margin-top", (videoHeightDiff / 2));
 
-        $(".home-slider .slick-slide").mouseover(function() {
+        if (windowWidth > 991) {
 
-            $(this).css("width", videoWidth * scaling);
+            $(".home-slider .slick-slide").mouseover(function() {
+
+                $(this).css("width", videoWidth * scaling);
+                
+                $(this).css("height", videoHeight * scaling);
+
+                $('.home-slider .slick-slide').css("margin-top", 0);
+
+            })
+
+            $(".home-slider .slick-slide .sliderthumb").mouseover(function() {
+
+                $(this).css("height", videoHeight * scaling);
+
+            })
+
+            $(".home-slider .slick-slide").mouseout(function() {
+
+                $(this).css("width", videoWidth * 1);
+
+                $(this).css("height", videoHeight * 1);
+                
+                $('.home-slider .slick-slide').css("margin-top", (videoHeightDiff / 2));
+
+            });
             
-            $(this).css("height", videoHeight * scaling);
+            $(".home-slider .slick-slide .sliderthumb").mouseout(function() {
 
-            $('.home-slider .slick-slide').css("margin-top", 0);
+                $(this).css("height", videoHeight * 1);
 
-        })
-
-        $(".home-slider .slick-slide .sliderthumb").mouseover(function() {
-
-            $(this).css("height", videoHeight * scaling);
-
-        })
-
-        $(".home-slider .slick-slide").mouseout(function() {
-
-		    $(this).css("width", videoWidth * 1);
-
-            $(this).css("height", videoHeight * 1);
-            
-            $('.home-slider .slick-slide').css("margin-top", (videoHeightDiff / 2));
-
-        });
+            })
         
-        $(".home-slider .slick-slide .sliderthumb").mouseout(function() {
-
-            $(this).css("height", videoHeight * 1);
-
-        })
+        }
 
     }
 

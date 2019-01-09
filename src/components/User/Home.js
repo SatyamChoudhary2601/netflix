@@ -14,10 +14,19 @@ class Home extends Component {
 
     // }   
       
+    showSliderContent() {
+        $('.slider-content').css("display", "block");
+    }
+
+    closeSliderContent() {
+        $('.slider-content').css("display", "none");
+    }
 
     componentDidMount() {
 
         var scaling = 1.5;
+
+        var windowWidth = $('body').width();
 
         var videoWidth = $('.sliderthumb').outerWidth();
         
@@ -32,38 +41,63 @@ class Home extends Component {
         $('.home-slider .slick-slide .sliderthumb').height(videoHeight);
 
         $('.home-slider .slick-slide').css("margin-top", (videoHeightDiff / 2));
+        $('.home-slider .slick-slide').css("margin-bottom", (videoHeightDiff / 2));
 
-        $(".home-slider .slick-slide").mouseover(function() {
+        if (windowWidth > 991) {
 
-            $(this).css("width", videoWidth * scaling);
+            $(".home-slider .slick-slide").mouseover(function() {
+
+                $(this).css("width", videoWidth * scaling);
+                
+                $(this).css("height", videoHeight * scaling);
+
+                $(this).css("margin-top", 0);
+
+                $(this).css("margin-bottom", 0);
+
+            })
+
+            $(".home-slider .slick-slide .sliderthumb").mouseover(function() {
+
+                $(this).css("height", videoHeight * scaling);
+
+            })
+
+            $(".home-slider .slick-slide").mouseout(function() {
+
+                $(this).css("width", videoWidth * 1);
+
+                $(this).css("height", videoHeight * 1);
+                
+                $(this).css("margin-top", (videoHeightDiff / 2));
+
+                $(this).css("margin-bottom", (videoHeightDiff / 2));
+
+            });
             
-            $(this).css("height", videoHeight * scaling);
+            $(".home-slider .slick-slide .sliderthumb").mouseout(function() {
 
-            $('.home-slider .slick-slide').css("margin-top", 0);
+                $(this).css("height", videoHeight * 1);
 
-        })
-
-        $(".home-slider .slick-slide .sliderthumb").mouseover(function() {
-
-            $(this).css("height", videoHeight * scaling);
-
-        })
-
-        $(".home-slider .slick-slide").mouseout(function() {
-
-		    $(this).css("width", videoWidth * 1);
-
-            $(this).css("height", videoHeight * 1);
+            })
             
-            $('.home-slider .slick-slide').css("margin-top", (videoHeightDiff / 2));
+            $(".show-video-details.home-slider .slick-slide").mouseover(function() {
 
-        });
-        
-        $(".home-slider .slick-slide .sliderthumb").mouseout(function() {
+                $(this).css("width", videoWidth * 1);
 
-            $(this).css("height", videoHeight * 1);
+                $(this).css("height", videoHeight * 1);
+                
+                $(this).css("margin-top", (videoHeightDiff / 2));
 
-        })
+                $(this).css("margin-bottom", (videoHeightDiff / 2));
+            })
+
+            $(".show-video-details.home-slider .slick-slide .sliderthumb").mouseover(function() {
+
+                $(this).css("height", videoHeight * 1);
+
+            })
+        }
 
     }
 
@@ -164,8 +198,11 @@ class Home extends Component {
 
                 <div className="main p-40">
                     <div className="main-slidersec">
-                        <h3 className="">recently viewed<i className="fas fa-angle-right ml-2"></i></h3>
-                       
+                        <h3 className="">countinue watching<i className="fas fa-angle-right ml-2"></i></h3>
+
+                        {/* While clicking the arrow need to add the 
+                        1) "show-video-details" class in "home-slider" 
+                        2) "active" class in "sliderthumb" */}
                         <Slider {...mylistsSlider}  className="mylist-slider home-slider slider">
                             <div className="sliderthumb">
                                 <img className="sliderthumb-img hoverout-img" src="assets/img/thumb1.jpg"
@@ -175,7 +212,15 @@ class Home extends Component {
                                 <img className="sliderthumb-img hoverin-img" src="assets/img/thumb8.jpg"
                                 srcSet="assets/img/thumb8.jpg 1x,
                                         assets/img/thumb8.jpg 1.5x,
-                                        assets/img/thumb8.jpg 2x" alt="slider-img" />	
+                                        assets/img/thumb8.jpg 2x" alt="slider-img" />
+                                <div className="active-play-icon">
+                                    <Link to="#">
+                                        <div className="thumb-playicon">
+                                            <i className="fas fa-play"></i>
+                                        </div>
+                                    </Link>
+                                </div>
+
                                 <div className="sliderthumb-text">
                                     <div className="width-100">
                                         <Link to="#">
@@ -192,7 +237,7 @@ class Home extends Component {
                                         <Link to="#">
                                             <div className="text-center thumbarrow-sec">
                                                 <img src="assets/img/arrow-white.png" className="thumbarrow thumbarrow-white" alt="play_img" />
-                                                <img src="assets/img/arrow-red.png" className="thumbarrow thumbarrow-red" alt="play_img" />
+                                                <img src="assets/img/arrow-red.png" className="thumbarrow thumbarrow-red" onClick={this.showSliderContent} alt="play_img" />
                                             </div>
                                         </Link>
                                     </div>
@@ -215,7 +260,14 @@ class Home extends Component {
                                 <img className="sliderthumb-img hoverin-img" src="assets/img/thumb7.jpg"
                                 srcSet="assets/img/thumb7.jpg 1x,
                                         assets/img/thumb7.jpg 1.5x,
-                                        assets/img/thumb7.jpg 2x" alt="slider-img" />	
+                                        assets/img/thumb7.jpg 2x" alt="slider-img" />
+                                <div className="active-play-icon">
+                                    <Link to="#">
+                                        <div className="thumb-playicon">
+                                            <i className="fas fa-play"></i>
+                                        </div>
+                                    </Link>
+                                </div>	
                                 <div className="sliderthumb-text">
                                     <div className="width-100">
                                         <Link to="#">
@@ -256,6 +308,13 @@ class Home extends Component {
                                 srcSet="assets/img/thumb6.jpg 1x,
                                         assets/img/thumb6.jpg 1.5x,
                                         assets/img/thumb6.jpg 2x" alt="slider-img" />
+                                <div className="active-play-icon">
+                                    <Link to="#">
+                                        <div className="thumb-playicon">
+                                            <i className="fas fa-play"></i>
+                                        </div>
+                                    </Link>
+                                </div>
                                 <div className="sliderthumb-text">
                                     <div className="width-100">
                                         <Link to="#">
@@ -287,6 +346,13 @@ class Home extends Component {
                                 srcSet="assets/img/thumb5.jpg 1x,
                                         assets/img/thumb5.jpg 1.5x,
                                         assets/img/thumb5.jpg 2x" alt="slider-img" />
+                                <div className="active-play-icon">
+                                    <Link to="#">
+                                        <div className="thumb-playicon">
+                                            <i className="fas fa-play"></i>
+                                        </div>
+                                    </Link>
+                                </div>
                                 <div className="sliderthumb-text">
                                     <div className="width-100">
                                         <Link to="#">
@@ -318,6 +384,13 @@ class Home extends Component {
                                 srcSet="assets/img/thumb4.jpg 1x,
                                         assets/img/thumb4.jpg 1.5x,
                                         assets/img/thumb4.jpg 2x" alt="slider-img" />
+                                <div className="active-play-icon">
+                                    <Link to="#">
+                                        <div className="thumb-playicon">
+                                            <i className="fas fa-play"></i>
+                                        </div>
+                                    </Link>
+                                </div>
                                 <div className="sliderthumb-text">
                                     <div className="width-100">
                                         <Link to="#">
@@ -349,6 +422,13 @@ class Home extends Component {
                                 srcSet="assets/img/thumb3.jpg 1x,
                                         assets/img/thumb3.jpg 1.5x,
                                         assets/img/thumb3.jpg 2x" alt="slider-img" />	
+                                <div className="active-play-icon">
+                                    <Link to="#">
+                                        <div className="thumb-playicon">
+                                            <i className="fas fa-play"></i>
+                                        </div>
+                                    </Link>
+                                </div>
                                 <div className="sliderthumb-text">
                                     <div className="width-100">
                                         <Link to="#">
@@ -380,6 +460,13 @@ class Home extends Component {
                                 srcSet="assets/img/thumb2.jpg 1x,
                                         assets/img/thumb2.jpg 1.5x,
                                         assets/img/thumb2.jpg 2x" alt="slider-img" />
+                                <div className="active-play-icon">
+                                    <Link to="#">
+                                        <div className="thumb-playicon">
+                                            <i className="fas fa-play"></i>
+                                        </div>
+                                    </Link>
+                                </div>
                                 <div className="sliderthumb-text">
                                     <div className="width-100">
                                         <Link to="#">
@@ -410,7 +497,14 @@ class Home extends Component {
                                 <img className="sliderthumb-img hoverin-img" src="assets/img/thumb1.jpg"
                                 srcSet="assets/img/thumb1.jpg 1x,
                                         assets/img/thumb1.jpg 1.5x,
-                                        assets/img/thumb1.jpg 2x" alt="slider-img" />	
+                                        assets/img/thumb1.jpg 2x" alt="slider-img" />
+                                <div className="active-play-icon">
+                                    <Link to="#">
+                                        <div className="thumb-playicon">
+                                            <i className="fas fa-play"></i>
+                                        </div>
+                                    </Link>
+                                </div>	
                                 <div className="sliderthumb-text">
                                     <div className="width-100">
                                         <Link to="#">
@@ -437,7 +531,7 @@ class Home extends Component {
                        
                     </div>
 
-                    <div className="height-100"></div>
+                    {/* <div className="height-100"></div> */}
                 
 
                     <div className="slider-content">
@@ -454,6 +548,10 @@ class Home extends Component {
                                     <div className="banner_right_overlay"></div>
                                 </div>   
                             </div>
+                        </div>
+
+                        <div className="slider-content-close-sec">
+                            <div onClick={this.closeSliderContent}><i class="fas fa-times"></i></div>
                         </div>
 
                         <div className="slider-content-tabsec">

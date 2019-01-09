@@ -23,6 +23,8 @@ class KidsCategory extends Component{
 
         var scaling = 1.5;
 
+        var windowWidth = $('body').width();
+
         var videoWidth = $('.sliderthumb').outerWidth();
         
         var videoHeight = Math.round(videoWidth / (16/9));
@@ -31,36 +33,47 @@ class KidsCategory extends Component{
 
         var videoHeightDiff = videoSecHeight - videoHeight;
 
+        var mobileVideosecHeight = videoSecHeight - (videoHeightDiff / 2);
+
         $('.mylist-slider').height(videoSecHeight);
 
         $('.home-slider .sliderthumb').height(videoHeight);
 
         $('.home-slider .sliderthumb').css("margin-top", (videoHeightDiff / 2));
 
-        $(".home-slider .sliderthumb").mouseover(function() {
+        if (windowWidth > 991) {
 
-            $(this).css("width", videoWidth * scaling);
+            $(".home-slider .sliderthumb").mouseover(function() {
+
+                $(this).css("width", videoWidth * scaling);
+                
+                $(this).css("height", videoHeight * scaling);
+
+                $(this).css("z-index", 100);
+
+                $(this).css("margin-top", 0);
+
+            })
+
+            $(".home-slider .sliderthumb").mouseout(function() {
+
+                $(this).css("width", videoWidth * 1);
+                
+                $(this).css("height", videoHeight * 1);
+
+                $(this).css("z-index", 0);
+
+                $(this).css("margin-top", (videoHeightDiff / 2));
+
+            })
+        
+        }
+
+        else{
             
-            $(this).css("height", videoHeight * scaling);
-
-            $(this).css("z-index", 100);
-
-            $(this).css("margin-top", 0);
-
-        })
-
-        $(".home-slider .sliderthumb").mouseout(function() {
-
-            $(this).css("width", videoWidth * 1);
-            
-            $(this).css("height", videoHeight * 1);
-
-            $(this).css("z-index", 0);
-
-            $(this).css("margin-top", (videoHeightDiff / 2));
-
-        })
-
+            $('.home-slider').height(mobileVideosecHeight);
+        
+        }
     }
     
     render(){
@@ -167,6 +180,35 @@ class KidsCategory extends Component{
                                 srcSet="assets/img/thumb5.jpg 1x,
                                         assets/img/thumb5.jpg 1.5x,
                                         assets/img/thumb5.jpg 2x" alt="slider-img" />	
+                                <Link to="">
+                                    <div className="kids-sliderthumb-img">
+                                        <div className="width-100 text-center">
+                                            <img src="assets/img/play-button.png" className="kids-play-btn" alt="play_btn" />
+                                        </div>
+                                    </div>
+                                    <div className="kids-sliderthumb-text">
+                                        <div className="width-100">
+                                            <div className="display-inline">
+                                                <div className="kids-left">frozen</div>
+                                                <div className="kids-right">7+</div>
+                                            </div>
+                                            <div className="white-outline-btn btn">episodes</div>
+                                        </div>
+                                    </div>
+                                </Link>
+                            </div>
+                        </div>
+
+                        <div className="video-sec mylist-slider kids-sec-slider home-slider slider">
+                            <div className="sliderthumb">
+                                <img className="sliderthumb-img hoverout-img" src="assets/img/thumb5.jpg"
+                                srcSet="assets/img/thumb5.jpg 1x,
+                                        assets/img/thumb5.jpg 1.5x,
+                                        assets/img/thumb5.jpg 2x" alt="slider-img" />	
+                                <img className="sliderthumb-img hoverin-img" src="assets/img/thumb4.jpg"
+                                srcSet="assets/img/thumb4.jpg 1x,
+                                        assets/img/thumb4.jpg 1.5x,
+                                        assets/img/thumb4.jpg 2x" alt="slider-img" />	
                                 <Link to="">
                                     <div className="kids-sliderthumb-img">
                                         <div className="width-100 text-center">

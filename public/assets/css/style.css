@@ -1612,6 +1612,7 @@ label{
 .slider-content{
     position: relative;
     height: 39vw;
+    display: none;
 }
 .slider-content-tabsec{
     position: absolute;
@@ -3335,6 +3336,7 @@ a:active, a:focus, .slick-slide:focus, .slick-slide:active{
 }
 .video-container{
     width: 100%;
+    display: inline-block;
 }
 .video-container .video-sec{
     width: 20%;
@@ -3376,4 +3378,56 @@ a:active, a:focus, .slick-slide:focus, .slick-slide:active{
     width: 16.6%;
     float: left;
     padding: 20px 10px;
+}
+.slider-content-close-sec{
+    color:#fff;
+    position: absolute;
+    right:1em;
+    top:1em;
+    font-size: 2em;
+    cursor: pointer;
+    z-index: 100;
+}
+.show-video-details.home-slider .active .sliderthumb-img{
+    border:2px solid #fff;
+}
+.show-video-details.home-slider .active.sliderthumb::after{
+    content: "";
+    border-top: 8px solid #fff;
+    border-right: 15px solid transparent;
+    border-left: 15px solid transparent;
+    position: absolute;
+    bottom: -8px;
+    left: calc(50% - 15px);
+}
+.home-slider .active-play-icon{
+    display: none;
+    height:100%;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top:0;
+    left:0;
+}
+.show-video-details.home-slider .active-play-icon{
+    display: flex;
+}
+.active-play-icon .thumb-playicon{
+    height: 2.85em;
+    width:2.85em;
+    border:2px solid #fff;
+    border-radius: 50%;
+    background-color: #00000090;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: .2s all linear;
+}
+.active-play-icon .thumb-playicon svg{
+    color: #e50914;
+    margin-left: 2px;   
+}
+.active-play-icon:hover .thumb-playicon{
+    transform: scale(1.1)
 }

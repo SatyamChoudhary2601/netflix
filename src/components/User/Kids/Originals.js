@@ -23,6 +23,8 @@ class KidsOriginals extends Component{
 
         var scaling = 1.5;
 
+        var windowWidth = $('body').width();
+
         var videoWidth = $('.sliderthumb').outerWidth();
         
         var videoHeight = Math.round(videoWidth / (16/9));
@@ -31,35 +33,47 @@ class KidsOriginals extends Component{
 
         var videoHeightDiff = videoSecHeight - videoHeight;
 
+        var mobileVideosecHeight = videoSecHeight - (videoHeightDiff / 2);
+
         $('.mylist-slider').height(videoSecHeight);
 
         $('.home-slider .sliderthumb').height(videoHeight);
 
         $('.home-slider .sliderthumb').css("margin-top", (videoHeightDiff / 2));
 
-        $(".home-slider .sliderthumb").mouseover(function() {
+        if (windowWidth > 991) {
 
-            $(this).css("width", videoWidth * scaling);
+            $(".home-slider .sliderthumb").mouseover(function() {
+
+                $(this).css("width", videoWidth * scaling);
+                
+                $(this).css("height", videoHeight * scaling);
+
+                $(this).css("z-index", 100);
+
+                $(this).css("margin-top", 0);
+
+            })
+
+            $(".home-slider .sliderthumb").mouseout(function() {
+
+                $(this).css("width", videoWidth * 1);
+                
+                $(this).css("height", videoHeight * 1);
+
+                $(this).css("z-index", 0);
+
+                $(this).css("margin-top", (videoHeightDiff / 2));
+
+            })
+
+        }
+
+        else{
             
-            $(this).css("height", videoHeight * scaling);
-
-            $(this).css("z-index", 100);
-
-            $(this).css("margin-top", 0);
-
-        })
-
-        $(".home-slider .sliderthumb").mouseout(function() {
-
-            $(this).css("width", videoWidth * 1);
-            
-            $(this).css("height", videoHeight * 1);
-
-            $(this).css("z-index", 0);
-
-            $(this).css("margin-top", (videoHeightDiff / 2));
-
-        })
+            $('.home-slider').height(mobileVideosecHeight);
+        
+        }
 
     }
 
