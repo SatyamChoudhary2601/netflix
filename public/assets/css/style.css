@@ -2890,7 +2890,7 @@ a:active, a:focus, .slick-slide:focus, .slick-slide:active{
     margin-left: -10vh;
     -webkit-perspective: 60vh;
             perspective: 60vh;
-    transform: scale(.4);
+    transform: scale(.3);
 }
 .loader:before,
 .loader:after {
