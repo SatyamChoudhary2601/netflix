@@ -2882,14 +2882,15 @@ a:active, a:focus, .slick-slide:focus, .slick-slide:active{
 }
 .loader {
     position: absolute;
-    width: 20vh;
-    height: 20vh;
+    width: 17vh;
+    height: 17vh;
     top: 50%;
     left: 50%;
     margin-top: -10vh;
     margin-left: -10vh;
     -webkit-perspective: 60vh;
             perspective: 60vh;
+    transform: scale(.4);
 }
 .loader:before,
 .loader:after {
