@@ -24,6 +24,18 @@ class Home extends Component {
 
     componentDidMount() {
 
+        $(window).load(function() {
+		    
+            $('.placeholder').each(function () {
+                var imagex = $(this);
+                var imgOriginal = imagex.data('src');
+                var imgOriginalSet = imagex.data('srcset');
+                $(imagex).attr('src', imgOriginal);
+                $(imagex).attr('srcset', imgOriginalSet);
+            });
+             
+         });
+
         var scaling = 1.5;
 
         var windowWidth = $('body').width();
@@ -99,6 +111,10 @@ class Home extends Component {
             })
         }
 
+    }
+
+    componentDidUpdate(){
+        console.log("sec");
     }
 
     render() {
@@ -205,14 +221,22 @@ class Home extends Component {
                         2) "active" class in "sliderthumb" */}
                         <Slider {...mylistsSlider}  className="mylist-slider home-slider slider">
                             <div className="sliderthumb">
-                                <img className="sliderthumb-img hoverout-img" src="assets/img/thumb1.jpg"
-                                srcSet="assets/img/thumb1.jpg 1x,
+                                <img className="sliderthumb-img hoverout-img placeholder" alt="slider-img" 
+                                    src="assets/img/placeholder.gif" data-src="assets/img/thumb1.jpg" 
+                                    srcSet="assets/img/placeholder.gif 1x,
+                                        assets/img/placeholder.gif 1.5x,
+                                        assets/img/placeholder.gif 2x" 
+                                    data-srcSet="assets/img/thumb1.jpg 1x,
                                         assets/img/thumb1.jpg 1.5x,
-                                        assets/img/thumb1.jpg 2x" alt="slider-img" />	
-                                <img className="sliderthumb-img hoverin-img" src="assets/img/thumb8.jpg"
-                                srcSet="assets/img/thumb8.jpg 1x,
+                                        assets/img/thumb1.jpg 2x" />
+                                <img className="sliderthumb-img hoverin-img placeholder" alt="slider-img"
+                                    src="assets/img/placeholder.gif" data-src="assets/img/thumb8.jpg"
+                                    srcSet="assets/img/placeholder.gif 1x,
+                                        assets/img/placeholder.gif 1.5x,
+                                        assets/img/placeholder.gif 2x" 
+                                    data-srcSet="assets/img/thumb8.jpg 1x,
                                         assets/img/thumb8.jpg 1.5x,
-                                        assets/img/thumb8.jpg 2x" alt="slider-img" />
+                                        assets/img/thumb8.jpg 2x"  />
                                 <div className="active-play-icon">
                                     <Link to="#">
                                         <div className="thumb-playicon">
@@ -253,14 +277,22 @@ class Home extends Component {
                                 </div>
                             </div>
                             <div className="sliderthumb">
-                                <img className="sliderthumb-img hoverout-img" src="assets/img/thumb2.jpg"
-                                srcSet="assets/img/thumb2.jpg 1x,
+                                <img className="sliderthumb-img hoverout-img placeholder" alt="slider-img" 
+                                    src="assets/img/placeholder.gif" data-src="assets/img/thumb2.jpg" 
+                                    srcSet="assets/img/placeholder.gif 1x,
+                                        assets/img/placeholder.gif 1.5x,
+                                        assets/img/placeholder.gif 2x" 
+                                    data-srcSet="assets/img/thumb2.jpg 1x,
                                         assets/img/thumb2.jpg 1.5x,
-                                        assets/img/thumb2.jpg 2x" alt="slider-img" />	
-                                <img className="sliderthumb-img hoverin-img" src="assets/img/thumb7.jpg"
-                                srcSet="assets/img/thumb7.jpg 1x,
+                                        assets/img/thumb2.jpg 2x" />
+                                <img className="sliderthumb-img hoverin-img placeholder" alt="slider-img"
+                                    src="assets/img/placeholder.gif" data-src="assets/img/thumb7.jpg"
+                                    srcSet="assets/img/placeholder.gif 1x,
+                                        assets/img/placeholder.gif 1.5x,
+                                        assets/img/placeholder.gif 2x" 
+                                    data-srcSet="assets/img/thumb7.jpg 1x,
                                         assets/img/thumb7.jpg 1.5x,
-                                        assets/img/thumb7.jpg 2x" alt="slider-img" />
+                                        assets/img/thumb7.jpg 2x"  />
                                 <div className="active-play-icon">
                                     <Link to="#">
                                         <div className="thumb-playicon">
@@ -300,14 +332,22 @@ class Home extends Component {
                                 </div>
                             </div>
                             <div className="sliderthumb">
-                                <img className="sliderthumb-img hoverout-img" src="assets/img/thumb3.jpg"
-                                srcSet="assets/img/thumb3.jpg 1x,
+                                <img className="sliderthumb-img hoverout-img placeholder" alt="slider-img" 
+                                    src="assets/img/placeholder.gif" data-src="assets/img/thumb3.jpg" 
+                                    srcSet="assets/img/placeholder.gif 1x,
+                                        assets/img/placeholder.gif 1.5x,
+                                        assets/img/placeholder.gif 2x" 
+                                    data-srcSet="assets/img/thumb3.jpg 1x,
                                         assets/img/thumb3.jpg 1.5x,
-                                        assets/img/thumb3.jpg 2x" alt="slider-img" />
-                                <img className="sliderthumb-img hoverin-img" src="assets/img/thumb6.jpg"
-                                srcSet="assets/img/thumb6.jpg 1x,
+                                        assets/img/thumb3.jpg 2x" />
+                                <img className="sliderthumb-img hoverin-img placeholder" alt="slider-img"
+                                    src="assets/img/placeholder.gif" data-src="assets/img/thumb6.jpg"
+                                    srcSet="assets/img/placeholder.gif 1x,
+                                        assets/img/placeholder.gif 1.5x,
+                                        assets/img/placeholder.gif 2x" 
+                                    data-srcSet="assets/img/thumb6.jpg 1x,
                                         assets/img/thumb6.jpg 1.5x,
-                                        assets/img/thumb6.jpg 2x" alt="slider-img" />
+                                        assets/img/thumb6.jpg 2x"  />
                                 <div className="active-play-icon">
                                     <Link to="#">
                                         <div className="thumb-playicon">
@@ -338,14 +378,22 @@ class Home extends Component {
                                 </div>
                             </div>
                             <div className="sliderthumb">
-                                <img className="sliderthumb-img hoverout-img" src="assets/img/thumb4.jpg"
-                                srcSet="assets/img/thumb4.jpg 1x,
+                                <img className="sliderthumb-img hoverout-img placeholder" alt="slider-img" 
+                                    src="assets/img/placeholder.gif" data-src="assets/img/thumb4.jpg" 
+                                    srcSet="assets/img/placeholder.gif 1x,
+                                        assets/img/placeholder.gif 1.5x,
+                                        assets/img/placeholder.gif 2x" 
+                                    data-srcSet="assets/img/thumb4.jpg 1x,
                                         assets/img/thumb4.jpg 1.5x,
-                                        assets/img/thumb4.jpg 2x" alt="slider-img" />	
-                                <img className="sliderthumb-img hoverin-img" src="assets/img/thumb5.jpg"
-                                srcSet="assets/img/thumb5.jpg 1x,
+                                        assets/img/thumb4.jpg 2x" />
+                                <img className="sliderthumb-img hoverin-img placeholder" alt="slider-img"
+                                    src="assets/img/placeholder.gif" data-src="assets/img/thumb5.jpg"
+                                    srcSet="assets/img/placeholder.gif 1x,
+                                        assets/img/placeholder.gif 1.5x,
+                                        assets/img/placeholder.gif 2x" 
+                                    data-srcSet="assets/img/thumb5.jpg 1x,
                                         assets/img/thumb5.jpg 1.5x,
-                                        assets/img/thumb5.jpg 2x" alt="slider-img" />
+                                        assets/img/thumb5.jpg 2x"  />
                                 <div className="active-play-icon">
                                     <Link to="#">
                                         <div className="thumb-playicon">
@@ -376,14 +424,22 @@ class Home extends Component {
                                 </div>
                             </div>
                             <div className="sliderthumb">
-                                <img className="sliderthumb-img hoverout-img" src="assets/img/thumb5.jpg"
-                                srcSet="assets/img/thumb5.jpg 1x,
+                                <img className="sliderthumb-img hoverout-img placeholder" alt="slider-img" 
+                                    src="assets/img/placeholder.gif" data-src="assets/img/thumb5.jpg" 
+                                    srcSet="assets/img/placeholder.gif 1x,
+                                        assets/img/placeholder.gif 1.5x,
+                                        assets/img/placeholder.gif 2x" 
+                                    data-srcSet="assets/img/thumb5.jpg 1x,
                                         assets/img/thumb5.jpg 1.5x,
-                                        assets/img/thumb5.jpg 2x" alt="slider-img" />	
-                                <img className="sliderthumb-img hoverin-img" src="assets/img/thumb4.jpg"
-                                srcSet="assets/img/thumb4.jpg 1x,
+                                        assets/img/thumb5.jpg 2x" />
+                                <img className="sliderthumb-img hoverin-img placeholder" alt="slider-img"
+                                    src="assets/img/placeholder.gif" data-src="assets/img/thumb4.jpg"
+                                    srcSet="assets/img/placeholder.gif 1x,
+                                        assets/img/placeholder.gif 1.5x,
+                                        assets/img/placeholder.gif 2x" 
+                                    data-srcSet="assets/img/thumb4.jpg 1x,
                                         assets/img/thumb4.jpg 1.5x,
-                                        assets/img/thumb4.jpg 2x" alt="slider-img" />
+                                        assets/img/thumb4.jpg 2x"  />
                                 <div className="active-play-icon">
                                     <Link to="#">
                                         <div className="thumb-playicon">
@@ -414,14 +470,22 @@ class Home extends Component {
                                 </div>
                             </div>
                             <div className="sliderthumb">
-                                <img className="sliderthumb-img hoverout-img" src="assets/img/thumb6.jpg"
-                                srcSet="assets/img/thumb6.jpg 1x,
+                                <img className="sliderthumb-img hoverout-img placeholder" alt="slider-img" 
+                                    src="assets/img/placeholder.gif" data-src="assets/img/thumb6.jpg" 
+                                    srcSet="assets/img/placeholder.gif 1x,
+                                        assets/img/placeholder.gif 1.5x,
+                                        assets/img/placeholder.gif 2x" 
+                                    data-srcSet="assets/img/thumb6.jpg 1x,
                                         assets/img/thumb6.jpg 1.5x,
-                                        assets/img/thumb6.jpg 2x" alt="slider-img" />
-                                <img className="sliderthumb-img hoverin-img" src="assets/img/thumb3.jpg"
-                                srcSet="assets/img/thumb3.jpg 1x,
+                                        assets/img/thumb6.jpg 2x" />
+                                <img className="sliderthumb-img hoverin-img placeholder" alt="slider-img"
+                                    src="assets/img/placeholder.gif" data-src="assets/img/thumb3.jpg"
+                                    srcSet="assets/img/placeholder.gif 1x,
+                                        assets/img/placeholder.gif 1.5x,
+                                        assets/img/placeholder.gif 2x" 
+                                    data-srcSet="assets/img/thumb3.jpg 1x,
                                         assets/img/thumb3.jpg 1.5x,
-                                        assets/img/thumb3.jpg 2x" alt="slider-img" />	
+                                        assets/img/thumb3.jpg 2x"  />
                                 <div className="active-play-icon">
                                     <Link to="#">
                                         <div className="thumb-playicon">
@@ -452,14 +516,22 @@ class Home extends Component {
                                 </div>
                             </div>
                             <div className="sliderthumb">
-                                <img className="sliderthumb-img hoverout-img" src="assets/img/thumb7.jpg"
-                                srcSet="assets/img/thumb7.jpg 1x,
+                                <img className="sliderthumb-img hoverout-img placeholder" alt="slider-img" 
+                                    src="assets/img/placeholder.gif" data-src="assets/img/thumb7.jpg" 
+                                    srcSet="assets/img/placeholder.gif 1x,
+                                        assets/img/placeholder.gif 1.5x,
+                                        assets/img/placeholder.gif 2x" 
+                                    data-srcSet="assets/img/thumb7.jpg 1x,
                                         assets/img/thumb7.jpg 1.5x,
-                                        assets/img/thumb7.jpg 2x" alt="slider-img" />	
-                                <img className="sliderthumb-img hoverin-img" src="assets/img/thumb2.jpg"
-                                srcSet="assets/img/thumb2.jpg 1x,
+                                        assets/img/thumb7.jpg 2x" />
+                                <img className="sliderthumb-img hoverin-img placeholder" alt="slider-img"
+                                    src="assets/img/placeholder.gif" data-src="assets/img/thumb2.jpg"
+                                    srcSet="assets/img/placeholder.gif 1x,
+                                        assets/img/placeholder.gif 1.5x,
+                                        assets/img/placeholder.gif 2x" 
+                                    data-srcSet="assets/img/thumb2.jpg 1x,
                                         assets/img/thumb2.jpg 1.5x,
-                                        assets/img/thumb2.jpg 2x" alt="slider-img" />
+                                        assets/img/thumb2.jpg 2x"  />
                                 <div className="active-play-icon">
                                     <Link to="#">
                                         <div className="thumb-playicon">
@@ -490,14 +562,22 @@ class Home extends Component {
                                 </div>
                             </div>
                             <div className="sliderthumb">
-                                <img className="sliderthumb-img hoverout-img" src="assets/img/thumb8.jpg"
-                                srcSet="assets/img/thumb8.jpg 1x,
+                                <img className="sliderthumb-img hoverout-img placeholder" alt="slider-img" 
+                                    src="assets/img/placeholder.gif" data-src="assets/img/thumb8.jpg" 
+                                    srcSet="assets/img/placeholder.gif 1x,
+                                        assets/img/placeholder.gif 1.5x,
+                                        assets/img/placeholder.gif 2x" 
+                                    data-srcSet="assets/img/thumb8.jpg 1x,
                                         assets/img/thumb8.jpg 1.5x,
-                                        assets/img/thumb8.jpg 2x" alt="slider-img" />
-                                <img className="sliderthumb-img hoverin-img" src="assets/img/thumb1.jpg"
-                                srcSet="assets/img/thumb1.jpg 1x,
+                                        assets/img/thumb8.jpg 2x" />
+                                <img className="sliderthumb-img hoverin-img placeholder" alt="slider-img"
+                                    src="assets/img/placeholder.gif" data-src="assets/img/thumb1.jpg"
+                                    srcSet="assets/img/placeholder.gif 1x,
+                                        assets/img/placeholder.gif 1.5x,
+                                        assets/img/placeholder.gif 2x" 
+                                    data-srcSet="assets/img/thumb1.jpg 1x,
                                         assets/img/thumb1.jpg 1.5x,
-                                        assets/img/thumb1.jpg 2x" alt="slider-img" />
+                                        assets/img/thumb1.jpg 2x"  />
                                 <div className="active-play-icon">
                                     <Link to="#">
                                         <div className="thumb-playicon">
@@ -533,7 +613,6 @@ class Home extends Component {
 
                     {/* <div className="height-100"></div> */}
                 
-
                     <div className="slider-content">
                         <div className="row m-0">
                             <div className="col-3 col-md-3 col-lg-3 col-xl-3 p-0">
@@ -686,10 +765,14 @@ class Home extends Component {
                                             <Slider {...episodeSlider} className="episode-slider slider">
                                                 <div>
                                                     <div className="relative">
-                                                        <img className="trailers-img" src="assets/img/thumb1.jpg"
-                                                            srcSet="assets/img/thumb1.jpg 1x,
+                                                        <img className="trailers-img placeholder" alt="episode-img"
+                                                            src="assets/img/placeholder.gif" data-src="assets/img/thumb1.jpg"
+                                                            srcset="assets/img/placeholder.gif 1x,
+                                                                    assets/img/placeholder.gif 1.5x,
+                                                                    assets/img/placeholder.gif 2x"
+                                                            data-srcset="assets/img/thumb1.jpg 1x,
                                                                     assets/img/thumb1.jpg 1.5x,
-                                                                    assets/img/thumb1.jpg 2x" alt="episode-img" />
+                                                                    assets/img/thumb1.jpg 2x" />
                                                         <div className="trailers-img-overlay">
                                                             <Link to="#">
                                                                 <div className="thumbslider-outline">
@@ -713,10 +796,14 @@ class Home extends Component {
                                                 </div>
                                                 <div>
                                                     <div className="relative">
-                                                        <img className="trailers-img" src="assets/img/thumb2.jpg"
-                                                            srcSet="assets/img/thumb2.jpg 1x,
+                                                    <img className="trailers-img placeholder" alt="episode-img"
+                                                            src="assets/img/placeholder.gif" data-src="assets/img/thumb2.jpg"
+                                                            srcset="assets/img/placeholder.gif 1x,
+                                                                    assets/img/placeholder.gif 1.5x,
+                                                                    assets/img/placeholder.gif 2x"
+                                                            data-srcset="assets/img/thumb2.jpg 1x,
                                                                     assets/img/thumb2.jpg 1.5x,
-                                                                    assets/img/thumb2.jpg 2x" alt="episode-img" />
+                                                                    assets/img/thumb2.jpg 2x" />
                                                         <div className="trailers-img-overlay">
                                                             <Link to="#">
                                                                 <div className="thumbslider-outline">
@@ -740,10 +827,14 @@ class Home extends Component {
                                                 </div>
                                                 <div>
                                                     <div className="relative">
-                                                        <img className="trailers-img" src="assets/img/thumb3.jpg"
-                                                            srcSet="assets/img/thumb3.jpg 1x,
+                                                        <img className="trailers-img placeholder" alt="episode-img"
+                                                            src="assets/img/placeholder.gif" data-src="assets/img/thumb3.jpg"
+                                                            srcset="assets/img/placeholder.gif 1x,
+                                                                    assets/img/placeholder.gif 1.5x,
+                                                                    assets/img/placeholder.gif 2x"
+                                                            data-srcset="assets/img/thumb3.jpg 1x,
                                                                     assets/img/thumb3.jpg 1.5x,
-                                                                    assets/img/thumb3.jpg 2x" alt="episode-img" />
+                                                                    assets/img/thumb3.jpg 2x" />
                                                         <div className="trailers-img-overlay">
                                                             <Link to="#">
                                                                 <div className="thumbslider-outline">
@@ -767,10 +858,14 @@ class Home extends Component {
                                                 </div>
                                                 <div>
                                                     <div className="relative">
-                                                        <img className="trailers-img" src="assets/img/thumb4.jpg"
-                                                            srcSet="assets/img/thumb4.jpg 1x,
-                                                                    assets/img/thumb4.jpg 1.5x,
-                                                                    assets/img/thumb4.jpg 2x" alt="episode-img" />
+                                                        <img className="trailers-img placeholder" alt="episode-img"
+                                                            src="assets/img/placeholder.gif" data-src="assets/img/thumb3.jpg"
+                                                            srcset="assets/img/placeholder.gif 1x,
+                                                                    assets/img/placeholder.gif 1.5x,
+                                                                    assets/img/placeholder.gif 2x"
+                                                            data-srcset="assets/img/thumb3.jpg 1x,
+                                                                    assets/img/thumb3.jpg 1.5x,
+                                                                    assets/img/thumb3.jpg 2x" />
                                                         <div className="trailers-img-overlay">
                                                             <Link to="#">
                                                                 <div className="thumbslider-outline">
@@ -794,10 +889,14 @@ class Home extends Component {
                                                 </div>
                                                 <div>
                                                     <div className="relative">
-                                                        <img className="trailers-img" src="assets/img/thumb5.jpg"
-                                                            srcSet="assets/img/thumb5.jpg 1x,
-                                                                    assets/img/thumb5.jpg 1.5x,
-                                                                    assets/img/thumb5.jpg 2x" alt="episode-img" />
+                                                        <img className="trailers-img placeholder" alt="episode-img"
+                                                            src="assets/img/placeholder.gif" data-src="assets/img/thumb4.jpg"
+                                                            srcset="assets/img/placeholder.gif 1x,
+                                                                    assets/img/placeholder.gif 1.5x,
+                                                                    assets/img/placeholder.gif 2x"
+                                                            data-srcset="assets/img/thumb4.jpg 1x,
+                                                                    assets/img/thumb4.jpg 1.5x,
+                                                                    assets/img/thumb4.jpg 2x" />
                                                         <div className="trailers-img-overlay">
                                                             <Link to="#">
                                                                 <div className="thumbslider-outline">
@@ -821,10 +920,14 @@ class Home extends Component {
                                                 </div>
                                                 <div>
                                                     <div className="relative">
-                                                        <img className="trailers-img" src="assets/img/thumb6.jpg"
-                                                            srcSet="assets/img/thumb6.jpg 1x,
-                                                                    assets/img/thumb6.jpg 1.5x,
-                                                                    assets/img/thumb6.jpg 2x" alt="episode-img" />
+                                                        <img className="trailers-img placeholder" alt="episode-img"
+                                                            src="assets/img/placeholder.gif" data-src="assets/img/thumb5.jpg"
+                                                            srcset="assets/img/placeholder.gif 1x,
+                                                                    assets/img/placeholder.gif 1.5x,
+                                                                    assets/img/placeholder.gif 2x"
+                                                            data-srcset="assets/img/thumb5.jpg 1x,
+                                                                    assets/img/thumb5.jpg 1.5x,
+                                                                    assets/img/thumb5.jpg 2x" />
                                                         <div className="trailers-img-overlay">
                                                             <Link to="#">
                                                                 <div className="thumbslider-outline">
@@ -859,10 +962,14 @@ class Home extends Component {
                                             <Slider {...trailerSlider} className="trailer-slider slider">
                                                 <div>
                                                     <div className="relative">
-                                                        <img className="trailers-img" src="assets/img/thumb8.jpg"
-                                                            srcSet="assets/img/thumb8.jpg 1x,
+                                                        <img className="trailers-img placeholder" alt="episode-img"
+                                                            src="assets/img/placeholder.gif" data-src="assets/img/thumb8.jpg"
+                                                            srcset="assets/img/placeholder.gif 1x,
+                                                                    assets/img/placeholder.gif 1.5x,
+                                                                    assets/img/placeholder.gif 2x"
+                                                            data-srcset="assets/img/thumb8.jpg 1x,
                                                                     assets/img/thumb8.jpg 1.5x,
-                                                                    assets/img/thumb8.jpg 2x" alt="episode-img" />
+                                                                    assets/img/thumb8.jpg 2x" />
                                                         <div className="trailers-img-overlay">
                                                             <Link to="#">
                                                                 <div className="thumbslider-outline">
@@ -877,10 +984,14 @@ class Home extends Component {
                                                 </div>
                                                 <div>
                                                     <div className="relative">
-                                                        <img className="trailers-img" src="assets/img/thumb9.jpg"
-                                                            srcSet="assets/img/thumb9.jpg 1x,
+                                                        <img className="trailers-img placeholder" alt="episode-img"
+                                                            src="assets/img/placeholder.gif" data-src="assets/img/thumb9.jpg"
+                                                            srcset="assets/img/placeholder.gif 1x,
+                                                                    assets/img/placeholder.gif 1.5x,
+                                                                    assets/img/placeholder.gif 2x"
+                                                            data-srcset="assets/img/thumb9.jpg 1x,
                                                                     assets/img/thumb9.jpg 1.5x,
-                                                                    assets/img/thumb9.jpg 2x" alt="episode-img" />
+                                                                    assets/img/thumb9.jpg 2x" />
                                                         <div className="trailers-img-overlay">
                                                             <Link to="#">
                                                                 <div className="thumbslider-outline">
@@ -895,10 +1006,14 @@ class Home extends Component {
                                                 </div>
                                                 <div>
                                                     <div className="relative">
-                                                        <img className="trailers-img" src="assets/img/thumb1.jpg"
-                                                            srcSet="assets/img/thumb1.jpg 1x,
+                                                        <img className="trailers-img placeholder" alt="episode-img"
+                                                            src="assets/img/placeholder.gif" data-src="assets/img/thumb1.jpg"
+                                                            srcset="assets/img/placeholder.gif 1x,
+                                                                    assets/img/placeholder.gif 1.5x,
+                                                                    assets/img/placeholder.gif 2x"
+                                                            data-srcset="assets/img/thumb1.jpg 1x,
                                                                     assets/img/thumb1.jpg 1.5x,
-                                                                    assets/img/thumb1.jpg 2x" alt="episode-img" />
+                                                                    assets/img/thumb1.jpg 2x" />
                                                         <div className="trailers-img-overlay">
                                                             <Link to="#">
                                                                 <div className="thumbslider-outline">
@@ -913,10 +1028,14 @@ class Home extends Component {
                                                 </div>
                                                 <div>
                                                     <div className="relative">
-                                                        <img className="trailers-img" src="assets/img/thumb4.jpg"
-                                                            srcSet="assets/img/thumb4.jpg 1x,
+                                                        <img className="trailers-img placeholder" alt="episode-img"
+                                                            src="assets/img/placeholder.gif" data-src="assets/img/thumb4.jpg"
+                                                            srcset="assets/img/placeholder.gif 1x,
+                                                                    assets/img/placeholder.gif 1.5x,
+                                                                    assets/img/placeholder.gif 2x"
+                                                            data-srcset="assets/img/thumb4.jpg 1x,
                                                                     assets/img/thumb4.jpg 1.5x,
-                                                                    assets/img/thumb4.jpg 2x" alt="episode-img" />
+                                                                    assets/img/thumb4.jpg 2x" />
                                                         <div className="trailers-img-overlay">
                                                             <Link to="#">
                                                                 <div className="thumbslider-outline">
@@ -931,10 +1050,14 @@ class Home extends Component {
                                                 </div>
                                                 <div>
                                                     <div className="relative">
-                                                        <img className="trailers-img" src="assets/img/thumb5.jpg"
-                                                            srcSet="assets/img/thumb5.jpg 1x,
+                                                        <img className="trailers-img placeholder" alt="episode-img"
+                                                            src="assets/img/placeholder.gif" data-src="assets/img/thumb5.jpg"
+                                                            srcset="assets/img/placeholder.gif 1x,
+                                                                    assets/img/placeholder.gif 1.5x,
+                                                                    assets/img/placeholder.gif 2x"
+                                                            data-srcset="assets/img/thumb5.jpg 1x,
                                                                     assets/img/thumb5.jpg 1.5x,
-                                                                    assets/img/thumb5.jpg 2x" alt="episode-img" />
+                                                                    assets/img/thumb5.jpg 2x" />
                                                         <div className="trailers-img-overlay">
                                                             <Link to="#">
                                                                 <div className="thumbslider-outline">
@@ -949,10 +1072,14 @@ class Home extends Component {
                                                 </div>
                                                 <div>
                                                     <div className="relative">
-                                                        <img className="trailers-img" src="assets/img/thumb6.jpg"
-                                                            srcSet="assets/img/thumb6.jpg 1x,
+                                                        <img className="trailers-img placeholder" alt="episode-img"
+                                                            src="assets/img/placeholder.gif" data-src="assets/img/thumb6.jpg"
+                                                            srcset="assets/img/placeholder.gif 1x,
+                                                                    assets/img/placeholder.gif 1.5x,
+                                                                    assets/img/placeholder.gif 2x"
+                                                            data-srcset="assets/img/thumb6.jpg 1x,
                                                                     assets/img/thumb6.jpg 1.5x,
-                                                                    assets/img/thumb6.jpg 2x" alt="episode-img" />
+                                                                    assets/img/thumb6.jpg 2x" />
                                                         <div className="trailers-img-overlay">
                                                             <Link to="#">
                                                                 <div className="thumbslider-outline">
@@ -978,10 +1105,14 @@ class Home extends Component {
                                             <Slider {...morelikeSlider} className="more-like-slider slider">
                                                 <div>
                                                     <div className="relative">
-                                                        <img className="trailers-img" src="assets/img/thumb1.jpg"
-                                                            srcSet="assets/img/thumb1.jpg 1x,
+                                                        <img className="trailers-img placeholder" alt="episode-img"
+                                                            src="assets/img/placeholder.gif" data-src="assets/img/thumb1.jpg"
+                                                            srcset="assets/img/placeholder.gif 1x,
+                                                                    assets/img/placeholder.gif 1.5x,
+                                                                    assets/img/placeholder.gif 2x"
+                                                            data-srcset="assets/img/thumb1.jpg 1x,
                                                                     assets/img/thumb1.jpg 1.5x,
-                                                                    assets/img/thumb1.jpg 2x" alt="episode-img" />
+                                                                    assets/img/thumb1.jpg 2x" />
                                                         <div className="trailers-img-overlay">
                                                             <Link to="#">
                                                                 <div className="thumbslider-outline">
@@ -1004,10 +1135,14 @@ class Home extends Component {
                                                 </div>
                                                 <div>
                                                     <div className="relative">
-                                                        <img className="trailers-img" src="assets/img/thumb2.jpg"
-                                                            srcSet="assets/img/thumb2.jpg 1x,
+                                                        <img className="trailers-img placeholder" alt="episode-img"
+                                                            src="assets/img/placeholder.gif" data-src="assets/img/thumb2.jpg"
+                                                            srcset="assets/img/placeholder.gif 1x,
+                                                                    assets/img/placeholder.gif 1.5x,
+                                                                    assets/img/placeholder.gif 2x"
+                                                            data-srcset="assets/img/thumb2.jpg 1x,
                                                                     assets/img/thumb2.jpg 1.5x,
-                                                                    assets/img/thumb2.jpg 2x" alt="episode-img" />
+                                                                    assets/img/thumb2.jpg 2x" />
                                                         <div className="trailers-img-overlay">
                                                             <Link to="#">
                                                                 <div className="thumbslider-outline">
@@ -1030,10 +1165,14 @@ class Home extends Component {
                                                 </div>
                                                 <div>
                                                     <div className="relative">
-                                                        <img className="trailers-img" src="assets/img/thumb3.jpg"
-                                                            srcSet="assets/img/thumb3.jpg 1x,
+                                                        <img className="trailers-img placeholder" alt="episode-img"
+                                                            src="assets/img/placeholder.gif" data-src="assets/img/thumb3.jpg"
+                                                            srcset="assets/img/placeholder.gif 1x,
+                                                                    assets/img/placeholder.gif 1.5x,
+                                                                    assets/img/placeholder.gif 2x"
+                                                            data-srcset="assets/img/thumb3.jpg 1x,
                                                                     assets/img/thumb3.jpg 1.5x,
-                                                                    assets/img/thumb3.jpg 2x" alt="episode-img" />
+                                                                    assets/img/thumb3.jpg 2x" />
                                                         <div className="trailers-img-overlay">
                                                             <Link to="#">
                                                                 <div className="thumbslider-outline">
@@ -1056,10 +1195,14 @@ class Home extends Component {
                                                 </div>
                                                 <div>
                                                     <div className="relative">
-                                                        <img className="trailers-img" src="assets/img/thumb4.jpg"
-                                                            srcSet="assets/img/thumb4.jpg 1x,
+                                                        <img className="trailers-img placeholder" alt="episode-img"
+                                                            src="assets/img/placeholder.gif" data-src="assets/img/thumb4.jpg"
+                                                            srcset="assets/img/placeholder.gif 1x,
+                                                                    assets/img/placeholder.gif 1.5x,
+                                                                    assets/img/placeholder.gif 2x"
+                                                            data-srcset="assets/img/thumb4.jpg 1x,
                                                                     assets/img/thumb4.jpg 1.5x,
-                                                                    assets/img/thumb4.jpg 2x" alt="episode-img" />
+                                                                    assets/img/thumb4.jpg 2x" />
                                                         <div className="trailers-img-overlay">
                                                             <Link to="#">
                                                                 <div className="thumbslider-outline">
@@ -1082,10 +1225,14 @@ class Home extends Component {
                                                 </div>
                                                 <div>
                                                     <div className="relative">
-                                                        <img className="trailers-img" src="assets/img/thumb5.jpg"
-                                                            srcSet="assets/img/thumb5.jpg 1x,
+                                                        <img className="trailers-img placeholder" alt="episode-img"
+                                                            src="assets/img/placeholder.gif" data-src="assets/img/thumb5.jpg"
+                                                            srcset="assets/img/placeholder.gif 1x,
+                                                                    assets/img/placeholder.gif 1.5x,
+                                                                    assets/img/placeholder.gif 2x"
+                                                            data-srcset="assets/img/thumb5.jpg 1x,
                                                                     assets/img/thumb5.jpg 1.5x,
-                                                                    assets/img/thumb5.jpg 2x" alt="episode-img" />
+                                                                    assets/img/thumb5.jpg 2x" />
                                                         <div className="trailers-img-overlay">
                                                             <Link to="#">
                                                                 <div className="thumbslider-outline">
@@ -1108,10 +1255,14 @@ class Home extends Component {
                                                 </div>
                                                 <div>
                                                     <div className="relative">
-                                                        <img className="trailers-img" src="assets/img/thumb6.jpg"
-                                                            srcSet="assets/img/thumb6.jpg 1x,
+                                                        <img className="trailers-img placeholder" alt="episode-img"
+                                                            src="assets/img/placeholder.gif" data-src="assets/img/thumb6.jpg"
+                                                            srcset="assets/img/placeholder.gif 1x,
+                                                                    assets/img/placeholder.gif 1.5x,
+                                                                    assets/img/placeholder.gif 2x"
+                                                            data-srcset="assets/img/thumb6.jpg 1x,
                                                                     assets/img/thumb6.jpg 1.5x,
-                                                                    assets/img/thumb6.jpg 2x" alt="episode-img" />
+                                                                    assets/img/thumb6.jpg 2x" />
                                                         <div className="trailers-img-overlay">
                                                             <Link to="#">
                                                                 <div className="thumbslider-outline">
@@ -1171,6 +1322,7 @@ class Home extends Component {
                         </div>
                     </div>
                     <div className="height-100"></div>
+                    
                 </div>
             </div>
         );

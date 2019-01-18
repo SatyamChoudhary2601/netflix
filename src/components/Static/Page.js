@@ -18,7 +18,7 @@ class Page extends Component {
 
         return (
             <div className="top-bottom-spacing">
-				<div className="site-footer">
+				<div className="">
 					<div className="static-head">
 						<h1>about us</h1>	
 					</div>

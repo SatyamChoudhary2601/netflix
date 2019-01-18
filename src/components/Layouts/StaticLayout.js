@@ -4,6 +4,8 @@ import StaticHeader from './SubLayout/StaticHeader';
 
 import Footer from '../Layouts/SubLayout/Footer';
 
+import StaticSidebar from '../Layouts/SubLayout/StaticSidebar';
+
 class StaticLayout extends Component {
 
     constructor(props) {
@@ -31,10 +33,17 @@ class StaticLayout extends Component {
 
         return (
             <div className="wrapper">
-               <StaticHeader />
-               <div className="main">
-                    {React.cloneElement(this.props.children, {eventEmitter : this.eventEmitter, data : isAuthenticated})}
-               </div>
+                <StaticHeader />
+                <div className="main pl-5 pr-5">
+                    <div className="row"> 
+                        <div className="col-sm-12 col-md-3 col-lg-2">
+                            <StaticSidebar />
+                        </div>
+                        <div className="col-sm-12 col-md-9 col-lg-10">
+                            {React.cloneElement(this.props.children, {eventEmitter : this.eventEmitter, data : isAuthenticated})}
+                        </div>
+                    </div>
+                </div>
                <Footer />
             </div>
         )

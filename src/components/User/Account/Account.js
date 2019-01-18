@@ -85,7 +85,7 @@ class AccountComponent extends Component{
 											<h4 className="account-sec-head">card details</h4>
 										</div>
 										<div className="col-12 col-sm-5 col-md-5 col-lg-5 col-xl-5">
-											<h5 className="email">-</h5>
+											<h5 className="email">XXXX XXXX XXXX 4242</h5>
 										</div>
 										<div className="col-12 col-sm-4 col-md-4 col-lg-4 col-xl-4">
 											<ul className="account-nav-link">

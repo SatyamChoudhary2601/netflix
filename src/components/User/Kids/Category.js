@@ -21,6 +21,18 @@ class KidsCategory extends Component{
 
     componentDidMount() {
 
+        $(window).load(function() {
+		    
+            $('.placeholder').each(function () {
+                var imagex = $(this);
+                var imgOriginal = imagex.data('src');
+                var imgOriginalSet = imagex.data('srcset');
+                $(imagex).attr('src', imgOriginal);
+                $(imagex).attr('srcset', imgOriginalSet);
+            });
+             
+        });
+
         var scaling = 1.5;
 
         var windowWidth = $('body').width();
@@ -66,7 +78,7 @@ class KidsCategory extends Component{
                 $(this).css("margin-top", (videoHeightDiff / 2));
 
             })
-        
+
         }
 
         else{
@@ -74,8 +86,9 @@ class KidsCategory extends Component{
             $('.home-slider').height(mobileVideosecHeight);
         
         }
+
     }
-    
+
     render(){
         return(
             <div>
@@ -85,14 +98,22 @@ class KidsCategory extends Component{
 
                         <div className="video-sec mylist-slider kids-sec-slider home-slider slider">
                             <div className="sliderthumb">
-                                <img className="sliderthumb-img hoverout-img" src="assets/img/thumb1.jpg"
-                                srcSet="assets/img/thumb1.jpg 1x,
+                                <img className="sliderthumb-img hoverout-img placeholder" alt="slider-img" 
+                                    src="assets/img/placeholder.gif" data-src="assets/img/thumb1.jpg" 
+                                    srcSet="assets/img/placeholder.gif 1x,
+                                        assets/img/placeholder.gif 1.5x,
+                                        assets/img/placeholder.gif 2x" 
+                                    data-srcSet="assets/img/thumb1.jpg 1x,
                                         assets/img/thumb1.jpg 1.5x,
-                                        assets/img/thumb1.jpg 2x" alt="slider-img" />	
-                                <img className="sliderthumb-img hoverin-img" src="assets/img/thumb8.jpg"
-                                srcSet="assets/img/thumb8.jpg 1x,
+                                        assets/img/thumb1.jpg 2x" />
+                                <img className="sliderthumb-img hoverin-img placeholder" alt="slider-img"
+                                    src="assets/img/placeholder.gif" data-src="assets/img/thumb8.jpg"
+                                    srcSet="assets/img/placeholder.gif 1x,
+                                        assets/img/placeholder.gif 1.5x,
+                                        assets/img/placeholder.gif 2x" 
+                                    data-srcSet="assets/img/thumb8.jpg 1x,
                                         assets/img/thumb8.jpg 1.5x,
-                                        assets/img/thumb8.jpg 2x" alt="slider-img" />	
+                                        assets/img/thumb8.jpg 2x"  />
                                 <Link to="" data-toggle="modal" data-target="#kids-episode">
                                     <div className="kids-sliderthumb-img">
                                         <div className="width-100 text-center">
@@ -114,14 +135,22 @@ class KidsCategory extends Component{
 
                         <div className="video-sec mylist-slider kids-sec-slider home-slider slider">
                             <div className="sliderthumb">
-                                <img className="sliderthumb-img hoverout-img" src="assets/img/thumb2.jpg"
-                                srcSet="assets/img/thumb2.jpg 1x,
+                                <img className="sliderthumb-img hoverout-img placeholder" alt="slider-img" 
+                                    src="assets/img/placeholder.gif" data-src="assets/img/thumb2.jpg" 
+                                    srcSet="assets/img/placeholder.gif 1x,
+                                        assets/img/placeholder.gif 1.5x,
+                                        assets/img/placeholder.gif 2x" 
+                                    data-srcSet="assets/img/thumb2.jpg 1x,
                                         assets/img/thumb2.jpg 1.5x,
-                                        assets/img/thumb2.jpg 2x" alt="slider-img" />	
-                                <img className="sliderthumb-img hoverin-img" src="assets/img/thumb7.jpg"
-                                srcSet="assets/img/thumb7.jpg 1x,
+                                        assets/img/thumb2.jpg 2x" />
+                                <img className="sliderthumb-img hoverin-img placeholder" alt="slider-img"
+                                    src="assets/img/placeholder.gif" data-src="assets/img/thumb7.jpg"
+                                    srcSet="assets/img/placeholder.gif 1x,
+                                        assets/img/placeholder.gif 1.5x,
+                                        assets/img/placeholder.gif 2x" 
+                                    data-srcSet="assets/img/thumb7.jpg 1x,
                                         assets/img/thumb7.jpg 1.5x,
-                                        assets/img/thumb7.jpg 2x" alt="slider-img" />	
+                                        assets/img/thumb7.jpg 2x"  />
                                 <Link to="">
                                     <div className="kids-sliderthumb-img">
                                         <div className="width-100 text-center">
@@ -143,14 +172,22 @@ class KidsCategory extends Component{
 
                         <div className="video-sec mylist-slider kids-sec-slider home-slider slider">
                             <div className="sliderthumb">
-                                <img className="sliderthumb-img hoverout-img" src="assets/img/thumb3.jpg"
-                                srcSet="assets/img/thumb3.jpg 1x,
+                                <img className="sliderthumb-img hoverout-img placeholder" alt="slider-img" 
+                                    src="assets/img/placeholder.gif" data-src="assets/img/thumb3.jpg" 
+                                    srcSet="assets/img/placeholder.gif 1x,
+                                        assets/img/placeholder.gif 1.5x,
+                                        assets/img/placeholder.gif 2x" 
+                                    data-srcSet="assets/img/thumb3.jpg 1x,
                                         assets/img/thumb3.jpg 1.5x,
-                                        assets/img/thumb3.jpg 2x" alt="slider-img" />	
-                                <img className="sliderthumb-img hoverin-img" src="assets/img/thumb6.jpg"
-                                srcSet="assets/img/thumb6.jpg 1x,
+                                        assets/img/thumb3.jpg 2x" />
+                                <img className="sliderthumb-img hoverin-img placeholder" alt="slider-img"
+                                    src="assets/img/placeholder.gif" data-src="assets/img/thumb6.jpg"
+                                    srcSet="assets/img/placeholder.gif 1x,
+                                        assets/img/placeholder.gif 1.5x,
+                                        assets/img/placeholder.gif 2x" 
+                                    data-srcSet="assets/img/thumb6.jpg 1x,
                                         assets/img/thumb6.jpg 1.5x,
-                                        assets/img/thumb6.jpg 2x" alt="slider-img" />	
+                                        assets/img/thumb6.jpg 2x"  />	
                                 <Link to="">
                                     <div className="kids-sliderthumb-img">
                                         <div className="width-100 text-center">
@@ -172,14 +209,22 @@ class KidsCategory extends Component{
 
                         <div className="video-sec mylist-slider kids-sec-slider home-slider slider">
                             <div className="sliderthumb">
-                                <img className="sliderthumb-img hoverout-img" src="assets/img/thumb4.jpg"
-                                srcSet="assets/img/thumb4.jpg 1x,
+                                <img className="sliderthumb-img hoverout-img placeholder" alt="slider-img" 
+                                    src="assets/img/placeholder.gif" data-src="assets/img/thumb4.jpg" 
+                                    srcSet="assets/img/placeholder.gif 1x,
+                                        assets/img/placeholder.gif 1.5x,
+                                        assets/img/placeholder.gif 2x" 
+                                    data-srcSet="assets/img/thumb4.jpg 1x,
                                         assets/img/thumb4.jpg 1.5x,
-                                        assets/img/thumb4.jpg 2x" alt="slider-img" />	
-                                <img className="sliderthumb-img hoverin-img" src="assets/img/thumb5.jpg"
-                                srcSet="assets/img/thumb5.jpg 1x,
+                                        assets/img/thumb4.jpg 2x" />
+                                <img className="sliderthumb-img hoverin-img placeholder" alt="slider-img"
+                                    src="assets/img/placeholder.gif" data-src="assets/img/thumb5.jpg"
+                                    srcSet="assets/img/placeholder.gif 1x,
+                                        assets/img/placeholder.gif 1.5x,
+                                        assets/img/placeholder.gif 2x" 
+                                    data-srcSet="assets/img/thumb5.jpg 1x,
                                         assets/img/thumb5.jpg 1.5x,
-                                        assets/img/thumb5.jpg 2x" alt="slider-img" />	
+                                        assets/img/thumb5.jpg 2x"  />
                                 <Link to="">
                                     <div className="kids-sliderthumb-img">
                                         <div className="width-100 text-center">
@@ -201,43 +246,22 @@ class KidsCategory extends Component{
 
                         <div className="video-sec mylist-slider kids-sec-slider home-slider slider">
                             <div className="sliderthumb">
-                                <img className="sliderthumb-img hoverout-img" src="assets/img/thumb5.jpg"
-                                srcSet="assets/img/thumb5.jpg 1x,
+                                <img className="sliderthumb-img hoverout-img placeholder" alt="slider-img" 
+                                    src="assets/img/placeholder.gif" data-src="assets/img/thumb5.jpg" 
+                                    srcSet="assets/img/placeholder.gif 1x,
+                                        assets/img/placeholder.gif 1.5x,
+                                        assets/img/placeholder.gif 2x" 
+                                    data-srcSet="assets/img/thumb5.jpg 1x,
                                         assets/img/thumb5.jpg 1.5x,
-                                        assets/img/thumb5.jpg 2x" alt="slider-img" />	
-                                <img className="sliderthumb-img hoverin-img" src="assets/img/thumb4.jpg"
-                                srcSet="assets/img/thumb4.jpg 1x,
+                                        assets/img/thumb5.jpg 2x" />
+                                <img className="sliderthumb-img hoverin-img placeholder" alt="slider-img"
+                                    src="assets/img/placeholder.gif" data-src="assets/img/thumb4.jpg"
+                                    srcSet="assets/img/placeholder.gif 1x,
+                                        assets/img/placeholder.gif 1.5x,
+                                        assets/img/placeholder.gif 2x" 
+                                    data-srcSet="assets/img/thumb4.jpg 1x,
                                         assets/img/thumb4.jpg 1.5x,
-                                        assets/img/thumb4.jpg 2x" alt="slider-img" />	
-                                <Link to="">
-                                    <div className="kids-sliderthumb-img">
-                                        <div className="width-100 text-center">
-                                            <img src="assets/img/play-button.png" className="kids-play-btn" alt="play_btn" />
-                                        </div>
-                                    </div>
-                                    <div className="kids-sliderthumb-text">
-                                        <div className="width-100">
-                                            <div className="display-inline">
-                                                <div className="kids-left">frozen</div>
-                                                <div className="kids-right">7+</div>
-                                            </div>
-                                            <div className="white-outline-btn btn">episodes</div>
-                                        </div>
-                                    </div>
-                                </Link>
-                            </div>
-                        </div>
-
-                        <div className="video-sec mylist-slider kids-sec-slider home-slider slider">
-                            <div className="sliderthumb">
-                                <img className="sliderthumb-img hoverout-img" src="assets/img/thumb5.jpg"
-                                srcSet="assets/img/thumb5.jpg 1x,
-                                        assets/img/thumb5.jpg 1.5x,
-                                        assets/img/thumb5.jpg 2x" alt="slider-img" />	
-                                <img className="sliderthumb-img hoverin-img" src="assets/img/thumb4.jpg"
-                                srcSet="assets/img/thumb4.jpg 1x,
-                                        assets/img/thumb4.jpg 1.5x,
-                                        assets/img/thumb4.jpg 2x" alt="slider-img" />	
+                                        assets/img/thumb4.jpg 2x"  />
                                 <Link to="">
                                     <div className="kids-sliderthumb-img">
                                         <div className="width-100 text-center">

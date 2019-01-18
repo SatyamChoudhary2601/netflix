@@ -17,7 +17,8 @@ class VideoComponent extends Component{
                     />
                     <div className="back-arrowsec">
                         <Link to="/home">
-                            <img src="assets/img/left-arrow.png" alt="arrow" />
+                            <img src="assets/img/left-arrow.png" alt="arrow" /> 
+                            <span className="txt-overflow capitalize ml-3">bird box</span>
                         </Link>
                     </div>
                 </div>

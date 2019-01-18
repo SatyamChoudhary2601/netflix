@@ -52,6 +52,8 @@ import PaymentFailure from '../src/components/User/Settings/PaymentFailure';
 import Category from '../src/components/User/Video/Category';
 import SubCategory from '../src/components/User/Video/SubCategory';
 
+import HomeBanner from '../src/components/HomeBanner';
+
 // Kids layout
 import Kids from '../src/components/User/Kids/Kids';
 import KidsOriginals from '../src/components/User/Kids/Originals';
@@ -194,6 +196,7 @@ class App extends Component {
               <AppRoute path={'/payment-failure'} component={PaymentFailure} layout={UserLayout} screenProps={this.eventEmitter} />
               <AppRoute path={'/category'} component={Category} layout={UserLayout} screenProps={this.eventEmitter} />
               <AppRoute path={'/sub-category'} component={SubCategory} layout={UserLayout} screenProps={this.eventEmitter} />
+              <AppRoute path={'/home-banner'} component={HomeBanner} layout={UserLayout} screenProps={this.eventEmitter} />
 
               { /***kids layout - Having white header and footer ****/}
 

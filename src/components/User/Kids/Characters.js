@@ -9,6 +9,16 @@ class KidsCharacters extends Component{
 
     componentDidMount() {
 
+        $(window).load(function() {
+		    
+            $('.placeholder').each(function () {
+                var imagex = $(this);
+                var imgOriginal = imagex.data('src');
+                $(imagex).attr('src', imgOriginal);
+            });
+             
+        });
+
         // kids slider
 
         var kidsSliderWidth =  $('.kids-category-slider img').outerWidth();
@@ -26,47 +36,47 @@ class KidsCharacters extends Component{
                         <div className="kids-char kids-category-slider slider">
                             <div className="kids-char-sec">
                                 <Link to="" data-toggle="modal" data-target="#kids-char">
-                                    <img src="assets/img/thumb1.jpg" alt="category-img" />
+                                    <img src="assets/img/placeholder.gif" data-src="assets/img/thumb1.jpg" className="placeholder" alt="category-img" />    
                                 </Link>
                             </div>
                             <div className="kids-char-sec">
                                 <Link to="">
-                                    <img src="assets/img/thumb2.jpg" alt="category-img" />
+                                    <img src="assets/img/placeholder.gif" data-src="assets/img/thumb2.jpg" className="placeholder" alt="category-img" />
                                 </Link>
                             </div>
                             <div className="kids-char-sec">
                                 <Link to="">
-                                    <img src="assets/img/thumb3.jpg" alt="category-img" />
+                                    <img src="assets/img/placeholder.gif" data-src="assets/img/thumb3.jpg" className="placeholder" alt="category-img" />
                                 </Link>
                             </div>
                             <div className="kids-char-sec">
                                 <Link to="">
-                                    <img src="assets/img/thumb4.jpg" alt="category-img" />
+                                    <img src="assets/img/placeholder.gif" data-src="assets/img/thumb4.jpg" className="placeholder" alt="category-img" />
                                 </Link>
                             </div>
                             <div className="kids-char-sec">
                                 <Link to="">
-                                    <img src="assets/img/thumb5.jpg" alt="category-img" />
+                                    <img src="assets/img/placeholder.gif" data-src="assets/img/thumb5.jpg" className="placeholder" alt="category-img" />
                                 </Link>
                             </div>
                             <div className="kids-char-sec">
                                 <Link to="">
-                                    <img src="assets/img/thumb6.jpg" alt="category-img" />
+                                    <img src="assets/img/placeholder.gif" data-src="assets/img/thumb6.jpg" className="placeholder" alt="category-img" />
                                 </Link>
                             </div>
                             <div className="kids-char-sec">
                                 <Link to="">
-                                    <img src="assets/img/thumb7.jpg" alt="category-img" />
+                                    <img src="assets/img/placeholder.gif" data-src="assets/img/thumb7.jpg" className="placeholder" alt="category-img" />
                                 </Link>
                             </div>
                             <div className="kids-char-sec">
                                 <Link to="">
-                                    <img src="assets/img/thumb8.jpg" alt="category-img" />
+                                    <img src="assets/img/placeholder.gif" data-src="assets/img/thumb8.jpg" className="placeholder" alt="category-img" />
                                 </Link>
                             </div>
                             <div className="kids-char-sec">
                                 <Link to="">
-                                    <img src="assets/img/thumb9.jpg" alt="category-img" />
+                                    <img src="assets/img/placeholder.gif" data-src="assets/img/thumb9.jpg" className="placeholder" alt="category-img" />
                                 </Link>
                             </div>
                         </div>

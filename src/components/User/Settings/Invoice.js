@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-// import {Link} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 class InvoiceComponent extends Component{
     render(){
@@ -68,14 +68,15 @@ class InvoiceComponent extends Component{
                                         <h5 className="capitalize">choose payment option</h5>
                                         <form className="mt-3" action="payment-success.html">
                                             <div className="form-check-inline">
-                                                <input type="radio" id="test1" name="radio-group" checked />
+                                                <input type="radio" id="test1" name="radio-group" />
                                                 <label for="test1">paypal</label>
                                             </div>
                                             <div className="form-check-inline">
-                                                <input type="radio" id="test2" name="radio-group" />
+                                                <input type="radio" id="test2" name="radio-group" checked />
                                                 <label for="test2">card payment</label>
                                             </div>
-                                            <div className="text-right mb-3">
+                                            <Link to="/add-card" className="float-right btn-link">add card</Link>
+                                            <div className="text-right mb-3 mt-3">
                                                 <button className="btn btn-danger">pay now</button>
                                             </div>
                                         </form>
