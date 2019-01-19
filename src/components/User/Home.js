@@ -38,10 +38,14 @@ class Home extends Component {
 
         var scaling = 1.5;
 
+        var verticleScaling = 1.1;
+
         var windowWidth = $('body').width();
 
         var videoWidth = $('.sliderthumb').outerWidth();
         
+        // For normal slider
+
         var videoHeight = Math.round(videoWidth / (16/9));
 
         var videoSecHeight = (videoHeight * scaling);
@@ -53,9 +57,28 @@ class Home extends Component {
         $('.home-slider .slick-slide .sliderthumb').height(videoHeight);
 
         $('.home-slider .slick-slide').css("margin-top", (videoHeightDiff / 2));
+
         $('.home-slider .slick-slide').css("margin-bottom", (videoHeightDiff / 2));
 
+        //For verticle slider
+
+        var verticleVideoHeight = Math.round(videoWidth * 2);
+
+        var verticleVideoSecHeight = (verticleVideoHeight * verticleScaling);
+
+        var verticleVideoHeightDiff = verticleVideoSecHeight - verticleVideoHeight;
+
+        $('.verticle-slider').height(verticleVideoSecHeight);
+
+        $('.home-slider.verticle-slider .slick-slide .sliderthumb').height(verticleVideoHeight);
+
+        $('.home-slider.verticle-slider .slick-slide').css("margin-top", (verticleVideoHeightDiff / 2));
+
+        $('.home-slider.verticle-slider .slick-slide').css("margin-bottom", (verticleVideoHeightDiff  / 2));
+
         if (windowWidth > 991) {
+
+            // For normal slider
 
             $(".home-slider .slick-slide").mouseover(function() {
 
@@ -92,6 +115,46 @@ class Home extends Component {
                 $(this).css("height", videoHeight * 1);
 
             })
+
+            //For verticle slider
+
+            $(".home-slider.verticle-slider .slick-slide").mouseover(function() {
+
+                $(this).css("width", videoWidth * verticleScaling);
+                
+                $(this).css("height", verticleVideoHeight * verticleScaling);
+
+                $(this).css("margin-top", 0);
+
+                $(this).css("margin-bottom", 0);
+
+            })
+
+            $(".home-slider.verticle-slider .slick-slide .sliderthumb").mouseover(function() {
+
+                $(this).css("height", verticleVideoHeight * verticleScaling);
+
+            })
+
+            $(".home-slider.verticle-slider .slick-slide").mouseout(function() {
+
+                $(this).css("width", videoWidth * 1);
+
+                $(this).css("height", verticleVideoHeight * 1);
+                
+                $(this).css("margin-top", (verticleVideoHeightDiff / 2));
+
+                $(this).css("margin-bottom", (verticleVideoHeightDiff / 2));
+
+            });
+            
+            $(".home-slider.verticle-slider .slick-slide .sliderthumb").mouseout(function() {
+
+                $(this).css("height", verticleVideoHeight * 1);
+
+            })
+
+            
             
             $(".show-video-details.home-slider .slick-slide").mouseover(function() {
 
@@ -111,10 +174,6 @@ class Home extends Component {
             })
         }
 
-    }
-
-    componentDidUpdate(){
-        console.log("sec");
     }
 
     render() {
@@ -1321,6 +1380,405 @@ class Home extends Component {
                             </div>
                         </div>
                     </div>
+                    
+
+                    <div className="main-slidersec">
+                        <h3 className="">countinue watching<i className="fas fa-angle-right ml-2"></i></h3>
+
+                        {/* While clicking the arrow need to add the 
+                        1) "show-video-details" class in "home-slider" 
+                        2) "active" class in "sliderthumb" */}
+                        <Slider {...mylistsSlider}  className="mylist-slider verticle-slider home-slider slider">
+                            <div className="sliderthumb">
+                                <img className="sliderthumb-img hoverout-img placeholder" alt="slider-img" 
+                                    src="assets/img/placeholder.gif" data-src="assets/img/thumb1.jpg" 
+                                    srcSet="assets/img/placeholder.gif 1x,
+                                        assets/img/placeholder.gif 1.5x,
+                                        assets/img/placeholder.gif 2x" 
+                                    data-srcSet="assets/img/thumb1.jpg 1x,
+                                        assets/img/thumb1.jpg 1.5x,
+                                        assets/img/thumb1.jpg 2x" />
+                                <img className="sliderthumb-img hoverin-img placeholder" alt="slider-img"
+                                    src="assets/img/placeholder.gif" data-src="assets/img/thumb8.jpg"
+                                    srcSet="assets/img/placeholder.gif 1x,
+                                        assets/img/placeholder.gif 1.5x,
+                                        assets/img/placeholder.gif 2x" 
+                                    data-srcSet="assets/img/thumb8.jpg 1x,
+                                        assets/img/thumb8.jpg 1.5x,
+                                        assets/img/thumb8.jpg 2x"  />
+                                <div className="active-play-icon">
+                                    <Link to="#">
+                                        <div className="thumb-playicon">
+                                            <i className="fas fa-play"></i>
+                                        </div>
+                                    </Link>
+                                </div>
+
+                                <div className="sliderthumb-text">
+                                    <div className="width-100">
+                                        <Link to="#">
+                                            <div className="thumb-playicon">
+                                                <i className="fas fa-play"></i>
+                                            </div>
+                                        </Link>
+                                        <h4 className="thumb-title">frozen</h4>
+                                        <h5 className="thumb-details">
+                                            <span className="green-clr">Aug 2018</span>
+                                            <span className="grey-box">7<i className="fas fa-plus small"></i> / 25 <span className="small">Views</span></span>
+                                        </h5>
+                                        <p className="thumb-desc">An ordinary teen. An ancient relic pulled from the rubble. And an underground civilization that needs a hero.An ordinary teen. An ancient relic pulled from the rubble. And an underground </p>
+                                        <Link to="#">
+                                            <div className="text-center thumbarrow-sec">
+                                                <img src="assets/img/arrow-white.png" className="thumbarrow thumbarrow-white" alt="play_img" />
+                                                <img src="assets/img/arrow-red.png" className="thumbarrow thumbarrow-red" onClick={this.showSliderContent} alt="play_img" />
+                                            </div>
+                                        </Link>
+                                    </div>
+                                </div>
+                                <div className="slider-play-sec">
+                                    <div>
+                                        <Link to="#">
+                                            <div className="slider-play-sec-outline">
+                                                <i className="fas fa-play"></i>
+                                            </div>
+                                        </Link>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="sliderthumb">
+                                <img className="sliderthumb-img hoverout-img placeholder" alt="slider-img" 
+                                    src="assets/img/placeholder.gif" data-src="assets/img/thumb2.jpg" 
+                                    srcSet="assets/img/placeholder.gif 1x,
+                                        assets/img/placeholder.gif 1.5x,
+                                        assets/img/placeholder.gif 2x" 
+                                    data-srcSet="assets/img/thumb2.jpg 1x,
+                                        assets/img/thumb2.jpg 1.5x,
+                                        assets/img/thumb2.jpg 2x" />
+                                <img className="sliderthumb-img hoverin-img placeholder" alt="slider-img"
+                                    src="assets/img/placeholder.gif" data-src="assets/img/thumb7.jpg"
+                                    srcSet="assets/img/placeholder.gif 1x,
+                                        assets/img/placeholder.gif 1.5x,
+                                        assets/img/placeholder.gif 2x" 
+                                    data-srcSet="assets/img/thumb7.jpg 1x,
+                                        assets/img/thumb7.jpg 1.5x,
+                                        assets/img/thumb7.jpg 2x"  />
+                                <div className="active-play-icon">
+                                    <Link to="#">
+                                        <div className="thumb-playicon">
+                                            <i className="fas fa-play"></i>
+                                        </div>
+                                    </Link>
+                                </div>	
+                                <div className="sliderthumb-text">
+                                    <div className="width-100">
+                                        <Link to="#">
+                                            <div className="thumb-playicon">
+                                                <i className="fas fa-play"></i>
+                                            </div>
+                                        </Link>
+                                        <h4 className="thumb-title">frozen</h4>
+                                        <h5 className="thumb-details">
+                                            <span className="green-clr">Aug 2018</span>
+                                            <span className="grey-box">7<i className="fas fa-plus small"></i> / 25 <span className="small">Views</span></span>
+                                        </h5>
+                                        <p className="thumb-desc">An ordinary teen. An ancient relic pulled from the rubble. And an underground civilization that needs a hero.An ordinary teen. An ancient relic pulled from the rubble. And an underground </p>
+                                        <Link to="#">
+                                            <div className="text-center thumbarrow-sec">
+                                                <img src="assets/img/arrow-white.png" className="thumbarrow thumbarrow-white" alt="play_img" />
+                                                <img src="assets/img/arrow-red.png" className="thumbarrow thumbarrow-red" alt="play_img" />
+                                            </div>
+                                        </Link>
+                                    </div>
+                                </div>
+                                <div className="slider-play-sec">
+                                    <div>
+                                        <Link to="#">
+                                            <div className="slider-play-sec-outline">
+                                                <i className="fas fa-play"></i>
+                                            </div>
+                                        </Link>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="sliderthumb">
+                                <img className="sliderthumb-img hoverout-img placeholder" alt="slider-img" 
+                                    src="assets/img/placeholder.gif" data-src="assets/img/thumb3.jpg" 
+                                    srcSet="assets/img/placeholder.gif 1x,
+                                        assets/img/placeholder.gif 1.5x,
+                                        assets/img/placeholder.gif 2x" 
+                                    data-srcSet="assets/img/thumb3.jpg 1x,
+                                        assets/img/thumb3.jpg 1.5x,
+                                        assets/img/thumb3.jpg 2x" />
+                                <img className="sliderthumb-img hoverin-img placeholder" alt="slider-img"
+                                    src="assets/img/placeholder.gif" data-src="assets/img/thumb6.jpg"
+                                    srcSet="assets/img/placeholder.gif 1x,
+                                        assets/img/placeholder.gif 1.5x,
+                                        assets/img/placeholder.gif 2x" 
+                                    data-srcSet="assets/img/thumb6.jpg 1x,
+                                        assets/img/thumb6.jpg 1.5x,
+                                        assets/img/thumb6.jpg 2x"  />
+                                <div className="active-play-icon">
+                                    <Link to="#">
+                                        <div className="thumb-playicon">
+                                            <i className="fas fa-play"></i>
+                                        </div>
+                                    </Link>
+                                </div>
+                                <div className="sliderthumb-text">
+                                    <div className="width-100">
+                                        <Link to="#">
+                                            <div className="thumb-playicon">
+                                                <i className="fas fa-play"></i>
+                                            </div>
+                                        </Link>
+                                        <h4 className="thumb-title">frozen</h4>
+                                        <h5 className="thumb-details">
+                                            <span className="green-clr">Aug 2018</span>
+                                            <span className="grey-box">7<i className="fas fa-plus small"></i> / 25 <span className="small">Views</span></span>
+                                        </h5>
+                                        <p className="thumb-desc">An ordinary teen. An ancient relic pulled from the rubble. And an underground civilization that needs a hero.An ordinary teen. An ancient relic pulled from the rubble. And an underground </p>
+                                        <Link to="#">
+                                            <div className="text-center thumbarrow-sec">
+                                                <img src="assets/img/arrow-white.png" className="thumbarrow thumbarrow-white" alt="play_img" />
+                                                <img src="assets/img/arrow-red.png" className="thumbarrow thumbarrow-red" alt="play_img" />
+                                            </div>
+                                        </Link>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="sliderthumb">
+                                <img className="sliderthumb-img hoverout-img placeholder" alt="slider-img" 
+                                    src="assets/img/placeholder.gif" data-src="assets/img/thumb4.jpg" 
+                                    srcSet="assets/img/placeholder.gif 1x,
+                                        assets/img/placeholder.gif 1.5x,
+                                        assets/img/placeholder.gif 2x" 
+                                    data-srcSet="assets/img/thumb4.jpg 1x,
+                                        assets/img/thumb4.jpg 1.5x,
+                                        assets/img/thumb4.jpg 2x" />
+                                <img className="sliderthumb-img hoverin-img placeholder" alt="slider-img"
+                                    src="assets/img/placeholder.gif" data-src="assets/img/thumb5.jpg"
+                                    srcSet="assets/img/placeholder.gif 1x,
+                                        assets/img/placeholder.gif 1.5x,
+                                        assets/img/placeholder.gif 2x" 
+                                    data-srcSet="assets/img/thumb5.jpg 1x,
+                                        assets/img/thumb5.jpg 1.5x,
+                                        assets/img/thumb5.jpg 2x"  />
+                                <div className="active-play-icon">
+                                    <Link to="#">
+                                        <div className="thumb-playicon">
+                                            <i className="fas fa-play"></i>
+                                        </div>
+                                    </Link>
+                                </div>
+                                <div className="sliderthumb-text">
+                                    <div className="width-100">
+                                        <Link to="#">
+                                            <div className="thumb-playicon">
+                                                <i className="fas fa-play"></i>
+                                            </div>
+                                        </Link>
+                                        <h4 className="thumb-title">frozen</h4>
+                                        <h5 className="thumb-details">
+                                            <span className="green-clr">Aug 2018</span>
+                                            <span className="grey-box">7<i className="fas fa-plus small"></i> / 25 <span className="small">Views</span></span>
+                                        </h5>
+                                        <p className="thumb-desc">An ordinary teen. An ancient relic pulled from the rubble. And an underground civilization that needs a hero.An ordinary teen. An ancient relic pulled from the rubble. And an underground </p>
+                                        <Link to="#">
+                                            <div className="text-center thumbarrow-sec">
+                                                <img src="assets/img/arrow-white.png" className="thumbarrow thumbarrow-white" alt="play_img" />
+                                                <img src="assets/img/arrow-red.png" className="thumbarrow thumbarrow-red" alt="play_img" />
+                                            </div>
+                                        </Link>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="sliderthumb">
+                                <img className="sliderthumb-img hoverout-img placeholder" alt="slider-img" 
+                                    src="assets/img/placeholder.gif" data-src="assets/img/thumb5.jpg" 
+                                    srcSet="assets/img/placeholder.gif 1x,
+                                        assets/img/placeholder.gif 1.5x,
+                                        assets/img/placeholder.gif 2x" 
+                                    data-srcSet="assets/img/thumb5.jpg 1x,
+                                        assets/img/thumb5.jpg 1.5x,
+                                        assets/img/thumb5.jpg 2x" />
+                                <img className="sliderthumb-img hoverin-img placeholder" alt="slider-img"
+                                    src="assets/img/placeholder.gif" data-src="assets/img/thumb4.jpg"
+                                    srcSet="assets/img/placeholder.gif 1x,
+                                        assets/img/placeholder.gif 1.5x,
+                                        assets/img/placeholder.gif 2x" 
+                                    data-srcSet="assets/img/thumb4.jpg 1x,
+                                        assets/img/thumb4.jpg 1.5x,
+                                        assets/img/thumb4.jpg 2x"  />
+                                <div className="active-play-icon">
+                                    <Link to="#">
+                                        <div className="thumb-playicon">
+                                            <i className="fas fa-play"></i>
+                                        </div>
+                                    </Link>
+                                </div>
+                                <div className="sliderthumb-text">
+                                    <div className="width-100">
+                                        <Link to="#">
+                                            <div className="thumb-playicon">
+                                                <i className="fas fa-play"></i>
+                                            </div>
+                                        </Link>
+                                        <h4 className="thumb-title">frozen</h4>
+                                        <h5 className="thumb-details">
+                                            <span className="green-clr">Aug 2018</span>
+                                            <span className="grey-box">7<i className="fas fa-plus small"></i> / 25 <span className="small">Views</span></span>
+                                        </h5>
+                                        <p className="thumb-desc">An ordinary teen. An ancient relic pulled from the rubble. And an underground civilization that needs a hero.An ordinary teen. An ancient relic pulled from the rubble. And an underground </p>
+                                        <Link to="#">
+                                            <div className="text-center thumbarrow-sec">
+                                                <img src="assets/img/arrow-white.png" className="thumbarrow thumbarrow-white" alt="play_img" />
+                                                <img src="assets/img/arrow-red.png" className="thumbarrow thumbarrow-red" alt="play_img" />
+                                            </div>
+                                        </Link>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="sliderthumb">
+                                <img className="sliderthumb-img hoverout-img placeholder" alt="slider-img" 
+                                    src="assets/img/placeholder.gif" data-src="assets/img/thumb6.jpg" 
+                                    srcSet="assets/img/placeholder.gif 1x,
+                                        assets/img/placeholder.gif 1.5x,
+                                        assets/img/placeholder.gif 2x" 
+                                    data-srcSet="assets/img/thumb6.jpg 1x,
+                                        assets/img/thumb6.jpg 1.5x,
+                                        assets/img/thumb6.jpg 2x" />
+                                <img className="sliderthumb-img hoverin-img placeholder" alt="slider-img"
+                                    src="assets/img/placeholder.gif" data-src="assets/img/thumb3.jpg"
+                                    srcSet="assets/img/placeholder.gif 1x,
+                                        assets/img/placeholder.gif 1.5x,
+                                        assets/img/placeholder.gif 2x" 
+                                    data-srcSet="assets/img/thumb3.jpg 1x,
+                                        assets/img/thumb3.jpg 1.5x,
+                                        assets/img/thumb3.jpg 2x"  />
+                                <div className="active-play-icon">
+                                    <Link to="#">
+                                        <div className="thumb-playicon">
+                                            <i className="fas fa-play"></i>
+                                        </div>
+                                    </Link>
+                                </div>
+                                <div className="sliderthumb-text">
+                                    <div className="width-100">
+                                        <Link to="#">
+                                            <div className="thumb-playicon">
+                                                <i className="fas fa-play"></i>
+                                            </div>
+                                        </Link>
+                                        <h4 className="thumb-title">frozen</h4>
+                                        <h5 className="thumb-details">
+                                            <span className="green-clr">Aug 2018</span>
+                                            <span className="grey-box">7<i className="fas fa-plus small"></i> / 25 <span className="small">Views</span></span>
+                                        </h5>
+                                        <p className="thumb-desc">An ordinary teen. An ancient relic pulled from the rubble. And an underground civilization that needs a hero.An ordinary teen. An ancient relic pulled from the rubble. And an underground </p>
+                                        <Link to="#">
+                                            <div className="text-center thumbarrow-sec">
+                                                <img src="assets/img/arrow-white.png" className="thumbarrow thumbarrow-white" alt="play_img" />
+                                                <img src="assets/img/arrow-red.png" className="thumbarrow thumbarrow-red" alt="play_img" />
+                                            </div>
+                                        </Link>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="sliderthumb">
+                                <img className="sliderthumb-img hoverout-img placeholder" alt="slider-img" 
+                                    src="assets/img/placeholder.gif" data-src="assets/img/thumb7.jpg" 
+                                    srcSet="assets/img/placeholder.gif 1x,
+                                        assets/img/placeholder.gif 1.5x,
+                                        assets/img/placeholder.gif 2x" 
+                                    data-srcSet="assets/img/thumb7.jpg 1x,
+                                        assets/img/thumb7.jpg 1.5x,
+                                        assets/img/thumb7.jpg 2x" />
+                                <img className="sliderthumb-img hoverin-img placeholder" alt="slider-img"
+                                    src="assets/img/placeholder.gif" data-src="assets/img/thumb2.jpg"
+                                    srcSet="assets/img/placeholder.gif 1x,
+                                        assets/img/placeholder.gif 1.5x,
+                                        assets/img/placeholder.gif 2x" 
+                                    data-srcSet="assets/img/thumb2.jpg 1x,
+                                        assets/img/thumb2.jpg 1.5x,
+                                        assets/img/thumb2.jpg 2x"  />
+                                <div className="active-play-icon">
+                                    <Link to="#">
+                                        <div className="thumb-playicon">
+                                            <i className="fas fa-play"></i>
+                                        </div>
+                                    </Link>
+                                </div>
+                                <div className="sliderthumb-text">
+                                    <div className="width-100">
+                                        <Link to="#">
+                                            <div className="thumb-playicon">
+                                                <i className="fas fa-play"></i>
+                                            </div>
+                                        </Link>
+                                        <h4 className="thumb-title">frozen</h4>
+                                        <h5 className="thumb-details">
+                                            <span className="green-clr">Aug 2018</span>
+                                            <span className="grey-box">7<i className="fas fa-plus small"></i> / 25 <span className="small">Views</span></span>
+                                        </h5>
+                                        <p className="thumb-desc">An ordinary teen. An ancient relic pulled from the rubble. And an underground civilization that needs a hero.An ordinary teen. An ancient relic pulled from the rubble. And an underground </p>
+                                        <Link to="#">
+                                            <div className="text-center thumbarrow-sec">
+                                                <img src="assets/img/arrow-white.png" className="thumbarrow thumbarrow-white" alt="play_img" />
+                                                <img src="assets/img/arrow-red.png" className="thumbarrow thumbarrow-red" alt="play_img" />
+                                            </div>
+                                        </Link>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="sliderthumb">
+                                <img className="sliderthumb-img hoverout-img placeholder" alt="slider-img" 
+                                    src="assets/img/placeholder.gif" data-src="assets/img/thumb8.jpg" 
+                                    srcSet="assets/img/placeholder.gif 1x,
+                                        assets/img/placeholder.gif 1.5x,
+                                        assets/img/placeholder.gif 2x" 
+                                    data-srcSet="assets/img/thumb8.jpg 1x,
+                                        assets/img/thumb8.jpg 1.5x,
+                                        assets/img/thumb8.jpg 2x" />
+                                <img className="sliderthumb-img hoverin-img placeholder" alt="slider-img"
+                                    src="assets/img/placeholder.gif" data-src="assets/img/thumb1.jpg"
+                                    srcSet="assets/img/placeholder.gif 1x,
+                                        assets/img/placeholder.gif 1.5x,
+                                        assets/img/placeholder.gif 2x" 
+                                    data-srcSet="assets/img/thumb1.jpg 1x,
+                                        assets/img/thumb1.jpg 1.5x,
+                                        assets/img/thumb1.jpg 2x"  />
+                                <div className="active-play-icon">
+                                    <Link to="#">
+                                        <div className="thumb-playicon">
+                                            <i className="fas fa-play"></i>
+                                        </div>
+                                    </Link>
+                                </div>	
+                                <div className="sliderthumb-text">
+                                    <div className="width-100">
+                                        <Link to="#">
+                                            <div className="thumb-playicon">
+                                                <i className="fas fa-play"></i>
+                                            </div>
+                                        </Link>
+                                        <h4 className="thumb-title">frozen</h4>
+                                        <h5 className="thumb-details">
+                                            <span className="green-clr">Aug 2018</span>
+                                            <span className="grey-box">7<i className="fas fa-plus small"></i> / 25 <span className="small">Views</span></span>
+                                        </h5>
+                                        <p className="thumb-desc">An ordinary teen. An ancient relic pulled from the rubble. And an underground civilization that needs a hero.An ordinary teen. An ancient relic pulled from the rubble. And an underground </p>
+                                        <Link to="#">
+                                            <div className="text-center thumbarrow-sec">
+                                                <img src="assets/img/arrow-white.png" className="thumbarrow thumbarrow-white" alt="play_img" />
+                                                <img src="assets/img/arrow-red.png" className="thumbarrow thumbarrow-red" alt="play_img" />
+                                            </div>
+                                        </Link>
+                                    </div>
+                                </div>
+                            </div>
+                        </Slider>
+                    </div>
+
                     <div className="height-100"></div>
                     
                 </div>
