@@ -1,65 +1,131 @@
-import React, {Component} from 'react';
+import React, { Component } from "react";
 
-import {Link} from 'react-router-dom';
+import { Link } from "react-router-dom";
 
-class LoginCommponent extends Component{
-    render(){
+import api from "../../Environment";
 
-        var bgImg = {
-            backgroundImage: 'url(../assets/img/bg.jpg)'
-        };
+import Helper from "../Helper/helper";
 
-        return(
-            <div>
-                <div className="common-bg-img" style={bgImg}>
-                    <div className="auth-page-header">
-                        <Link to="../index.html">
-                            <img src="../assets/img/streamview1.png" className="site-logo" alt="logo_img" />
-                        </Link>
-                    </div>
-
-                    <div className="row">
-                        <div className="col-sm-9 col-md-7 col-lg-5 col-xl-4 auto-margin">
-                            <div className="register-box">
-                                <h3 className="register-box-head">Sign in</h3>
-                                <form className="auth-form" action="../account/view-profiles.html">
-                                    <div className="form-group">
-                                        <label for="email">Email address</label>
-                                        <input type="email" className="form-control" id="email" />
-                                    </div>
-                                    <div className="form-group">
-                                        <label for="pwd">Password</label>
-                                        <input type="password" className="form-control" id="pwd" />
-                                    </div>
-                                    <p className="mt-4">
-                                        <Link to="forgot-password.html" className="btn-link">forgot password?</Link>
-                                    </p>
-                                    <button className="btn btn-danger auth-btn">sign in</button>
-                                </form>
-                                
-                                <div>
-                                    <Link to="../account/view-profiles.html">
-                                        <p className="social">
-                                            <span><i className="fab fa-facebook fb social-icons"></i></span>login with facebook
-                                        </p>
-                                    </Link>
-                                </div>
-                                <div>
-                                    <Link to="../account/view-profiles.html">
-                                        <p className="social">
-                                            <span><i className="fab fa-google-plus-square google social-icons"></i></span>login with google
-                                        </p>
-                                    </Link>
-                                </div>
-                                
-                                <p className="auth-link">new to Streamview? <Link to="register.html" className="btn-link">sign in now</Link></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        )
+class LoginCommponent extends Helper {
+  state = {
+    data: {
+      email: "",
+      password: ""
     }
+  };
+
+  handleSubmit = async event => {
+    event.preventDefault();
+    const { state } = this.props.location;
+
+    await api
+      .postMethod("v4/login", this.state.data)
+      .then(function(response) {
+        if (response.data.success === true) {
+          localStorage.setItem("userId", response.data.data.user_id);
+          localStorage.setItem("accessToken", response.data.data.token);
+          console.log("checking");
+          window.location = state ? state.from.pathname : "/home";
+          console.log("Login Success");
+        }
+        console.log(response);
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+  };
+  render() {
+    var bgImg = {
+      backgroundImage: "url(../assets/img/bg.jpg)"
+    };
+    const { data } = this.state;
+
+    return (
+      <div>
+        <div className="common-bg-img" style={bgImg}>
+          <div className="auth-page-header">
+            <Link to="../index.html">
+              <img
+                src="../assets/img/streamview1.png"
+                className="site-logo"
+                alt="logo_img"
+              />
+            </Link>
+          </div>
+
+          <div className="row">
+            <div className="col-sm-9 col-md-7 col-lg-5 col-xl-4 auto-margin">
+              <div className="register-box">
+                <h3 className="register-box-head">Sign in</h3>
+                <form
+                  onSubmit={this.handleSubmit}
+                  className="auth-form"
+                  action="../account/view-profiles.html"
+                >
+                  <div className="form-group">
+                    <label htmlFor="email">Email address</label>
+                    <input
+                      type="email"
+                      onChange={this.handleChange}
+                      className="form-control"
+                      id="email"
+                      name="email"
+                      value={data.email}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="pwd">Password</label>
+                    <input
+                      type="password"
+                      onChange={this.handleChange}
+                      className="form-control"
+                      id="pwd"
+                      name="password"
+                      value={data.password}
+                    />
+                  </div>
+                  <p className="mt-4">
+                    <Link to={"/forgot-password"} className="btn-link">
+                      forgot password?
+                    </Link>
+                  </p>
+                  <button className="btn btn-danger auth-btn">sign in</button>
+                </form>
+
+                <div>
+                  <Link to="../account/view-profiles.html">
+                    <p className="social">
+                      <span>
+                        <i className="fab fa-facebook fb social-icons" />
+                      </span>
+                      login with facebook
+                    </p>
+                  </Link>
+                </div>
+                <div>
+                  <Link to="../account/view-profiles.html">
+                    <p className="social">
+                      <span>
+                        <i className="fab fa-google-plus-square google social-icons" />
+                      </span>
+                      login with google
+                    </p>
+                  </Link>
+                </div>
+
+                <p className="auth-link">
+                  new to Streamview?{" "}
+                  <Link to={"/register"} className="btn-link">
+                    sign in now
+                  </Link>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 }
 
 export default LoginCommponent;
