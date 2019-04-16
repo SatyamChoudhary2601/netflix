@@ -27,17 +27,7 @@ const movies = [
     imageBg: "/assets/img/thumb7.jpg",
     title: "Russian doll",
     admin_video_id: "436",
-    category_id: "78",
-    sub_category_id: "57",
-    genre_id: "40",
-    description: "Sunset Time Lapse can be viewed in the video.",
-    default_image:
-      "http://adminview.streamhash.com/uploads/images/video_436_001.png",
-    mobile_image:
-      "http://adminview.streamhash.com/uploads/images/video_mobile_436_001.png",
-    duration: "00: 0: 0",
-    age: "16",
-    publish_time: "12 Apr 19"
+    default_image: "/assets/img/thumb2.jpg"
   },
   {
     id: 3,

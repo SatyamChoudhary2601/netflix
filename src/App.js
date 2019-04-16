@@ -96,7 +96,7 @@ const PrivateRoute = ({
           <Component {...props} />
         </Layout>
       ) : (
-        <Redirect to={{ pathname: "/home", state: { from: props.location } }} />
+        <Redirect to={{ pathname: "/", state: { from: props.location } }} />
       )
     }
   />
@@ -122,9 +122,12 @@ class App extends Component {
 
       accessToken = localStorage.getItem("accessToken");
 
-      // this.setState({ loading : true, authentication : userId && accessToken ? true : false});
+      this.setState({
+        loading: true,
+        authentication: userId && accessToken ? true : false
+      });
 
-      this.setState({ loading: true, authentication: true });
+      // this.setState({ loading: true, authentication: true });
 
       // this.loadingFn();
 
@@ -210,20 +213,23 @@ class App extends Component {
             layout={EmptyLayout}
             screenProps={this.eventEmitter}
           />
-          <AppRoute
+          <PrivateRoute
+            authentication={this.state.authentication}
             path={"/view-profiles"}
             component={ViewProfilesComponent}
             layout={EmptyLayout}
             screenProps={this.EmptyLayout}
           />
-          <AppRoute
+          <PrivateRoute
+            authentication={this.state.authentication}
             path={"/manage-profiles"}
             component={ManageProfilesComponent}
             layout={EmptyLayout}
             screenProps={this.eventEmitter}
           />
-          <AppRoute
-            path={"/edit-profile"}
+          <PrivateRoute
+            authentication={this.state.authentication}
+            path={"/edit-profile/:id"}
             component={EditProfilesComponent}
             layout={EmptyLayout}
             screenProps={this.eventEmitter}
@@ -244,121 +250,141 @@ class App extends Component {
           {/***user layout - Having differnt header and footer ****/}
           {/* <AppRoute authentication={this.state.authentication} path={"/home"} component={Home} layout={UserLayout} screenProps={this.eventEmitter}/> */}
 
-          <AppRoute
+          <PrivateRoute
+            authentication={this.state.authentication}
             path={"/home"}
             component={Home}
             layout={UserLayout}
             screenProps={this.eventEmitter}
           />
-          <AppRoute
+          <PrivateRoute
+            authentication={this.state.authentication}
             path={"/account"}
             component={AccountComponent}
             layout={UserLayout}
             screenProps={this.eventEmitter}
           />
-          <AppRoute
+          <PrivateRoute
+            authentication={this.state.authentication}
             path={"/edit-account"}
             component={EditAccountComponent}
             layout={UserLayout}
             screenProps={this.eventEmitter}
           />
-          <AppRoute
+          <PrivateRoute
+            authentication={this.state.authentication}
             path={"/change-password"}
             component={ChangePasswordComponent}
             layout={UserLayout}
             screenProps={this.eventEmitter}
           />
-          <AppRoute
+          <PrivateRoute
+            authentication={this.state.authentication}
             path={"/delete-account"}
             component={DeleteAccountComponent}
             layout={UserLayout}
             screenProps={this.eventEmitter}
           />
-          <AppRoute
+          <PrivateRoute
+            authentication={this.state.authentication}
             path={"/search"}
             component={SearchComponent}
             layout={UserLayout}
             screenProps={this.eventEmitter}
           />
-          <AppRoute
+          <PrivateRoute
+            authentication={this.state.authentication}
             path={"/subscription"}
             component={SubscriptionComponent}
             layout={UserLayout}
             screenProps={this.eventEmitter}
           />
-          <AppRoute
+          <PrivateRoute
+            authentication={this.state.authentication}
             path={"/billing-details"}
             component={BillingDetailsComponent}
             layout={UserLayout}
             screenProps={this.eventEmitter}
           />
-          <AppRoute
+          <PrivateRoute
+            authentication={this.state.authentication}
             path={"/billing-detail/view"}
             component={BillingDetailsView}
             layout={UserLayout}
             screenProps={this.eventEmitter}
           />
-          <AppRoute
+          <PrivateRoute
+            authentication={this.state.authentication}
             path={"/add-card"}
             component={AddCardComponent}
             layout={UserLayout}
             screenProps={this.eventEmitter}
           />
-          <AppRoute
+          <PrivateRoute
+            authentication={this.state.authentication}
             path={"/card-details"}
             component={CardDetailsComponent}
             layout={UserLayout}
             screenProps={this.eventEmitter}
           />
-          <AppRoute
+          <PrivateRoute
+            authentication={this.state.authentication}
             path={"/invoice"}
             component={InvoiceComponent}
             layout={UserLayout}
             screenProps={this.eventEmitter}
           />
-          <AppRoute
+          <PrivateRoute
+            authentication={this.state.authentication}
             path={"/pay-per-view"}
             component={PayPerView}
             layout={UserLayout}
             screenProps={this.eventEmitter}
           />
-          <AppRoute
+          <PrivateRoute
+            authentication={this.state.authentication}
             path={"/payment-history"}
             component={PaymentHistory}
             layout={UserLayout}
             screenProps={this.eventEmitter}
           />
-          <AppRoute
+          <PrivateRoute
+            authentication={this.state.authentication}
             path={"/payment/view-details"}
             component={PaymentViewDetails}
             layout={UserLayout}
             screenProps={this.eventEmitter}
           />
-          <AppRoute
+          <PrivateRoute
+            authentication={this.state.authentication}
             path={"/payment-options"}
             component={PaymentOptions}
             layout={UserLayout}
             screenProps={this.eventEmitter}
           />
-          <AppRoute
+          <PrivateRoute
+            authentication={this.state.authentication}
             path={"/payment-success"}
             component={PaymentSuccess}
             layout={UserLayout}
             screenProps={this.eventEmitter}
           />
-          <AppRoute
+          <PrivateRoute
+            authentication={this.state.authentication}
             path={"/payment-failure"}
             component={PaymentFailure}
             layout={UserLayout}
             screenProps={this.eventEmitter}
           />
-          <AppRoute
+          <PrivateRoute
+            authentication={this.state.authentication}
             path={"/category"}
             component={Category}
             layout={UserLayout}
             screenProps={this.eventEmitter}
           />
-          <AppRoute
+          <PrivateRoute
+            authentication={this.state.authentication}
             path={"/sub-category"}
             component={SubCategory}
             layout={UserLayout}
@@ -373,7 +399,8 @@ class App extends Component {
 
           {/***kids layout - Having white header and footer ****/}
 
-          <AppRoute
+          <PrivateRoute
+            authentication={this.state.authentication}
             path="/kids"
             exact
             component={Kids}

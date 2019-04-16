@@ -5,6 +5,9 @@ import "./Content.scss";
 
 class Content extends Component {
   state = {};
+  componentDidMount() {
+    // Single video API call.
+  }
   render() {
     const movie = { ...this.props.movie };
     return (

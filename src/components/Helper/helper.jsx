@@ -43,7 +43,8 @@ class Helper extends Component {
 
   async getUserDetails() {
     let data = { ...this.state.data };
-    await api.postMethod("profile").then(function(response) {
+    await api.getMethod("userDetails").then(function(response) {
+      console.log("Response", response);
       if (response.data.success === true) {
         data = response.data.data;
       }
@@ -55,12 +56,11 @@ class Helper extends Component {
     let userDetails = { ...this.state.data };
     const data = {
       name: userDetails.name,
-      description: userDetails.description,
       email: userDetails.email,
       mobile: userDetails.mobile
     };
     console.log("Data", data);
-    api.postMethod("update_profile", data).then(function(response) {
+    api.postMethod("updateProfile", data).then(function(response) {
       console.log("response", response);
       if (response.data.success === true) {
         console.log("profile updated");
@@ -69,7 +69,7 @@ class Helper extends Component {
   }
 
   changePassword() {
-    api.postMethod("change_password", this.state.data).then(function(response) {
+    api.postMethod("changePassword", this.state.data).then(function(response) {
       console.log("response", response);
       if (response.data.success === true) {
         console.log("password updated");

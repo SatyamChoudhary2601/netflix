@@ -1,29 +1,27 @@
 import React, { Component } from "react";
-
 import { Link } from "react-router-dom";
 
 import api from "../../Environment";
 
 import Slider from "../SliderView/MainSlider";
+import HomePageBanner from "./homePageBanner";
 
 const movies = [
   {
     id: 1,
     image: "/assets/img/thumb2.jpg",
     imageBg: "/assets/img/thumb7.jpg",
-    title: "1983",
+    title: "Russian doll",
     admin_video_id: "436",
-    category_id: "78",
-    sub_category_id: "57",
-    genre_id: "40",
-    description: "Sunset Time Lapse can be viewed in the video.",
-    default_image:
-      "http://adminview.streamhash.com/uploads/images/video_436_001.png",
-    mobile_image:
-      "http://adminview.streamhash.com/uploads/images/video_mobile_436_001.png",
-    duration: "00: 0: 0",
-    age: "16",
-    publish_time: "12 Apr 19"
+    default_image: "/assets/img/thumb2.jpg"
+  },
+  {
+    id: 2,
+    image: "/assets/img/thumb2.jpg",
+    imageBg: "/assets/img/thumb7.jpg",
+    title: "Russian doll",
+    admin_video_id: "434",
+    default_image: "/assets/img/thumb2.jpg"
   }
 ];
 
@@ -56,7 +54,8 @@ class Home extends Component {
     },
     originalsData: {
       data: [{}]
-    }
+    },
+    errorHandle: 0
   };
 
   async componentDidMount() {
@@ -65,6 +64,7 @@ class Home extends Component {
       page_type: "HOME"
     };
     let maindata = { ...this.state.maindata };
+    let errorHandle = 0;
     await api
       .postMethod("home_first_section", inputData)
       .then(function(response) {
@@ -73,17 +73,37 @@ class Home extends Component {
           console.log("response maindata", maindata);
         } else {
           console.log("Error", response);
+          errorHandle = 1;
         }
       })
       .catch(function(error) {
         console.log(error);
+        errorHandle = 1;
       });
+    this.setState({ errorHandle });
     this.setState({ maindata });
     console.log("State data", this.state.maindata);
+    console.log("Error Handle", this.state.errorHandle);
   }
 
   render() {
     console.log("mylist data", this.state.maindata[0].data);
+
+    const renderDumpData = (
+      <div className="main-slidersec">
+        <h3 className="">
+          Loading Content
+          <i className="fas fa-angle-right ml-2" />
+        </h3>
+        <Slider>
+          {movies.map(movie => (
+            <Slider.Item movie={movie} key={Math.random()}>
+              item1
+            </Slider.Item>
+          ))}
+        </Slider>
+      </div>
+    );
 
     let renderRecommended = "";
     if (this.state.maindata[4].data.length) {
@@ -107,7 +127,7 @@ class Home extends Component {
     }
 
     let renderMyList = "";
-    if (this.state.maindata[0].data.length) {
+    if (this.state.maindata[0].data[0] === null) {
       renderMyList = (
         <div className="main-slidersec">
           <h3 className="">
@@ -190,6 +210,14 @@ class Home extends Component {
       renderTrendingNow = "";
     }
 
+    if (this.state.errorHandle === 1) {
+      renderContinueWatching = renderDumpData;
+      renderMyList = renderDumpData;
+      renderNewRelease = renderDumpData;
+      renderRecommended = renderDumpData;
+      renderTrendingNow = renderDumpData;
+    }
+
     return (
       <div>
         <div className="banner-sec">
@@ -203,8 +231,8 @@ class Home extends Component {
                   className="banner_right_img"
                   src="assets/img/slider-img1.jpg"
                   srcSet="assets/img/slider-img1.jpg 1x,
-                                        assets/img/slider-img1.jpg 1.5x,
-                                        assets/img/slider-img1.jpg 2x"
+                                      assets/img/slider-img1.jpg 1.5x,
+                                      assets/img/slider-img1.jpg 2x"
                   alt="banner img"
                 />
                 <div className="banner_right_overlay" />
