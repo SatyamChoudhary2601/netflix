@@ -1,36 +1,55 @@
 import React, { Component } from "react";
 
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 import api from "../../../Environment";
+import Helper from "../../Helper/helper";
 
-class ManageProfilesComponent extends Component {
+class ManageProfilesComponent extends Helper {
   state = {
-    data: [],
-    renderDetails: ""
+    subProfileDetails: [],
+    renderDetails: "",
+    data: {}
   };
   async componentDidMount() {
     // view all sub profile
-    let data = { ...this.state.data };
+    let subProfileDetails = { ...this.state.subProfileDetails };
     await api.postMethod("active-profiles").then(function(response) {
       console.log("response", response);
       if (response.data.success === true) {
-        data = response.data.data;
+        subProfileDetails = response.data.data;
       }
     });
-    this.setState({ data });
+    this.setState({ subProfileDetails });
   }
-  handleClick = (detail, event) => {
+  handleClick = (data, event) => {
     event.preventDefault();
-    console.log("Onclick trigged", detail);
+    console.log("Onclick trigged", data);
     this.setState({ renderDetails: 1 });
+    this.setState({ data });
     console.log("Render", this.state.renderDetails);
     this.render();
+  };
+  handleSubmit = event => {
+    event.preventDefault();
+    console.log("Submitted");
+    const data = {
+      sub_profile_id: this.state.data.id,
+      name: this.state.data.name
+    };
+    console.log("formdata", data);
+    api.postMethod("edit-sub-profile", data).then(function(response) {
+      console.log("response", response);
+      if (response.data.success === true) {
+      }
+    });
+    // this.updateProfile();
   };
   render() {
     var bgImg = {
       backgroundImage: "url(../assets/img/bg.jpg)"
     };
+    const { data } = { ...this.state };
     let renderData;
     if (this.state.renderDetails === 1) {
       renderData = (
@@ -40,7 +59,7 @@ class ManageProfilesComponent extends Component {
               <div className="head-section">
                 <h1 className="view-profiles-head">edit profiles</h1>
               </div>
-              <form action="view-profiles.html">
+              <form onSubmit={this.handleSubmit}>
                 <div className="edit-profile-sec">
                   <div className="display-inline">
                     <div className="edit-left-sec">
@@ -58,16 +77,24 @@ class ManageProfilesComponent extends Component {
                         <input
                           type="text"
                           className="form-control"
-                          placeholder="ronan"
+                          onChange={this.handleChange}
+                          name="name"
+                          value={data.name}
                         />
                       </div>
                     </div>
                   </div>
                 </div>
                 <div className="button-topspace">
-                  <button className="white-btn">save</button>
-                  <button className="grey-outline-btn">cancel</button>
-                  <button className="grey-outline-btn">delete profile</button>
+                  <button type="submit" className="white-btn">
+                    save
+                  </button>
+                  <Link to="#" className="grey-outline-btn">
+                    cancel
+                  </Link>
+                  <Link to="#" className="grey-outline-btn">
+                    delete profile
+                  </Link>
                 </div>
               </form>
             </div>
@@ -83,7 +110,7 @@ class ManageProfilesComponent extends Component {
                 <h1 className="view-profiles-head">manage profiles</h1>
               </div>
               <ul className="choose-profile">
-                {this.state.data.map(detail => (
+                {this.state.subProfileDetails.map(detail => (
                   <li className="profile" key={detail.id}>
                     <Link
                       onClick={event => this.handleClick(detail, event)}
