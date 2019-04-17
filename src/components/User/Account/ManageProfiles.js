@@ -8,8 +8,9 @@ import Helper from "../../Helper/helper";
 class ManageProfilesComponent extends Helper {
   state = {
     subProfileDetails: [],
-    renderDetails: "",
-    data: {}
+    renderManageProfile: "",
+    data: {},
+    renderAddProfile: ""
   };
   async componentDidMount() {
     // view all sub profile
@@ -25,9 +26,9 @@ class ManageProfilesComponent extends Helper {
   handleClick = (data, event) => {
     event.preventDefault();
     console.log("Onclick trigged", data);
-    this.setState({ renderDetails: 1 });
+    this.setState({ renderManageProfile: 1 });
     this.setState({ data });
-    console.log("Render", this.state.renderDetails);
+    console.log("Render", this.state.renderManageProfile);
     this.render();
   };
   handleSubmit = event => {
@@ -41,17 +42,65 @@ class ManageProfilesComponent extends Helper {
     api.postMethod("edit-sub-profile", data).then(function(response) {
       console.log("response", response);
       if (response.data.success === true) {
+        window.location = "/manage-profiles";
       }
     });
-    // this.updateProfile();
   };
+
+  handleDelete = event => {
+    event.preventDefault();
+    console.log("Submitted");
+    const data = {
+      sub_profile_id: this.state.data.id
+    };
+    console.log("formdata", data);
+    api.postMethod("delete-sub-profile", data).then(function(response) {
+      console.log("response", response);
+      if (response.data.success === true) {
+        window.location = "/manage-profiles";
+      }
+    });
+  };
+
+  backToManageProfile = event => {
+    event.preventDefault();
+    this.setState({ renderManageProfile: 0 });
+    this.setState({ renderAddProfile: 0 });
+    console.log("Render", this.state.renderManageProfile);
+    this.render();
+  };
+
+  addProfile = event => {
+    event.preventDefault();
+    this.setState({ renderAddProfile: 1 });
+    this.setState({ renderManageProfile: 0 });
+    this.setState({ data: {} });
+    console.log("Render", this.state.renderManageProfile);
+    this.render();
+  };
+
+  handleAddProfileSubmit = event => {
+    event.preventDefault();
+    console.log("Submitted");
+    const data = {
+      name: this.state.data.name
+    };
+    console.log("formdata", data);
+    api.postMethod("add-profile", data).then(function(response) {
+      console.log("response", response);
+      if (response.data.success === true) {
+        window.location = "/manage-profiles";
+      }
+    });
+  };
+
   render() {
     var bgImg = {
       backgroundImage: "url(../assets/img/bg.jpg)"
     };
     const { data } = { ...this.state };
     let renderData;
-    if (this.state.renderDetails === 1) {
+    if (this.state.renderManageProfile === 1) {
       renderData = (
         <div className="main">
           <div className="view-profile">
@@ -89,11 +138,70 @@ class ManageProfilesComponent extends Helper {
                   <button type="submit" className="white-btn">
                     save
                   </button>
-                  <Link to="#" className="grey-outline-btn">
+                  <Link
+                    to="#"
+                    onClick={this.backToManageProfile}
+                    className="grey-outline-btn"
+                  >
                     cancel
                   </Link>
-                  <Link to="#" className="grey-outline-btn">
+                  <Link
+                    to="#"
+                    onClick={this.handleDelete}
+                    className="grey-outline-btn"
+                  >
                     delete profile
+                  </Link>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      );
+    } else if (this.state.renderAddProfile === 1) {
+      renderData = (
+        <div className="main">
+          <div className="view-profile">
+            <div className="edit-profile-content">
+              <div className="head-section">
+                <h1 className="view-profiles-head">Add profile</h1>
+              </div>
+              <form onSubmit={this.handleAddProfileSubmit}>
+                <div className="edit-profile-sec">
+                  <div className="display-inline">
+                    <div className="edit-left-sec">
+                      <div className="edit-profile-imgsec">
+                        <img src="../assets/img/icon1.png" alt="profile_img" />
+                        <div className="edit-icon">
+                          <div className="edit-icon-circle">
+                            <i className="fas fa-pencil-alt" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="edit-right-sec">
+                      <div className="form-group">
+                        <input
+                          type="text"
+                          className="form-control"
+                          onChange={this.handleChange}
+                          name="name"
+                          value={data.name}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="button-topspace">
+                  <button type="submit" className="white-btn">
+                    save
+                  </button>
+                  <Link
+                    to="#"
+                    onClick={this.backToManageProfile}
+                    className="grey-outline-btn"
+                  >
+                    cancel
                   </Link>
                 </div>
               </form>
@@ -132,6 +240,16 @@ class ManageProfilesComponent extends Helper {
                     </Link>
                   </li>
                 ))}
+                <li className="profile">
+                  <Link to="#" onClick={this.addProfile}>
+                    <div className="relative">
+                      <div className="">
+                        <i className="fa fa-plus-circle fa-5x" />
+                      </div>
+                    </div>
+                    <p className="profile-name">Add Profile</p>
+                  </Link>
+                </li>
               </ul>
               <div>
                 <Link to="/view-profiles" className="white-btn">
