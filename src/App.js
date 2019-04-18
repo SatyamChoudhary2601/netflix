@@ -51,6 +51,7 @@ import PaymentSuccess from "../src/components/User/Settings/PaymentSuccess";
 import PaymentFailure from "../src/components/User/Settings/PaymentFailure";
 import Category from "../src/components/User/Video/Category";
 import SubCategory from "../src/components/User/Video/SubCategory";
+import Logout from "./components/Auth/logout";
 
 import HomeBanner from "../src/components/HomeBanner";
 
@@ -434,6 +435,8 @@ class App extends Component {
             layout={StaticLayout}
             screenProps={this.eventEmitter}
           />
+
+          <Route path={"/logout"} component={Logout} />
         </Switch>
       </Router>
     );

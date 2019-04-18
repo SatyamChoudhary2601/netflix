@@ -119,13 +119,11 @@ class Category extends Component {
           countinue watching
           <i className="fas fa-angle-right ml-2" />
         </h3>
-        <Slider>
-          {movies.map(movie => (
-            <Slider.Item movie={movie} key={movie.id}>
-              item1
-            </Slider.Item>
-          ))}
-        </Slider>
+        {movies.map(movie => (
+          <Slider.Item movie={movie} key={movie.id}>
+            item1
+          </Slider.Item>
+        ))}
       </div>
     );
   }
