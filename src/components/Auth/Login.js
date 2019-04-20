@@ -44,7 +44,7 @@ class LoginCommponent extends Helper {
       <div>
         <div className="common-bg-img" style={bgImg}>
           <div className="auth-page-header">
-            <Link to="../index.html">
+            <Link to={"/"}>
               <img
                 src="../assets/img/streamview1.png"
                 className="site-logo"
@@ -57,11 +57,7 @@ class LoginCommponent extends Helper {
             <div className="col-sm-9 col-md-7 col-lg-5 col-xl-4 auto-margin">
               <div className="register-box">
                 <h3 className="register-box-head">Sign in</h3>
-                <form
-                  onSubmit={this.handleSubmit}
-                  className="auth-form"
-                  action="../account/view-profiles.html"
-                >
+                <form onSubmit={this.handleSubmit} className="auth-form">
                   <div className="form-group">
                     <label htmlFor="email">Email address</label>
                     <input
@@ -116,7 +112,7 @@ class LoginCommponent extends Helper {
                 <p className="auth-link">
                   new to Streamview?{" "}
                   <Link to={"/register"} className="btn-link">
-                    sign in now
+                    sign up now
                   </Link>
                 </p>
               </div>

@@ -63,6 +63,8 @@ import KidsCategory from "../src/components/User/Kids/Category";
 
 // Static layout
 import Page from "../src/components/Static/Page";
+import Wishlist from "./components/User/Account/wishlist";
+import History from "./components/User/Account/history";
 
 const history = createHistory();
 
@@ -374,6 +376,20 @@ class App extends Component {
             authentication={this.state.authentication}
             path={"/payment-failure"}
             component={PaymentFailure}
+            layout={UserLayout}
+            screenProps={this.eventEmitter}
+          />
+          <PrivateRoute
+            authentication={this.state.authentication}
+            path={"/wishlist"}
+            component={Wishlist}
+            layout={UserLayout}
+            screenProps={this.eventEmitter}
+          />
+          <PrivateRoute
+            authentication={this.state.authentication}
+            path={"/history"}
+            component={History}
             layout={UserLayout}
             screenProps={this.eventEmitter}
           />
