@@ -14,11 +14,11 @@ class RegisterComponent extends Helper {
     }
   };
 
-  handleSubmit = async event => {
+  handleSubmit = event => {
     event.preventDefault();
     const { state } = this.props.location;
 
-    await api
+    api
       .postMethod("v4/register", this.state.data)
       .then(function(response) {
         if (response.data.success === true) {

@@ -7,21 +7,15 @@ import Helper from "../../Helper/helper";
 
 class ManageProfilesComponent extends Helper {
   state = {
-    subProfileDetails: [],
     renderManageProfile: "",
     data: {},
-    renderAddProfile: ""
+    renderAddProfile: "",
+    loading: true,
+    activeProfile: []
   };
-  async componentDidMount() {
+  componentDidMount() {
     // view all sub profile
-    let subProfileDetails = { ...this.state.subProfileDetails };
-    await api.postMethod("active-profiles").then(function(response) {
-      console.log("response", response);
-      if (response.data.success === true) {
-        subProfileDetails = response.data.data;
-      }
-    });
-    this.setState({ subProfileDetails });
+    this.viewProfiles();
   }
   handleClick = (data, event) => {
     event.preventDefault();
@@ -94,11 +88,37 @@ class ManageProfilesComponent extends Helper {
     });
   };
 
+  renderProfile = activeProfile => {
+    return (
+      <React.Fragment>
+        {activeProfile.map(detail => (
+          <li className="profile" key={detail.id}>
+            <Link onClick={event => this.handleClick(detail, event)} to="#">
+              <div className="relative">
+                <img
+                  src="../assets/img/icon1.png"
+                  className="profile-img"
+                  alt="profile_img"
+                />
+                <div className="edit-overlay">
+                  <div className="edit-icon-outline">
+                    <i className="fas fa-pencil-alt" />
+                  </div>
+                </div>
+              </div>
+              <p className="profile-name">{detail.name}</p>
+            </Link>
+          </li>
+        ))}
+      </React.Fragment>
+    );
+  };
+
   render() {
     var bgImg = {
       backgroundImage: "url(../assets/img/bg.jpg)"
     };
-    const { data } = { ...this.state };
+    const { data, loading, activeProfile } = { ...this.state };
     let renderData;
     if (this.state.renderManageProfile === 1) {
       renderData = (
@@ -218,28 +238,7 @@ class ManageProfilesComponent extends Helper {
                 <h1 className="view-profiles-head">manage profiles</h1>
               </div>
               <ul className="choose-profile">
-                {this.state.subProfileDetails.map(detail => (
-                  <li className="profile" key={detail.id}>
-                    <Link
-                      onClick={event => this.handleClick(detail, event)}
-                      to="#"
-                    >
-                      <div className="relative">
-                        <img
-                          src="../assets/img/icon1.png"
-                          className="profile-img"
-                          alt="profile_img"
-                        />
-                        <div className="edit-overlay">
-                          <div className="edit-icon-outline">
-                            <i className="fas fa-pencil-alt" />
-                          </div>
-                        </div>
-                      </div>
-                      <p className="profile-name">{detail.name}</p>
-                    </Link>
-                  </li>
-                ))}
+                {loading ? "Loading" : this.renderProfile(activeProfile)}
                 <li className="profile">
                   <Link to="#" onClick={this.addProfile}>
                     <div className="relative">

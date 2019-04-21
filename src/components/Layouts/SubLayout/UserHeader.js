@@ -1,27 +1,53 @@
 import React, { Component } from "react";
 
 import { Link } from "react-router-dom";
+import Helper from "../../Helper/helper";
 
 const $ = window.$;
 
-class UserHeader extends Component {
+class UserHeader extends Helper {
   constructor(props) {
     super(props);
-
-    this.state = {
-      isAuthenticated: this.props.data
-    };
   }
+  state = {
+    loading: true,
+    activeProfile: null
+  };
 
   componentDidMount() {
     var headerHeight = $("#header").outerHeight();
 
     $(".header-height").height(headerHeight);
-
-    // Call api function
+    this.viewProfiles();
   }
 
+  renderList = activeProfile => {
+    return (
+      <div>
+        {activeProfile.map(profile =>
+          profile.id == localStorage.getItem("active_profile_id") ? (
+            ""
+          ) : (
+            <Link
+              className="dropdown-item"
+              key={profile.id}
+              to="/view-profiles"
+            >
+              <div className="display-inline">
+                <div className="left-sec">
+                  <img src="assets/img/icon2.png" alt="profile_img" />
+                </div>
+                <div className="right-name">ronan</div>
+              </div>
+            </Link>
+          )
+        )}
+      </div>
+    );
+  };
+
   render() {
+    const { loading, activeProfile } = this.state;
     return (
       <div>
         <nav
@@ -196,7 +222,8 @@ class UserHeader extends Component {
                 </div>
                 <div className="notification-seeall">
                   <Link to="#">
-                    seLink all<i className="fas fa-chevron-right" />
+                    seLink all
+                    <i className="fas fa-chevron-right" />
                   </Link>
                 </div>
               </div>
@@ -215,38 +242,8 @@ class UserHeader extends Component {
               </Link>
               <div className="dropdown-menu profile-drop">
                 <div className="pro-sec-height">
-                  <Link className="dropdown-item" to="/view-profiles">
-                    <div className="display-inline">
-                      <div className="left-sec">
-                        <img src="assets/img/icon2.png" alt="profile_img" />
-                      </div>
-                      <div className="right-name">ronan</div>
-                    </div>
-                  </Link>
-                  <Link className="dropdown-item" to="/view-profiles">
-                    <div className="display-inline">
-                      <div className="left-sec">
-                        <img src="assets/img/icon3.png" alt="profile_img" />
-                      </div>
-                      <div className="right-name">brayden</div>
-                    </div>
-                  </Link>
-                  <Link className="dropdown-item" to="/view-profiles">
-                    <div className="display-inline">
-                      <div className="left-sec">
-                        <img src="assets/img/icon4.png" alt="profile_img" />
-                      </div>
-                      <div className="right-name">hugo</div>
-                    </div>
-                  </Link>
-                  <Link className="dropdown-item" to="/view-profiles">
-                    <div className="display-inline">
-                      <div className="left-sec">
-                        <img src="assets/img/icon5.png" alt="profile_img" />
-                      </div>
-                      <div className="right-name">diego</div>
-                    </div>
-                  </Link>
+                  {loading ? "Loading" : this.renderList(activeProfile)}
+
                   <Link className="dropdown-item" to="/manage-profiles">
                     manage profiles
                   </Link>

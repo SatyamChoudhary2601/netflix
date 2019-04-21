@@ -3,26 +3,55 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
 import api from "../../../Environment";
+import Helper from "../../Helper/helper";
 
-class ViewProfilesComponent extends Component {
+class ViewProfilesComponent extends Helper {
   state = {
-    data: []
+    loading: true,
+    activeProfile: null
   };
-  async componentDidMount() {
+  componentDidMount() {
     // view all sub profile
-    let data = { ...this.state.data };
-    await api.postMethod("active-profiles").then(function(response) {
-      console.log("response", response);
-      if (response.data.success === true) {
-        data = response.data.data;
-      }
-    });
-    this.setState({ data });
+
+    this.viewProfiles();
   }
+
+  handleClick = (profile_id, event) => {
+    event.preventDefault();
+
+    localStorage.setItem("active_profile_id", profile_id);
+  };
+
+  renderProfile = activeProfile => {
+    // let renderActiveProfile;
+    // console.log("activeProfile ", activeProfile);
+    return (
+      <div>
+        {activeProfile.map(detail => (
+          <li
+            className="profile"
+            key={detail.id}
+            onClick={event => this.handleClick(detail.id, event)}
+          >
+            <Link to="/home">
+              <img
+                src="../assets/img/icon1.png"
+                className="profile-img"
+                alt="profile_img"
+              />
+              <p className="profile-name">{detail.name}</p>
+            </Link>
+          </li>
+        ))}
+      </div>
+    );
+  };
+
   render() {
     var bgImg = {
       backgroundImage: "url(../assets/img/bg.jpg)"
     };
+    const { loading, activeProfile } = this.state;
 
     return (
       <div>
@@ -44,18 +73,7 @@ class ViewProfilesComponent extends Component {
                   <h1 className="view-profiles-head">who's watching?</h1>
                 </div>
                 <ul className="choose-profile">
-                  {this.state.data.map(detail => (
-                    <li className="profile" key={detail.id}>
-                      <Link to="/home">
-                        <img
-                          src="../assets/img/icon1.png"
-                          className="profile-img"
-                          alt="profile_img"
-                        />
-                        <p className="profile-name">{detail.name}</p>
-                      </Link>
-                    </li>
-                  ))}
+                  {loading ? "Loading" : this.renderProfile(activeProfile)}
                 </ul>
                 <div>
                   <Link to="/manage-profiles" className="grey-outline-btn">

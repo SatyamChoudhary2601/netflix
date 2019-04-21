@@ -12,11 +12,11 @@ class ForgotPasswordComponent extends Helper {
     }
   };
 
-  handleSubmit = async event => {
+  handleSubmit = event => {
     event.preventDefault();
     const { state } = this.props.location;
 
-    await api
+    api
       .postMethod("forgotpassword", this.state.data)
       .then(function(response) {
         if (response.data.success === true) {

@@ -14,18 +14,17 @@ class LoginCommponent extends Helper {
     }
   };
 
-  handleSubmit = async event => {
+  handleSubmit = event => {
     event.preventDefault();
-    const { state } = this.props.location;
 
-    await api
+    api
       .postMethod("v4/login", this.state.data)
       .then(function(response) {
         if (response.data.success === true) {
           localStorage.setItem("userId", response.data.data.user_id);
           localStorage.setItem("accessToken", response.data.data.token);
           console.log("checking");
-          window.location = state ? state.from.pathname : "/home";
+          window.location = "/view-profiles";
           console.log("Login Success");
         }
         console.log(response);

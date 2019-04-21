@@ -19,7 +19,9 @@ class Helper extends Component {
     ],
     userDetails: {},
     data: {},
-    errors: {}
+    errors: {},
+    activeProfile: null,
+    loading: true
   };
 
   handleChange = ({ currentTarget: input }) => {
@@ -30,26 +32,14 @@ class Helper extends Component {
     console.log("data", this.state.data);
   };
 
-  categoryApiCall = async () => {
-    let categories = { ...this.state.categories };
-    let recentUpload = { ...this.state.recentUpload };
-    await api.postMethod("home_first_section").then(function(response) {
-      categories = response.data.categories;
-      recentUpload = response.data.data;
-    });
-    this.setState({ categories });
-    this.setState({ recentUpload });
-  };
-
-  async getUserDetails() {
-    let data = { ...this.state.data };
-    await api.getMethod("userDetails").then(function(response) {
+  getUserDetails() {
+    api.getMethod("userDetails").then(response => {
       console.log("Response", response);
       if (response.data.success === true) {
-        data = response.data.data;
+        let data = response.data.data;
+        this.setState({ data });
       }
     });
-    this.setState({ data });
   }
 
   updateProfile() {
@@ -75,6 +65,18 @@ class Helper extends Component {
         console.log("password updated");
       }
     });
+  }
+
+  viewProfiles() {
+    api.postMethod("active-profiles").then(response => {
+      console.log("response active profile", response);
+      if (response.data.success === true) {
+        let activeProfile = response.data.data;
+        this.setState({ loading: false, activeProfile: activeProfile });
+      }
+    });
+
+    console.log("State object", this.state.activeProfile);
   }
 }
 

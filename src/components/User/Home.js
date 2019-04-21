@@ -27,196 +27,66 @@ const movies = [
 
 class Home extends Component {
   state = {
-    maindata: [
-      {
-        title: "",
-        data: [{}]
-      },
-      {
-        title: "",
-        data: [{}]
-      },
-      {
-        title: "",
-        data: [{}]
-      },
-      {
-        title: "",
-        data: [{}]
-      },
-      {
-        title: "",
-        data: [{}]
-      }
-    ],
+    maindata: null,
     bannerData: {
       data: [{}]
     },
     originalsData: {
       data: [{}]
     },
-    errorHandle: 0
+    errorHandle: 0,
+    loading: true
   };
 
-  async componentDidMount() {
+  componentDidMount() {
     const inputData = {
-      sub_profile_id: 2391,
+      sub_profile_id: localStorage.getItem("active_profile_id"),
       page_type: "HOME"
     };
-    let maindata = { ...this.state.maindata };
-    let errorHandle = 0;
-    await api
+    // let maindata = { ...this.state.maindata };
+    // let errorHandle = 0;
+    api
       .postMethod("home_first_section", inputData)
-      .then(function(response) {
+      .then(response => {
         if (response.data.success === true) {
-          maindata = response.data.data;
+          let maindata = response.data.data;
           console.log("response maindata", maindata);
+          this.setState({ loading: false, maindata: maindata });
         } else {
           console.log("Error", response);
-          errorHandle = 1;
+          let errorHandle = 1;
+          this.setState({ errorHandle });
         }
       })
       .catch(function(error) {
         console.log(error);
-        errorHandle = 1;
       });
-    this.setState({ errorHandle });
-    this.setState({ maindata });
-    console.log("State data", this.state.maindata);
-    console.log("Error Handle", this.state.errorHandle);
   }
 
-  render() {
-    console.log("mylist data", this.state.maindata[0].data);
+  renderVideoList = (maindata, index) => {
+    return (
+      <React.Fragment key={index}>
+        {console.log("index", index)}
+        <div className="main-slidersec">
+          <h3 className="">
+            {maindata.title}
+            <i className="fas fa-angle-right ml-2" />
+          </h3>
 
-    const renderDumpData = (
-      <div className="main-slidersec">
-        <h3 className="">
-          Loading Content
-          <i className="fas fa-angle-right ml-2" />
-        </h3>
-        <Slider>
-          {movies.map(movie => (
-            <Slider.Item movie={movie} key={Math.random()}>
-              item1
-            </Slider.Item>
-          ))}
-        </Slider>
-      </div>
+          <Slider>
+            {maindata.data.map(movie => (
+              <Slider.Item movie={movie} key={Math.random()}>
+                item1
+              </Slider.Item>
+            ))}
+          </Slider>
+        </div>
+      </React.Fragment>
     );
+  };
 
-    let renderRecommended = "";
-    if (this.state.maindata[4].data.length) {
-      renderRecommended = (
-        <div className="main-slidersec">
-          <h3 className="">
-            {this.state.maindata[4].title}
-            <i className="fas fa-angle-right ml-2" />
-          </h3>
-          <Slider>
-            {this.state.maindata[4].data.map(movie => (
-              <Slider.Item movie={movie} key={Math.random()}>
-                item1
-              </Slider.Item>
-            ))}
-          </Slider>
-        </div>
-      );
-    } else {
-      renderRecommended = "";
-    }
-
-    let renderMyList = "";
-    if (this.state.maindata[0].data[0] === null) {
-      renderMyList = (
-        <div className="main-slidersec">
-          <h3 className="">
-            {this.state.maindata[0].title}
-            <i className="fas fa-angle-right ml-2" />
-          </h3>
-          <Slider>
-            {this.state.maindata[0].data.map(movie => (
-              <Slider.Item movie={movie} key={Math.random()}>
-                item1
-              </Slider.Item>
-            ))}
-          </Slider>
-        </div>
-      );
-    } else {
-      renderMyList = "";
-    }
-
-    let renderNewRelease = "";
-    if (this.state.maindata[1].data.length) {
-      renderNewRelease = (
-        <div className="main-slidersec">
-          <h3 className="">
-            {this.state.maindata[1].title}
-            <i className="fas fa-angle-right ml-2" />
-          </h3>
-          <Slider>
-            {this.state.maindata[1].data.map(movie => (
-              <Slider.Item movie={movie} key={Math.random()}>
-                item1
-              </Slider.Item>
-            ))}
-          </Slider>
-        </div>
-      );
-    } else {
-      renderNewRelease = "";
-    }
-
-    let renderContinueWatching = "";
-    if (this.state.maindata[2].data.length) {
-      renderContinueWatching = (
-        <div className="main-slidersec">
-          <h3 className="">
-            {this.state.maindata[2].title}
-            <i className="fas fa-angle-right ml-2" />
-          </h3>
-          <Slider>
-            {this.state.maindata[2].data.map(movie => (
-              <Slider.Item movie={movie} key={Math.random()}>
-                item1
-              </Slider.Item>
-            ))}
-          </Slider>
-        </div>
-      );
-    } else {
-      renderContinueWatching = "";
-    }
-
-    let renderTrendingNow = "";
-    if (this.state.maindata[3].data.length) {
-      renderTrendingNow = (
-        <div className="main-slidersec">
-          <h3 className="">
-            {this.state.maindata[3].title}
-            <i className="fas fa-angle-right ml-2" />
-          </h3>
-          <Slider>
-            {this.state.maindata[3].data.map(movie => (
-              <Slider.Item movie={movie} key={Math.random()}>
-                item1
-              </Slider.Item>
-            ))}
-          </Slider>
-        </div>
-      );
-    } else {
-      renderTrendingNow = "";
-    }
-
-    if (this.state.errorHandle === 1) {
-      renderContinueWatching = renderDumpData;
-      renderMyList = renderDumpData;
-      renderNewRelease = renderDumpData;
-      renderRecommended = renderDumpData;
-      renderTrendingNow = renderDumpData;
-    }
+  render() {
+    const { loading, maindata } = this.state;
 
     return (
       <div>
@@ -265,15 +135,17 @@ class Home extends Component {
         </div>
 
         <div className="main p-40">
-          {renderMyList}
+          {/* {renderMyList} */}
 
-          {renderNewRelease}
-
-          {renderContinueWatching}
-
-          {renderTrendingNow}
-
-          {renderRecommended}
+          {loading
+            ? ""
+            : maindata.map((mainDa, index) =>
+                mainDa.data.length === 0
+                  ? ""
+                  : loading
+                  ? "loading"
+                  : this.renderVideoList(mainDa, index)
+              )}
 
           <div className="height-100" />
         </div>

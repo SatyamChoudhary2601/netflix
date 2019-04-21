@@ -2,14 +2,132 @@ import React, { Component } from "react";
 import IconCross from "./../Icons/IconCross";
 import { Link, NavLink } from "react-router-dom";
 import "./Content.scss";
+import api from "../../../Environment";
+
+const DATE_OPTIONS = {
+  year: "numeric",
+  month: "short"
+};
 
 class Content extends Component {
-  state = {};
+  state = {
+    videoDetailsFirst: null,
+    loadingFirst: true,
+    videoDetailsSecond: null,
+    loadingSecond: true
+  };
   componentDidMount() {
     // Single video API call.
+    const inputData = {
+      sub_profile_id: localStorage.getItem("active_profile_id"),
+      admin_video_id: this.props.movie.admin_video_id
+    };
+    // let maindata = { ...this.state.maindata };
+    // let errorHandle = 0;
+    api
+      .postMethod("videos/view", inputData)
+      .then(response => {
+        if (response.data.success === true) {
+          let videoDetailsFirst = response.data.data;
+          console.log("response first maindata", videoDetailsFirst);
+          this.setState({
+            loadingFirst: false,
+            videoDetailsFirst: videoDetailsFirst
+          });
+        } else {
+          console.log("Error", response);
+        }
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+
+    api
+      .postMethod("videos/view", inputData)
+      .then(response => {
+        if (response.data.success === true) {
+          let videoDetailsSecond = response.data.data;
+          console.log("response maindata", videoDetailsSecond);
+          this.setState({
+            loadingSecond: false,
+            videoDetailsSecond: videoDetailsSecond
+          });
+        } else {
+          console.log("Error", response);
+        }
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
   }
+
+  renderOverview = videoDetailsFirst => {
+    return (
+      <div>
+        <h1 className="banner_video_title">{videoDetailsFirst.title}</h1>
+        <h4 className="banner_video_details">
+          <span className="green-clr">
+            {new Date(videoDetailsFirst.publish_time).toLocaleDateString(
+              "en-US",
+              DATE_OPTIONS
+            )}
+          </span>
+          <span className="grey-box">
+            {videoDetailsFirst.age}
+            <i className="fas fa-plus small" /> /{" "}
+            {videoDetailsFirst.watch_count} <span className="small">Views</span>
+          </span>
+          <span>{videoDetailsFirst.duration}</span>
+          <span className="small yellow-clr ml-1">
+            <i className="fas fa-star" />
+            <i className="fas fa-star" />
+            <i className="fas fa-star" />
+            <i className="far fa-star" />
+            <i className="far fa-star" />
+          </span>
+        </h4>
+        <h4 className="banner_video_details">
+          <span>
+            <i className="far fa-thumbs-up" />
+          </span>
+          <span className="mr-2">{videoDetailsFirst.likes}</span>
+          <span>
+            <i className="far fa-thumbs-down" />
+          </span>
+          <span className="mr-2">40</span>
+        </h4>
+        <h4 className="slider_video_text">{videoDetailsFirst.description}</h4>
+        <div className="banner-btn-sec">
+          <Link to="#" className="btn btn-danger btn-right-space br-0">
+            <i className="fas fa-play mr-2" />
+            play
+          </Link>
+          <Link to="#" className="btn btn-outline-secondary btn-right-space">
+            <i className="fas fa-plus mr-2" />
+            my list
+          </Link>
+          <Link to="#" className="btn express-btn mr-2">
+            <i className="far fa-thumbs-up" />
+          </Link>
+          <Link to="#" className="btn express-btn btn-right-space">
+            <i className="far fa-thumbs-down" />
+          </Link>
+          <Link
+            to="#"
+            data-toggle="modal"
+            data-target="#spam-popup"
+            className="btn express-btn btn-right-space"
+          >
+            <i className="fas fa-info" />
+          </Link>
+        </div>
+      </div>
+    );
+  };
   render() {
     const movie = { ...this.props.movie };
+
+    const { loadingFirst, videoDetailsFirst } = this.state;
     return (
       <div className="content">
         <div className="content__background">
@@ -68,74 +186,9 @@ class Content extends Component {
               <div id="overview" className="tab-pane active">
                 <div className="slider-topbottom-spacing">
                   <div className="overview-content">
-                    <div>
-                      <h1 className="banner_video_title">{movie.title}</h1>
-                      <h4 className="banner_video_details">
-                        <span className="green-clr">Aug 2018</span>
-                        <span className="grey-box">
-                          7<i className="fas fa-plus small" /> / 25{" "}
-                          <span className="small">Views</span>
-                        </span>
-                        <span>1h 26m</span>
-                        <span className="small yellow-clr ml-1">
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
-                          <i className="fas fa-star" />
-                          <i className="far fa-star" />
-                          <i className="far fa-star" />
-                        </span>
-                      </h4>
-                      <h4 className="banner_video_details">
-                        <span>
-                          <i className="far fa-thumbs-up" />
-                        </span>
-                        <span className="mr-2">50</span>
-                        <span>
-                          <i className="far fa-thumbs-down" />
-                        </span>
-                        <span className="mr-2">40</span>
-                      </h4>
-                      <h4 className="slider_video_text">
-                        an ordinary teen. An ancient relic pulled from the
-                        rubble. And an underground civilization that needs a
-                        hero.An ordinary teen. An ancient relic pulled from the
-                        rubble. And an underground civilization that needs a
-                        hero.
-                      </h4>
-                      <div className="banner-btn-sec">
-                        <Link
-                          to="#"
-                          className="btn btn-danger btn-right-space br-0"
-                        >
-                          <i className="fas fa-play mr-2" />
-                          play
-                        </Link>
-                        <Link
-                          to="#"
-                          className="btn btn-outline-secondary btn-right-space"
-                        >
-                          <i className="fas fa-plus mr-2" />
-                          my list
-                        </Link>
-                        <Link to="#" className="btn express-btn mr-2">
-                          <i className="far fa-thumbs-up" />
-                        </Link>
-                        <Link
-                          to="#"
-                          className="btn express-btn btn-right-space"
-                        >
-                          <i className="far fa-thumbs-down" />
-                        </Link>
-                        <Link
-                          to="#"
-                          data-toggle="modal"
-                          data-target="#spam-popup"
-                          className="btn express-btn btn-right-space"
-                        >
-                          <i className="fas fa-info" />
-                        </Link>
-                      </div>
-                    </div>
+                    {loadingFirst
+                      ? "loading"
+                      : this.renderOverview(videoDetailsFirst)}
                   </div>
                 </div>
               </div>
