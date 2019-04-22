@@ -21,7 +21,10 @@ class Helper extends Component {
     data: {},
     errors: {},
     activeProfile: null,
-    loading: true
+    loading: true,
+    videoDetailsFirst: null,
+    loadingFirst: true,
+    videoDetailsSecond: null
   };
 
   handleChange = ({ currentTarget: input }) => {
@@ -77,6 +80,45 @@ class Helper extends Component {
     });
 
     console.log("State object", this.state.activeProfile);
+  }
+
+  singleVideoFirst(inputData) {
+    api
+      .postMethod("videos/view", inputData)
+      .then(response => {
+        if (response.data.success === true) {
+          let videoDetailsFirst = response.data.data;
+          console.log("response first maindata", videoDetailsFirst);
+          this.setState({
+            loadingFirst: false,
+            videoDetailsFirst: videoDetailsFirst
+          });
+        } else {
+          console.log("Error", response);
+        }
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+  }
+  singleVideoSecond(inputData) {
+    api
+      .postMethod("videos/view/second", inputData)
+      .then(response => {
+        if (response.data.success === true) {
+          let videoDetailsSecond = response.data.data;
+          console.log("response maindata", videoDetailsSecond);
+          this.setState({
+            loadingSecond: false,
+            videoDetailsSecond: videoDetailsSecond
+          });
+        } else {
+          console.log("Error", response);
+        }
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
   }
 }
 

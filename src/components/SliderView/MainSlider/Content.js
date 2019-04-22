@@ -3,13 +3,18 @@ import IconCross from "./../Icons/IconCross";
 import { Link, NavLink } from "react-router-dom";
 import "./Content.scss";
 import api from "../../../Environment";
+import Helper from "../../Helper/helper";
 
 const DATE_OPTIONS = {
   year: "numeric",
   month: "short"
 };
 
-class Content extends Component {
+class Content extends Helper {
+  constructor(props) {
+    super(props);
+  }
+
   state = {
     videoDetailsFirst: null,
     loadingFirst: true,
@@ -18,52 +23,32 @@ class Content extends Component {
   };
   componentDidMount() {
     // Single video API call.
-    const inputData = {
+    // let maindata = { ...this.state.maindata };
+    // let errorHandle = 0;
+    let inputData = {
       sub_profile_id: localStorage.getItem("active_profile_id"),
       admin_video_id: this.props.movie.admin_video_id
     };
-    // let maindata = { ...this.state.maindata };
-    // let errorHandle = 0;
-    api
-      .postMethod("videos/view", inputData)
-      .then(response => {
-        if (response.data.success === true) {
-          let videoDetailsFirst = response.data.data;
-          console.log("response first maindata", videoDetailsFirst);
-          this.setState({
-            loadingFirst: false,
-            videoDetailsFirst: videoDetailsFirst
-          });
-        } else {
-          console.log("Error", response);
-        }
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
+    console.log("input data", inputData);
+    this.singleVideoFirst(inputData);
 
-    api
-      .postMethod("videos/view", inputData)
-      .then(response => {
-        if (response.data.success === true) {
-          let videoDetailsSecond = response.data.data;
-          console.log("response maindata", videoDetailsSecond);
-          this.setState({
-            loadingSecond: false,
-            videoDetailsSecond: videoDetailsSecond
-          });
-        } else {
-          console.log("Error", response);
-        }
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
+    this.singleVideoSecond(inputData);
+  }
+  componentWillReceiveProps(props) {
+    console.log("Will Mount Called");
+    let inputData = {
+      sub_profile_id: localStorage.getItem("active_profile_id"),
+      admin_video_id: props.movie.admin_video_id
+    };
+    console.log("Input Data", inputData);
+    this.singleVideoFirst(inputData);
+    this.singleVideoSecond(inputData);
   }
 
   renderOverview = videoDetailsFirst => {
     return (
       <div>
+        {console.log("Render Overview ")}
         <h1 className="banner_video_title">{videoDetailsFirst.title}</h1>
         <h4 className="banner_video_details">
           <span className="green-clr">
@@ -150,13 +135,9 @@ class Content extends Component {
           <div className="slider-content-tabsec">
             <ul className="nav nav-pills" role="tablist">
               <li className="nav-item">
-                <NavLink
-                  activeClassName="nav-link active"
-                  data-toggle="pill"
-                  to={"#overview"}
-                >
+                <a className="nav-link" data-toggle="pill" to={"#overview"}>
                   overview
-                </NavLink>
+                </a>
               </li>
               <li className="nav-item">
                 <a className="nav-link" data-toggle="pill" href="#episode">
