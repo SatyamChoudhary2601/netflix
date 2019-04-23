@@ -11,6 +11,7 @@ import VideoTrailer from "../../User/Video/videoTrailer";
 import VideoMoreLikeThis from "../../User/Video/videoMoreLikeThis";
 import VideoDetails from "../../User/Video/videoDetails";
 import LoaderComponent from "../../Static/Loader";
+import ContentLoader from "../../Static/contentLoader";
 const $ = window.$;
 const DATE_OPTIONS = {
   year: "numeric",
@@ -181,7 +182,7 @@ class Content extends Helper {
           <div className="slider-content-tabcontent">
             <div className="tab-content">
               {loadingFirst ? (
-                "Loading"
+                <ContentLoader />
               ) : (
                 <VideoOverView videoDetailsFirst={videoDetailsFirst} />
               )}

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 import api from "../../../Environment";
 import Helper from "../../Helper/helper";
-import LoaderComponent from "../../Static/Loader";
+import ContentLoader from "../../Static/contentLoader";
 
 class ViewProfilesComponent extends Helper {
   state = {
@@ -75,7 +75,7 @@ class ViewProfilesComponent extends Helper {
                 </div>
                 <ul className="choose-profile">
                   {loading ? (
-                    <LoaderComponent />
+                    <ContentLoader />
                   ) : (
                     this.renderProfile(activeProfile)
                   )}
