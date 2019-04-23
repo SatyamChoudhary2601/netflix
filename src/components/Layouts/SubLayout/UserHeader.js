@@ -37,7 +37,7 @@ class UserHeader extends Helper {
                 <div className="left-sec">
                   <img src="assets/img/icon2.png" alt="profile_img" />
                 </div>
-                <div className="right-name">ronan</div>
+                <div className="right-name">{profile.name}</div>
               </div>
             </Link>
           )
