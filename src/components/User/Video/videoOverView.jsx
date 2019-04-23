@@ -6,10 +6,10 @@ const DATE_OPTIONS = {
 };
 
 const VideoOverView = data => {
-  console.log("Props", data.videoDetailsFirst);
+  console.log("Props", data.activeClass);
   const videoDetailsFirst = data.videoDetailsFirst;
   return (
-    <div id="overview" className="tab-pane active">
+    <div id="overview" className={"tab-pane" + " " + data.activeClass}>
       <div className="slider-topbottom-spacing">
         <div className="overview-content">
           {console.log("Render Overview ")}

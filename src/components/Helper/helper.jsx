@@ -24,7 +24,9 @@ class Helper extends Component {
     loading: true,
     videoDetailsFirst: null,
     loadingFirst: true,
-    videoDetailsSecond: null
+    videoDetailsSecond: null,
+    suggestion: null,
+    loadingSuggestion: true
   };
 
   handleChange = ({ currentTarget: input }) => {
@@ -111,6 +113,25 @@ class Helper extends Component {
           this.setState({
             loadingSecond: false,
             videoDetailsSecond: videoDetailsSecond
+          });
+        } else {
+          console.log("Error", response);
+        }
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+  }
+  suggestion(inputData) {
+    api
+      .postMethod("suggestions", inputData)
+      .then(response => {
+        if (response.data.success === true) {
+          let suggestion = response.data.data;
+          console.log("response suggestion", suggestion);
+          this.setState({
+            loadingSuggestion: false,
+            suggestion: suggestion
           });
         } else {
           console.log("Error", response);
