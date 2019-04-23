@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 import api from "../../../Environment";
 import Helper from "../../Helper/helper";
+import LoaderComponent from "../../Static/Loader";
 
 class ViewProfilesComponent extends Helper {
   state = {
@@ -73,7 +74,11 @@ class ViewProfilesComponent extends Helper {
                   <h1 className="view-profiles-head">who's watching?</h1>
                 </div>
                 <ul className="choose-profile">
-                  {loading ? "Loading" : this.renderProfile(activeProfile)}
+                  {loading ? (
+                    <LoaderComponent />
+                  ) : (
+                    this.renderProfile(activeProfile)
+                  )}
                 </ul>
                 <div>
                   <Link to="/manage-profiles" className="grey-outline-btn">
