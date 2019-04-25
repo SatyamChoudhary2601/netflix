@@ -2,7 +2,7 @@ import React from "react";
 import Slider from "react-slick";
 import { Link } from "react-router-dom";
 
-const VideoMoreLikeThis = suggestion => {
+const VideoMoreLikeThis = ({ suggestion }) => {
   var morelikeSlider = {
     dots: false,
     arrow: true,
@@ -10,7 +10,6 @@ const VideoMoreLikeThis = suggestion => {
     slidesToShow: 4,
     slidesToScroll: 1
   };
-  const suggestionDetails = suggestion.suggestion;
 
   return (
     <div className="slider-topbottom-spacing pl-0 pr-0 slider-overlay">
@@ -19,7 +18,7 @@ const VideoMoreLikeThis = suggestion => {
       </div>
       <div>
         <Slider {...morelikeSlider} className="more-like-slider slider">
-          {suggestionDetails.map(suggest => (
+          {suggestion.map(suggest => (
             <div key={suggest.admin_video_id}>
               <div className="relative">
                 <img

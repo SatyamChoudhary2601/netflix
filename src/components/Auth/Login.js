@@ -5,6 +5,19 @@ import { Link } from "react-router-dom";
 import api from "../../Environment";
 
 import Helper from "../Helper/helper";
+import { ToastDemo } from "../Helper/toaster";
+import { withToastManager } from "react-toast-notifications";
+
+const demo = ({ content, toastManager }) => {
+  console.log("toaster called");
+  toastManager.add(content, {
+    appearance: "success",
+    autoDismiss: true,
+    pauseOnHover: false
+  });
+};
+
+// const testingToaster = withToastManager(demo);
 
 class LoginCommponent extends Helper {
   state = {
@@ -16,16 +29,19 @@ class LoginCommponent extends Helper {
 
   handleSubmit = event => {
     event.preventDefault();
-
+    // const { toastManager } = this.props;
     api
       .postMethod("v4/login", this.state.data)
       .then(function(response) {
         if (response.data.success === true) {
           localStorage.setItem("userId", response.data.data.user_id);
           localStorage.setItem("accessToken", response.data.data.token);
-          console.log("checking");
+          console.log("checking", response);
           window.location = "/view-profiles";
           console.log("Login Success");
+        } else {
+          console.log("Executed");
+          withToastManager(demo);
         }
         console.log(response);
       })
@@ -86,7 +102,6 @@ class LoginCommponent extends Helper {
                   </p>
                   <button className="btn btn-danger auth-btn">sign in</button>
                 </form>
-
                 <div>
                   <Link to="../account/view-profiles.html">
                     <p className="social">
