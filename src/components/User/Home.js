@@ -5,6 +5,7 @@ import api from "../../Environment";
 
 import Slider from "../SliderView/MainSlider";
 import HomePageBanner from "./homePageBanner";
+import ContentLoader from "../Static/contentLoader";
 
 class Home extends Component {
   state = {
@@ -16,7 +17,8 @@ class Home extends Component {
       data: [{}]
     },
     errorHandle: 0,
-    loading: true
+    loading: true,
+    banner: null
   };
 
   componentDidMount() {
@@ -31,8 +33,9 @@ class Home extends Component {
       .then(response => {
         if (response.data.success === true) {
           let maindata = response.data.data;
+          let banner = response.data.banner;
           console.log("response maindata", maindata);
-          this.setState({ loading: false, maindata: maindata });
+          this.setState({ loading: false, maindata: maindata, banner: banner });
         } else {
           console.log("Error", response);
           let errorHandle = 1;
@@ -71,7 +74,11 @@ class Home extends Component {
 
     return (
       <div>
-        <HomePageBanner />
+        {loading ? (
+          <ContentLoader />
+        ) : (
+          <HomePageBanner banner={this.state.banner} />
+        )}
         <div className="main p-40">
           {/* {renderMyList} */}
 
