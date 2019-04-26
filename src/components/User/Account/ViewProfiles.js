@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 
 import { Link } from "react-router-dom";
-
-import api from "../../../Environment";
 import Helper from "../../Helper/helper";
 import ContentLoader from "../../Static/contentLoader";
 

@@ -1,19 +1,14 @@
 import React from "react";
 import { withToastManager } from "react-toast-notifications";
 
-const Demo = ({ content, toastManager }) => (
-  <button
-    className="btn btn-danger auth-btn"
-    onClick={() =>
-      toastManager.add(content, {
-        appearance: "success",
-        autoDismiss: true,
-        pauseOnHover: false
-      })
-    }
-  >
-    Add Toast
-  </button>
-);
+const ToastDemo = (toastManager, error_message, type) => {
+  console.log("Toastmanage", error_message);
+  // console.log("content", content);
+  return toastManager.add(error_message, {
+    appearance: type,
+    autoDismiss: true,
+    pauseOnHover: false
+  });
+};
 
-export const ToastDemo = withToastManager(Demo);
+export default ToastDemo;

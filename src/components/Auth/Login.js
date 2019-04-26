@@ -5,19 +5,10 @@ import { Link } from "react-router-dom";
 import api from "../../Environment";
 
 import Helper from "../Helper/helper";
-import { ToastDemo } from "../Helper/toaster";
+
 import { withToastManager } from "react-toast-notifications";
 
-const demo = ({ content, toastManager }) => {
-  console.log("toaster called");
-  toastManager.add(content, {
-    appearance: "success",
-    autoDismiss: true,
-    pauseOnHover: false
-  });
-};
-
-// const testingToaster = withToastManager(demo);
+import ToastDemo from "../Helper/toaster";
 
 class LoginCommponent extends Helper {
   state = {
@@ -32,16 +23,20 @@ class LoginCommponent extends Helper {
     // const { toastManager } = this.props;
     api
       .postMethod("v4/login", this.state.data)
-      .then(function(response) {
-        if (response.data.success === true) {
+      .then(response => {
+        if (response.data.success) {
           localStorage.setItem("userId", response.data.data.user_id);
           localStorage.setItem("accessToken", response.data.data.token);
           console.log("checking", response);
-          window.location = "/view-profiles";
+          ToastDemo(this.props.toastManager, response.data.message, "success");
+          this.props.history.push("/view-profiles");
           console.log("Login Success");
         } else {
-          console.log("Executed");
-          withToastManager(demo);
+          ToastDemo(
+            this.props.toastManager,
+            response.data.error_messages,
+            "error"
+          );
         }
         console.log(response);
       })
@@ -138,4 +133,4 @@ class LoginCommponent extends Helper {
   }
 }
 
-export default LoginCommponent;
+export default withToastManager(LoginCommponent);
