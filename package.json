@@ -14,10 +14,11 @@
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.1",
     "react-share": "^2.3.1",
-    "react-slick": "^0.23.2",
+    "react-slick": "0.21.0",
     "react-social-login": "^3.4.2",
     "react-stripe-elements": "^2.0.3",
     "react-timeout": "^1.1.2",
+    "react-toast-notifications": "^1.4.0",
     "redux": "^4.0.1",
     "video-react": "^0.13.1"
   },

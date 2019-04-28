@@ -47,8 +47,8 @@ const VideoEpisode = genreDetails => {
                     " 2x"
                   }
                   data-srcset="assets/img/thumb1.jpg 1x,
-                                                           assets/img/thumb1.jpg 1.5x,
-                                                           assets/img/thumb1.jpg 2x"
+                    assets/img/thumb1.jpg 1.5x,
+                    assets/img/thumb1.jpg 2x"
                 />
                 <div className="trailers-img-overlay">
                   <Link to="#">

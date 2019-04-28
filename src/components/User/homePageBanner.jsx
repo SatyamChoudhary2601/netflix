@@ -11,11 +11,11 @@ class HomePageBanner extends Component {
       slidesToShow: 1,
       slidesToScroll: 1,
       infinite: true,
-      autoplay: true
+      autoplay: false
     };
     const { banner } = this.props;
     return (
-      <Slider {...bannerSlider} className="">
+      <Slider {...bannerSlider} className="banner-slider slider">
         {banner.data.map(video => (
           <div className="banner-sec" key={video.admin_video_id}>
             <div className="row m-0">

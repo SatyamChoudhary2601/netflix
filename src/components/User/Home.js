@@ -34,7 +34,7 @@ class Home extends Component {
         if (response.data.success === true) {
           let maindata = response.data.data;
           let banner = response.data.banner;
-          console.log("response maindata", maindata);
+          console.log("response maindata", banner);
           this.setState({ loading: false, maindata: maindata, banner: banner });
         } else {
           console.log("Error", response);
@@ -50,7 +50,7 @@ class Home extends Component {
   renderVideoList = (maindata, index) => {
     return (
       <React.Fragment key={index}>
-        {console.log("index", index)}
+        {console.log("index", maindata, index)}
         <div className="main-slidersec">
           <h3 className="">
             {maindata.title}
