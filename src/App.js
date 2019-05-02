@@ -325,6 +325,13 @@ class App extends Component {
                 layout={UserLayout}
                 screenProps={this.eventEmitter}
               />
+              <PrivateRoute
+                authentication={this.state.authentication}
+                path={"/card-details"}
+                component={CardDetailsComponent}
+                layout={UserLayout}
+                screenProps={this.eventEmitter}
+              />
               <Elements>
                 <PrivateRoute
                   authentication={this.state.authentication}
@@ -334,13 +341,7 @@ class App extends Component {
                   screenProps={this.eventEmitter}
                 />
               </Elements>
-              <PrivateRoute
-                authentication={this.state.authentication}
-                path={"/card-details"}
-                component={CardDetailsComponent}
-                layout={UserLayout}
-                screenProps={this.eventEmitter}
-              />
+
               <PrivateRoute
                 authentication={this.state.authentication}
                 path={"/invoice"}
