@@ -21,6 +21,14 @@ class UserHeader extends Helper {
     this.viewProfiles();
   }
 
+  changeProfile = (profile, event) => {
+    event.preventDefault();
+    console.log("OnClicked", profile.id);
+    localStorage.removeItem("active_profile_id");
+    localStorage.setItem("active_profile_id", profile.id);
+    window.location = "/home";
+  };
+
   renderList = activeProfile => {
     return (
       <div>
@@ -32,6 +40,7 @@ class UserHeader extends Helper {
               className="dropdown-item"
               key={profile.id}
               to="/view-profiles"
+              onClick={event => this.changeProfile(profile, event)}
             >
               <div className="display-inline">
                 <div className="left-sec">

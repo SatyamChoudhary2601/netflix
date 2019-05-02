@@ -4,6 +4,10 @@ import SliderContext from "./context";
 import ShowDetailsButton from "./ShowDetailsButton";
 import Mark from "./Mark";
 import "./Item.scss";
+const DATE_OPTIONS = {
+  year: "numeric",
+  month: "short"
+};
 
 const Item = ({ movie }) => (
   <SliderContext.Consumer>
@@ -25,19 +29,21 @@ const Item = ({ movie }) => (
                 <i className="fas fa-play" />
               </div>
             </a>
-            <h4 className="thumb-title">frozen</h4>
+            <h4 className="thumb-title">{movie.title}</h4>
             <h5 className="thumb-details">
-              <span className="green-clr">Aug 2018</span>
+              <span className="green-clr">
+                {new Date(movie.publish_time).toLocaleDateString(
+                  "en-US",
+                  DATE_OPTIONS
+                )}
+              </span>
               <span className="grey-box">
-                7<i className="fas fa-plus small" /> / 25{" "}
+                {movie.age}
+                <i className="fas fa-plus small" /> / 25{" "}
                 <span className="small">Views</span>
               </span>
             </h5>
-            <p className="thumb-desc">
-              An ordinary teen. An ancient relic pulled from the rubble. And an
-              underground civilization that needs a hero.An ordinary teen. An
-              ancient relic pulled from the rubble. And an underground{" "}
-            </p>
+            <p className="thumb-desc">{movie.description} </p>
             <a href="#">
               <div className="text-center thumbarrow-sec">
                 <img
