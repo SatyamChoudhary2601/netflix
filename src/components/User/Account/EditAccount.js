@@ -1,5 +1,9 @@
 import React, { Component } from "react";
 import Helper from "../../Helper/helper";
+import { withToastManager } from "react-toast-notifications";
+
+import api from "../../../Environment";
+import ToastDemo from "../../Helper/toaster";
 
 class EditAccountComponent extends Helper {
   state = {
@@ -12,7 +16,26 @@ class EditAccountComponent extends Helper {
   handleSubmit = event => {
     event.preventDefault();
 
-    this.updateProfile();
+    let userDetails = { ...this.state.data };
+    const data = {
+      name: userDetails.name,
+      email: userDetails.email,
+      mobile: userDetails.mobile
+    };
+    console.log("Data", data);
+    api.postMethod("updateProfile", data).then(response => {
+      console.log("response", response);
+      if (response.data.success == true) {
+        this.props.history.push("/account");
+        ToastDemo(this.props.toastManager, response.data.message, "success");
+      } else {
+        ToastDemo(
+          this.props.toastManager,
+          response.data.error_messages,
+          "error"
+        );
+      }
+    });
   };
   render() {
     const { data } = this.state;
@@ -75,4 +98,4 @@ class EditAccountComponent extends Helper {
   }
 }
 
-export default EditAccountComponent;
+export default withToastManager(EditAccountComponent);

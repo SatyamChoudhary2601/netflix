@@ -60,7 +60,7 @@ class CardDetailsComponent extends Component {
                       ) : (
                         <div>
                           {cardDetails.map(card => (
-                            <div>
+                            <div key={card.card_id}>
                               <div className="display-inline">
                                 <div className="card-left">
                                   <img
@@ -103,7 +103,7 @@ class CardDetailsComponent extends Component {
                           </div>
                           <div className="card-deatils">
                             <div className="add-card">
-                              <Link to="" className="btn-link">
+                              <Link to={"/add-card"} className="btn-link">
                                 add card
                               </Link>
                             </div>

@@ -44,7 +44,7 @@ class UserHeader extends Helper {
             >
               <div className="display-inline">
                 <div className="left-sec">
-                  <img src="assets/img/icon2.png" alt="profile_img" />
+                  <img src={profile.picture} alt="profile_img" />
                 </div>
                 <div className="right-name">{profile.name}</div>
               </div>

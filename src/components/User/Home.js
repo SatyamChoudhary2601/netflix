@@ -10,12 +10,6 @@ import ContentLoader from "../Static/contentLoader";
 class Home extends Component {
   state = {
     maindata: null,
-    bannerData: {
-      data: [{}]
-    },
-    originalsData: {
-      data: [{}]
-    },
     errorHandle: 0,
     loading: true,
     banner: null
@@ -70,15 +64,11 @@ class Home extends Component {
   };
 
   render() {
-    const { loading, maindata } = this.state;
+    const { loading, maindata, banner } = this.state;
 
     return (
       <div>
-        {loading ? (
-          <ContentLoader />
-        ) : (
-          <HomePageBanner banner={this.state.banner} />
-        )}
+        {loading ? <ContentLoader /> : <HomePageBanner banner={banner} />}
         <div className="main p-40">
           {/* {renderMyList} */}
 

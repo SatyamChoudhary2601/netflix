@@ -45,23 +45,7 @@ class Helper extends Component {
       console.log("Response", response);
       if (response.data.success === true) {
         let data = response.data.data;
-        this.setState({ data });
-      }
-    });
-  }
-
-  updateProfile() {
-    let userDetails = { ...this.state.data };
-    const data = {
-      name: userDetails.name,
-      email: userDetails.email,
-      mobile: userDetails.mobile
-    };
-    console.log("Data", data);
-    api.postMethod("updateProfile", data).then(function(response) {
-      console.log("response", response);
-      if (response.data.success === true) {
-        console.log("profile updated");
+        this.setState({ loading: false, data: data });
       }
     });
   }

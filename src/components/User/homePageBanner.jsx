@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import Slider from "react-slick";
 
 class HomePageBanner extends Component {
-  state = {};
   render() {
     var bannerSlider = {
       dots: false,

@@ -34,7 +34,7 @@ class ViewProfilesComponent extends Helper {
           >
             <Link to="/home">
               <img
-                src="../assets/img/icon1.png"
+                src={detail.picture}
                 className="profile-img"
                 alt="profile_img"
               />

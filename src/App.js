@@ -205,6 +205,7 @@ class App extends Component {
                 layout={AuthLayout}
                 screenProps={this.eventEmitter}
               />
+              <Route path={"/logout"} component={Logout} />
               <AppRoute
                 path={"/forgot-password"}
                 component={ForgotPasswordComponent}
@@ -463,8 +464,6 @@ class App extends Component {
                 layout={StaticLayout}
                 screenProps={this.eventEmitter}
               />
-
-              <Route path={"/logout"} component={Logout} />
             </Switch>
           </Router>
         </ToastProvider>
