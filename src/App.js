@@ -49,7 +49,6 @@ import PaymentViewDetails from "../src/components/User/Settings/payment-view-det
 import PaymentOptions from "../src/components/User/Settings/PaymentOptions";
 import PaymentSuccess from "../src/components/User/Settings/PaymentSuccess";
 import PaymentFailure from "../src/components/User/Settings/PaymentFailure";
-import Category from "../src/components/User/Video/Category";
 import SubCategory from "../src/components/User/Video/SubCategory";
 import Logout from "./components/Auth/logout";
 
@@ -72,6 +71,8 @@ import {
   ToastProvider,
   withToastManager
 } from "react-toast-notifications";
+import Genres from "./components/User/genres";
+import Category from "./components/User/category";
 
 const history = createHistory();
 
@@ -213,6 +214,14 @@ class App extends Component {
                 screenProps={this.eventEmitter}
               />
 
+              <PrivateRoute
+                authentication={this.state.authentication}
+                path={"/genre/:id"}
+                component={Genres}
+                layout={UserLayout}
+                screenProps={this.eventEmitter}
+              />
+
               {/***Empty layout ****/}
               <AppRoute
                 path={"/sample"}
@@ -340,6 +349,13 @@ class App extends Component {
                 layout={UserLayout}
                 screenProps={this.eventEmitter}
               />
+              <PrivateRoute
+                authentication={this.state.authentication}
+                path={"/category/:id"}
+                component={Category}
+                layout={UserLayout}
+                screenProps={this.eventEmitter}
+              />
               <Elements>
                 <PrivateRoute
                   authentication={this.state.authentication}
@@ -408,13 +424,7 @@ class App extends Component {
                 layout={UserLayout}
                 screenProps={this.eventEmitter}
               />
-              <PrivateRoute
-                authentication={this.state.authentication}
-                path={"/category"}
-                component={Category}
-                layout={UserLayout}
-                screenProps={this.eventEmitter}
-              />
+
               <PrivateRoute
                 authentication={this.state.authentication}
                 path={"/sub-category"}

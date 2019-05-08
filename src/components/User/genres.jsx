@@ -6,8 +6,14 @@ import api from "../../Environment";
 import Slider from "../SliderView/MainSlider";
 import HomePageBanner from "./homePageBanner";
 import ContentLoader from "../Static/contentLoader";
+import { apiConstants } from "../Constant/constants";
+import Helper from "../Helper/helper";
 
-class Home extends Component {
+let inputData = {
+  sub_profile_id: localStorage.getItem("active_profile_id")
+};
+
+class Genres extends Helper {
   state = {
     maindata: null,
     errorHandle: 0,
@@ -15,28 +21,40 @@ class Home extends Component {
     banner: null
   };
 
+  checkUrlType(urlType) {
+    if (urlType == apiConstants.SERIES) {
+      inputData = {
+        ...inputData,
+        page_type: "SERIES"
+      };
+    } else {
+      inputData = {
+        ...inputData,
+        page_type: "MOVIES"
+      };
+    }
+    return inputData;
+  }
+
   componentDidMount() {
-    const inputData = {
-      sub_profile_id: localStorage.getItem("active_profile_id"),
-      page_type: "HOME"
-    };
-    api
-      .postMethod("home_first_section", inputData)
-      .then(response => {
-        if (response.data.success === true) {
-          let maindata = response.data.data;
-          let banner = response.data.banner;
-          console.log("response maindata", banner);
-          this.setState({ loading: false, maindata: maindata, banner: banner });
-        } else {
-          console.log("Error", response);
-          let errorHandle = 1;
-          this.setState({ errorHandle });
-        }
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
+    const urlType = this.props.match.params.id;
+
+    inputData = this.checkUrlType(urlType);
+
+    console.log("InputData ", inputData);
+
+    this.homeFirstSection(inputData);
+  }
+
+  componentWillReceiveProps(props) {
+    this.setState({ loading: true });
+    const urlType = props.match.params.id;
+
+    inputData = this.checkUrlType(urlType);
+
+    console.log("InputData will ", inputData);
+
+    this.homeFirstSection(inputData);
   }
 
   renderVideoList = (maindata, index) => {
@@ -94,4 +112,4 @@ class Home extends Component {
   }
 }
 
-export default Home;
+export default Genres;

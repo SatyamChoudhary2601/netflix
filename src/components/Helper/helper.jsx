@@ -26,7 +26,9 @@ class Helper extends Component {
     loadingFirst: true,
     videoDetailsSecond: null,
     suggestion: null,
-    loadingSuggestion: true
+    loadingSuggestion: true,
+    maindata: null,
+    banner: null
   };
 
   handleChange = ({ currentTarget: input }) => {
@@ -123,6 +125,25 @@ class Helper extends Component {
           });
         } else {
           console.log("Error", response);
+        }
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+  }
+  homeFirstSection(inputData) {
+    api
+      .postMethod("home_first_section", inputData)
+      .then(response => {
+        if (response.data.success === true) {
+          let maindata = response.data.data;
+          let banner = response.data.banner;
+          console.log("response maindata", banner);
+          this.setState({ loading: false, maindata: maindata, banner: banner });
+        } else {
+          console.log("Error", response);
+          let errorHandle = 1;
+          this.setState({ errorHandle });
         }
       })
       .catch(function(error) {

@@ -6,8 +6,14 @@ import api from "../../Environment";
 import Slider from "../SliderView/MainSlider";
 import HomePageBanner from "./homePageBanner";
 import ContentLoader from "../Static/contentLoader";
+import { apiConstants } from "../Constant/constants";
+import Helper from "../Helper/helper";
 
-class Home extends Component {
+let inputData = {
+  sub_profile_id: localStorage.getItem("active_profile_id")
+};
+
+class Category extends Helper {
   state = {
     maindata: null,
     errorHandle: 0,
@@ -16,27 +22,28 @@ class Home extends Component {
   };
 
   componentDidMount() {
-    const inputData = {
-      sub_profile_id: localStorage.getItem("active_profile_id"),
-      page_type: "HOME"
+    inputData = {
+      ...inputData,
+      page_type: "CATEGORY",
+      category_id: this.props.match.params.id
     };
-    api
-      .postMethod("home_first_section", inputData)
-      .then(response => {
-        if (response.data.success === true) {
-          let maindata = response.data.data;
-          let banner = response.data.banner;
-          console.log("response maindata", banner);
-          this.setState({ loading: false, maindata: maindata, banner: banner });
-        } else {
-          console.log("Error", response);
-          let errorHandle = 1;
-          this.setState({ errorHandle });
-        }
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
+    console.log("InputData ", inputData);
+
+    this.homeFirstSection(inputData);
+  }
+
+  componentWillReceiveProps(props) {
+    this.setState({ loading: true });
+
+    inputData = {
+      ...inputData,
+      page_type: "CATEGORY",
+      category_id: props.match.params.id
+    };
+
+    console.log("InputData will ", inputData);
+
+    this.homeFirstSection(inputData);
   }
 
   renderVideoList = (maindata, index) => {
@@ -94,4 +101,4 @@ class Home extends Component {
   }
 }
 
-export default Home;
+export default Category;

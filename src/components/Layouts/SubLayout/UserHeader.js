@@ -2,6 +2,9 @@ import React, { Component } from "react";
 
 import { Link } from "react-router-dom";
 import Helper from "../../Helper/helper";
+import { apiConstants } from "../../Constant/constants";
+
+import api from "../../../Environment";
 
 const $ = window.$;
 
@@ -11,7 +14,9 @@ class UserHeader extends Helper {
   }
   state = {
     loading: true,
-    activeProfile: null
+    activeProfile: null,
+    loadingCategory: true,
+    categories: null
   };
 
   componentDidMount() {
@@ -19,6 +24,23 @@ class UserHeader extends Helper {
 
     $(".header-height").height(headerHeight);
     this.viewProfiles();
+    let inputData = {
+      sub_profile_id: localStorage.getItem("active_profile_id")
+    };
+    api
+      .postMethod("v4/categories/list", inputData)
+      .then(response => {
+        if (response.data.success === true) {
+          let categories = response.data.data;
+          console.log("response category", categories);
+          this.setState({ loadingCategory: false, categories: categories });
+        } else {
+          console.log("Error", response);
+        }
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
   }
 
   changeProfile = (profile, event) => {
@@ -56,7 +78,7 @@ class UserHeader extends Helper {
   };
 
   render() {
-    const { loading, activeProfile } = this.state;
+    const { loading, activeProfile, loadingCategory, categories } = this.state;
     return (
       <div>
         <nav
@@ -88,43 +110,30 @@ class UserHeader extends Helper {
                 browse
               </Link>
               <div className="dropdown-menu browse">
-                <Link className="dropdown-item" to="#">
-                  home
-                </Link>
-                <Link className="dropdown-item" to="#">
-                  tV programmes
-                </Link>
-                <Link className="dropdown-item" to="#">
-                  flims
-                </Link>
-                <Link className="dropdown-item" to="#">
-                  recently added
-                </Link>
-                <Link className="dropdown-item" to="#">
-                  my list
-                </Link>
+                {loadingCategory
+                  ? ""
+                  : categories.map(category => (
+                      <Link className="dropdown-item" to="#">
+                        {category.name}
+                      </Link>
+                    ))}
               </div>
             </li>
           </ul>
           <ul className="navbar-nav desktop-nav ">
             <li className="nav-item active">
-              <Link className="nav-link" to="/sub-category">
+              <Link className="nav-link" to={"/home"}>
                 home
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/sub-category">
-                tV programmes
+              <Link className="nav-link" to={`/genre/${apiConstants.SERIES}`}>
+                Series
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/sub-category">
-                flims
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/sub-category">
-                recently added
+              <Link className="nav-link" to={`/genre/${apiConstants.MOVIES}`}>
+                Movies
               </Link>
             </li>
             <li className="nav-item dropdown">
@@ -133,24 +142,20 @@ class UserHeader extends Helper {
                 data-toggle="dropdown"
                 to="#"
               >
-                my list
+                Browse
               </Link>
               <div className="dropdown-menu browse">
-                <Link className="dropdown-item" to="/sub-category">
-                  home
-                </Link>
-                <Link className="dropdown-item" to="/sub-category">
-                  tV programmes
-                </Link>
-                <Link className="dropdown-item" to="/sub-category">
-                  flims
-                </Link>
-                <Link className="dropdown-item" to="/sub-category">
-                  recently added
-                </Link>
-                <Link className="dropdown-item" to="/sub-category">
-                  my list
-                </Link>
+                {loadingCategory
+                  ? ""
+                  : categories.map(category => (
+                      <Link
+                        key={category.category_id}
+                        className="dropdown-item"
+                        to={`/category/${category.category_id}`}
+                      >
+                        {category.name}
+                      </Link>
+                    ))}
               </div>
             </li>
           </ul>

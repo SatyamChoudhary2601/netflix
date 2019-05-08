@@ -56,5 +56,13 @@ export const apiConstants = {
 
   USER_API_CALL: "/user",
 
-  HOST_API_CALL: "/provider"
+  HOST_API_CALL: "/provider",
+
+  SERIES: 21,
+
+  MOVIES: 25,
+
+  RECENTLY_ADDED: 33,
+
+  CATEGORY: 54
 };
