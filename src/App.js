@@ -333,6 +333,13 @@ class App extends Component {
                 layout={UserLayout}
                 screenProps={this.eventEmitter}
               />
+              <PrivateRoute
+                authentication={this.state.authentication}
+                path={"/wishlist"}
+                component={Wishlist}
+                layout={UserLayout}
+                screenProps={this.eventEmitter}
+              />
               <Elements>
                 <PrivateRoute
                   authentication={this.state.authentication}
@@ -385,6 +392,7 @@ class App extends Component {
                 layout={UserLayout}
                 screenProps={this.eventEmitter}
               />
+
               <PrivateRoute
                 authentication={this.state.authentication}
                 path={"/payment-failure"}
@@ -392,13 +400,7 @@ class App extends Component {
                 layout={UserLayout}
                 screenProps={this.eventEmitter}
               />
-              <PrivateRoute
-                authentication={this.state.authentication}
-                path={"/wishlist"}
-                component={Wishlist}
-                layout={UserLayout}
-                screenProps={this.eventEmitter}
-              />
+
               <PrivateRoute
                 authentication={this.state.authentication}
                 path={"/history"}

@@ -82,6 +82,7 @@ class Helper extends Component {
             loadingFirst: false,
             videoDetailsFirst: videoDetailsFirst
           });
+          this.singleVideoSecond(inputData);
         } else {
           console.log("Error", response);
         }

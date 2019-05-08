@@ -26,6 +26,7 @@ const Slider = ({ children, activeSlide }) => {
 
   const handleClose = () => {
     setCurrentSlide(null);
+    localStorage.removeItem("current_video_id");
   };
 
   const contextValue = {

@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Helper from "../../Helper/helper";
 import ContentLoader from "../../Static/contentLoader";
+import ProgressiveImage from "react-progressive-image";
 
 class ViewProfilesComponent extends Helper {
   state = {
@@ -33,11 +34,20 @@ class ViewProfilesComponent extends Helper {
             onClick={event => this.handleClick(detail.id, event)}
           >
             <Link to="/home">
-              <img
+              <ProgressiveImage
                 src={detail.picture}
-                className="profile-img"
-                alt="profile_img"
-              />
+                placeholder="../assets/img/placeholder.gif"
+              >
+                {(src, loading) => (
+                  <img
+                    src={src}
+                    style={{ opacity: loading ? 0.5 : 1 }}
+                    className="profile-img"
+                    alt="profile_img"
+                  />
+                )}
+              </ProgressiveImage>
+
               <p className="profile-name">{detail.name}</p>
             </Link>
           </li>

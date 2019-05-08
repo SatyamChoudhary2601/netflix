@@ -23,7 +23,12 @@ class Content extends Helper {
     loadingSecond: true,
     suggestion: null,
     loadingSuggestion: true,
-    nav: "overview"
+    nav: "overview",
+    inputData: {
+      sub_profile_id: localStorage.getItem("active_profile_id"),
+      admin_video_id: this.props.movie.admin_video_id,
+      skip: 0
+    }
   };
 
   showSliderContent() {
@@ -39,16 +44,10 @@ class Content extends Helper {
     // Single video API call.
     // let maindata = { ...this.state.maindata };
     // let errorHandle = 0;
-    let inputData = {
-      sub_profile_id: localStorage.getItem("active_profile_id"),
-      admin_video_id: this.props.movie.admin_video_id,
-      skip: 0
-    };
-    console.log("input data", inputData);
 
-    this.singleVideoFirst(inputData);
-    this.singleVideoSecond(inputData);
-    this.suggestion(inputData);
+    console.log("input data", this.state.inputData.sub_profile_id);
+
+    this.singleVideoFirst(this.state.inputData);
   }
 
   componentWillReceiveProps(props) {
@@ -66,7 +65,6 @@ class Content extends Helper {
     };
     console.log("Input Data", inputData);
     this.singleVideoFirst(inputData);
-    this.singleVideoSecond(inputData);
   }
 
   navToggle = (link, event) => {
@@ -74,6 +72,22 @@ class Content extends Helper {
     this.setState({
       nav: link
     });
+    if (link == "related") {
+      if (
+        localStorage.getItem("current_video_id") ==
+        this.props.movie.admin_video_id
+      ) {
+        // Do nothing.
+        console.log("API Not called");
+      } else {
+        localStorage.setItem(
+          "current_video_id",
+          this.props.movie.admin_video_id
+        );
+        this.suggestion(this.state.inputData);
+        console.log("API called");
+      }
+    }
   };
 
   render() {
@@ -121,9 +135,9 @@ class Content extends Helper {
                   overview
                 </a>
               </li>
-              {loadingSecond
+              {loadingFirst
                 ? ""
-                : videoDetailsSecond.is_series && (
+                : videoDetailsFirst.is_series && (
                     <li className="nav-item">
                       <a
                         className={classNames("nav-link", {
@@ -194,7 +208,7 @@ class Content extends Helper {
               )}
 
               {loadingSecond ? (
-                "loading"
+                ""
               ) : (
                 <div
                   className={classNames("tab-pane", {
@@ -210,7 +224,7 @@ class Content extends Helper {
               )}
 
               {loadingSecond ? (
-                "loading"
+                ""
               ) : (
                 <div
                   className={classNames("tab-pane", {
@@ -229,7 +243,7 @@ class Content extends Helper {
                 })}
               >
                 {loadingSuggestion ? (
-                  "Loading"
+                  ""
                 ) : (
                   <VideoMoreLikeThis suggestion={suggestion} />
                 )}
