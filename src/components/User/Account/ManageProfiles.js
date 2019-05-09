@@ -4,6 +4,9 @@ import { Link, Redirect } from "react-router-dom";
 
 import api from "../../../Environment";
 import Helper from "../../Helper/helper";
+import { withToastManager } from "react-toast-notifications";
+
+import ToastDemo from "../../Helper/toaster";
 
 class ManageProfilesComponent extends Helper {
   state = {
@@ -33,9 +36,11 @@ class ManageProfilesComponent extends Helper {
       name: this.state.data.name
     };
     console.log("formdata", data);
-    api.postMethod("edit-sub-profile", data).then(function(response) {
+    api.postMethod("edit-sub-profile", data).then(response => {
       console.log("response", response);
       if (response.data.success === true) {
+        // this.props.history.push("/manage-profiles");
+        ToastDemo(this.props.toastManager, response.data.message, "success");
         window.location = "/manage-profiles";
       }
     });
@@ -48,10 +53,11 @@ class ManageProfilesComponent extends Helper {
       sub_profile_id: this.state.data.id
     };
     console.log("formdata", data);
-    api.postMethod("delete-sub-profile", data).then(function(response) {
+    api.postMethod("delete-sub-profile", data).then(response => {
       console.log("response", response);
       if (response.data.success === true) {
         window.location = "/manage-profiles";
+        ToastDemo(this.props.toastManager, response.data.message, "success");
       }
     });
   };
@@ -80,10 +86,11 @@ class ManageProfilesComponent extends Helper {
       name: this.state.data.name
     };
     console.log("formdata", data);
-    api.postMethod("add-profile", data).then(function(response) {
+    api.postMethod("add-profile", data).then(response => {
       console.log("response", response);
       if (response.data.success === true) {
         window.location = "/manage-profiles";
+        ToastDemo(this.props.toastManager, response.data.message, "success");
       }
     });
   };
@@ -277,4 +284,4 @@ class ManageProfilesComponent extends Helper {
   }
 }
 
-export default ManageProfilesComponent;
+export default withToastManager(ManageProfilesComponent);

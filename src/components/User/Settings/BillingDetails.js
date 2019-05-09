@@ -24,88 +24,170 @@ class BillingDetailsComponent extends Component {
     });
   }
 
-  renderSubscription = subscriptions => {
-    return (
-      <React.Fragment>
-        {subscriptions.map(subscription => (
-          <div
-            className="col-sm-12 col-md-6 col-lg-4 col-xl-4"
-            key={subscription.user_subscription_id}
-          >
-            <div className="subcsription-card">
-              <div className="subcsription-head">{subscription.title}</div>
-              <div className="subcsription-price">
-                <h4>
-                  {subscription.currency}
-                  {subscription.amount} / {subscription.plan} month
-                </h4>
-                <p>
-                  <i className="far fa-clock" />
-                  &nbsp;
-                  <span>{subscription.created_at}</span>&nbsp;-&nbsp;
-                  <span>{subscription.expiry_date}</span>
-                </p>
-              </div>
-              <div className="subcsription-details">
-                <h4>maintain account</h4>
-                <h5>
-                  <i className="fas fa-user-plus" />
-                  {subscription.no_of_account}
-                </h5>
-                <h4>Original amount</h4>
-                <h5>
-                  {subscription.currency}
-                  {subscription.total_amount}
-                </h5>
-                <h4>payment mode</h4>
-                <h5>{subscription.payment_mode}</h5>
-                <div className="text-right mt-4">
-                  <Link to="/billing-details/view" className="btn btn-black">
-                    view details
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
-        ))}
-      </React.Fragment>
-    );
-  };
   render() {
     const { loading, subscriptions } = this.state;
     return (
       <div>
         <div className="main">
           <div className="top-bottom-spacing">
-            <h3 className="text-center mt-0 mb-3">Billing details</h3>
             <div className="row">
-              <div className="col-sm-10 col-md-10 col-lg-11 col-xl-10 auto-margin">
-                <div className="subsciprion-details-se">
-                  <h4>Cancel subsciption</h4>
-                  <p>
-                    Your subscription autorenewal is paused. Please activate
-                    autorenewal and enjoy your videos
-                  </p>
-                  <div className="text-right mt-3">
-                    <button
-                      className="btn btn-danger mb-4"
-                      data-toggle="modal"
-                      data-target="#cancel-subs"
-                    >
-                      cancel subsciption
-                    </button>
-                    {/* <Link to="/billing-details/view" btn btn-danger mb-4" data-toggle="modal" data-target="#cancel-subs">cancel subcription</Link> */}
+              <div className="col-sm-10 col-md-11 col-lg-9 col-xl-8 auto-margin">
+                <div className="row m-0">
+                  <div className="col-sm-12 col-md-5 col-lg-5 col-xl-5 p-0">
+                    {loading ? (
+                      ""
+                    ) : (
+                      <div
+                        className="billing-img"
+                        style={{
+                          backgroundImage: "url(../assets/img/billing.jpg)"
+                        }}
+                      >
+                        <div className="billing-img-overlay">
+                          <div className="display-inline">
+                            <div className="icon-left">
+                              <h4 className="billing-head">
+                                <i className="far fa-calendar-alt" />
+                              </h4>
+                            </div>
+                            <div className="content-right">
+                              <h4 className="billing-head">Billing Details</h4>
+                            </div>
+                          </div>
+                          <div className="clearfix" />
+                          <p className="grey-line" />
+                          <div className="display-inline">
+                            <div className="icon-left">
+                              <h5 className="billing-head">
+                                <i className="far fa-hand-point-right" />
+                              </h5>
+                            </div>
+                            <div className="content-right">
+                              <h5 className="billing-head mb-3">
+                                next billing date
+                              </h5>
+                              <p className="m-0">
+                                {subscriptions[0].expiry_date}
+                              </p>
+                            </div>
+                          </div>
+                          <div className="clearfix" />
+                          <p className="grey-line" />
+                          <div className="display-inline">
+                            <div className="icon-left">
+                              <h5 className="billing-head">
+                                <i className="far fa-hand-point-right" />
+                              </h5>
+                            </div>
+                            <div className="content-right">
+                              <h5 className="billing-head mb-3">
+                                {subscriptions[0].title}
+                              </h5>
+                              <p className="m-0">
+                                {subscriptions[0].currency}
+                                {subscriptions[0].amount} /{" "}
+                                {subscriptions[0].plan} Months
+                              </p>
+                            </div>
+                          </div>
+                          <div className="clearfix" />
+                          <p className="grey-line" />
+                          <div className="text-right">
+                            <Link to={"/subscription"} className="capitalize">
+                              <i className="fas fa-chevron-right mr-1" />
+                              view plan details
+                            </Link>
+                          </div>
+                          <div className="text-center mt-3">
+                            <a href="#" className="btn btn-danger">
+                              cancel subcription
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    )}
                   </div>
-                </div>
-
-                <div className="row">
-                  {loading ? "Loading" : this.renderSubscription(subscriptions)}
+                  <div className="col-sm-12 col-md-7 col-lg-7 col-xl-7 p-0">
+                    <div className="billing-content-sec">
+                      <h4 className="billing-head">
+                        <i className="far fa-calendar-alt" />
+                        Billing Details
+                      </h4>
+                      <p className="grey-line" />
+                      {loading
+                        ? ""
+                        : subscriptions.map(subscription =>
+                            subscription.active_plan == 1 ? (
+                              ""
+                            ) : (
+                              <div
+                                className="card"
+                                key={subscription.user_subscription_id}
+                              >
+                                <div className="card-header bg-dark text-white">
+                                  basic
+                                </div>
+                                <div className="card-body">
+                                  <table className="table table-bordered m-0">
+                                    <tbody>
+                                      <tr>
+                                        <td>subscribed date</td>
+                                        <td>{subscription.created_at}</td>
+                                      </tr>
+                                      <tr>
+                                        <td>expiry date</td>
+                                        <td>{subscription.expiry_date}</td>
+                                      </tr>
+                                      <tr>
+                                        <td>no of account</td>
+                                        <td>{subscription.no_of_account}</td>
+                                      </tr>
+                                      <tr>
+                                        <td>no of month</td>
+                                        <td>{subscription.plan}</td>
+                                      </tr>
+                                      <tr>
+                                        <td>total amount</td>
+                                        <td>
+                                          {subscription.currency}
+                                          {subscription.total_amount}
+                                        </td>
+                                      </tr>
+                                      {subscription.coupon_code == "" ? (
+                                        ""
+                                      ) : (
+                                        <tr>
+                                          <td>coupon amount</td>
+                                          <td>
+                                            {subscription.currency}
+                                            {subscription.coupon_amount}
+                                          </td>
+                                        </tr>
+                                      )}
+                                      <tr>
+                                        <td>paid amount</td>
+                                        <td>
+                                          {subscription.currency}
+                                          {subscription.amount}
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <td>payment mode</td>
+                                        <td>{subscription.payment_mode}</td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                </div>
+                              </div>
+                            )
+                          )}
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-
         <div className="modal fade confirmation-popup" id="cancel-subs">
           <div className="modal-dialog modal-dialog-centered">
             <div className="modal-content">

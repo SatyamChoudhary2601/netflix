@@ -356,15 +356,6 @@ class App extends Component {
                 layout={UserLayout}
                 screenProps={this.eventEmitter}
               />
-              <Elements>
-                <PrivateRoute
-                  authentication={this.state.authentication}
-                  path={"/add-card"}
-                  component={AddCardComponent}
-                  layout={UserLayout}
-                  screenProps={this.eventEmitter}
-                />
-              </Elements>
 
               <PrivateRoute
                 authentication={this.state.authentication}
@@ -476,6 +467,15 @@ class App extends Component {
                 layout={StaticLayout}
                 screenProps={this.eventEmitter}
               />
+              <Elements>
+                <PrivateRoute
+                  authentication={this.state.authentication}
+                  path={"/add-card"}
+                  component={AddCardComponent}
+                  layout={UserLayout}
+                  screenProps={this.eventEmitter}
+                />
+              </Elements>
             </Switch>
           </Router>
         </ToastProvider>

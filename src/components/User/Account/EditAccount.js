@@ -7,10 +7,11 @@ import ToastDemo from "../../Helper/toaster";
 
 class EditAccountComponent extends Helper {
   state = {
-    data: {}
+    data: null,
+    loading: true
   };
-  async componentDidMount() {
-    await this.getUserDetails();
+  componentDidMount() {
+    this.getUserDetails();
   }
 
   handleSubmit = event => {
@@ -38,7 +39,7 @@ class EditAccountComponent extends Helper {
     });
   };
   render() {
-    const { data } = this.state;
+    const { loading, data } = this.state;
     var bgImg = {
       backgroundImage: "url(../assets/img/bg.jpg)"
     };
@@ -59,7 +60,7 @@ class EditAccountComponent extends Helper {
                         className="form-control"
                         id="name"
                         name="name"
-                        value={data.name}
+                        value={loading ? "" : data.name}
                       />
                     </div>
                     <div className="form-group">
@@ -70,7 +71,7 @@ class EditAccountComponent extends Helper {
                         className="form-control"
                         id="email"
                         name="email"
-                        value={data.email}
+                        value={loading ? "" : data.email}
                       />
                     </div>
                     <div className="form-group">
@@ -81,7 +82,7 @@ class EditAccountComponent extends Helper {
                         className="form-control"
                         id="mobile"
                         name="mobile"
-                        value={data.mobile}
+                        value={loading ? "" : data.mobile}
                       />
                     </div>
                     <button className="btn btn-danger auth-btn mt-4">
