@@ -53,8 +53,13 @@ class Category extends Helper {
         <div className="main-slidersec">
           <Link
             to={{
-              pathname: "/genre",
-              state: { detail: maindata }
+              pathname: "/view-all",
+              state: {
+                url_type: maindata.url_type,
+                page_type: inputData.page_type,
+                category_id: inputData.category_id,
+                title: maindata.title
+              }
             }}
           >
             <h3 className="">

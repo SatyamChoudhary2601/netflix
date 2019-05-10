@@ -47,11 +47,11 @@ const Item = ({ movie }) => (
             <a href="#">
               <div className="text-center thumbarrow-sec">
                 <img
-                  src="assets/img/arrow-white.png"
+                  src={window.location.origin + "/assets/img/arrow-white.png"}
                   className="thumbarrow thumbarrow-white"
                 />
                 <img
-                  src="assets/img/arrow-red.png"
+                  src={window.location.origin + "/assets/img/arrow-red.png"}
                   className="thumbarrow thumbarrow-red"
                 />
               </div>

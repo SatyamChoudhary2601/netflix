@@ -73,6 +73,8 @@ import {
 } from "react-toast-notifications";
 import Genres from "./components/User/genres";
 import Category from "./components/User/category";
+import ViewAll from "./components/User/viewAll";
+import NotificationsViewAll from "./components/User/Account/notificationsViewAll";
 
 const history = createHistory();
 
@@ -222,6 +224,22 @@ class App extends Component {
                 screenProps={this.eventEmitter}
               />
 
+              <PrivateRoute
+                authentication={this.state.authentication}
+                path={"notification/view-all"}
+                component={NotificationsViewAll}
+                layout={UserLayout}
+                screenProps={this.eventEmitter}
+              />
+
+              <PrivateRoute
+                authentication={this.state.authentication}
+                path={"/view-all"}
+                component={ViewAll}
+                layout={UserLayout}
+                screenProps={this.eventEmitter}
+              />
+
               {/***Empty layout ****/}
               <AppRoute
                 path={"/sample"}
@@ -263,7 +281,7 @@ class App extends Component {
                 screenProps={this.eventEmitter}
               />
               <AppRoute
-                path={"/video"}
+                path={"/video/:id"}
                 component={VideoComponent}
                 layout={EmptyLayout}
                 screenProps={this.eventEmitter}

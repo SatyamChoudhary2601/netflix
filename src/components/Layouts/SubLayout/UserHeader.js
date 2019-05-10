@@ -16,7 +16,10 @@ class UserHeader extends Helper {
     loading: true,
     activeProfile: null,
     loadingCategory: true,
-    categories: null
+    categories: null,
+    loadingNotification: true,
+    notificationCount: null,
+    notifications: null
   };
 
   componentDidMount() {
@@ -34,6 +37,29 @@ class UserHeader extends Helper {
           let categories = response.data.data;
           console.log("response category", categories);
           this.setState({ loadingCategory: false, categories: categories });
+        } else {
+          console.log("Error", response);
+        }
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+    // Notification count API
+    let notificationInputData = {
+      skip: 0,
+      take: 4
+    };
+    api
+      .postMethod("notifications", notificationInputData)
+      .then(response => {
+        if (response.data.success === true) {
+          let notificationCount = response.data.count;
+          let notifications = response.data.data;
+          this.setState({
+            loadingNotification: false,
+            notificationCount: notificationCount,
+            notifications: notifications
+          });
         } else {
           console.log("Error", response);
         }
@@ -78,7 +104,15 @@ class UserHeader extends Helper {
   };
 
   render() {
-    const { loading, activeProfile, loadingCategory, categories } = this.state;
+    const {
+      loading,
+      activeProfile,
+      loadingCategory,
+      categories,
+      loadingNotification,
+      notificationCount,
+      notifications
+    } = this.state;
     return (
       <div>
         <nav
@@ -86,16 +120,19 @@ class UserHeader extends Helper {
           id="header"
         >
           <span className="menu-icon" id="menu_icon">
-            <img src="assets/img/menu.png" alt="menu_img" />
+            <img
+              src={window.location.origin + "/assets/img/menu.png"}
+              alt="menu_img"
+            />
           </span>
           <Link className="navbar-brand abs" to="/home">
             <img
-              src="assets/img/streamview.png"
+              src={window.location.origin + "/assets/img/streamview.png"}
               className="logo-img desktop-logo"
               alt="Streamview"
             />
             <img
-              src="assets/img/streamview-icon.png"
+              src={window.location.origin + "/assets/img/streamview-icon.png"}
               className="logo-img mobile-logo"
               alt="Streamview"
             />
@@ -134,6 +171,11 @@ class UserHeader extends Helper {
             <li className="nav-item">
               <Link className="nav-link" to={`/genre/${apiConstants.MOVIES}`}>
                 Movies
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to={`/genre/${apiConstants.KIDS}`}>
+                Kids
               </Link>
             </li>
             <li className="nav-item dropdown">
@@ -176,7 +218,9 @@ class UserHeader extends Helper {
                 to="#"
                 data-toggle="dropdown"
               >
-                <div className="notification-count">9</div>
+                <div className="notification-count">
+                  {loadingNotification ? "" : notificationCount}
+                </div>
                 <i className="fas fa-bell" />
               </Link>
               <div className="dropdown-menu notification-drop">
@@ -191,52 +235,25 @@ class UserHeader extends Helper {
                   <div className="clearfix" />
                 </div>
                 <div className="notification-drop-height">
-                  <Link className="dropdown-item" to="#">
-                    <div className="display-inline">
-                      <div className="video-left">
-                        <img
-                          src="assets/img/notification1.jpg"
-                          alt="Notification"
-                        />
-                      </div>
-                      <div className="video-right-details">
-                        <h5>duck duck goose new arraival</h5>
-                        <p>6 days ago</p>
-                      </div>
-                    </div>
-                  </Link>
-                  <Link className="dropdown-item" to="#">
-                    <div className="display-inline">
-                      <div className="video-left">
-                        <img
-                          src="assets/img/notification2.jpg"
-                          alt="Notification"
-                        />
-                      </div>
-                      <div className="video-right-details">
-                        <h5>captain americLink new arraival</h5>
-                        <p>6 days ago</p>
-                      </div>
-                    </div>
-                  </Link>
-                  <Link className="dropdown-item" to="#">
-                    <div className="display-inline">
-                      <div className="video-left">
-                        <img
-                          src="assets/img/notification1.jpg"
-                          alt="Notification"
-                        />
-                      </div>
-                      <div className="video-right-details">
-                        <h5>duck duck goose new arraival</h5>
-                        <p>6 days ago</p>
-                      </div>
-                    </div>
-                  </Link>
+                  {loadingNotification
+                    ? ""
+                    : notifications.map(notification => (
+                        <Link className="dropdown-item" to="#">
+                          <div className="display-inline">
+                            <div className="video-left">
+                              <img src={notification.img} alt="Notification" />
+                            </div>
+                            <div className="video-right-details">
+                              <h5>{notification.title}</h5>
+                              <p>{notification.time}</p>
+                            </div>
+                          </div>
+                        </Link>
+                      ))}
                 </div>
                 <div className="notification-seeall">
-                  <Link to="#">
-                    seLink all
+                  <Link to={"notification/view-all"}>
+                    see all
                     <i className="fas fa-chevron-right" />
                   </Link>
                 </div>
@@ -249,7 +266,7 @@ class UserHeader extends Helper {
                 data-toggle="dropdown"
               >
                 <img
-                  src="assets/img/icon1.png"
+                  src={window.location.origin + "/assets/img/icon1.png"}
                   className="nav-profile-img"
                   alt="profile_img"
                 />
@@ -284,7 +301,10 @@ class UserHeader extends Helper {
               <Link to="/view-profiles">
                 <div className="display-inline">
                   <div className="left-sec">
-                    <img src="assets/img/icon1.png" alt="User " />
+                    <img
+                      src={window.location.origin + "/assets/img/icon1.png"}
+                      alt="User "
+                    />
                   </div>
                   <div className="right-name">
                     <h5>ronan</h5>

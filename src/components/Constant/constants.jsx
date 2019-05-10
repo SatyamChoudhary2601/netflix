@@ -64,5 +64,7 @@ export const apiConstants = {
 
   RECENTLY_ADDED: 33,
 
-  CATEGORY: 54
+  CATEGORY: 54,
+
+  KIDS: 12
 };

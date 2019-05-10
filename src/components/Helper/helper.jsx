@@ -93,6 +93,25 @@ class Helper extends Component {
         console.log(error);
       });
   }
+  onlySingleVideoFirst(inputData) {
+    api
+      .postMethod("videos/view", inputData)
+      .then(response => {
+        if (response.data.success === true) {
+          let videoDetailsFirst = response.data.data;
+          console.log("response first maindata", videoDetailsFirst);
+          this.setState({
+            loadingFirst: false,
+            videoDetailsFirst: videoDetailsFirst
+          });
+        } else {
+          console.log("Error", response);
+        }
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+  }
   singleVideoSecond(inputData) {
     api
       .postMethod("videos/view/second", inputData)

@@ -135,21 +135,23 @@ class Content extends Helper {
                   overview
                 </a>
               </li>
-              {loadingFirst
-                ? ""
-                : videoDetailsFirst.is_series && (
-                    <li className="nav-item">
-                      <a
-                        className={classNames("nav-link", {
-                          active: this.state.nav == "episodes"
-                        })}
-                        onClick={event => this.navToggle("episodes", event)}
-                        href="#"
-                      >
-                        episodes
-                      </a>
-                    </li>
-                  )}
+              {loadingFirst ? (
+                ""
+              ) : videoDetailsFirst.is_series ? (
+                <li className="nav-item">
+                  <a
+                    className={classNames("nav-link", {
+                      active: this.state.nav == "episodes"
+                    })}
+                    onClick={event => this.navToggle("episodes", event)}
+                    href="#"
+                  >
+                    episodes
+                  </a>
+                </li>
+              ) : (
+                ""
+              )}
 
               {loadingSecond
                 ? ""

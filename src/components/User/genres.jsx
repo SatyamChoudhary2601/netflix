@@ -27,6 +27,11 @@ class Genres extends Helper {
         ...inputData,
         page_type: "SERIES"
       };
+    } else if (urlType == apiConstants.KIDS) {
+      inputData = {
+        ...inputData,
+        page_type: "KIDS"
+      };
     } else {
       inputData = {
         ...inputData,
@@ -64,8 +69,12 @@ class Genres extends Helper {
         <div className="main-slidersec">
           <Link
             to={{
-              pathname: "/genre",
-              state: { detail: maindata }
+              pathname: "/view-all",
+              state: {
+                url_type: maindata.url_type,
+                page_type: inputData.page_type,
+                title: maindata.title
+              }
             }}
           >
             <h3 className="">

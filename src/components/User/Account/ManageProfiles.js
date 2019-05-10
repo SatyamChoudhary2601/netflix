@@ -91,6 +91,12 @@ class ManageProfilesComponent extends Helper {
       if (response.data.success === true) {
         window.location = "/manage-profiles";
         ToastDemo(this.props.toastManager, response.data.message, "success");
+      } else {
+        ToastDemo(
+          this.props.toastManager,
+          response.data.error_messages,
+          "info"
+        );
       }
     });
   };

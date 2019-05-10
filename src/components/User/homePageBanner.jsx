@@ -46,7 +46,10 @@ class HomePageBanner extends Component {
                   <h1 className="banner_video_title">{video.title}</h1>
                   <h4 className="banner_video_text">{video.description}</h4>
                   <div className="banner-btn-sec">
-                    <Link to="#" className="btn btn-grey">
+                    <Link
+                      to={`/video/${video.admin_video_id}`}
+                      className="btn btn-grey"
+                    >
                       <i className="fas fa-play mr-2" />
                       play
                     </Link>

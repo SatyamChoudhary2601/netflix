@@ -46,8 +46,12 @@ class Home extends Component {
         <div className="main-slidersec">
           <Link
             to={{
-              pathname: "/genre",
-              state: { detail: maindata }
+              pathname: "/view-all",
+              state: {
+                url_type: maindata.url_type,
+                page_type: "HOME",
+                title: maindata.title
+              }
             }}
           >
             <h3 className="">
