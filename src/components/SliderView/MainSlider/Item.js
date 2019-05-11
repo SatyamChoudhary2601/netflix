@@ -23,6 +23,7 @@ const Item = ({ movie }) => (
           })}
           style={{ backgroundImage: "url(" + movie.default_image + ")" }}
         >
+          <a onClick={() => onSelectSlide(movie)} className="close-overlay" />
           <div className="width-100 slider-content-box">
             <a href="#">
               <div className="thumb-playicon">
@@ -44,21 +45,8 @@ const Item = ({ movie }) => (
               </span>
             </h5>
             <p className="thumb-desc">{movie.description} </p>
-            <a href="#">
-              <div className="text-center thumbarrow-sec">
-                <img
-                  src={window.location.origin + "/assets/img/arrow-white.png"}
-                  className="thumbarrow thumbarrow-white"
-                />
-                <img
-                  src={window.location.origin + "/assets/img/arrow-red.png"}
-                  className="thumbarrow thumbarrow-red"
-                />
-              </div>
-            </a>
+            <ShowDetailsButton onClick={() => onSelectSlide(movie)} />
           </div>
-
-          <ShowDetailsButton onClick={() => onSelectSlide(movie)} />
           {isActive && <Mark />}
         </div>
       );

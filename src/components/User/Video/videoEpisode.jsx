@@ -18,14 +18,12 @@ const VideoEpisode = genreDetails => {
       <div className="pr-4per pl-4per">
         <h1 className="banner_video_title">Episode</h1>
         <form>
-          <div className="custom-select width-200">
-            <select>
-              <option value="0">season 1</option>
-              <option value="1">season 2</option>
-              <option value="2">season 3</option>
-              <option value="3">season 4</option>
-            </select>
-          </div>
+          <select className="form-control mw-200 mb-3">
+            <option value="0">season 1</option>
+            <option value="1">season 2</option>
+            <option value="2">season 3</option>
+            <option value="3">season 4</option>
+          </select>
         </form>
       </div>
       <div>
