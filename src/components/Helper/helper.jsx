@@ -53,7 +53,7 @@ class Helper extends Component {
   }
 
   changePassword() {
-    api.postMethod("changePassword", this.state.data).then(function(response) {
+    api.postMethod("changePassword", this.state.data).then(response => {
       console.log("response", response);
       if (response.data.success === true) {
         console.log("password updated");

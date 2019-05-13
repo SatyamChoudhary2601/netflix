@@ -5,7 +5,7 @@ import Slider from "../../SliderView/MainSlider";
 import api from "../../../Environment";
 import ContentLoader from "../../Static/contentLoader";
 
-class NotificationsViewAll extends Component {
+class Notifications extends Component {
   state = {
     loadingNotification: true,
     notifications: null
@@ -63,7 +63,7 @@ class NotificationsViewAll extends Component {
             View All Notification
             <i className="fas fa-angle-right ml-2" />
           </h3>
-          {result.map(res => (
+          {result.map((res, index) => (
             <Slider key={res.index}>
               {res.map(movie => (
                 <Slider.Item movie={movie} key={movie.admin_video_id}>
@@ -79,4 +79,4 @@ class NotificationsViewAll extends Component {
   }
 }
 
-export default NotificationsViewAll;
+export default Notifications;

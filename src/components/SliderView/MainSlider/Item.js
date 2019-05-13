@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import cx from "classnames";
 import SliderContext from "./context";
 import ShowDetailsButton from "./ShowDetailsButton";
@@ -25,11 +26,11 @@ const Item = ({ movie }) => (
         >
           <a onClick={() => onSelectSlide(movie)} className="close-overlay" />
           <div className="width-100 slider-content-box">
-            <a href="#">
+            <Link to={`/video/${movie.admin_video_id}`}>
               <div className="thumb-playicon">
                 <i className="fas fa-play" />
               </div>
-            </a>
+            </Link>
             <h4 className="thumb-title">{movie.title}</h4>
             <h5 className="thumb-details">
               <span className="green-clr">

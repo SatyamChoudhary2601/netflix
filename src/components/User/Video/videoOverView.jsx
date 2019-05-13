@@ -1,13 +1,105 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { withToastManager } from "react-toast-notifications";
+import api from "../../../Environment";
+import ToastDemo from "../../Helper/toaster";
 const DATE_OPTIONS = {
   year: "numeric",
   month: "short"
 };
 
 class VideoOverView extends Component {
+  state = {
+    inputData: {
+      admin_video_id: this.props.videoDetailsFirst.admin_video_id,
+      sub_profile_id: localStorage.getItem("active_profile_id")
+    },
+    likeApiCall: false,
+    dislikeApiCall: false,
+    likeReponse: null,
+    disLikeReponse: null,
+    wishlistApiCall: false,
+    wishlistResponse: {
+      wishlist_id: null
+    }
+  };
+  handleOnClickLike = event => {
+    event.preventDefault();
+
+    console.log("onclick like", this.state.inputData);
+    api.postMethod("videos/like", this.state.inputData).then(response => {
+      console.log("response", response);
+      if (response.data.success === true) {
+        ToastDemo(this.props.toastManager, "You liked this Video!", "success");
+        this.setState({ likeReponse: response.data.data, likeApiCall: true });
+      } else {
+        ToastDemo(
+          this.props.toastManager,
+          response.data.error_messages,
+          "error"
+        );
+      }
+    });
+    console.log("like State", this.state.likeReponse);
+  };
+
+  handleOnClickDislike = event => {
+    event.preventDefault();
+
+    console.log("onclick dislike", this.state.inputData);
+    api.postMethod("videos/dis_like", this.state.inputData).then(response => {
+      console.log("response", response);
+      if (response.data.success === true) {
+        ToastDemo(
+          this.props.toastManager,
+          "You Disliked this Video!",
+          "success"
+        );
+        this.setState({
+          disLikeReponse: response.data.data,
+          dislikeApiCall: true
+        });
+      } else {
+        ToastDemo(this.props.toastManager, response.data.error, "error");
+      }
+    });
+  };
+
+  handleWishList = event => {
+    event.preventDefault();
+    api
+      .postMethod("wishlists/operations", this.state.inputData)
+      .then(response => {
+        console.log("response", response);
+        if (response.data.success === true) {
+          ToastDemo(this.props.toastManager, response.data.message, "success");
+          this.setState({
+            wishlistResponse: response.data,
+            wishlistApiCall: true
+          });
+          console.log(
+            "Wishlist data ",
+            this.state.wishlistResponse.wishlist_id
+          );
+        } else {
+          ToastDemo(
+            this.props.toastManager,
+            response.data.error_messages,
+            "error"
+          );
+        }
+      });
+  };
   render() {
     const { videoDetailsFirst } = this.props;
+    const {
+      likeReponse,
+      likeApiCall,
+      disLikeReponse,
+      dislikeApiCall,
+      wishlistApiCall,
+      wishlistResponse
+    } = this.state;
     return (
       <div className="slider-topbottom-spacing">
         <div className="overview-content">
@@ -39,29 +131,57 @@ class VideoOverView extends Component {
             <span>
               <i className="far fa-thumbs-up" />
             </span>
-            <span className="mr-2">{videoDetailsFirst.likes}</span>
+            <span className="mr-2">
+              {likeApiCall ? likeReponse.like_count : videoDetailsFirst.likes}
+            </span>
             <span>
               <i className="far fa-thumbs-down" />
             </span>
-            <span className="mr-2">40</span>
+            <span className="mr-2">
+              {dislikeApiCall
+                ? disLikeReponse.dislike_count
+                : videoDetailsFirst.dislikes}
+            </span>
           </h4>
           <h4 className="slider_video_text">{videoDetailsFirst.description}</h4>
           <div className="banner-btn-sec">
-            <Link to="#" className="btn btn-danger btn-right-space br-0">
+            <Link
+              to={`/video/${videoDetailsFirst.admin_video_id}`}
+              className="btn btn-danger btn-right-space br-0"
+            >
               <i className="fas fa-play mr-2" />
               play
             </Link>
             <Link
-              to={"/account"}
+              to="#"
+              onClick={this.handleWishList}
               className="btn btn-outline-secondary btn-right-space"
             >
-              <i className="fas fa-plus mr-2" />
+              {wishlistApiCall ? (
+                wishlistResponse.wishlist_id != null ? (
+                  <i className="fas fa-check mr-2" />
+                ) : (
+                  <i className="fas fa-plus mr-2" />
+                )
+              ) : videoDetailsFirst.wishlist_status ? (
+                <i className="fas fa-check mr-2" />
+              ) : (
+                <i className="fas fa-plus mr-2" />
+              )}
               my list
             </Link>
-            <Link to="#" className="btn express-btn mr-2">
+            <Link
+              to="#"
+              onClick={this.handleOnClickLike}
+              className="btn express-btn mr-2"
+            >
               <i className="far fa-thumbs-up" />
             </Link>
-            <Link to="#" className="btn express-btn btn-right-space">
+            <Link
+              to="#"
+              onClick={event => this.handleOnClickDislike(event)}
+              className="btn express-btn btn-right-space"
+            >
               <i className="far fa-thumbs-down" />
             </Link>
             <Link
@@ -79,4 +199,4 @@ class VideoOverView extends Component {
   }
 }
 
-export default VideoOverView;
+export default withToastManager(VideoOverView);

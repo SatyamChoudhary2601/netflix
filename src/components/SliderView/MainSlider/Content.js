@@ -220,7 +220,7 @@ class Content extends Helper {
                 >
                   <VideoEpisode
                     genreVideos={videoDetailsSecond.genre_videos}
-                    genre={videoDetailsSecond.genres}
+                    genres={videoDetailsSecond.genres}
                   />
                 </div>
               )}

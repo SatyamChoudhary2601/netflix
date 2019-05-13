@@ -39,7 +39,7 @@ const VideoMoreLikeThis = ({ suggestion }) => {
                                                         assets/img/thumb1.jpg 2x"
                 />
                 <div className="trailers-img-overlay">
-                  <Link to="#">
+                  <Link to={`/video/${suggest.admin_video_id}`}>
                     <div className="thumbslider-outline">
                       <i className="fas fa-play" />
                     </div>

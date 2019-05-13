@@ -74,7 +74,7 @@ import {
 import Genres from "./components/User/genres";
 import Category from "./components/User/category";
 import ViewAll from "./components/User/viewAll";
-import NotificationsViewAll from "./components/User/Account/notificationsViewAll";
+import Notifications from "./components/User/Account/notificationsViewAll";
 
 const history = createHistory();
 
@@ -226,16 +226,16 @@ class App extends Component {
 
               <PrivateRoute
                 authentication={this.state.authentication}
-                path={"notification/view-all"}
-                component={NotificationsViewAll}
+                path={"/view-all"}
+                component={ViewAll}
                 layout={UserLayout}
                 screenProps={this.eventEmitter}
               />
 
               <PrivateRoute
                 authentication={this.state.authentication}
-                path={"/view-all"}
-                component={ViewAll}
+                path={"/notification/view-all"}
+                component={Notifications}
                 layout={UserLayout}
                 screenProps={this.eventEmitter}
               />
@@ -353,6 +353,7 @@ class App extends Component {
                 layout={UserLayout}
                 screenProps={this.eventEmitter}
               />
+
               <PrivateRoute
                 authentication={this.state.authentication}
                 path={"/card-details"}

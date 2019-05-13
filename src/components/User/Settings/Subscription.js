@@ -54,7 +54,15 @@ class SubscriptionComponent extends Component {
                 </h5>
                 <p>{subscription.description}</p>
                 <div className="text-right mt-4">
-                  <Link to="/invoice" className="btn btn-danger">
+                  <Link
+                    to={{
+                      pathname: "/invoice",
+                      state: {
+                        subscription: subscription
+                      }
+                    }}
+                    className="btn btn-danger"
+                  >
                     pay now
                   </Link>
                 </div>
