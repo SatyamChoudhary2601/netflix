@@ -25,8 +25,12 @@ class VideoOverView extends Helper {
     },
     redirect: false,
     redirectPPV: false,
-    redirectPaymentOption: false
+    redirectPaymentOption: false,
+    playButtonClicked: false
   };
+  componentDidMount() {
+    this.setState({ playButtonClicked: false });
+  }
   handleOnClickLike = event => {
     event.preventDefault();
 
@@ -100,16 +104,8 @@ class VideoOverView extends Helper {
 
   handlePlayVideo = event => {
     event.preventDefault();
-    if (this.props.videoDetailsFirst.should_display_ppv != 0) {
-      if (this.props.videoDetailsFirst.ppv_page_type == 2) {
-        this.setState({ redirectPaymentOption: true });
-      } else {
-        this.setState({ redirectPPV: true });
-      }
-    } else {
-      console.log("Redirect");
-      this.setState({ redirect: true });
-    }
+    this.redirectStatus(this.props.videoDetailsFirst);
+    this.setState({ playButtonClicked: true });
   };
   render() {
     const { videoDetailsFirst } = this.props;
@@ -119,43 +115,17 @@ class VideoOverView extends Helper {
       disLikeReponse,
       dislikeApiCall,
       wishlistApiCall,
-      wishlistResponse,
-      redirect,
-      redirectPPV,
-      redirectPaymentOption
+      wishlistResponse
     } = this.state;
 
-    if (redirect) {
-      return (
-        <Redirect
-          to={{
-            pathname: `/video/${videoDetailsFirst.admin_video_id}`,
-            state: { videoDetailsFirst: videoDetailsFirst }
-          }}
-        />
+    if (this.state.playButtonClicked) {
+      const returnToVideo = this.renderRedirectPage(
+        this.props.videoDetailsFirst
       );
-    } else if (redirectPPV) {
-      return (
-        <Redirect
-          to={{
-            pathname: "/pay-per-view",
-            state: {
-              videoDetailsFirst: videoDetailsFirst
-            }
-          }}
-        />
-      );
-    } else if (redirectPaymentOption) {
-      return (
-        <Redirect
-          to={{
-            pathname: "/payment-options",
-            state: {
-              videoDetailsFirst: videoDetailsFirst
-            }
-          }}
-        />
-      );
+
+      if (returnToVideo != null) {
+        return returnToVideo;
+      }
     }
     return (
       <div className="slider-topbottom-spacing">

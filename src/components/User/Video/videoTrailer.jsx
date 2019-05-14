@@ -39,7 +39,12 @@ const VideoTrailer = data => {
                                                                   assets/img/thumb8.jpg 2x"
                 />
                 <div className="trailers-img-overlay">
-                  <Link to={`/video/${trailer.admin_video_id}`}>
+                  <Link
+                    to={{
+                      pathname: `/video/${trailer.admin_video_id}`,
+                      state: { videoDetailsFirst: trailer }
+                    }}
+                  >
                     <div className="thumbslider-outline">
                       <i className="fas fa-play" />
                     </div>

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import api from "../../Environment";
 import { apiConstants } from "../Constant/constants";
 import ToastDemo from "./toaster";
@@ -31,7 +31,10 @@ class Helper extends Component {
     maindata: null,
     banner: null,
     wishlistApiCall: false,
-    wishlistResponse: null
+    wishlistResponse: null,
+    redirect: false,
+    redirectPPV: false,
+    redirectPaymentOption: false
   };
 
   handleChange = ({ currentTarget: input }) => {
@@ -108,7 +111,8 @@ class Helper extends Component {
             videoDetailsFirst: videoDetailsFirst
           });
         } else {
-          console.log("Error", response);
+          console.log("Error", response.data);
+          this.setState({ videoDetailsFirst: response.data });
         }
       })
       .catch(function(error) {
@@ -190,6 +194,58 @@ class Helper extends Component {
         );
       }
     });
+  }
+
+  redirectStatus(StatusData) {
+    if (StatusData.should_display_ppv != 0) {
+      if (StatusData.ppv_page_type == 2) {
+        this.setState({ redirectPaymentOption: true });
+      } else {
+        this.setState({ redirectPPV: true });
+      }
+    } else {
+      console.log("Redirect");
+      this.setState({ redirect: true });
+    }
+  }
+
+  renderRedirectPage(videoDetailsFirst) {
+    console.log("REdirect check");
+    if (this.state.redirect) {
+      console.log("REdirect check");
+      return (
+        <Redirect
+          to={{
+            pathname: `/video/${videoDetailsFirst.admin_video_id}`,
+            state: { videoDetailsFirst: videoDetailsFirst }
+          }}
+        />
+      );
+    } else if (this.state.redirectPPV) {
+      return (
+        <Redirect
+          to={{
+            pathname: "/pay-per-view",
+            state: {
+              videoDetailsFirst: videoDetailsFirst
+            }
+          }}
+        />
+      );
+    } else if (this.state.redirectPaymentOption) {
+      return (
+        <Redirect
+          to={{
+            pathname: "/payment-options",
+            state: {
+              videoDetailsFirst: videoDetailsFirst
+            }
+          }}
+        />
+      );
+    } else {
+      return null;
+    }
   }
 }
 

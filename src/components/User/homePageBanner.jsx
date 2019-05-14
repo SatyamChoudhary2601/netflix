@@ -16,8 +16,12 @@ class HomePageBanner extends Helper {
     redirect: false,
     redirectPPV: false,
     redirectPaymentOption: false,
-    videoDetailsFirst: null
+    videoDetailsFirst: null,
+    playButtonClicked: false
   };
+  componentDidMount() {
+    this.setState({ playButtonClicked: false });
+  }
   handleWishList = (event, admin_video_id) => {
     event.preventDefault();
     let inputData = {
@@ -47,6 +51,7 @@ class HomePageBanner extends Helper {
   handlePlayVideo = async (event, admin_video_id) => {
     event.preventDefault();
 
+    this.setState({ playButtonClicked: true });
     let inputData = {
       ...this.state.inputData,
       admin_video_id: admin_video_id
@@ -54,16 +59,7 @@ class HomePageBanner extends Helper {
 
     await this.onlySingleVideoFirst(inputData);
 
-    if (this.state.videoDetailsFirst.should_display_ppv != 0) {
-      if (this.state.videoDetailsFirst.ppv_page_type == 2) {
-        this.setState({ redirectPaymentOption: true });
-      } else {
-        this.setState({ redirectPPV: true });
-      }
-    } else {
-      console.log("Redirect");
-      this.setState({ redirect: true });
-    }
+    this.redirectStatus(this.state.videoDetailsFirst);
   };
 
   render() {
@@ -76,45 +72,17 @@ class HomePageBanner extends Helper {
       autoplay: false
     };
     const { banner } = this.props;
-    const {
-      videoDetailsFirst,
-      redirect,
-      redirectPPV,
-      redirectPaymentOption
-    } = this.state;
 
-    if (redirect) {
-      return (
-        <Redirect
-          to={{
-            pathname: `/video/${videoDetailsFirst.admin_video_id}`,
-            state: { videoDetailsFirst: videoDetailsFirst }
-          }}
-        />
+    if (this.state.playButtonClicked) {
+      const returnToVideo = this.renderRedirectPage(
+        this.state.videoDetailsFirst
       );
-    } else if (redirectPPV) {
-      return (
-        <Redirect
-          to={{
-            pathname: "/pay-per-view",
-            state: {
-              videoDetailsFirst: videoDetailsFirst
-            }
-          }}
-        />
-      );
-    } else if (redirectPaymentOption) {
-      return (
-        <Redirect
-          to={{
-            pathname: "/payment-options",
-            state: {
-              videoDetailsFirst: videoDetailsFirst
-            }
-          }}
-        />
-      );
+
+      if (returnToVideo != null) {
+        return returnToVideo;
+      }
     }
+
     return (
       <Slider {...bannerSlider} className="banner-slider slider">
         {banner.data.map(video => (
