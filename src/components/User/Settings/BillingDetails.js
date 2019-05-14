@@ -1,13 +1,16 @@
 import React, { Component } from "react";
 
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 import api from "../../../Environment";
+import ToastDemo from "../../Helper/toaster";
+import { withToastManager } from "react-toast-notifications";
 
 class BillingDetailsComponent extends Component {
   state = {
     subscriptions: [],
-    loading: true
+    loading: true,
+    redirect: false
   };
   componentDidMount() {
     // api call
@@ -17,15 +20,22 @@ class BillingDetailsComponent extends Component {
 
     api.postMethod("subscribedPlans", data).then(response => {
       console.log("response", response);
-      if (response.data.success === true) {
+      if (response.data.success) {
         let subscriptions = response.data.data;
         this.setState({ loading: false, subscriptions: subscriptions });
+      } else {
+        this.props.history.push("/account");
+        ToastDemo(this.props.toastManager, response.data.error, "error");
       }
     });
   }
 
   render() {
     const { loading, subscriptions } = this.state;
+    if (subscriptions.length == 0) {
+      this.props.history.push("/account");
+      ToastDemo(this.props.toastManager, "No Data found", "error");
+    }
     return (
       <div>
         <div className="main">
@@ -227,4 +237,4 @@ class BillingDetailsComponent extends Component {
   }
 }
 
-export default BillingDetailsComponent;
+export default withToastManager(BillingDetailsComponent);

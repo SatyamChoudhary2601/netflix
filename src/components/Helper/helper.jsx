@@ -3,6 +3,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import api from "../../Environment";
 import { apiConstants } from "../Constant/constants";
+import ToastDemo from "./toaster";
 
 class Helper extends Component {
   state = {
@@ -28,7 +29,9 @@ class Helper extends Component {
     suggestion: null,
     loadingSuggestion: true,
     maindata: null,
-    banner: null
+    banner: null,
+    wishlistApiCall: false,
+    wishlistResponse: null
   };
 
   handleChange = ({ currentTarget: input }) => {
@@ -93,8 +96,8 @@ class Helper extends Component {
         console.log(error);
       });
   }
-  onlySingleVideoFirst(inputData) {
-    api
+  async onlySingleVideoFirst(inputData) {
+    await api
       .postMethod("videos/view", inputData)
       .then(response => {
         if (response.data.success === true) {
@@ -168,6 +171,25 @@ class Helper extends Component {
       .catch(function(error) {
         console.log(error);
       });
+  }
+  wishlistUpdate(inputData) {
+    api.postMethod("wishlists/operations", inputData).then(response => {
+      console.log("response", response);
+      if (response.data.success === true) {
+        ToastDemo(this.props.toastManager, response.data.message, "success");
+        this.setState({
+          wishlistResponse: response.data,
+          wishlistApiCall: true
+        });
+        console.log("Wishlist data ", this.state.wishlistResponse.wishlist_id);
+      } else {
+        ToastDemo(
+          this.props.toastManager,
+          response.data.error_messages,
+          "error"
+        );
+      }
+    });
   }
 }
 

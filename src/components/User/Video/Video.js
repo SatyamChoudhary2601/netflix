@@ -5,25 +5,29 @@ import { Link } from "react-router-dom";
 import ReactJWPlayer from "react-jw-player";
 import Helper from "../../Helper/helper";
 
+import ContentLoader from "../../Static/contentLoader";
+
 class VideoComponent extends Helper {
   state = {
     loadingFirst: true,
     videoDetailsFirst: null
   };
   componentDidMount() {
-    let inputData = {
-      sub_profile_id: localStorage.getItem("active_profile_id"),
-      admin_video_id: this.props.match.params.id
-    };
-    this.onlySingleVideoFirst(inputData);
+    if (this.props.location.state) {
+      this.setState({ loadingFirst: false });
+    } else {
+      console.log("Tesin push");
+      window.location = "/home";
+    }
   }
   render() {
-    const { loadingFirst, videoDetailsFirst } = this.state;
-    return (
-      <div>
-        {loadingFirst ? (
-          ""
-        ) : (
+    const { loadingFirst } = this.state;
+    if (loadingFirst) {
+      return <ContentLoader />;
+    } else {
+      const { videoDetailsFirst } = this.props.location.state;
+      return (
+        <div>
           <div className="single-video">
             <ReactJWPlayer
               playerId="X6vykLrnos0UM2n1ga4pH+8MqPQO11a5d8wBeccRsfqkd06F"
@@ -45,9 +49,9 @@ class VideoComponent extends Helper {
               </Link>
             </div>
           </div>
-        )}
-      </div>
-    );
+        </div>
+      );
+    }
   }
 }
 

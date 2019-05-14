@@ -1,8 +1,71 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import Slider from "react-slick";
+import Helper from "../Helper/helper";
+import api from "../../Environment";
+import { withToastManager } from "react-toast-notifications";
+import ToastDemo from "../Helper/toaster";
 
-class HomePageBanner extends Component {
+class HomePageBanner extends Helper {
+  state = {
+    wishlistApiCall: false,
+    wishlistResponse: null,
+    inputData: {
+      sub_profile_id: localStorage.getItem("active_profile_id")
+    },
+    redirect: false,
+    redirectPPV: false,
+    redirectPaymentOption: false,
+    videoDetailsFirst: null
+  };
+  handleWishList = (event, admin_video_id) => {
+    event.preventDefault();
+    let inputData = {
+      ...this.state.inputData,
+      admin_video_id: admin_video_id
+    };
+
+    api.postMethod("wishlists/operations", inputData).then(response => {
+      console.log("response", response);
+      if (response.data.success === true) {
+        ToastDemo(this.props.toastManager, response.data.message, "success");
+        this.setState({
+          wishlistResponse: response.data,
+          wishlistApiCall: true
+        });
+        console.log("Wishlist data ", this.state.wishlistResponse.wishlist_id);
+      } else {
+        ToastDemo(
+          this.props.toastManager,
+          response.data.error_messages,
+          "error"
+        );
+      }
+    });
+  };
+
+  handlePlayVideo = async (event, admin_video_id) => {
+    event.preventDefault();
+
+    let inputData = {
+      ...this.state.inputData,
+      admin_video_id: admin_video_id
+    };
+
+    await this.onlySingleVideoFirst(inputData);
+
+    if (this.state.videoDetailsFirst.should_display_ppv != 0) {
+      if (this.state.videoDetailsFirst.ppv_page_type == 2) {
+        this.setState({ redirectPaymentOption: true });
+      } else {
+        this.setState({ redirectPPV: true });
+      }
+    } else {
+      console.log("Redirect");
+      this.setState({ redirect: true });
+    }
+  };
+
   render() {
     var bannerSlider = {
       dots: false,
@@ -13,6 +76,45 @@ class HomePageBanner extends Component {
       autoplay: false
     };
     const { banner } = this.props;
+    const {
+      videoDetailsFirst,
+      redirect,
+      redirectPPV,
+      redirectPaymentOption
+    } = this.state;
+
+    if (redirect) {
+      return (
+        <Redirect
+          to={{
+            pathname: `/video/${videoDetailsFirst.admin_video_id}`,
+            state: { videoDetailsFirst: videoDetailsFirst }
+          }}
+        />
+      );
+    } else if (redirectPPV) {
+      return (
+        <Redirect
+          to={{
+            pathname: "/pay-per-view",
+            state: {
+              videoDetailsFirst: videoDetailsFirst
+            }
+          }}
+        />
+      );
+    } else if (redirectPaymentOption) {
+      return (
+        <Redirect
+          to={{
+            pathname: "/payment-options",
+            state: {
+              videoDetailsFirst: videoDetailsFirst
+            }
+          }}
+        />
+      );
+    }
     return (
       <Slider {...bannerSlider} className="banner-slider slider">
         {banner.data.map(video => (
@@ -47,13 +149,23 @@ class HomePageBanner extends Component {
                   <h4 className="banner_video_text">{video.description}</h4>
                   <div className="banner-btn-sec">
                     <Link
-                      to={`/video/${video.admin_video_id}`}
+                      to="#"
+                      onClick={event =>
+                        this.handlePlayVideo(event, video.admin_video_id)
+                      }
                       className="btn btn-grey"
                     >
                       <i className="fas fa-play mr-2" />
                       play
                     </Link>
-                    <Link to="#" className="btn btn-grey">
+                    <Link
+                      to="#"
+                      className="btn btn-grey"
+                      onClick={event =>
+                        this.handleWishList(event, video.admin_video_id)
+                      }
+                      value={video.admin_video_id}
+                    >
                       <i className="fas fa-plus mr-2" />
                       my list
                     </Link>
@@ -68,4 +180,4 @@ class HomePageBanner extends Component {
   }
 }
 
-export default HomePageBanner;
+export default withToastManager(HomePageBanner);

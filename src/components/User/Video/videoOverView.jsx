@@ -1,14 +1,15 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { withToastManager } from "react-toast-notifications";
 import api from "../../../Environment";
 import ToastDemo from "../../Helper/toaster";
+import Helper from "../../Helper/helper";
 const DATE_OPTIONS = {
   year: "numeric",
   month: "short"
 };
 
-class VideoOverView extends Component {
+class VideoOverView extends Helper {
   state = {
     inputData: {
       admin_video_id: this.props.videoDetailsFirst.admin_video_id,
@@ -21,7 +22,10 @@ class VideoOverView extends Component {
     wishlistApiCall: false,
     wishlistResponse: {
       wishlist_id: null
-    }
+    },
+    redirect: false,
+    redirectPPV: false,
+    redirectPaymentOption: false
   };
   handleOnClickLike = event => {
     event.preventDefault();
@@ -67,6 +71,9 @@ class VideoOverView extends Component {
 
   handleWishList = event => {
     event.preventDefault();
+
+    // this.wishlistUpdate(this.state.inputData);
+
     api
       .postMethod("wishlists/operations", this.state.inputData)
       .then(response => {
@@ -90,6 +97,20 @@ class VideoOverView extends Component {
         }
       });
   };
+
+  handlePlayVideo = event => {
+    event.preventDefault();
+    if (this.props.videoDetailsFirst.should_display_ppv != 0) {
+      if (this.props.videoDetailsFirst.ppv_page_type == 2) {
+        this.setState({ redirectPaymentOption: true });
+      } else {
+        this.setState({ redirectPPV: true });
+      }
+    } else {
+      console.log("Redirect");
+      this.setState({ redirect: true });
+    }
+  };
   render() {
     const { videoDetailsFirst } = this.props;
     const {
@@ -98,8 +119,44 @@ class VideoOverView extends Component {
       disLikeReponse,
       dislikeApiCall,
       wishlistApiCall,
-      wishlistResponse
+      wishlistResponse,
+      redirect,
+      redirectPPV,
+      redirectPaymentOption
     } = this.state;
+
+    if (redirect) {
+      return (
+        <Redirect
+          to={{
+            pathname: `/video/${videoDetailsFirst.admin_video_id}`,
+            state: { videoDetailsFirst: videoDetailsFirst }
+          }}
+        />
+      );
+    } else if (redirectPPV) {
+      return (
+        <Redirect
+          to={{
+            pathname: "/pay-per-view",
+            state: {
+              videoDetailsFirst: videoDetailsFirst
+            }
+          }}
+        />
+      );
+    } else if (redirectPaymentOption) {
+      return (
+        <Redirect
+          to={{
+            pathname: "/payment-options",
+            state: {
+              videoDetailsFirst: videoDetailsFirst
+            }
+          }}
+        />
+      );
+    }
     return (
       <div className="slider-topbottom-spacing">
         <div className="overview-content">
@@ -146,8 +203,9 @@ class VideoOverView extends Component {
           <h4 className="slider_video_text">{videoDetailsFirst.description}</h4>
           <div className="banner-btn-sec">
             <Link
-              to={`/video/${videoDetailsFirst.admin_video_id}`}
+              to="#"
               className="btn btn-danger btn-right-space br-0"
+              onClick={this.handlePlayVideo}
             >
               <i className="fas fa-play mr-2" />
               play
