@@ -66,11 +66,7 @@ import Wishlist from "./components/User/Account/wishlist";
 import History from "./components/User/Account/history";
 import { Elements, StripeProvider } from "react-stripe-elements";
 
-import {
-  ToastConsumer,
-  ToastProvider,
-  withToastManager
-} from "react-toast-notifications";
+import { ToastProvider } from "react-toast-notifications";
 import Genres from "./components/User/genres";
 import Category from "./components/User/category";
 import ViewAll from "./components/User/viewAll";
