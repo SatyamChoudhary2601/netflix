@@ -65,7 +65,6 @@ class Genres extends Helper {
   renderVideoList = (maindata, index) => {
     return (
       <React.Fragment key={index}>
-        {console.log("index", maindata, index)}
         <div className="main-slidersec">
           <Link
             to={{

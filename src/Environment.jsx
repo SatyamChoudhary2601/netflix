@@ -2,7 +2,7 @@ import axios from "axios";
 
 import { apiConstants } from "./components/Constant/constants";
 
-const apiUrl = "http://admin-streamview.botfingers.com/userApi/"; // Production Mode
+const apiUrl = "https://admin-streamview.botfingers.com/userApi/"; // Production Mode
 
 // const apiUrl = "http://localhost:8000"; // Development Mode
 
