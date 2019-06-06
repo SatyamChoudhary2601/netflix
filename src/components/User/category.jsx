@@ -18,7 +18,9 @@ class Category extends Helper {
     maindata: null,
     errorHandle: 0,
     loading: true,
-    banner: null
+    banner: null,
+    loadingHomeSecondSection: true,
+    homeSecondData: null
   };
 
   componentDidMount() {
@@ -81,7 +83,13 @@ class Category extends Helper {
   };
 
   render() {
-    const { loading, maindata, banner } = this.state;
+    const {
+      loading,
+      maindata,
+      banner,
+      loadingHomeSecondSection,
+      homeSecondData
+    } = this.state;
 
     return (
       <div>
@@ -92,6 +100,16 @@ class Category extends Helper {
           {loading
             ? ""
             : maindata.map((mainDa, index) =>
+                mainDa.data.length === 0
+                  ? ""
+                  : loading
+                  ? "loading"
+                  : this.renderVideoList(mainDa, index)
+              )}
+
+          {loadingHomeSecondSection
+            ? ""
+            : homeSecondData.map((mainDa, index) =>
                 mainDa.data.length === 0
                   ? ""
                   : loading

@@ -18,7 +18,9 @@ class Genres extends Helper {
     maindata: null,
     errorHandle: 0,
     loading: true,
-    banner: null
+    banner: null,
+    loadingHomeSecondSection: true,
+    homeSecondData: null
   };
 
   checkUrlType(urlType) {
@@ -95,7 +97,13 @@ class Genres extends Helper {
   };
 
   render() {
-    const { loading, maindata, banner } = this.state;
+    const {
+      loading,
+      maindata,
+      banner,
+      loadingHomeSecondSection,
+      homeSecondData
+    } = this.state;
 
     return (
       <div>
@@ -106,6 +114,16 @@ class Genres extends Helper {
           {loading
             ? ""
             : maindata.map((mainDa, index) =>
+                mainDa.data.length === 0
+                  ? ""
+                  : loading
+                  ? "loading"
+                  : this.renderVideoList(mainDa, index)
+              )}
+
+          {loadingHomeSecondSection
+            ? ""
+            : homeSecondData.map((mainDa, index) =>
                 mainDa.data.length === 0
                   ? ""
                   : loading

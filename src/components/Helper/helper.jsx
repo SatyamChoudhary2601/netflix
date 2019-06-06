@@ -34,7 +34,9 @@ class Helper extends Component {
     wishlistResponse: null,
     redirect: false,
     redirectPPV: false,
-    redirectPaymentOption: false
+    redirectPaymentOption: false,
+    loadingHomeSecondSection: false,
+    homeSecondData: null
   };
 
   handleChange = ({ currentTarget: input }) => {
@@ -170,11 +172,33 @@ class Helper extends Component {
           let errorHandle = 1;
           this.setState({ errorHandle });
         }
+        this.homeSecondSection(inputData);
       })
       .catch(function(error) {
         console.log(error);
       });
   }
+
+  homeSecondSection(inputData) {
+    api
+      .postMethod("home_second_section", inputData)
+      .then(response => {
+        if (response.data.success === true) {
+          this.setState({
+            loadingHomeSecondSection: false,
+            homeSecondData: response.data.data
+          });
+        } else {
+          let errorHandle = 1;
+          this.setState({ errorHandle });
+        }
+        console.log("Home page second section", response);
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+  }
+
   wishlistUpdate(inputData) {
     api.postMethod("wishlists/operations", inputData).then(response => {
       console.log("response", response);
