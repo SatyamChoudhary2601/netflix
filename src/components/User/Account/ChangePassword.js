@@ -1,14 +1,47 @@
 import React, { Component } from "react";
 import Helper from "../../Helper/helper";
+import api from "../../../Environment";
+import { withToastManager } from "react-toast-notifications";
+import ToastDemo from "../../Helper/toaster";
 
 class ChangePasswordComponent extends Helper {
   state = {
-    data: {}
+    data: {},
+    loadingContent: null,
+    buttonDisable: false
   };
 
   handleSubmit = event => {
     event.preventDefault();
+    this.setState({
+      loadingContent: "Loading... Please wait..",
+      buttonDisable: true
+    });
     this.changePassword();
+  };
+
+  changePassword = () => {
+    api
+      .postMethod("changePassword", this.state.data)
+      .then(response => {
+        console.log("response", response);
+        if (response.data.success) {
+          ToastDemo(this.props.toastManager, response.data.message, "success");
+          this.setState({ loadingContent: null, buttonDisable: false });
+        } else {
+          ToastDemo(
+            this.props.toastManager,
+            response.data.error_messages,
+            "error"
+          );
+          this.setState({ loadingContent: null, buttonDisable: false });
+        }
+        console.log(response);
+      })
+      .catch(error => {
+        ToastDemo(this.props.toastManager, error, "error");
+        this.setState({ loadingContent: null, buttonDisable: false });
+      });
   };
   render() {
     var bgImg = {
@@ -57,8 +90,13 @@ class ChangePasswordComponent extends Helper {
                         onChange={this.handleChange}
                       />
                     </div>
-                    <button className="btn btn-danger auth-btn mt-4">
-                      change password
+                    <button
+                      className="btn btn-danger auth-btn mt-4"
+                      disabled={this.state.buttonDisable}
+                    >
+                      {this.state.loadingContent != null
+                        ? this.state.loadingContent
+                        : "change password"}
                     </button>
                   </form>
                 </div>
@@ -71,4 +109,4 @@ class ChangePasswordComponent extends Helper {
   }
 }
 
-export default ChangePasswordComponent;
+export default withToastManager(ChangePasswordComponent);

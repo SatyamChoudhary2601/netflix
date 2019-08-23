@@ -30,10 +30,10 @@ class VideoEpisode extends Helper {
 
   handleGenre = ({ currentTarget: input }) => {
     let inputData = { ...this.state.inputData, genre_id: input.value, skip: 0 };
-    // data[input.name] = input.value;
-    // data = {
-    //   ...this.state.inputData
-    // };
+    const data = { ...this.state.data };
+    data[input.name] = input.value;
+    this.setState({ data });
+
     console.log("Stat", inputData);
 
     api
@@ -42,7 +42,6 @@ class VideoEpisode extends Helper {
         if (response.data.success) {
           console.log("checking", response.data.data);
           this.setState({ loading: false, genreVideos: response.data.data });
-          // this.props.history.push("/view-profiles");
         } else {
           // Do nothing
         }
@@ -99,7 +98,6 @@ class VideoEpisode extends Helper {
     if (loading) {
       genreVideos = this.props.genreVideos;
     } else {
-      console.log("trig", this.state.genreVideos);
       genreVideos = this.state.genreVideos;
     }
 
@@ -112,7 +110,7 @@ class VideoEpisode extends Helper {
               className="form-control mw-200 mb-3"
               onChange={this.handleGenre}
               name="genre_id"
-              value={this.state.data.value}
+              value={this.state.data.genre_id}
             >
               {genres.map(genre => (
                 <option key={genre.genre_id} value={genre.genre_id}>

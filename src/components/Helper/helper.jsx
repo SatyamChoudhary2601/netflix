@@ -43,8 +43,6 @@ class Helper extends Component {
     const data = { ...this.state.data };
     data[input.name] = input.value;
     this.setState({ data });
-    console.log("Onchange called");
-    console.log("data", this.state.data);
   };
 
   getUserDetails() {
@@ -56,15 +54,6 @@ class Helper extends Component {
       if (response.data.success === true) {
         let data = response.data.data;
         this.setState({ loading: false, data: data });
-      }
-    });
-  }
-
-  changePassword() {
-    api.postMethod("changePassword", this.state.data).then(response => {
-      console.log("response", response);
-      if (response.data.success === true) {
-        console.log("password updated");
       }
     });
   }

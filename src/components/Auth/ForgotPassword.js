@@ -4,30 +4,46 @@ import { Link } from "react-router-dom";
 
 import api from "../../Environment";
 import Helper from "../Helper/helper";
+import { withToastManager } from "react-toast-notifications";
+import ToastDemo from "../Helper/toaster";
 
 class ForgotPasswordComponent extends Helper {
   state = {
     data: {
       email: ""
-    }
+    },
+    loadingContent: null,
+    buttonDisable: false
   };
 
   handleSubmit = event => {
     event.preventDefault();
     const { state } = this.props.location;
-
+    this.setState({
+      loadingContent: "Loading... Please wait..",
+      buttonDisable: true
+    });
     api
       .postMethod("forgotpassword", this.state.data)
-      .then(function(response) {
-        if (response.data.success === true) {
+      .then(response => {
+        if (response.data.success) {
           console.log("checking");
+          ToastDemo(this.props.toastManager, response.data.message, "success");
           window.location = state ? state.from.pathname : "/";
           console.log("Forgot Password Success");
+          this.setState({ loadingContent: null, buttonDisable: false });
+        } else {
+          ToastDemo(
+            this.props.toastManager,
+            response.data.error_messages,
+            "error"
+          );
+          this.setState({ loadingContent: null, buttonDisable: false });
         }
-        console.log(response);
       })
-      .catch(function(error) {
-        console.log(error);
+      .catch(error => {
+        this.setState({ loadingContent: null, buttonDisable: false });
+        ToastDemo(this.props.toastManager, error, "error");
       });
   };
   render() {
@@ -69,7 +85,14 @@ class ForgotPasswordComponent extends Helper {
                     We will send you an email with instructions on how to reset
                     your password.
                   </p>
-                  <button className="btn btn-danger auth-btn">submit</button>
+                  <button
+                    className="btn btn-danger auth-btn"
+                    disabled={this.state.buttonDisable}
+                  >
+                    {this.state.loadingContent != null
+                      ? this.state.loadingContent
+                      : "Submit"}
+                  </button>
                 </form>
               </div>
             </div>

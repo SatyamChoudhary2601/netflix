@@ -141,10 +141,10 @@ class InvoiceComponent extends Component {
                     {/* <!-- payment option --> */}
                     <div className="mt-4">
                       <h5 className="capitalize">choose payment option</h5>
-                      <form className="mt-3" action="payment-success.html">
+                      <form className="mt-3">
                         <div className="form-check-inline">
                           <input type="radio" id="test1" name="radio-group" />
-                          <label for="test1">paypal</label>
+                          <label htmlFor="test1">paypal</label>
                         </div>
                         <div className="form-check-inline">
                           <input
@@ -153,7 +153,7 @@ class InvoiceComponent extends Component {
                             name="radio-group"
                             checked
                           />
-                          <label for="test2">card payment</label>
+                          <label htmlFor="test2">card payment</label>
                         </div>
                         <Link to="/add-card" className="float-right btn-link">
                           add card

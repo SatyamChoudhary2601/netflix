@@ -75,6 +75,7 @@ class UserHeader extends Helper {
     console.log("OnClicked", profile.id);
     localStorage.removeItem("active_profile_id");
     localStorage.setItem("active_profile_id", profile.id);
+    localStorage.setItem("active_profile_image", profile.picture);
     window.location = "/home";
   };
 
@@ -268,7 +269,7 @@ class UserHeader extends Helper {
                 data-toggle="dropdown"
               >
                 <img
-                  src={window.location.origin + "/assets/img/icon1.png"}
+                  src={localStorage.getItem("active_profile_image")}
                   className="nav-profile-img"
                   alt="profile_img"
                 />
@@ -304,7 +305,7 @@ class UserHeader extends Helper {
                 <div className="display-inline">
                   <div className="left-sec">
                     <img
-                      src={window.location.origin + "/assets/img/icon1.png"}
+                      src={localStorage.getItem("active_profile_image")}
                       alt="User "
                     />
                   </div>

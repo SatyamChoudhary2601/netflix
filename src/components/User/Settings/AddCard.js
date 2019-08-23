@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import Helper from "../../Helper/helper";
 import { injectStripe, CardElement } from "react-stripe-elements";
 import api from "../../../Environment";
+import { withToastManager } from "react-toast-notifications";
+import ToastDemo from "../../Helper/toaster";
 
 class AddCardComponent extends Helper {
   state = {
@@ -12,13 +14,17 @@ class AddCardComponent extends Helper {
       month: "",
       year: "",
       cvv: ""
-    }
+    },
+    loadingContent: null,
+    buttonDisable: false
   };
 
   addCard = ev => {
     ev.preventDefault();
-    console.log("Card");
-    console.log("Props", this.props);
+    this.setState({
+      loadingContent: "Loading... Please wait..",
+      buttonDisable: true
+    });
     if (this.props.stripe) {
       this.props.stripe
         .createToken({ type: "card", name: "Jenny Rosen" })
@@ -31,18 +37,35 @@ class AddCardComponent extends Helper {
           api
             .postMethod("payment_card_add", inputData)
             .then(response => {
-              if (response.data.success === true) {
-                console.log("Card added success");
+              if (response.data.success) {
+                ToastDemo(
+                  this.props.toastManager,
+                  response.data.message,
+                  "success"
+                );
+                this.setState({ loadingContent: null, buttonDisable: false });
+                this.props.history.push("/card-details");
               } else {
-                console.log("Error", response);
+                ToastDemo(
+                  this.props.toastManager,
+                  response.data.error_message,
+                  "error"
+                );
+                this.setState({ loadingContent: null, buttonDisable: false });
               }
             })
-            .catch(function(error) {
-              console.log(error);
+            .catch(error => {
+              ToastDemo(this.props.toastManager, error, "error");
+              this.setState({ loadingContent: null, buttonDisable: false });
             });
         });
     } else {
-      console.log("Stripe.js hasn't loaded yet.");
+      ToastDemo(
+        this.props.toastManager,
+        "Stripe.js hasn't loaded yet.",
+        "error"
+      );
+      this.setState({ loadingContent: null, buttonDisable: false });
     }
   };
 
@@ -78,8 +101,13 @@ class AddCardComponent extends Helper {
                       <form className="auth-form" onSubmit={this.addCard}>
                         <CardElement />
                         <div className="mt-4">
-                          <button className="btn btn-danger auth-btn btn-block">
-                            save card
+                          <button
+                            className="btn btn-danger auth-btn btn-block"
+                            disabled={this.state.buttonDisable}
+                          >
+                            {this.state.loadingContent != null
+                              ? this.state.loadingContent
+                              : "save card"}
                           </button>
                         </div>
                       </form>
@@ -151,4 +179,4 @@ class AddCardComponent extends Helper {
   }
 }
 
-export default injectStripe(AddCardComponent);
+export default injectStripe(withToastManager(AddCardComponent));

@@ -15,12 +15,18 @@ class LoginCommponent extends Helper {
     data: {
       email: "",
       password: ""
-    }
+    },
+    loadingContent: null,
+    buttonDisable: false
   };
 
   handleSubmit = event => {
     event.preventDefault();
     // const { toastManager } = this.props;
+    this.setState({
+      loadingContent: "Loading... Please wait..",
+      buttonDisable: true
+    });
     api
       .postMethod("v4/login", this.state.data)
       .then(response => {
@@ -30,6 +36,7 @@ class LoginCommponent extends Helper {
           console.log("checking", response);
           ToastDemo(this.props.toastManager, response.data.message, "success");
           this.props.history.push("/view-profiles");
+          this.setState({ loadingContent: null, buttonDisable: false });
           console.log("Login Success");
         } else {
           ToastDemo(
@@ -37,11 +44,13 @@ class LoginCommponent extends Helper {
             response.data.error_messages,
             "error"
           );
+          this.setState({ loadingContent: null, buttonDisable: false });
         }
         console.log(response);
       })
-      .catch(function(error) {
-        console.log(error);
+      .catch(error => {
+        ToastDemo(this.props.toastManager, error, "error");
+        this.setState({ loadingContent: null, buttonDisable: false });
       });
   };
   render() {
@@ -95,7 +104,14 @@ class LoginCommponent extends Helper {
                       forgot password?
                     </Link>
                   </p>
-                  <button className="btn btn-danger auth-btn">sign in</button>
+                  <button
+                    className="btn btn-danger auth-btn"
+                    disabled={this.state.buttonDisable}
+                  >
+                    {this.state.loadingContent != null
+                      ? this.state.loadingContent
+                      : "sign in"}
+                  </button>
                 </form>
                 <div>
                   <Link to="../account/view-profiles.html">

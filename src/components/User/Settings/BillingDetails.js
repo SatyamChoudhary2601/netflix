@@ -5,12 +5,16 @@ import { Link, Redirect } from "react-router-dom";
 import api from "../../../Environment";
 import ToastDemo from "../../Helper/toaster";
 import { withToastManager } from "react-toast-notifications";
+import Helper from "../../Helper/helper";
 
-class BillingDetailsComponent extends Component {
+class BillingDetailsComponent extends Helper {
   state = {
     subscriptions: [],
     loading: true,
-    redirect: false
+    redirect: false,
+    data: {},
+    loadingContent: null,
+    buttonDisable: false
   };
   componentDidMount() {
     // api call
@@ -30,12 +34,51 @@ class BillingDetailsComponent extends Component {
     });
   }
 
+  handleCancelAutoRenewal = event => {
+    event.preventDefault();
+    console.log("Submitted");
+    this.setState({
+      loadingContent: "Loading... Please wait..",
+      buttonDisable: true
+    });
+    let inputData = {
+      sub_profile_id: localStorage.getItem("active_profile_id"),
+      cancel_reason: this.state.data.cancel_reason
+    };
+    api
+      .postMethod("cancel/subscription", inputData)
+      .then(response => {
+        console.log("response", response);
+        if (response.data.success) {
+          ToastDemo(this.props.toastManager, response.data.message, "success");
+          this.setState({ loadingContent: null, buttonDisable: false });
+        } else {
+          ToastDemo(
+            this.props.toastManager,
+            response.data.error_messages,
+            "error"
+          );
+          this.setState({ loadingContent: null, buttonDisable: false });
+        }
+        console.log(response);
+      })
+      .catch(error => {
+        ToastDemo(this.props.toastManager, error, "error");
+        this.setState({ loadingContent: null, buttonDisable: false });
+      });
+  };
+
   render() {
-    const { loading, subscriptions } = this.state;
-    if (subscriptions.length == 0) {
-      this.props.history.push("/account");
-      ToastDemo(this.props.toastManager, "No Data found", "error");
+    const { loading, subscriptions, data } = this.state;
+    if (loading) {
+      return "Loading...";
+    } else {
+      if (subscriptions.length == 0) {
+        this.props.history.push("/account");
+        ToastDemo(this.props.toastManager, "No Data found", "error");
+      }
     }
+
     return (
       <div>
         <div className="main">
@@ -109,7 +152,12 @@ class BillingDetailsComponent extends Component {
                             </Link>
                           </div>
                           <div className="text-center mt-3">
-                            <a href="#" className="btn btn-danger">
+                            <a
+                              href="#"
+                              className="btn btn-danger"
+                              data-toggle="modal"
+                              data-target="#cancel-subs"
+                            >
                               cancel subcription
                             </a>
                           </div>
@@ -198,10 +246,14 @@ class BillingDetailsComponent extends Component {
             </div>
           </div>
         </div>
+
         <div className="modal fade confirmation-popup" id="cancel-subs">
           <div className="modal-dialog modal-dialog-centered">
             <div className="modal-content">
-              <form className="auth-form cancel-form">
+              <form
+                className="auth-form cancel-form"
+                onSubmit={this.handleCancelAutoRenewal}
+              >
                 <div className="modal-header">
                   <h4 className="modal-title">Pause autorenewal</h4>
                   <button type="button" className="close" data-dismiss="modal">
@@ -212,7 +264,13 @@ class BillingDetailsComponent extends Component {
                 <div className="modal-body">
                   <div className="form-group">
                     <label htmlFor="name">cancel reason</label>
-                    <input type="text" className="form-control" id="name" />
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="name"
+                      name="cancel_reason"
+                      value={data.cancel_reason}
+                    />
                   </div>
                 </div>
 
@@ -224,8 +282,14 @@ class BillingDetailsComponent extends Component {
                   >
                     Cancel
                   </button>
-                  <button type="button" className="btn btn-danger">
-                    Submit
+                  <button
+                    type="submit"
+                    className="btn btn-danger"
+                    disabled={this.state.buttonDisable}
+                  >
+                    {this.state.loadingContent != null
+                      ? this.state.loadingContent
+                      : "Submit"}
                   </button>
                 </div>
               </form>

@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 
 import api from "../../../Environment";
 import ContentLoader from "../../Static/contentLoader";
+import { withToastManager } from "react-toast-notifications";
+import ToastDemo from "../../Helper/toaster";
 
 class CardDetailsComponent extends Component {
   state = {
@@ -11,20 +13,69 @@ class CardDetailsComponent extends Component {
     loading: true
   };
   componentDidMount() {
+    this.getCardDetails();
+  }
+
+  getCardDetails = () => {
     api
       .postMethod("card_details")
       .then(response => {
-        if (response.data.success === true) {
-          let cardDetails = response.data.data;
-          this.setState({ loading: false, cardDetails: cardDetails });
+        if (response.data.success) {
+          this.setState({ loading: false, cardDetails: response.data.data });
         } else {
-          console.log("Error", response);
+          ToastDemo(
+            this.props.toastManager,
+            response.data.error_message,
+            "error"
+          );
         }
       })
-      .catch(function(error) {
-        console.log(error);
+      .catch(error => {
+        ToastDemo(this.props.toastManager, error, "error");
       });
-  }
+  };
+
+  setDefaultCard = (event, card) => {
+    event.preventDefault();
+    api
+      .postMethod("default_card", { card_id: card.card_id })
+      .then(response => {
+        if (response.data.success) {
+          ToastDemo(this.props.toastManager, response.data.message, "success");
+          this.getCardDetails();
+        } else {
+          ToastDemo(
+            this.props.toastManager,
+            response.data.error_message,
+            "error"
+          );
+        }
+      })
+      .catch(error => {
+        ToastDemo(this.props.toastManager, error, "error");
+      });
+  };
+
+  deleteCard = (event, card) => {
+    event.preventDefault();
+    api
+      .postMethod("delete_card", { card_id: card.card_id })
+      .then(response => {
+        if (response.data.success) {
+          ToastDemo(this.props.toastManager, response.data.message, "success");
+          this.getCardDetails();
+        } else {
+          ToastDemo(
+            this.props.toastManager,
+            response.data.error_message,
+            "error"
+          );
+        }
+      })
+      .catch(error => {
+        ToastDemo(this.props.toastManager, error, "error");
+      });
+  };
 
   render() {
     var billingImg = {
@@ -72,18 +123,30 @@ class CardDetailsComponent extends Component {
                                   {card.is_default ? (
                                     ""
                                   ) : (
-                                    <Link to="" className="float-right">
+                                    <Link
+                                      to="#"
+                                      onClick={event =>
+                                        this.deleteCard(event, card)
+                                      }
+                                      className="float-right"
+                                    >
                                       <i className="far fa-trash-alt" />
                                     </Link>
                                   )}
                                   <h5>XXXX XXXX XXXX {card.last_four}</h5>
                                   <p className="m-0">
                                     {card.is_default ? (
-                                      <Link to="" className="green-clr">
+                                      <div className="green-clr">
                                         default card
-                                      </Link>
+                                      </div>
                                     ) : (
-                                      <Link to="" className="red-clr">
+                                      <Link
+                                        to="#"
+                                        onClick={event =>
+                                          this.setDefaultCard(event, card)
+                                        }
+                                        className="red-clr"
+                                      >
                                         set as default
                                       </Link>
                                     )}
@@ -122,4 +185,4 @@ class CardDetailsComponent extends Component {
   }
 }
 
-export default CardDetailsComponent;
+export default withToastManager(CardDetailsComponent);

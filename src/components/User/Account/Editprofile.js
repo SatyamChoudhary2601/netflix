@@ -33,6 +33,7 @@ class EditProfilesComponent extends Component {
                       <div className="edit-profile-imgsec">
                         <img src="../assets/img/icon1.png" alt="profile_img" />
                         <div className="edit-icon">
+                          <input type="file" className="form-control" />
                           <div className="edit-icon-circle">
                             <i className="fas fa-pencil-alt" />
                           </div>

@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-
 import { Link } from "react-router-dom";
 import Helper from "../Helper/helper";
-
 import api from "../../Environment";
+import { withToastManager } from "react-toast-notifications";
+import ToastDemo from "../Helper/toaster";
 
 class RegisterComponent extends Helper {
   state = {
@@ -11,25 +11,40 @@ class RegisterComponent extends Helper {
       email: "",
       password: "",
       name: ""
-    }
+    },
+    loadingContent: null,
+    buttonDisable: false
   };
 
   handleSubmit = event => {
     event.preventDefault();
     const { state } = this.props.location;
-
+    this.setState({
+      loadingContent: "Loading... Please wait..",
+      buttonDisable: true
+    });
     api
       .postMethod("v4/register", this.state.data)
-      .then(function(response) {
-        if (response.data.success === true) {
+      .then(response => {
+        if (response.data.success) {
           console.log("checking");
+          ToastDemo(this.props.toastManager, response.data.message, "success");
           window.location = state ? state.from.pathname : "/";
           console.log("Register Success");
+          this.setState({ loadingContent: null, buttonDisable: false });
+        } else {
+          ToastDemo(
+            this.props.toastManager,
+            response.data.error_messages,
+            "error"
+          );
+          this.setState({ loadingContent: null, buttonDisable: false });
         }
         console.log(response);
       })
-      .catch(function(error) {
-        console.log(error);
+      .catch(error => {
+        this.setState({ loadingContent: null, buttonDisable: false });
+        ToastDemo(this.props.toastManager, error, "error");
       });
   };
 
@@ -88,8 +103,13 @@ class RegisterComponent extends Helper {
                       value={data.password}
                     />
                   </div>
-                  <button className="btn btn-danger auth-btn mt-4">
-                    sign up
+                  <button
+                    className="btn btn-danger auth-btn mt-4"
+                    disabled={this.state.buttonDisable}
+                  >
+                    {this.state.loadingContent != null
+                      ? this.state.loadingContent
+                      : "sign up"}
                   </button>
                 </form>
 
@@ -129,4 +149,4 @@ class RegisterComponent extends Helper {
   }
 }
 
-export default RegisterComponent;
+export default withToastManager(RegisterComponent);

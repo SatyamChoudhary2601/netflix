@@ -14,7 +14,11 @@ class ManageProfilesComponent extends Helper {
     data: {},
     renderAddProfile: "",
     loading: true,
-    activeProfile: []
+    activeProfile: [],
+    loadingContent: null,
+    buttonDisable: false,
+    inputData: [],
+    imagePreviewUrl: null
   };
   componentDidMount() {
     // view all sub profile
@@ -28,20 +32,49 @@ class ManageProfilesComponent extends Helper {
     console.log("Render", this.state.renderManageProfile);
     this.render();
   };
+  handleChangeImage = ({ currentTarget: input }) => {
+    const inputData = { ...this.state.inputData };
+    if (input.type === "file") {
+      inputData[input.name] = input.files[0];
+      this.setState({ inputData });
+    }
+    let reader = new FileReader();
+    let file = input.files[0];
+
+    reader.onloadend = () => {
+      this.setState({
+        imagePreviewUrl: reader.result
+      });
+    };
+    if (file) {
+      reader.readAsDataURL(file);
+    }
+  };
+
   handleSubmit = event => {
     event.preventDefault();
     console.log("Submitted");
     const data = {
       sub_profile_id: this.state.data.id,
-      name: this.state.data.name
+      name: this.state.data.name,
+      picture: this.state.inputData.picture
     };
+
+    this.setState({
+      loadingContent: "Loading... Please wait..",
+      buttonDisable: true
+    });
     console.log("formdata", data);
     api.postMethod("edit-sub-profile", data).then(response => {
       console.log("response", response);
-      if (response.data.success === true) {
+      if (response.data.success) {
         // this.props.history.push("/manage-profiles");
         ToastDemo(this.props.toastManager, response.data.message, "success");
+        this.setState({ loadingContent: null, buttonDisable: false });
         window.location = "/manage-profiles";
+      } else {
+        ToastDemo(this.props.toastManager, response.data.error, "error");
+        this.setState({ loadingContent: null, buttonDisable: false });
       }
     });
   };
@@ -55,7 +88,7 @@ class ManageProfilesComponent extends Helper {
     console.log("formdata", data);
     api.postMethod("delete-sub-profile", data).then(response => {
       console.log("response", response);
-      if (response.data.success === true) {
+      if (response.data.success) {
         window.location = "/manage-profiles";
         ToastDemo(this.props.toastManager, response.data.message, "success");
       }
@@ -109,7 +142,7 @@ class ManageProfilesComponent extends Helper {
             <Link onClick={event => this.handleClick(detail, event)} to="#">
               <div className="relative">
                 <img
-                  src="../assets/img/icon1.png"
+                  src={detail.picture}
                   className="profile-img"
                   alt="profile_img"
                 />
@@ -131,7 +164,7 @@ class ManageProfilesComponent extends Helper {
     var bgImg = {
       backgroundImage: "url(../assets/img/bg.jpg)"
     };
-    const { data, loading, activeProfile } = { ...this.state };
+    const { data, loading, activeProfile, imagePreviewUrl } = this.state;
     let renderData;
     if (this.state.renderManageProfile === 1) {
       renderData = (
@@ -146,9 +179,18 @@ class ManageProfilesComponent extends Helper {
                   <div className="display-inline">
                     <div className="edit-left-sec">
                       <div className="edit-profile-imgsec">
-                        <img src="../assets/img/icon1.png" alt="profile_img" />
+                        <img
+                          src={imagePreviewUrl ? imagePreviewUrl : data.picture}
+                          alt="profile_img"
+                        />
                         <div className="edit-icon">
                           <div className="edit-icon-circle">
+                            <input
+                              type="file"
+                              className="form-control"
+                              onChange={this.handleChangeImage}
+                              name="picture"
+                            />
                             <i className="fas fa-pencil-alt" />
                           </div>
                         </div>
@@ -168,8 +210,14 @@ class ManageProfilesComponent extends Helper {
                   </div>
                 </div>
                 <div className="button-topspace">
-                  <button type="submit" className="white-btn">
-                    save
+                  <button
+                    type="submit"
+                    className="white-btn"
+                    disabled={this.state.buttonDisable}
+                  >
+                    {this.state.loadingContent != null
+                      ? this.state.loadingContent
+                      : "save"}
                   </button>
                   <Link
                     to="#"

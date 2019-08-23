@@ -1,14 +1,15 @@
 import React, { Component } from "react";
 import Helper from "../../Helper/helper";
 import { withToastManager } from "react-toast-notifications";
-
 import api from "../../../Environment";
 import ToastDemo from "../../Helper/toaster";
 
 class EditAccountComponent extends Helper {
   state = {
     data: null,
-    loading: true
+    loading: true,
+    loadingContent: null,
+    buttonDisable: false
   };
   componentDidMount() {
     this.getUserDetails();
@@ -16,7 +17,10 @@ class EditAccountComponent extends Helper {
 
   handleSubmit = event => {
     event.preventDefault();
-
+    this.setState({
+      loadingContent: "Loading... Please wait..",
+      buttonDisable: true
+    });
     let userDetails = { ...this.state.data };
     const data = {
       name: userDetails.name,
@@ -29,12 +33,14 @@ class EditAccountComponent extends Helper {
       if (response.data.success == true) {
         this.props.history.push("/account");
         ToastDemo(this.props.toastManager, response.data.message, "success");
+        this.setState({ loadingContent: null, buttonDisable: false });
       } else {
         ToastDemo(
           this.props.toastManager,
           response.data.error_messages,
           "error"
         );
+        this.setState({ loadingContent: null, buttonDisable: false });
       }
     });
   };
@@ -85,8 +91,13 @@ class EditAccountComponent extends Helper {
                         value={loading ? "" : data.mobile}
                       />
                     </div>
-                    <button className="btn btn-danger auth-btn mt-4">
-                      save
+                    <button
+                      className="btn btn-danger auth-btn mt-4"
+                      disabled={this.state.buttonDisable}
+                    >
+                      {this.state.loadingContent != null
+                        ? this.state.loadingContent
+                        : "save"}
                     </button>
                   </form>
                 </div>

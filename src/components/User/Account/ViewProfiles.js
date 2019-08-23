@@ -16,10 +16,11 @@ class ViewProfilesComponent extends Helper {
     this.viewProfiles();
   }
 
-  handleClick = (profile_id, event) => {
+  handleClick = (profile, event) => {
     event.preventDefault();
 
-    localStorage.setItem("active_profile_id", profile_id);
+    localStorage.setItem("active_profile_id", profile.id);
+    localStorage.setItem("active_profile_image", profile.picture);
   };
 
   renderProfile = activeProfile => {
@@ -31,7 +32,7 @@ class ViewProfilesComponent extends Helper {
           <li
             className="profile"
             key={detail.id}
-            onClick={event => this.handleClick(detail.id, event)}
+            onClick={event => this.handleClick(detail, event)}
           >
             <Link to="/home">
               <ProgressiveImage
