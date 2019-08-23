@@ -5,7 +5,6 @@ import Helper from "../../Helper/helper";
 import { apiConstants } from "../../Constant/constants";
 
 import api from "../../../Environment";
-import SearchPage from "../../Static/searchPage";
 
 const $ = window.$;
 
@@ -205,15 +204,14 @@ class UserHeader extends Helper {
           </ul>
           <ul className="navbar-nav ml-auto">
             <li className="nav-item">
-              {/* <form>
+              <form>
                 <input
                   type="text"
                   name="search"
                   placeholder="title.."
                   className="form-control search-form"
                 />
-              </form> */}
-              <SearchPage />
+              </form>
             </li>
             <li className="nav-item dropdown mobile-view">
               <Link

@@ -49,8 +49,8 @@ class PaymentHistory extends Component {
                       <h4>payment history</h4>
                     </div>
                     <div className="col-md-6 text-right">
-                      <h4 className="grey-clr">Total</h4>
-                      <h4 className="bold grey-clr">$4052.00</h4>
+                      {/* <h4 className="grey-clr">Total</h4>
+                      <h4 className="bold grey-clr">$4052.00</h4> */}
                     </div>
                   </div>
                 </div>
@@ -87,7 +87,7 @@ class PaymentHistory extends Component {
                           <div className="clearfix" />
                         </div>
                       ))
-                    : ""}
+                    : "No Data Found"}
                 </div>
               </div>
             </div>

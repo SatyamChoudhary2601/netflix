@@ -661,13 +661,15 @@ class SearchComponent extends Component {
                             to="#"
                             className="btn btn-danger btn-right-space br-0"
                           >
-                            <i className="fas fa-play mr-2" />play
+                            <i className="fas fa-play mr-2" />
+                            play
                           </Link>
                           <Link
                             to="#"
                             className="btn btn-outline-secondary btn-right-space"
                           >
-                            <i className="fas fa-plus mr-2" />my list
+                            <i className="fas fa-plus mr-2" />
+                            my list
                           </Link>
                           <Link to="#" className="btn express-btn mr-2">
                             <i className="far fa-thumbs-up" />
