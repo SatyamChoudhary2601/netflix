@@ -3,11 +3,22 @@ import PaypalExpressBtn from "react-paypal-express-checkout";
 
 import { Link } from "react-router-dom";
 import ContentLoader from "../../Static/contentLoader";
+import Helper from "../../Helper/helper";
+import api from "../../../Environment";
+import { withToastManager } from "react-toast-notifications";
+import ToastDemo from "../../Helper/toaster";
 
-class InvoiceComponent extends Component {
+class InvoiceComponent extends Helper {
   state = {
-    videoList: null,
-    loading: true
+    loading: true,
+    data: {},
+    promoCode: null,
+    loadingPromoCode: true,
+    paymentMode: "card",
+    loadingContent: null,
+    buttonDisable: false,
+    loadingContentCard: null,
+    buttonDisableCard: false
   };
 
   componentDidMount() {
@@ -21,6 +32,111 @@ class InvoiceComponent extends Component {
     // console.log("Subscription", this.props.location.state.subscription);
   }
 
+  handlePromoCode = event => {
+    event.preventDefault();
+    this.setState({
+      loadingContent: "Loading... Please wait..",
+      buttonDisable: true
+    });
+    let inputData = {
+      coupon_code: this.state.data.coupon_code,
+      sub_profile_id: localStorage.getItem("active_profile_id"),
+      subscription_id: this.props.location.state.subscription.subscription_id
+    };
+    api
+      .postMethod("apply/coupon/subscription", inputData)
+      .then(response => {
+        if (response.data.success) {
+          ToastDemo(
+            this.props.toastManager,
+            "Promo code applied successfully!",
+            "success"
+          );
+          this.setState({
+            loadingContent: null,
+            buttonDisable: false,
+            loadingPromoCode: false,
+            promoCode: response.data.data
+          });
+          this.setState({ loadingContent: null, buttonDisable: false });
+        } else {
+          ToastDemo(
+            this.props.toastManager,
+            response.data.error_messages,
+            "error"
+          );
+          this.setState({ loadingContent: null, buttonDisable: false });
+        }
+        console.log(response);
+      })
+      .catch(error => {
+        ToastDemo(this.props.toastManager, error, "error");
+        this.setState({ loadingContent: null, buttonDisable: false });
+      });
+  };
+
+  handlePromoCodeCancel = event => {
+    event.preventDefault();
+    this.setState({ promoCode: null, loadingPromoCode: true });
+    ToastDemo(this.props.toastManager, "Promo code removed..", "error");
+  };
+
+  handleChangePayment = ({ currentTarget: input }) => {
+    this.setState({ paymentMode: input.value });
+  };
+
+  handlePayment = event => {
+    event.preventDefault();
+    this.setState({
+      loadingContentCard: "Loading... Please wait..",
+      buttonDisableCard: true
+    });
+    let inputData;
+    if (this.state.promoCode == null) {
+      inputData = {
+        sub_profile_id: localStorage.getItem("active_profile_id"),
+        subscription_id: this.props.location.state.subscription.subscription_id,
+        payment_mode: this.state.paymentMode
+      };
+    } else {
+      inputData = {
+        coupon_code: this.state.data.coupon_code,
+        sub_profile_id: localStorage.getItem("active_profile_id"),
+        subscription_id: this.props.location.state.subscription.subscription_id,
+        payment_mode: this.state.paymentMode
+      };
+    }
+    this.paymentApiCall(inputData);
+  };
+
+  paymentApiCall = inputData => {
+    api
+      .postMethod("v4/subscriptions_payment", inputData)
+      .then(response => {
+        if (response.data.success) {
+          ToastDemo(this.props.toastManager, response.data.message, "success");
+          this.setState({
+            loadingContentCard: null,
+            buttonDisableCard: false
+          });
+          this.setState({ loadingContentCard: null, buttonDisableCard: false });
+          this.props.history.push("/billing-details");
+        } else {
+          ToastDemo(
+            this.props.toastManager,
+            response.data.error_messages,
+            "error"
+          );
+          this.setState({ loadingContentCard: null, buttonDisableCard: false });
+        }
+        console.log(response);
+      })
+      .catch(error => {
+        ToastDemo(this.props.toastManager, error, "error");
+        this.setState({ loadingContentCard: null, buttonDisableCard: false });
+      });
+  };
+
   render() {
     if (this.state.loading) {
       return <ContentLoader />;
@@ -29,10 +145,32 @@ class InvoiceComponent extends Component {
         backgroundImage: "url(../assets/img/invoice.gif)"
       };
       const { subscription } = this.props.location.state;
+      const { data, loadingPromoCode, promoCode, paymentMode } = this.state;
 
       const onSuccess = payment => {
         // Congratulation, it came here means everything's fine!
         console.log("The payment was succeeded!", payment);
+        let inputData;
+        if (this.state.promoCode == null) {
+          inputData = {
+            sub_profile_id: localStorage.getItem("active_profile_id"),
+            subscription_id: this.props.location.state.subscription
+              .subscription_id,
+            payment_mode: this.state.paymentMode,
+            payment_id: payment.paymentID
+          };
+        } else {
+          inputData = {
+            coupon_code: this.state.data.coupon_code,
+            sub_profile_id: localStorage.getItem("active_profile_id"),
+            subscription_id: this.props.location.state.subscription
+              .subscription_id,
+            payment_mode: this.state.paymentMode,
+            payment_id: payment.paymentID
+          };
+        }
+        this.paymentApiCall(inputData);
+
         // You can bind the "payment" object's value to your state or props or whatever here, please see below for sample returned data
       };
 
@@ -103,14 +241,19 @@ class InvoiceComponent extends Component {
                             </td>
                           </tr>
                           <tr>
-                            <td>tax</td>
-                            <td>$5.00</td>
+                            <td>Promo Code amount</td>
+                            <td>
+                              {subscription.currency}
+                              {loadingPromoCode ? "0" : promoCode.coupon_amount}
+                            </td>
                           </tr>
                           <tr className="table-secondary">
                             <td>total</td>
                             <td>
                               {subscription.currency}
-                              {subscription.amount}
+                              {loadingPromoCode
+                                ? subscription.amount
+                                : promoCode.remaining_amount}
                             </td>
                           </tr>
                         </tbody>
@@ -121,20 +264,45 @@ class InvoiceComponent extends Component {
                     {/* <!-- coupon --> */}
                     <div className="mt-4">
                       <h5 className="capitalize">have a coupon?</h5>
-                      <form className="auth-form">
+                      <form
+                        className="auth-form"
+                        onSubmit={this.handlePromoCode}
+                      >
                         <div className="form-group mt-3">
                           <div className="input-group mb-3 mt-1">
                             <input
                               type="text"
                               className="form-control m-0 mb-0"
                               placeholder="promo code"
+                              name="coupon_code"
+                              value={data.coupon_code}
+                              onChange={this.handleChange}
                             />
                             <div className="input-group-append">
-                              <button className="btn btn-danger">send</button>
+                              <button className="btn btn-danger" type="submit">
+                                {this.state.loadingContent != null
+                                  ? this.state.loadingContent
+                                  : "send"}
+                              </button>
                             </div>
                           </div>
                         </div>
                       </form>
+                      {loadingPromoCode ? (
+                        ""
+                      ) : (
+                        <p className="capitalize">
+                          Promo code applied - {promoCode.coupon_code} for{" "}
+                          {promoCode.original_coupon_amount} -{" "}
+                          <Link
+                            to="#"
+                            className="btn-danger"
+                            onClick={this.handlePromoCodeCancel}
+                          >
+                            Cancel
+                          </Link>
+                        </p>
+                      )}
                     </div>
                     {/* <!-- coupon --> */}
 
@@ -143,32 +311,53 @@ class InvoiceComponent extends Component {
                       <h5 className="capitalize">choose payment option</h5>
                       <form className="mt-3">
                         <div className="form-check-inline">
-                          <input type="radio" id="test1" name="radio-group" />
-                          <label htmlFor="test1">paypal</label>
+                          <input
+                            type="radio"
+                            id="paypal"
+                            name="payment_mode"
+                            value="paypal"
+                            onChange={this.handleChangePayment}
+                          />
+                          <label htmlFor="paypal">paypal</label>
                         </div>
                         <div className="form-check-inline">
                           <input
                             type="radio"
-                            id="test2"
-                            name="radio-group"
-                            checked
+                            id="card"
+                            name="payment_mode"
+                            defaultChecked={true}
+                            value="card"
+                            onChange={this.handleChangePayment}
                           />
-                          <label htmlFor="test2">card payment</label>
+                          <label htmlFor="card">card payment</label>
                         </div>
+
                         <Link to="/add-card" className="float-right btn-link">
                           add card
                         </Link>
+
                         <div className="text-right mb-3 mt-3">
-                          <button className="btn btn-danger">pay now</button>
-                          <PaypalExpressBtn
-                            env={env}
-                            client={client}
-                            currency={currency}
-                            total={total}
-                            onError={onError}
-                            onSuccess={onSuccess}
-                            onCancel={onCancel}
-                          />
+                          {paymentMode == "card" ? (
+                            <button
+                              className="btn btn-danger"
+                              onClick={this.handlePayment}
+                              disabled={this.state.buttonDisableCard}
+                            >
+                              {this.state.loadingContentCard != null
+                                ? this.state.loadingContentCard
+                                : "pay now using Card"}
+                            </button>
+                          ) : (
+                            <PaypalExpressBtn
+                              env={env}
+                              client={client}
+                              currency={currency}
+                              total={total}
+                              onError={onError}
+                              onSuccess={onSuccess}
+                              onCancel={onCancel}
+                            />
+                          )}
                         </div>
                       </form>
                     </div>
@@ -184,4 +373,4 @@ class InvoiceComponent extends Component {
   }
 }
 
-export default InvoiceComponent;
+export default withToastManager(InvoiceComponent);

@@ -270,6 +270,7 @@ class BillingDetailsComponent extends Helper {
                       id="name"
                       name="cancel_reason"
                       value={data.cancel_reason}
+                      onChange={this.handleChange}
                     />
                   </div>
                 </div>
