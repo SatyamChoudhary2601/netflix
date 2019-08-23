@@ -40,18 +40,14 @@ class Content extends Helper {
   }
 
   componentDidMount() {
-    console.log("did mount");
     // Single video API call.
     // let maindata = { ...this.state.maindata };
     // let errorHandle = 0;
-
-    console.log("input data", this.state.inputData.sub_profile_id);
 
     this.singleVideoFirst(this.state.inputData);
   }
 
   componentWillReceiveProps(props) {
-    console.log("Will Mount Called");
     this.setState({
       nav: "overview",
       loadingFirst: true,
@@ -63,7 +59,7 @@ class Content extends Helper {
       sub_profile_id: localStorage.getItem("active_profile_id"),
       admin_video_id: props.movie.admin_video_id
     };
-    console.log("Input Data", inputData);
+
     this.singleVideoFirst(inputData);
   }
 
@@ -78,14 +74,12 @@ class Content extends Helper {
         this.props.movie.admin_video_id
       ) {
         // Do nothing.
-        console.log("API Not called");
       } else {
         localStorage.setItem(
           "current_video_id",
           this.props.movie.admin_video_id
         );
         this.suggestion(this.state.inputData);
-        console.log("API called");
       }
     }
   };

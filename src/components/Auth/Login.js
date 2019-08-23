@@ -33,11 +33,10 @@ class LoginCommponent extends Helper {
         if (response.data.success) {
           localStorage.setItem("userId", response.data.data.user_id);
           localStorage.setItem("accessToken", response.data.data.token);
-          console.log("checking", response);
+
           ToastDemo(this.props.toastManager, response.data.message, "success");
           this.props.history.push("/view-profiles");
           this.setState({ loadingContent: null, buttonDisable: false });
-          console.log("Login Success");
         } else {
           ToastDemo(
             this.props.toastManager,
@@ -46,7 +45,6 @@ class LoginCommponent extends Helper {
           );
           this.setState({ loadingContent: null, buttonDisable: false });
         }
-        console.log(response);
       })
       .catch(error => {
         ToastDemo(this.props.toastManager, error, "error");

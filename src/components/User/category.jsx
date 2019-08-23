@@ -29,7 +29,6 @@ class Category extends Helper {
       page_type: "CATEGORY",
       category_id: this.props.match.params.id
     };
-    console.log("InputData ", inputData);
 
     this.homeFirstSection(inputData);
   }
@@ -43,15 +42,12 @@ class Category extends Helper {
       category_id: props.match.params.id
     };
 
-    console.log("InputData will ", inputData);
-
     this.homeFirstSection(inputData);
   }
 
   renderVideoList = (maindata, index) => {
     return (
       <React.Fragment key={index}>
-        {console.log("index", maindata, index)}
         <div className="main-slidersec">
           <Link
             to={{

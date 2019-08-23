@@ -29,8 +29,6 @@ class AddCardComponent extends Helper {
       this.props.stripe
         .createToken({ type: "card", name: "Jenny Rosen" })
         .then(payload => {
-          console.log("[token]", payload.token.id);
-
           const inputData = {
             card_token: payload.token.id
           };

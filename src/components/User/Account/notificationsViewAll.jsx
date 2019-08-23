@@ -25,12 +25,9 @@ class Notifications extends Component {
             notifications: notifications
           });
         } else {
-          console.log("Error", response);
         }
       })
-      .catch(function(error) {
-        console.log(error);
-      });
+      .catch(function(error) {});
   }
 
   chunkArray(myArray, chunk_size) {

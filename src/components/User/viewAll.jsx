@@ -14,7 +14,6 @@ class ViewAll extends Component {
     if (this.props.location.state) {
       //
     } else {
-      console.log("Tesin push");
       window.location = "/home";
     }
     const inputData = {
@@ -31,14 +30,10 @@ class ViewAll extends Component {
         if (response.data.success === true) {
           let videoList = response.data.data;
           this.setState({ loading: false, videoList: videoList });
-          console.log("See All Api", response);
         } else {
-          console.log("Error", response);
         }
       })
-      .catch(function(error) {
-        console.log(error);
-      });
+      .catch(function(error) {});
   }
 
   chunkArray(myArray, chunk_size) {

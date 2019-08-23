@@ -236,8 +236,6 @@ class History extends Component {
   render() {
     let result = this.chunkArray(movies, 5);
 
-    console.log(result);
-
     return (
       <div className="main p-40">
         <div className="main-slidersec">

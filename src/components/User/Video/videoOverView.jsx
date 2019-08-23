@@ -34,9 +34,9 @@ class VideoOverView extends Helper {
   handleOnClickLike = event => {
     event.preventDefault();
 
-    console.log("onclick like", this.state.inputData);
+    
     api.postMethod("videos/like", this.state.inputData).then(response => {
-      console.log("response", response);
+      
       if (response.data.success === true) {
         ToastDemo(this.props.toastManager, "You liked this Video!", "success");
         this.setState({ likeReponse: response.data.data, likeApiCall: true });
@@ -48,15 +48,15 @@ class VideoOverView extends Helper {
         );
       }
     });
-    console.log("like State", this.state.likeReponse);
+    
   };
 
   handleOnClickDislike = event => {
     event.preventDefault();
 
-    console.log("onclick dislike", this.state.inputData);
+    
     api.postMethod("videos/dis_like", this.state.inputData).then(response => {
-      console.log("response", response);
+      
       if (response.data.success === true) {
         ToastDemo(
           this.props.toastManager,
@@ -81,14 +81,14 @@ class VideoOverView extends Helper {
     api
       .postMethod("wishlists/operations", this.state.inputData)
       .then(response => {
-        console.log("response", response);
+        
         if (response.data.success === true) {
           ToastDemo(this.props.toastManager, response.data.message, "success");
           this.setState({
             wishlistResponse: response.data,
             wishlistApiCall: true
           });
-          console.log(
+          
             "Wishlist data ",
             this.state.wishlistResponse.wishlist_id
           );
@@ -130,7 +130,7 @@ class VideoOverView extends Helper {
     return (
       <div className="slider-topbottom-spacing">
         <div className="overview-content">
-          {console.log("Render Overview ")}
+          
           <h1 className="banner_video_title">{videoDetailsFirst.title}</h1>
           <h4 className="banner_video_details">
             <span className="green-clr">

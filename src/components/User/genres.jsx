@@ -48,8 +48,6 @@ class Genres extends Helper {
 
     inputData = this.checkUrlType(urlType);
 
-    console.log("InputData ", inputData);
-
     this.homeFirstSection(inputData);
   }
 
@@ -58,8 +56,6 @@ class Genres extends Helper {
     const urlType = props.match.params.id;
 
     inputData = this.checkUrlType(urlType);
-
-    console.log("InputData will ", inputData);
 
     this.homeFirstSection(inputData);
   }

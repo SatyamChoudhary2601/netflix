@@ -23,7 +23,6 @@ class BillingDetailsComponent extends Helper {
     };
 
     api.postMethod("subscribedPlans", data).then(response => {
-      console.log("response", response);
       if (response.data.success) {
         let subscriptions = response.data.data;
         this.setState({ loading: false, subscriptions: subscriptions });
@@ -36,7 +35,7 @@ class BillingDetailsComponent extends Helper {
 
   handleCancelAutoRenewal = event => {
     event.preventDefault();
-    console.log("Submitted");
+
     this.setState({
       loadingContent: "Loading... Please wait..",
       buttonDisable: true
@@ -48,7 +47,6 @@ class BillingDetailsComponent extends Helper {
     api
       .postMethod("cancel/subscription", inputData)
       .then(response => {
-        console.log("response", response);
         if (response.data.success) {
           ToastDemo(this.props.toastManager, response.data.message, "success");
           this.setState({ loadingContent: null, buttonDisable: false });
@@ -60,7 +58,6 @@ class BillingDetailsComponent extends Helper {
           );
           this.setState({ loadingContent: null, buttonDisable: false });
         }
-        console.log(response);
       })
       .catch(error => {
         ToastDemo(this.props.toastManager, error, "error");

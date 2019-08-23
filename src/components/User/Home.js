@@ -26,23 +26,19 @@ class Home extends Component {
         if (response.data.success === true) {
           let maindata = response.data.data;
           let banner = response.data.banner;
-          console.log("response maindata", banner);
+
           this.setState({ loading: false, maindata: maindata, banner: banner });
         } else {
-          console.log("Error", response);
           let errorHandle = 1;
           this.setState({ errorHandle });
         }
       })
-      .catch(function(error) {
-        console.log(error);
-      });
+      .catch(function(error) {});
   }
 
   renderVideoList = (maindata, index) => {
     return (
       <React.Fragment key={index}>
-        {console.log("index", maindata, index)}
         <div className="main-slidersec">
           <Link
             to={{

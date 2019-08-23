@@ -27,9 +27,8 @@ class EditAccountComponent extends Helper {
       email: userDetails.email,
       mobile: userDetails.mobile
     };
-    console.log("Data", data);
+
     api.postMethod("updateProfile", data).then(response => {
-      console.log("response", response);
       if (response.data.success == true) {
         this.props.history.push("/account");
         ToastDemo(this.props.toastManager, response.data.message, "success");

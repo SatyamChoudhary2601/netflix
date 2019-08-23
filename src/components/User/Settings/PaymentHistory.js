@@ -17,7 +17,6 @@ class PaymentHistory extends Component {
     api
       .postMethod("ppv_list")
       .then(response => {
-        console.log("response", response);
         if (response.data.success) {
           this.setState({ loading: false, ppvList: response.data.data });
         } else {

@@ -30,14 +30,12 @@ class HomePageBanner extends Helper {
     };
 
     api.postMethod("wishlists/operations", inputData).then(response => {
-      console.log("response", response);
       if (response.data.success === true) {
         ToastDemo(this.props.toastManager, response.data.message, "success");
         this.setState({
           wishlistResponse: response.data,
           wishlistApiCall: true
         });
-        console.log("Wishlist data ", this.state.wishlistResponse.wishlist_id);
       } else {
         ToastDemo(
           this.props.toastManager,

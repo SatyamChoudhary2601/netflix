@@ -35,15 +35,12 @@ class UserHeader extends Helper {
       .then(response => {
         if (response.data.success === true) {
           let categories = response.data.data;
-          console.log("response category", categories);
+
           this.setState({ loadingCategory: false, categories: categories });
         } else {
-          console.log("Error", response);
         }
       })
-      .catch(function(error) {
-        console.log(error);
-      });
+      .catch(function(error) {});
     // Notification count API
     let notificationInputData = {
       skip: 0,
@@ -61,17 +58,14 @@ class UserHeader extends Helper {
             notifications: notifications
           });
         } else {
-          console.log("Error", response);
         }
       })
-      .catch(function(error) {
-        console.log(error);
-      });
+      .catch(function(error) {});
   }
 
   changeProfile = (profile, event) => {
     event.preventDefault();
-    console.log("OnClicked", profile.id);
+
     localStorage.removeItem("active_profile_id");
     localStorage.setItem("active_profile_id", profile.id);
     localStorage.setItem("active_profile_image", profile.picture);

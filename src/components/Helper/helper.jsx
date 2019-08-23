@@ -50,7 +50,6 @@ class Helper extends Component {
       sub_profile_id: localStorage.getItem("active_profile_id")
     };
     api.postMethod("profile", inputData).then(response => {
-      console.log("Response", response);
       if (response.data.success === true) {
         let data = response.data.data;
         this.setState({ loading: false, data: data });
@@ -60,14 +59,11 @@ class Helper extends Component {
 
   viewProfiles() {
     api.postMethod("active-profiles").then(response => {
-      console.log("response active profile", response);
       if (response.data.success === true) {
         let activeProfile = response.data.data;
         this.setState({ loading: false, activeProfile: activeProfile });
       }
     });
-
-    console.log("State object", this.state.activeProfile);
   }
 
   singleVideoFirst(inputData) {
@@ -76,19 +72,16 @@ class Helper extends Component {
       .then(response => {
         if (response.data.success === true) {
           let videoDetailsFirst = response.data.data;
-          console.log("response first maindata", videoDetailsFirst);
+
           this.setState({
             loadingFirst: false,
             videoDetailsFirst: videoDetailsFirst
           });
           this.singleVideoSecond(inputData);
         } else {
-          console.log("Error", response);
         }
       })
-      .catch(function(error) {
-        console.log(error);
-      });
+      .catch(function(error) {});
   }
   async onlySingleVideoFirst(inputData) {
     await api
@@ -96,19 +89,16 @@ class Helper extends Component {
       .then(response => {
         if (response.data.success === true) {
           let videoDetailsFirst = response.data.data;
-          console.log("response first maindata", videoDetailsFirst);
+
           this.setState({
             loadingFirst: false,
             videoDetailsFirst: videoDetailsFirst
           });
         } else {
-          console.log("Error", response.data);
           this.setState({ videoDetailsFirst: response.data });
         }
       })
-      .catch(function(error) {
-        console.log(error);
-      });
+      .catch(function(error) {});
   }
   singleVideoSecond(inputData) {
     api
@@ -116,18 +106,15 @@ class Helper extends Component {
       .then(response => {
         if (response.data.success === true) {
           let videoDetailsSecond = response.data.data;
-          console.log("response maindata", videoDetailsSecond);
+
           this.setState({
             loadingSecond: false,
             videoDetailsSecond: videoDetailsSecond
           });
         } else {
-          console.log("Error", response);
         }
       })
-      .catch(function(error) {
-        console.log(error);
-      });
+      .catch(function(error) {});
   }
   suggestion(inputData) {
     api
@@ -135,18 +122,15 @@ class Helper extends Component {
       .then(response => {
         if (response.data.success === true) {
           let suggestion = response.data.data;
-          console.log("response suggestion", suggestion);
+
           this.setState({
             loadingSuggestion: false,
             suggestion: suggestion
           });
         } else {
-          console.log("Error", response);
         }
       })
-      .catch(function(error) {
-        console.log(error);
-      });
+      .catch(function(error) {});
   }
   homeFirstSection(inputData) {
     api
@@ -163,9 +147,7 @@ class Helper extends Component {
         }
         this.homeSecondSection(inputData);
       })
-      .catch(function(error) {
-        console.log(error);
-      });
+      .catch(function(error) {});
   }
 
   homeSecondSection(inputData) {
@@ -181,23 +163,18 @@ class Helper extends Component {
           let errorHandle = 1;
           this.setState({ errorHandle });
         }
-        console.log("Home page second section", response);
       })
-      .catch(function(error) {
-        console.log(error);
-      });
+      .catch(function(error) {});
   }
 
   wishlistUpdate(inputData) {
     api.postMethod("wishlists/operations", inputData).then(response => {
-      console.log("response", response);
       if (response.data.success === true) {
         ToastDemo(this.props.toastManager, response.data.message, "success");
         this.setState({
           wishlistResponse: response.data,
           wishlistApiCall: true
         });
-        console.log("Wishlist data ", this.state.wishlistResponse.wishlist_id);
       } else {
         ToastDemo(
           this.props.toastManager,
@@ -216,15 +193,12 @@ class Helper extends Component {
         this.setState({ redirectPPV: true });
       }
     } else {
-      console.log("Redirect");
       this.setState({ redirect: true });
     }
   }
 
   renderRedirectPage(videoDetailsFirst) {
-    console.log("REdirect check");
     if (this.state.redirect) {
-      console.log("REdirect check");
       return (
         <Redirect
           to={{

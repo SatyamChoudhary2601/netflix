@@ -25,7 +25,6 @@ class ViewProfilesComponent extends Helper {
 
   renderProfile = activeProfile => {
     // let renderActiveProfile;
-    // console.log("activeProfile ", activeProfile);
     return (
       <div>
         {activeProfile.map(detail => (

@@ -27,10 +27,9 @@ class RegisterComponent extends Helper {
       .postMethod("v4/register", this.state.data)
       .then(response => {
         if (response.data.success) {
-          console.log("checking");
           ToastDemo(this.props.toastManager, response.data.message, "success");
           window.location = state ? state.from.pathname : "/";
-          console.log("Register Success");
+
           this.setState({ loadingContent: null, buttonDisable: false });
         } else {
           ToastDemo(
@@ -40,7 +39,6 @@ class RegisterComponent extends Helper {
           );
           this.setState({ loadingContent: null, buttonDisable: false });
         }
-        console.log(response);
       })
       .catch(error => {
         this.setState({ loadingContent: null, buttonDisable: false });

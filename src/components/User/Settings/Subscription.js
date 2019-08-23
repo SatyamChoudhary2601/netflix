@@ -16,7 +16,6 @@ class SubscriptionComponent extends Component {
     };
 
     api.postMethod("subscription_plans", data).then(response => {
-      console.log("response", response);
       if (response.data.success === true) {
         let subscriptions = response.data.data;
         this.setState({ loading: false, subscriptions: subscriptions });

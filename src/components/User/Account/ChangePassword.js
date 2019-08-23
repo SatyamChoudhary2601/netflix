@@ -24,7 +24,6 @@ class ChangePasswordComponent extends Helper {
     api
       .postMethod("changePassword", this.state.data)
       .then(response => {
-        console.log("response", response);
         if (response.data.success) {
           ToastDemo(this.props.toastManager, response.data.message, "success");
           this.setState({ loadingContent: null, buttonDisable: false });
@@ -36,7 +35,6 @@ class ChangePasswordComponent extends Helper {
           );
           this.setState({ loadingContent: null, buttonDisable: false });
         }
-        console.log(response);
       })
       .catch(error => {
         ToastDemo(this.props.toastManager, error, "error");

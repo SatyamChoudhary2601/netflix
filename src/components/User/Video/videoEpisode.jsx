@@ -34,23 +34,16 @@ class VideoEpisode extends Helper {
     data[input.name] = input.value;
     this.setState({ data });
 
-    console.log("Stat", inputData);
-
     api
       .postMethod("genre_videos", inputData)
       .then(response => {
         if (response.data.success) {
-          console.log("checking", response.data.data);
           this.setState({ loading: false, genreVideos: response.data.data });
         } else {
           // Do nothing
         }
-        console.log("Check", response);
       })
-      .catch(function(error) {
-        console.log(error);
-      });
-    console.log("Onchange called");
+      .catch(function(error) {});
   };
 
   handlePlayVideo = async (event, admin_video_id) => {

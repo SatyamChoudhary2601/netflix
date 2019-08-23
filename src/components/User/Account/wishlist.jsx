@@ -24,12 +24,9 @@ class Wishlist extends Component {
           let wishlists = response.data.data;
           this.setState({ loading: false, wishlists: wishlists });
         } else {
-          console.log("Error", response);
         }
       })
-      .catch(function(error) {
-        console.log(error);
-      });
+      .catch(function(error) {});
   }
 
   chunkArray(myArray, chunk_size) {

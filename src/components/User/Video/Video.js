@@ -16,7 +16,6 @@ class VideoComponent extends Helper {
     if (this.props.location.state) {
       this.setState({ loadingFirst: false });
     } else {
-      console.log("Tesin push");
       window.location = "/home";
     }
   }

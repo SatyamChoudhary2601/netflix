@@ -27,10 +27,9 @@ class ForgotPasswordComponent extends Helper {
       .postMethod("forgotpassword", this.state.data)
       .then(response => {
         if (response.data.success) {
-          console.log("checking");
           ToastDemo(this.props.toastManager, response.data.message, "success");
           window.location = state ? state.from.pathname : "/";
-          console.log("Forgot Password Success");
+
           this.setState({ loadingContent: null, buttonDisable: false });
         } else {
           ToastDemo(

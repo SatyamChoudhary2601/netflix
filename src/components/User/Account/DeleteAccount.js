@@ -10,9 +10,7 @@ class DeleteAccountComponent extends Component {
   handleDelete = event => {
     event.preventDefault();
     api.postMethod("delete_account", this.state.data).then(function(response) {
-      console.log("response", response);
       if (response.data.success === true) {
-        console.log("Account Deleted");
       }
     });
   };

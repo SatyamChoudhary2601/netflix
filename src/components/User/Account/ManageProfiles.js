@@ -26,10 +26,10 @@ class ManageProfilesComponent extends Helper {
   }
   handleClick = (data, event) => {
     event.preventDefault();
-    console.log("Onclick trigged", data);
+
     this.setState({ renderManageProfile: 1 });
     this.setState({ data });
-    console.log("Render", this.state.renderManageProfile);
+
     this.render();
   };
   handleChangeImage = ({ currentTarget: input }) => {
@@ -53,7 +53,7 @@ class ManageProfilesComponent extends Helper {
 
   handleSubmit = event => {
     event.preventDefault();
-    console.log("Submitted");
+
     const data = {
       sub_profile_id: this.state.data.id,
       name: this.state.data.name,
@@ -64,9 +64,8 @@ class ManageProfilesComponent extends Helper {
       loadingContent: "Loading... Please wait..",
       buttonDisable: true
     });
-    console.log("formdata", data);
+
     api.postMethod("edit-sub-profile", data).then(response => {
-      console.log("response", response);
       if (response.data.success) {
         // this.props.history.push("/manage-profiles");
         ToastDemo(this.props.toastManager, response.data.message, "success");
@@ -81,13 +80,12 @@ class ManageProfilesComponent extends Helper {
 
   handleDelete = event => {
     event.preventDefault();
-    console.log("Submitted");
+
     const data = {
       sub_profile_id: this.state.data.id
     };
-    console.log("formdata", data);
+
     api.postMethod("delete-sub-profile", data).then(response => {
-      console.log("response", response);
       if (response.data.success) {
         window.location = "/manage-profiles";
         ToastDemo(this.props.toastManager, response.data.message, "success");
@@ -99,7 +97,7 @@ class ManageProfilesComponent extends Helper {
     event.preventDefault();
     this.setState({ renderManageProfile: 0 });
     this.setState({ renderAddProfile: 0 });
-    console.log("Render", this.state.renderManageProfile);
+
     this.render();
   };
 
@@ -108,19 +106,18 @@ class ManageProfilesComponent extends Helper {
     this.setState({ renderAddProfile: 1 });
     this.setState({ renderManageProfile: 0 });
     this.setState({ data: {} });
-    console.log("Render", this.state.renderManageProfile);
+
     this.render();
   };
 
   handleAddProfileSubmit = event => {
     event.preventDefault();
-    console.log("Submitted");
+
     const data = {
       name: this.state.data.name
     };
-    console.log("formdata", data);
+
     api.postMethod("add-profile", data).then(response => {
-      console.log("response", response);
       if (response.data.success === true) {
         window.location = "/manage-profiles";
         ToastDemo(this.props.toastManager, response.data.message, "success");
