@@ -63,6 +63,24 @@ class UserHeader extends Helper {
       .catch(function(error) {});
   }
 
+  handleNotificationChange = ({ currentTarget: input }) => {
+    let inputData;
+    if (input.checked) {
+      inputData = 1;
+    } else {
+      inputData = 0;
+    }
+    api
+      .postMethod("settings", { status: inputData })
+      .then(response => {
+        if (response.data.success) {
+          localStorage.setItem("push_status", response.data.push_status);
+        } else {
+        }
+      })
+      .catch(function(error) {});
+  };
+
   changeProfile = (profile, event) => {
     event.preventDefault();
 
@@ -203,7 +221,7 @@ class UserHeader extends Helper {
                   type="text"
                   name="search"
                   placeholder="title.."
-                  className="form-control search-form"
+                  className="form-control search-form mdb-autocomplete"
                 />
               </form>
             </li>
@@ -223,7 +241,16 @@ class UserHeader extends Helper {
                   notification
                   <div className="float-right">
                     <label className="switch">
-                      <input type="checkbox" defaultChecked />
+                      <input
+                        type="checkbox"
+                        defaultChecked={
+                          localStorage.getItem("push_status") == 1
+                            ? true
+                            : false
+                        }
+                        onChange={this.handleNotificationChange}
+                        name="notificationStatus"
+                      />
                       <span className="switch-slider round" />
                     </label>
                   </div>

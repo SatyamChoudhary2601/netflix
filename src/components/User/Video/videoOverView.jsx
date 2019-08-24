@@ -26,7 +26,8 @@ class VideoOverView extends Helper {
     redirect: false,
     redirectPPV: false,
     redirectPaymentOption: false,
-    playButtonClicked: false
+    playButtonClicked: false,
+    wishlistStatusCheck: 0
   };
   componentDidMount() {
     this.setState({ playButtonClicked: false });
@@ -34,9 +35,7 @@ class VideoOverView extends Helper {
   handleOnClickLike = event => {
     event.preventDefault();
 
-    
     api.postMethod("videos/like", this.state.inputData).then(response => {
-      
       if (response.data.success === true) {
         ToastDemo(this.props.toastManager, "You liked this Video!", "success");
         this.setState({ likeReponse: response.data.data, likeApiCall: true });
@@ -48,15 +47,12 @@ class VideoOverView extends Helper {
         );
       }
     });
-    
   };
 
   handleOnClickDislike = event => {
     event.preventDefault();
 
-    
     api.postMethod("videos/dis_like", this.state.inputData).then(response => {
-      
       if (response.data.success === true) {
         ToastDemo(
           this.props.toastManager,
@@ -81,17 +77,17 @@ class VideoOverView extends Helper {
     api
       .postMethod("wishlists/operations", this.state.inputData)
       .then(response => {
-        
-        if (response.data.success === true) {
+        if (response.data.success) {
           ToastDemo(this.props.toastManager, response.data.message, "success");
           this.setState({
             wishlistResponse: response.data,
             wishlistApiCall: true
           });
-          
-            "Wishlist data ",
-            this.state.wishlistResponse.wishlist_id
-          );
+          if (response.data.wishlist_id != null) {
+            this.setState({ wishlistStatusCheck: 1 });
+          } else {
+            this.setState({ wishlistStatusCheck: 0 });
+          }
         } else {
           ToastDemo(
             this.props.toastManager,
@@ -109,13 +105,15 @@ class VideoOverView extends Helper {
   };
   render() {
     const { videoDetailsFirst } = this.props;
+
     const {
       likeReponse,
       likeApiCall,
       disLikeReponse,
       dislikeApiCall,
       wishlistApiCall,
-      wishlistResponse
+      wishlistResponse,
+      wishlistStatusCheck
     } = this.state;
 
     if (this.state.playButtonClicked) {
@@ -130,7 +128,6 @@ class VideoOverView extends Helper {
     return (
       <div className="slider-topbottom-spacing">
         <div className="overview-content">
-          
           <h1 className="banner_video_title">{videoDetailsFirst.title}</h1>
           <h4 className="banner_video_details">
             <span className="green-clr">
@@ -186,7 +183,7 @@ class VideoOverView extends Helper {
               className="btn btn-outline-secondary btn-right-space"
             >
               {wishlistApiCall ? (
-                wishlistResponse.wishlist_id != null ? (
+                wishlistStatusCheck == 1 ? (
                   <i className="fas fa-check mr-2" />
                 ) : (
                   <i className="fas fa-plus mr-2" />
@@ -244,35 +241,35 @@ class VideoOverView extends Helper {
 
                   <div className="form-check">
                     <input type="radio" id="test1" name="radio-group" checked />
-                    <label for="test1">Sexual content</label>
+                    <label htmlFor="test1">Sexual content</label>
                   </div>
                   <div className="form-check">
                     <input type="radio" id="test2" name="radio-group" />
-                    <label for="test2">Violent or repulsive content.</label>
+                    <label htmlFor="test2">Violent or repulsive content.</label>
                   </div>
                   <div className="form-check">
                     <input type="radio" id="test3" name="radio-group" />
-                    <label for="test3">Hateful or abusive content.</label>
+                    <label htmlFor="test3">Hateful or abusive content.</label>
                   </div>
                   <div className="form-check">
                     <input type="radio" id="test4" name="radio-group" />
-                    <label for="test4">Harmful dangerous acts.</label>
+                    <label htmlFor="test4">Harmful dangerous acts.</label>
                   </div>
                   <div className="form-check">
                     <input type="radio" id="test5" name="radio-group" />
-                    <label for="test5">Child abuse.</label>
+                    <label htmlFor="test5">Child abuse.</label>
                   </div>
                   <div className="form-check">
                     <input type="radio" id="test6" name="radio-group" />
-                    <label for="test6">Spam or misleading.</label>
+                    <label htmlFor="test6">Spam or misleading.</label>
                   </div>
                   <div className="form-check">
                     <input type="radio" id="test7" name="radio-group" />
-                    <label for="test7">Infringes my rights.</label>
+                    <label htmlFor="test7">Infringes my rights.</label>
                   </div>
                   <div className="form-check">
                     <input type="radio" id="test8" name="radio-group" />
-                    <label for="test8">Captions issue.</label>
+                    <label htmlFor="test8">Captions issue.</label>
                   </div>
                 </div>
 

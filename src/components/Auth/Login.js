@@ -33,7 +33,7 @@ class LoginCommponent extends Helper {
         if (response.data.success) {
           localStorage.setItem("userId", response.data.data.user_id);
           localStorage.setItem("accessToken", response.data.data.token);
-
+          localStorage.setItem("push_status", response.data.data.push_status);
           ToastDemo(this.props.toastManager, response.data.message, "success");
           this.props.history.push("/view-profiles");
           this.setState({ loadingContent: null, buttonDisable: false });
