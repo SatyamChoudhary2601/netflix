@@ -106,7 +106,7 @@ class LandingPage extends Component {
                         commitment. Cancel online at any time.
                       </h2>
                       <Link
-                        to="auth/register.html"
+                        to={"/register"}
                         className="btn btn-danger join-btn"
                       >
                         join free for a month
@@ -129,7 +129,7 @@ class LandingPage extends Component {
                     </div>
                     <div className="col-sm-12 col-md-12 col-lg-4 col-xl-4">
                       <Link
-                        to="auth/register.html"
+                        to={"/register"}
                         className="btn btn-danger join-btn"
                       >
                         join free for a month
@@ -180,10 +180,7 @@ class LandingPage extends Component {
                       videos, it’s all automated by a dynamic and responsive
                       admin panel with multiple monetization channels.
                     </h3>
-                    <Link
-                      to="auth/register.html"
-                      className="btn btn-danger join-btn"
-                    >
+                    <Link to={"/register"} className="btn btn-danger join-btn">
                       join free for a month
                     </Link>
                   </div>

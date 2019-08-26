@@ -158,7 +158,9 @@ class VideoEpisode extends Helper {
                         <h4 className="episode-content-head">{video.title}</h4>
                       </div>
                       <div className="col-xl-4 col-lg-4">
-                        <h4 className="episode-content-head text-right">52m</h4>
+                        <h4 className="episode-content-head text-right">
+                          {video.duration}
+                        </h4>
                       </div>
                     </div>
                     <h4 className="episode-content-desc">

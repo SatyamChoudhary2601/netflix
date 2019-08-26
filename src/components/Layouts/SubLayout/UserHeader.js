@@ -365,5 +365,4 @@ class UserHeader extends Helper {
     );
   }
 }
-
 export default UserHeader;

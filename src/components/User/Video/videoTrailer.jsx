@@ -3,21 +3,28 @@ import Slider from "react-slick";
 import { Link } from "react-router-dom";
 
 const VideoTrailer = data => {
+  const trailerDetails = data.trailer;
+
+  let slidesToShowCount = 1;
+  if (trailerDetails.length > 3) {
+    slidesToShowCount = 4;
+  } else {
+    slidesToShowCount = trailerDetails.length;
+  }
   var trailerSlider = {
     dots: false,
     arrow: true,
-    infinite: false,
     slidesToShow: 4,
-    slidesToScroll: 1
+    slidesToScroll: 1,
+    infinite: false
   };
-  const trailerDetails = data.trailer;
   return (
     <div className="slider-topbottom-spacing pl-0 pr-0 slider-overlay">
       <div className="pr-4per pl-4per">
         <h1 className="banner_video_title">Trailer and More</h1>
       </div>
       <div>
-        <Slider {...trailerSlider} className="trailer-slider slider">
+        <Slider {...trailerSlider} className="more-like-slider slider">
           {trailerDetails.map(trailer => (
             <div key={Math.random()}>
               <div className="relative">
@@ -34,9 +41,6 @@ const VideoTrailer = data => {
                     trailer.default_image +
                     " 2x"
                   }
-                  data-srcset="assets/img/thumb8.jpg 1x,
-                                                                  assets/img/thumb8.jpg 1.5x,
-                                                                  assets/img/thumb8.jpg 2x"
                 />
                 <div className="trailers-img-overlay">
                   <Link

@@ -41,13 +41,6 @@ class VideoMoreLikeThis extends Helper {
     }
   };
   render() {
-    var morelikeSlider = {
-      dots: false,
-      arrow: true,
-      infinite: false,
-      slidesToShow: 4,
-      slidesToScroll: 1
-    };
     if (this.state.playButtonClicked) {
       const returnToVideo = this.renderRedirectPage(
         this.state.videoDetailsFirst
@@ -58,6 +51,19 @@ class VideoMoreLikeThis extends Helper {
       }
     }
     const { suggestion } = this.props;
+    let slidesToShowCount = 1;
+    if (suggestion.length > 3) {
+      slidesToShowCount = 4;
+    } else {
+      slidesToShowCount = suggestion.length;
+    }
+    var morelikeSlider = {
+      dots: false,
+      arrow: true,
+      infinite: false,
+      slidesToShow: slidesToShowCount,
+      slidesToScroll: 1
+    };
     return (
       <div className="slider-topbottom-spacing pl-0 pr-0 slider-overlay">
         <div className="pr-4per pl-4per">
