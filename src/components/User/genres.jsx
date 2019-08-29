@@ -9,9 +9,7 @@ import ContentLoader from "../Static/contentLoader";
 import { apiConstants } from "../Constant/constants";
 import Helper from "../Helper/helper";
 
-let inputData = {
-  sub_profile_id: localStorage.getItem("active_profile_id")
-};
+let inputData = {};
 
 class Genres extends Helper {
   state = {

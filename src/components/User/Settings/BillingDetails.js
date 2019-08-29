@@ -41,7 +41,6 @@ class BillingDetailsComponent extends Helper {
       buttonDisable: true
     });
     let inputData = {
-      sub_profile_id: localStorage.getItem("active_profile_id"),
       cancel_reason: this.state.data.cancel_reason
     };
     api

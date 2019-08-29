@@ -17,7 +17,6 @@ class ViewAll extends Component {
       window.location = "/home";
     }
     const inputData = {
-      sub_profile_id: localStorage.getItem("active_profile_id"),
       skip: 0,
       url_type: this.props.location.state.url_type,
       page_type: this.props.location.state.page_type,

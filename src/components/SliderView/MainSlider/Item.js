@@ -29,7 +29,6 @@ class Item extends Helper {
     event.preventDefault();
 
     const inputData = {
-      sub_profile_id: localStorage.getItem("active_profile_id"),
       admin_video_id: this.props.movie.admin_video_id,
       skip: 0
     };

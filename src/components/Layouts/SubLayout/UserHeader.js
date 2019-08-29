@@ -27,9 +27,7 @@ class UserHeader extends Helper {
 
     $(".header-height").height(headerHeight);
     this.viewProfiles();
-    let inputData = {
-      sub_profile_id: localStorage.getItem("active_profile_id")
-    };
+    let inputData = {};
     api
       .postMethod("v4/categories/list", inputData)
       .then(response => {

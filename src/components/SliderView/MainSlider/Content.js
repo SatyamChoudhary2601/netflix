@@ -25,7 +25,6 @@ class Content extends Helper {
     loadingSuggestion: true,
     nav: "overview",
     inputData: {
-      sub_profile_id: localStorage.getItem("active_profile_id"),
       admin_video_id: this.props.movie.admin_video_id,
       skip: 0
     }
@@ -56,7 +55,6 @@ class Content extends Helper {
 
     // this.forceUpdate();
     let inputData = {
-      sub_profile_id: localStorage.getItem("active_profile_id"),
       admin_video_id: props.movie.admin_video_id
     };
 

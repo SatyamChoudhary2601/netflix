@@ -17,9 +17,7 @@ class VideoEpisode extends Helper {
     redirectPaymentOption: false,
     videoDetailsFirst: null,
     playButtonClicked: false,
-    inputData: {
-      sub_profile_id: localStorage.getItem("active_profile_id")
-    },
+    inputData: {},
     loading: true,
     genreVideos: null
   };

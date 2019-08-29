@@ -10,9 +10,7 @@ class HomePageBanner extends Helper {
   state = {
     wishlistApiCall: false,
     wishlistResponse: null,
-    inputData: {
-      sub_profile_id: localStorage.getItem("active_profile_id")
-    },
+    inputData: {},
     redirect: false,
     redirectPPV: false,
     redirectPaymentOption: false,

@@ -7,6 +7,8 @@ class Logout extends Component {
     localStorage.removeItem("accessToken");
     localStorage.removeItem("userId");
     localStorage.removeItem("userLoginStatus");
+    localStorage.removeItem("push_status");
+    localStorage.removeItem("active_profile_id");
     this.props.history.push("/");
     ToastDemo(this.props.toastManager, "Logout Successfully..!!", "success");
   }

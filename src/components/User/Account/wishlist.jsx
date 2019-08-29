@@ -12,7 +12,6 @@ class Wishlist extends Component {
   };
   componentDidMount() {
     const inputData = {
-      sub_profile_id: localStorage.getItem("active_profile_id"),
       skip: 0
     };
     // let maindata = { ...this.state.maindata };

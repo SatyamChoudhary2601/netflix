@@ -12,9 +12,7 @@ class VideoMoreLikeThis extends Helper {
     redirectPaymentOption: false,
     videoDetailsFirst: null,
     playButtonClicked: false,
-    inputData: {
-      sub_profile_id: localStorage.getItem("active_profile_id")
-    }
+    inputData: {}
   };
   componentDidMount() {
     this.setState({ playButtonClicked: false });

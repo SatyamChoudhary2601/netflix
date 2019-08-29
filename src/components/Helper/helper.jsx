@@ -46,10 +46,7 @@ class Helper extends Component {
   };
 
   getUserDetails() {
-    const inputData = {
-      sub_profile_id: localStorage.getItem("active_profile_id")
-    };
-    api.postMethod("profile", inputData).then(response => {
+    api.postMethod("profile").then(response => {
       if (response.data.success === true) {
         let data = response.data.data;
         this.setState({ loading: false, data: data });

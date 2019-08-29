@@ -17,7 +17,6 @@ class Home extends Component {
 
   componentDidMount() {
     const inputData = {
-      sub_profile_id: localStorage.getItem("active_profile_id"),
       page_type: "HOME"
     };
     api

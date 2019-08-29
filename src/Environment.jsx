@@ -30,6 +30,10 @@ const Environment = {
 
     formData.append("id", userId);
     formData.append("token", accessToken);
+    formData.append(
+      "sub_profile_id",
+      localStorage.getItem("active_profile_id")
+    );
 
     var socialLoginUser = 0;
 

@@ -12,8 +12,7 @@ const DATE_OPTIONS = {
 class VideoOverView extends Helper {
   state = {
     inputData: {
-      admin_video_id: this.props.videoDetailsFirst.admin_video_id,
-      sub_profile_id: localStorage.getItem("active_profile_id")
+      admin_video_id: this.props.videoDetailsFirst.admin_video_id
     },
     likeApiCall: false,
     dislikeApiCall: false,

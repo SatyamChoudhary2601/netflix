@@ -37,7 +37,7 @@ class InvoiceComponent extends Helper {
     });
     let inputData = {
       coupon_code: this.state.data.coupon_code,
-      sub_profile_id: localStorage.getItem("active_profile_id"),
+
       subscription_id: this.props.location.state.subscription.subscription_id
     };
     api
@@ -90,14 +90,13 @@ class InvoiceComponent extends Helper {
     let inputData;
     if (this.state.promoCode == null) {
       inputData = {
-        sub_profile_id: localStorage.getItem("active_profile_id"),
         subscription_id: this.props.location.state.subscription.subscription_id,
         payment_mode: this.state.paymentMode
       };
     } else {
       inputData = {
         coupon_code: this.state.data.coupon_code,
-        sub_profile_id: localStorage.getItem("active_profile_id"),
+
         subscription_id: this.props.location.state.subscription.subscription_id,
         payment_mode: this.state.paymentMode
       };
@@ -148,7 +147,6 @@ class InvoiceComponent extends Helper {
         let inputData;
         if (this.state.promoCode == null) {
           inputData = {
-            sub_profile_id: localStorage.getItem("active_profile_id"),
             subscription_id: this.props.location.state.subscription
               .subscription_id,
             payment_mode: this.state.paymentMode,
@@ -157,7 +155,7 @@ class InvoiceComponent extends Helper {
         } else {
           inputData = {
             coupon_code: this.state.data.coupon_code,
-            sub_profile_id: localStorage.getItem("active_profile_id"),
+
             subscription_id: this.props.location.state.subscription
               .subscription_id,
             payment_mode: this.state.paymentMode,
