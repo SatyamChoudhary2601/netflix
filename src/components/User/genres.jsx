@@ -40,6 +40,7 @@ class Genres extends Helper {
         page_type: "MOVIES"
       };
     }
+    console.log("active", inputData);
     return inputData;
   }
 
