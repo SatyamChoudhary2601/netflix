@@ -29,7 +29,6 @@ class RegisterComponent extends Helper {
         if (response.data.success) {
           ToastDemo(this.props.toastManager, response.data.message, "success");
           window.location = state ? state.from.pathname : "/";
-
           this.setState({ loadingContent: null, buttonDisable: false });
         } else {
           ToastDemo(
