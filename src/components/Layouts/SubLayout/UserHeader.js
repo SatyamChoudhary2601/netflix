@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Helper from "../../Helper/helper";
 import { apiConstants } from "../../Constant/constants";
+import SuggestionInputSearch from "suggestion-react-input-search";
 
 import api from "../../../Environment";
 
@@ -124,6 +125,16 @@ class UserHeader extends Helper {
       notificationCount,
       notifications
     } = this.state;
+    const recentSearches = [
+      "star wars",
+      "star wars IV",
+      "star trek",
+      "star wars I",
+      "aaa"
+    ];
+    const placeholder = "title...";
+    const inputPosition = "center";
+
     return (
       <div>
         <nav
@@ -214,12 +225,13 @@ class UserHeader extends Helper {
           </ul>
           <ul className="navbar-nav ml-auto">
             <li className="nav-item">
-              <form>
-                <input
-                  type="text"
-                  name="search"
-                  placeholder="title.."
-                  className="form-control search-form mdb-autocomplete"
+              <form className="search-suggestion-form">
+                <SuggestionInputSearch
+                  onSubmitFunction={this.handleOnSubmit}
+                  recentSearches={recentSearches}
+                  placeholder={placeholder}
+                  inputPosition={inputPosition}
+                  inputClass="form-control search-form"
                 />
               </form>
             </li>

@@ -846,13 +846,16 @@ a, a:hover, a:focus {
 .notification-count{
     position: absolute;
     top: 5px;
-    right:10px;
+    right: 10px;
     background-color: red;
     display: table-cell;
     font-size: .4em;
-    padding:.2em .6em;
     border-radius: 50%;
     font-family: 'Bold';
+    height: 1.8em;
+    width: 1.8em;
+    text-align: center;
+    line-height: 1.8em;
 }
 .notification.dropdown-toggle::after{
     border:0;
@@ -1554,8 +1557,8 @@ label{
 }
 .banner-content{
     position: absolute;
-    left:4%;
-    right:65%;
+    left:8%;
+    right:40%;
     top:0;
     bottom:0;
     height:39vw;
@@ -1571,6 +1574,7 @@ label{
     font-size: 3em;
     margin-bottom: .3em;
     font-family: 'Bold';
+    text-align: left;
 }
 .banner_video_text{
     font-size: 1.14em;
@@ -1578,6 +1582,7 @@ label{
     color: #e5e5e5;
     max-height: 4.3em;
     overflow: hidden;
+    text-align: left;
     font-family: 'Regular';
 }
 /*.block-with-text {
@@ -1606,6 +1611,7 @@ label{
 }*/
 .banner-btn-sec{
     margin-top: 2em;
+    text-align: left;
 }
 .btn.btn-grey{
     font-weight: 400;
@@ -3508,6 +3514,20 @@ a:active, a:focus, .slick-slide:focus, .slick-slide:active{
 .slick-initialized .slick-slide {
     max-width: 25%;
 }
+.slick-list{
+    min-width:100%;
+}
+.slick-track{
+    min-width:100%;
+}
+.carousel.carousel-slider .control-arrow{
+    z-index: 9999!important;
+    padding: 0 1em!important;
+}
+
+.banner-slider .slider-wrapper{
+    padding: 0;
+}
 
 .slider-wrapper {
     z-index: 999;
@@ -3554,7 +3574,6 @@ display: none!important;
 }
 
 .banner-slider .slick-next {
-
     height: 100%;
     right: 0;
     width: 10%;
@@ -3612,4 +3631,38 @@ display: none!important;
 }
         
     }
-    
+.search-suggestion-form{
+    position: relative;
+}
+.search-suggestion{
+    background-color: #000;
+    display: none;
+    position: absolute;
+    right: 0;
+    width: 0;
+    top: 3em;
+    color: #e4070c;
+
+}
+.search-suggestion-form input:focus + .search-suggestion{
+    display: block;
+    width: 230px;
+}
+
+.search-input-container .search-input-container__inner{
+    position: static!important;
+    width: auto!important;
+}
+.suggestions-container ul{
+    color: #fff;
+}
+
+.suggestions-container{
+    background-color: #000!important;
+    width: 280px!important;
+    right: 0;
+    top: 3em;
+}
+.suggestions-container ul li.selected{
+    background-color: #e4070c!important;
+}
