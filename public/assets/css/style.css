@@ -3666,3 +3666,9 @@ display: none!important;
 .suggestions-container ul li.selected{
     background-color: #e4070c!important;
 }
+
+.banner-wishlist-icon{
+    width: 15px!important;
+    height: 15px;
+    margin-top: 4px;
+}

@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { Link, Redirect } from "react-router-dom";
-import Slider from "react-slick";
+
 import Helper from "../Helper/helper";
 import api from "../../Environment";
 import { withToastManager } from "react-toast-notifications";
 import ToastDemo from "../Helper/toaster";
-import ReactDOM from "react-dom";
+
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 
@@ -18,10 +18,20 @@ class HomePageBanner extends Helper {
     redirectPPV: false,
     redirectPaymentOption: false,
     videoDetailsFirst: null,
-    playButtonClicked: false
+    playButtonClicked: false,
+    wishlistStatusCheck: 0,
+    wishlistResponse: null,
+    wishlistApiCall: false
   };
   componentDidMount() {
     this.setState({ playButtonClicked: false });
+    let wishlistStatusCheck = 0;
+    if (this.props.banner.wishlist_status == 1) {
+      wishlistStatusCheck = 1;
+    } else {
+      wishlistStatusCheck = 0;
+    }
+    this.setState({ wishlistStatusCheck });
   }
   handleWishList = (event, admin_video_id) => {
     event.preventDefault();
@@ -37,6 +47,15 @@ class HomePageBanner extends Helper {
           wishlistResponse: response.data,
           wishlistApiCall: true
         });
+        if (response.data.wishlist_id != null) {
+          this.setState({
+            wishlistStatusCheck: 1
+          });
+        } else {
+          this.setState({
+            wishlistStatusCheck: 0
+          });
+        }
       } else {
         ToastDemo(
           this.props.toastManager,
@@ -62,14 +81,6 @@ class HomePageBanner extends Helper {
   };
 
   render() {
-    var bannerSlider = {
-      dots: false,
-      arrows: true,
-      slidesToShow: 1,
-      slidesToScroll: 1,
-      infinite: true,
-      autoplay: false
-    };
     const { banner } = this.props;
 
     if (this.state.playButtonClicked) {
@@ -81,7 +92,11 @@ class HomePageBanner extends Helper {
         return returnToVideo;
       }
     }
-
+    const {
+      wishlistStatusCheck,
+      wishlistApiCall,
+      wishlistResponse
+    } = this.state;
     return (
       <section className="banner-slider slider">
         <Carousel
@@ -90,7 +105,7 @@ class HomePageBanner extends Helper {
           showStatus={false}
           showArrows={true}
           showIndicators={false}
-          autoPlay={true}
+          autoPlay={false}
           stopOnHover={true}
           swipeable={true}
         >
@@ -143,8 +158,25 @@ class HomePageBanner extends Helper {
                         }
                         value={video.admin_video_id}
                       >
-                        <i className="fas fa-plus mr-2" />
-                        my list
+                        {wishlistStatusCheck == 1 ? (
+                          <div>
+                            <i className="" style={{ display: "none" }} />
+                            <img
+                              src={window.location.origin + "/images/tick.png"}
+                              className="mr-2 banner-wishlist-icon"
+                            />
+                            My list
+                          </div>
+                        ) : (
+                          <div>
+                            <i className="" style={{ display: "none" }}></i>
+                            <img
+                              src={window.location.origin + "/images/add.png"}
+                              className="mr-2 banner-wishlist-icon"
+                            />
+                            my list
+                          </div>
+                        )}
                       </Link>
                     </div>
                   </div>

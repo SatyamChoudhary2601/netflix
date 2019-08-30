@@ -30,6 +30,14 @@ class VideoOverView extends Helper {
   };
   componentDidMount() {
     this.setState({ playButtonClicked: false });
+
+    let wishlistStatusCheck = 0;
+    if (this.props.videoDetailsFirst.wishlist_status == 1) {
+      wishlistStatusCheck = 1;
+    } else {
+      wishlistStatusCheck = 0;
+    }
+    this.setState({ wishlistStatusCheck });
   }
   handleOnClickLike = event => {
     event.preventDefault();
@@ -83,9 +91,13 @@ class VideoOverView extends Helper {
             wishlistApiCall: true
           });
           if (response.data.wishlist_id != null) {
-            this.setState({ wishlistStatusCheck: 1 });
+            this.setState({
+              wishlistStatusCheck: 1
+            });
           } else {
-            this.setState({ wishlistStatusCheck: 0 });
+            this.setState({
+              wishlistStatusCheck: 0
+            });
           }
         } else {
           ToastDemo(
@@ -181,19 +193,27 @@ class VideoOverView extends Helper {
               onClick={this.handleWishList}
               className="btn btn-outline-secondary btn-right-space"
             >
-              {wishlistApiCall ? (
-                wishlistStatusCheck == 1 ? (
-                  <i className="fas fa-check mr-2" />
-                ) : (
-                  <i className="fas fa-plus mr-2" />
-                )
-              ) : videoDetailsFirst.wishlist_status ? (
-                <i className="fas fa-check mr-2" />
+              {wishlistStatusCheck == 1 ? (
+                <div>
+                  <i className="" style={{ display: "none" }} />
+                  <img
+                    src={window.location.origin + "/images/tick.png"}
+                    className="mr-2"
+                  />
+                  My list
+                </div>
               ) : (
-                <i className="fas fa-plus mr-2" />
+                <div>
+                  <i className="" style={{ display: "none" }}></i>
+                  <img
+                    src={window.location.origin + "/images/add.png"}
+                    className="mr-2"
+                  />
+                  my list
+                </div>
               )}
-              my list
             </Link>
+
             <Link
               to="#"
               onClick={this.handleOnClickLike}

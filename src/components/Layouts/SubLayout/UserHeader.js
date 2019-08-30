@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-
 import { Link } from "react-router-dom";
 import Helper from "../../Helper/helper";
 import { apiConstants } from "../../Constant/constants";
 import SuggestionInputSearch from "suggestion-react-input-search";
-
 import api from "../../../Environment";
+import { withToastManager } from "react-toast-notifications";
+import ToastDemo from "../../Helper/toaster";
 
 const $ = window.$;
 
@@ -20,7 +20,8 @@ class UserHeader extends Helper {
     categories: null,
     loadingNotification: true,
     notificationCount: null,
-    notifications: null
+    notifications: null,
+    playButtonClicked: false
   };
 
   componentDidMount() {
@@ -62,6 +63,33 @@ class UserHeader extends Helper {
       .catch(function(error) {});
   }
 
+  handleSearchChange = ({ currentTarget: input }) => {
+    console.log("Input:");
+  };
+
+  handleOnSubmit = (event, value) => {
+    event.preventDefault();
+    console.log("submit", value);
+  };
+
+  searchResult = () => {
+    api
+      .postMethod("search_videos")
+      .then(response => {
+        if (response.data.success === true) {
+          let notificationCount = response.data.count;
+          let notifications = response.data.data;
+          this.setState({
+            loadingNotification: false,
+            notificationCount: notificationCount,
+            notifications: notifications
+          });
+        } else {
+        }
+      })
+      .catch(function(error) {});
+  };
+
   handleNotificationChange = ({ currentTarget: input }) => {
     let inputData;
     if (input.checked) {
@@ -87,6 +115,27 @@ class UserHeader extends Helper {
     localStorage.setItem("active_profile_id", profile.id);
     localStorage.setItem("active_profile_image", profile.picture);
     window.location = "/home";
+  };
+
+  handlePlayVideo = async (event, admin_video_id) => {
+    event.preventDefault();
+
+    let inputData = {
+      admin_video_id: admin_video_id
+    };
+
+    await this.onlySingleVideoFirst(inputData);
+
+    if (this.state.videoDetailsFirst.success === false) {
+      ToastDemo(
+        this.props.toastManager,
+        this.state.videoDetailsFirst.error_messages,
+        "error"
+      );
+    } else {
+      this.redirectStatus(this.state.videoDetailsFirst);
+      this.setState({ playButtonClicked: true });
+    }
   };
 
   renderList = activeProfile => {
@@ -126,14 +175,24 @@ class UserHeader extends Helper {
       notifications
     } = this.state;
     const recentSearches = [
-      "star wars",
-      "star wars IV",
-      "star trek",
-      "star wars I",
+      "star wars 1",
+      "star wars 2",
+      "star trek 3",
+      "star wars 4",
       "aaa"
     ];
     const placeholder = "title...";
     const inputPosition = "center";
+
+    if (this.state.playButtonClicked) {
+      const returnToVideo = this.renderRedirectPage(
+        this.state.videoDetailsFirst
+      );
+
+      if (returnToVideo != null) {
+        return returnToVideo;
+      }
+    }
 
     return (
       <div>
@@ -232,7 +291,8 @@ class UserHeader extends Helper {
                   placeholder={placeholder}
                   inputPosition={inputPosition}
                   inputClass="form-control search-form"
-                />
+                  onChange={this.handleSearchChange}
+                ></SuggestionInputSearch>
               </form>
             </li>
             <li className="nav-item dropdown mobile-view">
@@ -270,7 +330,16 @@ class UserHeader extends Helper {
                   {loadingNotification
                     ? ""
                     : notifications.map(notification => (
-                        <Link className="dropdown-item" to="#">
+                        <Link
+                          className="dropdown-item"
+                          to="#"
+                          onClick={event =>
+                            this.handlePlayVideo(
+                              event,
+                              notification.admin_video_id
+                            )
+                          }
+                        >
                           <div className="display-inline">
                             <div className="video-left">
                               <img src={notification.img} alt="Notification" />
@@ -375,4 +444,4 @@ class UserHeader extends Helper {
     );
   }
 }
-export default UserHeader;
+export default withToastManager(UserHeader);

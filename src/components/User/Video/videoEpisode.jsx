@@ -148,7 +148,7 @@ class VideoEpisode extends Helper {
                         </div>
                       </Link>
                     </div>
-                    <div className="episode-number">1</div>
+                    {/* <div className="episode-number">1</div> */}
                   </div>
                   <div className="episode-content">
                     <div className="row">
