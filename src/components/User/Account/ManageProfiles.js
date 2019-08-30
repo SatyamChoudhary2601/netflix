@@ -53,12 +53,20 @@ class ManageProfilesComponent extends Helper {
 
   handleSubmit = event => {
     event.preventDefault();
+    let data;
 
-    const data = {
-      sub_profile_id: this.state.data.id,
-      name: this.state.data.name,
-      picture: this.state.inputData.picture
-    };
+    if (this.state.data.inputData == undefined) {
+      data = {
+        sub_profile_id: this.state.data.id,
+        name: this.state.data.name
+      };
+    } else {
+      data = {
+        sub_profile_id: this.state.data.id,
+        name: this.state.data.name,
+        picture: this.state.inputData.picture
+      };
+    }
 
     this.setState({
       loadingContent: "Loading... Please wait..",
@@ -72,7 +80,11 @@ class ManageProfilesComponent extends Helper {
         this.setState({ loadingContent: null, buttonDisable: false });
         window.location = "/manage-profiles";
       } else {
-        ToastDemo(this.props.toastManager, response.data.error, "error");
+        ToastDemo(
+          this.props.toastManager,
+          response.data.error_messages,
+          "error"
+        );
         this.setState({ loadingContent: null, buttonDisable: false });
       }
     });
