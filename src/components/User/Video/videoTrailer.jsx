@@ -45,8 +45,11 @@ const VideoTrailer = data => {
                 <div className="trailers-img-overlay">
                   <Link
                     to={{
-                      pathname: `/video/${trailer.admin_video_id}`,
-                      state: { videoDetailsFirst: trailer }
+                      pathname: `/video/${trailer.name}`,
+                      state: {
+                        videoDetailsFirst: trailer,
+                        videoFrom: "trailer"
+                      }
                     }}
                   >
                     <div className="thumbslider-outline">

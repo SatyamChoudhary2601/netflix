@@ -21,10 +21,20 @@ class VideoComponent extends Helper {
   }
   render() {
     const { loadingFirst } = this.state;
+    let mainVideo;
+    let videoTitle;
     if (loadingFirst) {
       return <ContentLoader />;
     } else {
-      const { videoDetailsFirst } = this.props.location.state;
+      if (this.props.location.state.videoFrom != undefined) {
+        mainVideo = this.props.location.state.videoDetailsFirst.resolutions
+          .original;
+        videoTitle = this.props.location.state.videoDetailsFirst.name;
+      } else {
+        mainVideo = this.props.location.state.videoDetailsFirst.main_video;
+        videoTitle = this.props.location.state.videoDetailsFirst.title;
+      }
+      // const { videoDetailsFirst } = this.props.location.state;
       return (
         <div>
           <div className="single-video">
@@ -33,7 +43,7 @@ class VideoComponent extends Helper {
               playerScript={
                 window.location.origin + "/assets/jwplayer/jwplayer.js"
               }
-              file={videoDetailsFirst.main_video}
+              file={mainVideo}
               isAutoPlay={true}
             />
             <div className="back-arrowsec">
@@ -43,7 +53,7 @@ class VideoComponent extends Helper {
                   alt="arrow"
                 />
                 <span className="txt-overflow capitalize ml-3">
-                  {videoDetailsFirst.title}
+                  {videoTitle}
                 </span>
               </Link>
             </div>
