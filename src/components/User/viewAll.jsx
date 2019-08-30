@@ -16,24 +16,53 @@ class ViewAll extends Component {
     } else {
       window.location = "/home";
     }
-    const inputData = {
-      skip: 0,
-      url_type: this.props.location.state.url_type,
-      page_type: this.props.location.state.page_type,
-      category_id: this.props.location.state.category_id
-    };
+    let inputData;
+    if (this.props.location.state.videoType != undefined) {
+      inputData = {
+        skip: 0,
+        cast_crew_id: this.props.location.state.cast_crew_id
+      };
+    } else {
+      inputData = {
+        skip: 0,
+        url_type: this.props.location.state.url_type,
+        page_type: this.props.location.state.page_type,
+        category_id: this.props.location.state.category_id
+      };
+    }
+    this.viewAllApiCall(inputData);
+  }
 
+  //WARNING! To be deprecated in React v17. Use new lifecycle static getDerivedStateFromProps instead.
+  componentWillReceiveProps(nextProps) {
+    let inputData;
+    if (nextProps.location.state.videoType != undefined) {
+      inputData = {
+        skip: 0,
+        cast_crew_id: nextProps.location.state.cast_crew_id
+      };
+    } else {
+      inputData = {
+        skip: 0,
+        url_type: nextProps.location.state.url_type,
+        page_type: nextProps.location.state.page_type,
+        category_id: nextProps.location.state.category_id
+      };
+    }
+    this.viewAllApiCall(inputData);
+  }
+
+  viewAllApiCall = inputData => {
     api
       .postMethod("see_all", inputData)
       .then(response => {
-        if (response.data.success === true) {
-          let videoList = response.data.data;
-          this.setState({ loading: false, videoList: videoList });
+        if (response.data.success) {
+          this.setState({ loading: false, videoList: response.data.data });
         } else {
         }
       })
       .catch(function(error) {});
-  }
+  };
 
   chunkArray(myArray, chunk_size) {
     let results = [];

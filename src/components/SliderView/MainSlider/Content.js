@@ -243,14 +243,18 @@ class Content extends Helper {
                 )}
               </div>
 
-              <div
-                className={classNames("tab-pane", {
-                  active: this.state.nav == "details",
-                  fade: this.state.nav != "details"
-                })}
-              >
-                <VideoDetails />
-              </div>
+              {loadingFirst ? (
+                ""
+              ) : (
+                <div
+                  className={classNames("tab-pane", {
+                    active: this.state.nav == "details",
+                    fade: this.state.nav != "details"
+                  })}
+                >
+                  <VideoDetails videoDetailsFirst={videoDetailsFirst} />
+                </div>
+              )}
             </div>
           </div>
 
