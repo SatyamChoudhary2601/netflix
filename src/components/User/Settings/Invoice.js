@@ -180,16 +180,9 @@ class InvoiceComponent extends Helper {
 
       let env = "sandbox"; // you can set here to 'production' for production
       let currency = "USD"; // or you can set this value from your props or state
-      let total = 1; // same as above, this is the total amount (based on currency) to be paid by using Paypal express checkout
-      // Document on Paypal's currency code: https://developer.paypal.com/docs/classic/api/currency_codes/
-
-      // In order to get production's app-ID, you will have to send your app to Paypal for approval first
-      // For sandbox app-ID (after logging into your developer account, please locate the "REST API apps" section, click "Create App"):
-      //   => https://developer.paypal.com/docs/classic/lifecycle/sb_credentials/
-      // For production app-ID:
-      //   => https://developer.paypal.com/docs/classic/lifecycle/goingLive/
-
-      // NB. You can also have many Paypal express checkout buttons on page, just pass in the correct amount and they will work!
+      let total = loadingPromoCode
+        ? subscription.amount
+        : promoCode.remaining_amount; // same as above, this is the total amount (based on currency) to be paid by using Paypal express checkout
 
       const client = {
         sandbox:
@@ -197,6 +190,7 @@ class InvoiceComponent extends Helper {
         production:
           "AUr5bpSyosn6V5uIdnUdqvCWLR6DXgz0bjBBOLKUUjHQFWVfjudQCCzAjpVaBNHeQ_gn575mJCVoYFBo"
       };
+
       return (
         <div>
           <div className="main">
