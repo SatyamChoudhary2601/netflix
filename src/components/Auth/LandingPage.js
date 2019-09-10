@@ -1,19 +1,24 @@
 import React, { Component } from "react";
-
+import {
+  setTranslations,
+  setDefaultLanguage,
+  translate
+} from "react-multi-lang";
+import en from "../translation/en.json";
+import pt from "../translation/pt.json";
 import { Link } from "react-router-dom";
 
+setTranslations({ pt, en });
+setDefaultLanguage("en");
+
 class LandingPage extends Component {
-  // constructor(props) {
-
-  //     super(props);
-
-  // }
-
   componentDidMount() {
     // Call api function
   }
 
   render() {
+    const { t } = this.props;
+
     return (
       <div>
         <div className="landing-page-header">
@@ -25,7 +30,7 @@ class LandingPage extends Component {
             />
           </Link>
           <Link to="/login" className="btn btn-danger">
-            sign in
+            {t("signin")}
           </Link>
         </div>
         <div className="landing-banner-sec">
@@ -194,4 +199,4 @@ class LandingPage extends Component {
   }
 }
 
-export default LandingPage;
+export default translate(LandingPage);
