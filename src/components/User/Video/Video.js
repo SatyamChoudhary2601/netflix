@@ -15,6 +15,7 @@ class VideoComponent extends Helper {
   componentDidMount() {
     if (this.props.location.state) {
       this.setState({ loadingFirst: false });
+      console.log("This props", this.props.location.state);
     } else {
       window.location = "/home";
     }

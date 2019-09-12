@@ -28,7 +28,7 @@ class ForgotPasswordComponent extends Helper {
       .then(response => {
         if (response.data.success) {
           ToastDemo(this.props.toastManager, response.data.message, "success");
-          window.location = state ? state.from.pathname : "/";
+          this.props.history.push("/login");
 
           this.setState({ loadingContent: null, buttonDisable: false });
         } else {
@@ -102,4 +102,4 @@ class ForgotPasswordComponent extends Helper {
   }
 }
 
-export default ForgotPasswordComponent;
+export default withToastManager(ForgotPasswordComponent);

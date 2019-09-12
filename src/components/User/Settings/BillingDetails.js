@@ -85,7 +85,7 @@ class BillingDetailsComponent extends Helper {
                   <div className="col-sm-12 col-md-5 col-lg-5 col-xl-5 p-0">
                     {loading ? (
                       ""
-                    ) : (
+                    ) : subscriptions.length > 0 ? (
                       <div
                         className="billing-img"
                         style={{
@@ -159,6 +159,8 @@ class BillingDetailsComponent extends Helper {
                           </div>
                         </div>
                       </div>
+                    ) : (
+                      "No Data Found"
                     )}
                   </div>
                   <div className="col-sm-12 col-md-7 col-lg-7 col-xl-7 p-0">
@@ -170,71 +172,67 @@ class BillingDetailsComponent extends Helper {
                       <p className="grey-line" />
                       {loading
                         ? ""
-                        : subscriptions.map(subscription =>
-                            subscription.active_plan == 1 ? (
-                              ""
-                            ) : (
-                              <div
-                                className="card"
-                                key={subscription.user_subscription_id}
-                              >
-                                <div className="card-header bg-dark text-white">
-                                  basic
-                                </div>
-                                <div className="card-body">
-                                  <table className="table table-bordered m-0">
-                                    <tbody>
-                                      <tr>
-                                        <td>subscribed date</td>
-                                        <td>{subscription.created_at}</td>
-                                      </tr>
-                                      <tr>
-                                        <td>expiry date</td>
-                                        <td>{subscription.expiry_date}</td>
-                                      </tr>
-                                      <tr>
-                                        <td>no of account</td>
-                                        <td>{subscription.no_of_account}</td>
-                                      </tr>
-                                      <tr>
-                                        <td>no of month</td>
-                                        <td>{subscription.plan}</td>
-                                      </tr>
-                                      <tr>
-                                        <td>total amount</td>
-                                        <td>
-                                          {subscription.currency}
-                                          {subscription.total_amount}
-                                        </td>
-                                      </tr>
-                                      {subscription.coupon_code == "" ? (
-                                        ""
-                                      ) : (
-                                        <tr>
-                                          <td>coupon amount</td>
-                                          <td>
-                                            {subscription.currency}
-                                            {subscription.coupon_amount}
-                                          </td>
-                                        </tr>
-                                      )}
-                                      <tr>
-                                        <td>paid amount</td>
-                                        <td>
-                                          {subscription.currency}
-                                          {subscription.amount}
-                                        </td>
-                                      </tr>
-                                      <tr>
-                                        <td>payment mode</td>
-                                        <td>{subscription.payment_mode}</td>
-                                      </tr>
-                                    </tbody>
-                                  </table>
-                                </div>
+                        : subscriptions.map(subscription => (
+                            <div
+                              className="card"
+                              key={subscription.user_subscription_id}
+                            >
+                              <div className="card-header bg-dark text-white">
+                                basic
                               </div>
-                            )
-                          )}
+                              <div className="card-body">
+                                <table className="table table-bordered m-0">
+                                  <tbody>
+                                    <tr>
+                                      <td>subscribed date</td>
+                                      <td>{subscription.created_at}</td>
+                                    </tr>
+                                    <tr>
+                                      <td>expiry date</td>
+                                      <td>{subscription.expiry_date}</td>
+                                    </tr>
+                                    <tr>
+                                      <td>no of account</td>
+                                      <td>{subscription.no_of_account}</td>
+                                    </tr>
+                                    <tr>
+                                      <td>no of month</td>
+                                      <td>{subscription.plan}</td>
+                                    </tr>
+                                    <tr>
+                                      <td>total amount</td>
+                                      <td>
+                                        {subscription.currency}
+                                        {subscription.total_amount}
+                                      </td>
+                                    </tr>
+                                    {subscription.coupon_code == "" ? (
+                                      ""
+                                    ) : (
+                                      <tr>
+                                        <td>coupon amount</td>
+                                        <td>
+                                          {subscription.currency}
+                                          {subscription.coupon_amount}
+                                        </td>
+                                      </tr>
+                                    )}
+                                    <tr>
+                                      <td>paid amount</td>
+                                      <td>
+                                        {subscription.currency}
+                                        {subscription.amount}
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td>payment mode</td>
+                                      <td>{subscription.payment_mode}</td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </div>
+                            </div>
+                          ))}
                     </div>
                   </div>
                 </div>

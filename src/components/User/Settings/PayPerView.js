@@ -113,7 +113,10 @@ class PayPerView extends Helper {
             buttonDisableCard: false
           });
           this.setState({ loadingContentCard: null, buttonDisableCard: false });
-          this.props.history.push("/billing-details");
+          this.props.history.push(
+            `/video/${this.props.location.state.videoDetailsFirst.admin_video_id}`,
+            this.props.location.state
+          );
         } else {
           ToastDemo(
             this.props.toastManager,

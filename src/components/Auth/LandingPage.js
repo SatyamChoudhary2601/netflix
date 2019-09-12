@@ -9,7 +9,7 @@ import pt from "../translation/pt.json";
 import { Link } from "react-router-dom";
 
 setTranslations({ pt, en });
-setDefaultLanguage("en");
+setDefaultLanguage("pt");
 
 class LandingPage extends Component {
   componentDidMount() {
@@ -18,7 +18,6 @@ class LandingPage extends Component {
 
   render() {
     const { t } = this.props;
-
     return (
       <div>
         <div className="landing-page-header">
