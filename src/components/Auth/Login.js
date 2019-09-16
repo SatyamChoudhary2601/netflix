@@ -35,7 +35,7 @@ class LoginCommponent extends Helper {
     event.preventDefault();
     // const { toastManager } = this.props;
     this.setState({
-      loadingContent: "Loading... Please wait..",
+      loadingContent: this.props.t('button_loading'),
       buttonDisable: true
     });
     api
@@ -89,7 +89,7 @@ class LoginCommponent extends Helper {
                 <h3 className="register-box-head">{t("signin")}</h3>
                 <form onSubmit={this.handleSubmit} className="auth-form">
                   <div className="form-group">
-                    <label htmlFor="email">Email address</label>
+                    <label htmlFor="email">{t("email_address")}</label>
                     <input
                       type="email"
                       onChange={this.handleChange}
@@ -100,7 +100,7 @@ class LoginCommponent extends Helper {
                     />
                   </div>
                   <div className="form-group">
-                    <label htmlFor="pwd">Password</label>
+                    <label htmlFor="pwd">{t("password")}</label>
                     <input
                       type="password"
                       onChange={this.handleChange}
@@ -121,7 +121,7 @@ class LoginCommponent extends Helper {
                   >
                     {this.state.loadingContent != null
                       ? this.state.loadingContent
-                      : "sign in"}
+                      : t('signin')}
                   </button>
                 </form>
                 <div>
@@ -146,7 +146,7 @@ class LoginCommponent extends Helper {
                 </div>
 
                 <p className="auth-link">
-                  new to Streamview?{" "}
+                  {t("new_to_streamview")}{" "}
                   <Link to={"/register"} className="btn-link">
                     {t("sign_up_now")}
                   </Link>

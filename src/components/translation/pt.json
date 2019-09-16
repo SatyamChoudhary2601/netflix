@@ -7,5 +7,9 @@
   "facebook": "Facebook",
   "google": "google",  
   "sign_up_now": "sign up now",
-  "forgot_password": "forgot password?"
+  "forgot_password": "forgot password?",
+  "button_loading": "Loading... Please wait..",
+  "password":"Password",
+  "email_address":"Email address",
+  "new_to_streamview":"new to Streamview?"
 }
