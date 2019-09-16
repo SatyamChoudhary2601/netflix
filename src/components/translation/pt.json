@@ -2,5 +2,10 @@
   "home": {
     "Title": "Welcome to {param}"
   },
-  "signin": "Working.."
+  "signin": "Sign In",
+  "login_with": "login with ",
+  "facebook": "Facebook",
+  "google": "google",  
+  "sign_up_now": "sign up now",
+  "forgot_password": "forgot password?"
 }

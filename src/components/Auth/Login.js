@@ -10,6 +10,17 @@ import { withToastManager } from "react-toast-notifications";
 
 import ToastDemo from "../Helper/toaster";
 
+import {
+  setTranslations,
+  setDefaultLanguage,
+  translate
+} from "react-multi-lang";
+import en from "../translation/en.json";
+import pt from "../translation/pt.json";
+
+setTranslations({ pt, en });
+setDefaultLanguage("pt");
+
 class LoginCommponent extends Helper {
   state = {
     data: {
@@ -53,6 +64,7 @@ class LoginCommponent extends Helper {
       });
   };
   render() {
+    const { t } = this.props;
     var bgImg = {
       backgroundImage: "url(../assets/img/bg.jpg)"
     };
@@ -74,7 +86,7 @@ class LoginCommponent extends Helper {
           <div className="row">
             <div className="col-sm-9 col-md-7 col-lg-5 col-xl-4 auto-margin">
               <div className="register-box">
-                <h3 className="register-box-head">Sign in</h3>
+                <h3 className="register-box-head">{t("signin")}</h3>
                 <form onSubmit={this.handleSubmit} className="auth-form">
                   <div className="form-group">
                     <label htmlFor="email">Email address</label>
@@ -100,7 +112,7 @@ class LoginCommponent extends Helper {
                   </div>
                   <p className="mt-4">
                     <Link to={"/forgot-password"} className="btn-link">
-                      forgot password?
+                      {t("forgot_password")}
                     </Link>
                   </p>
                   <button
@@ -118,7 +130,7 @@ class LoginCommponent extends Helper {
                       <span>
                         <i className="fab fa-facebook fb social-icons" />
                       </span>
-                      login with facebook
+                      {t("login_with")} {t("facebook")}
                     </p>
                   </Link>
                 </div>
@@ -128,7 +140,7 @@ class LoginCommponent extends Helper {
                       <span>
                         <i className="fab fa-google-plus-square google social-icons" />
                       </span>
-                      login with google
+                      {t("login_with")}  {t("google")}
                     </p>
                   </Link>
                 </div>
@@ -136,7 +148,7 @@ class LoginCommponent extends Helper {
                 <p className="auth-link">
                   new to Streamview?{" "}
                   <Link to={"/register"} className="btn-link">
-                    sign up now
+                    {t("sign_up_now")}
                   </Link>
                 </p>
               </div>
@@ -148,4 +160,4 @@ class LoginCommponent extends Helper {
   }
 }
 
-export default withToastManager(LoginCommponent);
+export default withToastManager(translate(LoginCommponent));
