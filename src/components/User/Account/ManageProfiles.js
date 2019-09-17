@@ -8,6 +8,14 @@ import { withToastManager } from "react-toast-notifications";
 
 import ToastDemo from "../../Helper/toaster";
 
+import {
+  setTranslations,
+  setDefaultLanguage,
+  translate
+} from "react-multi-lang";
+import en from "../../translation/en.json";
+import pt from "../../translation/pt.json";
+
 class ManageProfilesComponent extends Helper {
   state = {
     renderManageProfile: "",
@@ -69,7 +77,7 @@ class ManageProfilesComponent extends Helper {
     }
 
     this.setState({
-      loadingContent: "Loading... Please wait..",
+      loadingContent: this.props.t('button_loading'),
       buttonDisable: true
     });
 
@@ -170,6 +178,8 @@ class ManageProfilesComponent extends Helper {
   };
 
   render() {
+    const { t } = this.props;
+
     var bgImg = {
       backgroundImage: "url(../assets/img/bg.jpg)"
     };
@@ -181,7 +191,7 @@ class ManageProfilesComponent extends Helper {
           <div className="view-profile">
             <div className="edit-profile-content">
               <div className="head-section">
-                <h1 className="view-profiles-head">edit profiles</h1>
+                <h1 className="view-profiles-head">{t("edit")} {t("profile")}</h1>
               </div>
               <form onSubmit={this.handleSubmit}>
                 <div className="edit-profile-sec">
@@ -240,7 +250,7 @@ class ManageProfilesComponent extends Helper {
                     onClick={this.handleDelete}
                     className="grey-outline-btn"
                   >
-                    delete profile
+                    {t("delete")} {t("profile")}
                   </Link>
                 </div>
               </form>
@@ -254,7 +264,7 @@ class ManageProfilesComponent extends Helper {
           <div className="view-profile">
             <div className="edit-profile-content">
               <div className="head-section">
-                <h1 className="view-profiles-head">Add profile</h1>
+                <h1 className="view-profiles-head">{t("Add")} {("profile")}</h1>
               </div>
               <form onSubmit={this.handleAddProfileSubmit}>
                 <div className="edit-profile-sec">
@@ -284,14 +294,14 @@ class ManageProfilesComponent extends Helper {
                 </div>
                 <div className="button-topspace">
                   <button type="submit" className="white-btn">
-                    save
+                    {t("save")}
                   </button>
                   <Link
                     to="#"
                     onClick={this.backToManageProfile}
                     className="grey-outline-btn"
                   >
-                    cancel
+                    {t("cancel")}
                   </Link>
                 </div>
               </form>
@@ -305,7 +315,7 @@ class ManageProfilesComponent extends Helper {
           <div className="view-profile">
             <div className="view-profile-content">
               <div className="head-section">
-                <h1 className="view-profiles-head">manage profiles</h1>
+                <h1 className="view-profiles-head">{t("manage")} {t("profiles")}</h1>
               </div>
               <ul className="choose-profile">
                 {loading ? "Loading" : this.renderProfile(activeProfile)}
@@ -316,13 +326,13 @@ class ManageProfilesComponent extends Helper {
                         <i className="fa fa-plus-circle fa-5x" />
                       </div>
                     </div>
-                    <p className="profile-name">Add Profile</p>
+                    <p className="profile-name">{t("add")} {t("profile")}</p>
                   </Link>
                 </li>
               </ul>
               <div>
                 <Link to="/view-profiles" className="white-btn">
-                  Done
+                {t("done")}
                 </Link>
               </div>
             </div>
@@ -347,4 +357,5 @@ class ManageProfilesComponent extends Helper {
   }
 }
 
-export default withToastManager(ManageProfilesComponent);
+
+export default withToastManager(translate(ManageProfilesComponent));

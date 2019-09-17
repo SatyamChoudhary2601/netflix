@@ -35,9 +35,20 @@
   "full_name":"full name",
   "already_have_account":"Already have an account?",
   "questions_contact_us":"questions? contact us",
-  "about_us":"about us",
-  "terms_and_conditions":"terms and conditions",
-  "contact_us" :"contact us"
+  "about_us":"Aabout us",
+  "terms_and_conditions":"Terms and Conditions",
+  "contact_us" :"Contact Us",
+  "edit_profile" :"Edit Profile",
+  "change_password" :"Change Password",
+  "delete" :"Delete",
+  "manage" :"Manage",
+  "done" :"Done",
+  "edit" :"Edit",
+  "add" :"Add",
+  "save" :"Save",
+  "account":"Account",
+  "profile":"profile",
+  "profiles":"profiles"
   
   
 }

@@ -4,6 +4,17 @@ import { Link } from "react-router-dom";
 import Helper from "../../Helper/helper";
 import ContentLoader from "../../Static/contentLoader";
 
+import {
+  setTranslations,
+  setDefaultLanguage,
+  translate
+} from "react-multi-lang";
+import en from "../../translation/en.json";
+import pt from "../../translation/pt.json";
+
+setTranslations({ pt, en });
+setDefaultLanguage("pt");
+
 class AccountComponent extends Helper {
   state = {
     data: null,
@@ -15,6 +26,8 @@ class AccountComponent extends Helper {
   }
   render() {
     const { loading, data } = this.state;
+    const { t } = this.props;
+
     return (
       <div>
         <div className="main">
@@ -25,13 +38,13 @@ class AccountComponent extends Helper {
               <div className="row">
                 <div className="col-sm-12 col-md-11 col-lg-10 col-xl-9 auto-margin">
                   <div className="account-title-sec">
-                    <h1 className="">account</h1>
+                    <h1 className="">{t("account")}</h1>
                   </div>
 
                   <div className="account-sec">
                     <div className="row">
                       <div className="col-12 col-sm-3 col-md-3 col-lg-3 col-xl-3">
-                        <h4 className="account-sec-head">profile</h4>
+                        <h4 className="account-sec-head">{t("profile")}</h4>
                       </div>
                       <div className="col-12 col-sm-5 col-md-5 col-lg-5 col-xl-5">
                         <h5 className="email">{data.email}</h5>
@@ -50,13 +63,13 @@ class AccountComponent extends Helper {
                       <div className="col-12 col-sm-4 col-md-4 col-lg-4 col-xl-4">
                         <ul className="account-nav-link">
                           <li>
-                            <Link to="/edit-account">edit profile</Link>
+                            <Link to="/edit-account">{t("edit_profile")}</Link>
                           </li>
                           <li>
-                            <Link to="/change-password">change password</Link>
+                            <Link to="/change-password">{t("change_password")}</Link>
                           </li>
                           <li>
-                            <Link to="/delete-account">delete account</Link>
+                            <Link to="/delete-account">{t("delete_account")}</Link>
                           </li>
                         </ul>
                       </div>
@@ -148,4 +161,4 @@ class AccountComponent extends Helper {
   }
 }
 
-export default AccountComponent;
+export default translate(AccountComponent);
