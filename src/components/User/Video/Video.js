@@ -2,7 +2,8 @@ import React, { Component } from "react";
 
 import { Link } from "react-router-dom";
 
-import ReactJWPlayer from "react-jw-player";
+import ReactPlayer from "react-player";
+
 import Helper from "../../Helper/helper";
 
 import ContentLoader from "../../Static/contentLoader";
@@ -39,13 +40,12 @@ class VideoComponent extends Helper {
       return (
         <div>
           <div className="single-video">
-            <ReactJWPlayer
-              playerId="X6vykLrnos0UM2n1ga4pH+8MqPQO11a5d8wBeccRsfqkd06F"
-              playerScript={
-                window.location.origin + "/assets/jwplayer/jwplayer.js"
-              }
-              file={mainVideo}
-              isAutoPlay={true}
+            <ReactPlayer
+              url={mainVideo}
+              controls={true}
+              width="100%"
+              height="100%"
+              playing={true}
             />
             <div className="back-arrowsec">
               <Link to="/home">
