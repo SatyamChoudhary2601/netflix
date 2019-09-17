@@ -145,7 +145,7 @@ class LandingPage extends Component {
                       </div>
                       <h4 className="device-img-txt">{t("watch_on_your_tv")}</h4>
                       <p className="device-img-para">
-                        {t("watch_on_your_tv_detailed")}
+                        {t("watch_on_your_tv_text")}
                       </p>
                     </div>
                     <div className="col-md-12 col-lg-4 col-xl-4">
@@ -156,7 +156,7 @@ class LandingPage extends Component {
                        {t("watch_instantly")}
                       </h4>
                       <p className="device-img-para">
-                        {t("watch_instantly_deatiled")}
+                        {t("watch_instantly_text")}
                       </p>
                     </div>
                     <div className="col-md-12 col-lg-4 col-xl-4">
