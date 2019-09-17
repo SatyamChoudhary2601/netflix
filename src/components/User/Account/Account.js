@@ -101,7 +101,7 @@ class AccountComponent extends Helper {
                   <div className="account-sec">
                     <div className="row">
                       <div className="col-12 col-sm-3 col-md-3 col-lg-3 col-xl-3">
-                        <h4 className="account-sec-head">{t("manage")} {t("profile")}</h4>
+                        <h4 className="account-sec-head">{t("manage_profile")}</h4>
                       </div>
                       <div className="col-12 col-sm-5 col-md-5 col-lg-5 col-xl-5">
                         <div>
@@ -118,7 +118,7 @@ class AccountComponent extends Helper {
                       <div className="col-12 col-sm-4 col-md-4 col-lg-4 col-xl-4">
                         <ul className="account-nav-link">
                           <li>
-                            <Link to="/manage-profiles">{t("manage")} {t("profile")}</Link>
+                            <Link to="/manage-profiles">{t("manage_profile")}</Link>
                           </li>
                         </ul>
                       </div>

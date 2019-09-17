@@ -64,5 +64,14 @@
   "card_default" :"Default Card",
   "set_card_default" :"Set as Default Card",
   "play" :"Play",
-  "my_list":"My List"
+  "my_list":"My List",
+  "trailer_and_more":"Trailer and More",
+  "more_like_this":"More Like This",
+  "views":"Views",
+  "genres":"genres",
+  "action_comedies":"Action Comedies",
+  "family_films":"Children & Family Films",
+  "childeren_films":"Films for ages 8 to 10",
+  "family_features":"family features",
+  "description":"description"
 }

@@ -9,6 +9,7 @@ import VideoMoreLikeThis from "../../User/Video/videoMoreLikeThis";
 import VideoDetails from "../../User/Video/videoDetails";
 import ContentLoader from "../../Static/contentLoader";
 import classNames from "classnames";
+
 const $ = window.$;
 const DATE_OPTIONS = {
   year: "numeric",
@@ -226,7 +227,7 @@ class Content extends Helper {
                     fade: this.state.nav != "trailers"
                   })}
                 >
-                  <VideoTrailer trailer={videoDetailsSecond.trailer_section} />
+                  <VideoTrailer trailer={videoDetailsSecond.trailer_section}  />
                 </div>
               )}
 

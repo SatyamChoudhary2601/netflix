@@ -5,6 +5,18 @@ import Helper from "../../Helper/helper";
 import { withToastManager } from "react-toast-notifications";
 import ToastDemo from "../../Helper/toaster";
 
+
+import {
+  setTranslations,
+  setDefaultLanguage,
+  translate
+} from "react-multi-lang";
+import en from "../../translation/en.json";
+import pt from "../../translation/pt.json";
+
+setTranslations({ pt, en });
+setDefaultLanguage("pt");
+
 class VideoMoreLikeThis extends Helper {
   state = {
     redirect: false,
@@ -39,6 +51,8 @@ class VideoMoreLikeThis extends Helper {
     }
   };
   render() {
+    const { t } = this.props;
+
     if (this.state.playButtonClicked) {
       const returnToVideo = this.renderRedirectPage(
         this.state.videoDetailsFirst
@@ -65,7 +79,7 @@ class VideoMoreLikeThis extends Helper {
     return (
       <div className="slider-topbottom-spacing pl-0 pr-0 slider-overlay">
         <div className="pr-4per pl-4per">
-          <h1 className="banner_video_title">More Like This</h1>
+          <h1 className="banner_video_title">{t("more_like_this")}</h1>
         </div>
         <div>
           <Slider {...morelikeSlider} className="more-like-slider slider">
@@ -112,7 +126,7 @@ class VideoMoreLikeThis extends Helper {
                     <span>{suggest.publish_time}</span>&nbsp;
                     <span className="grey-box pt-0 pb-0">
                       {suggest.age} <i className="fas fa-plus small" /> /{" "}
-                      {suggest.category_id} <small>Views</small>
+                      {suggest.category_id} <small>{t("views")}</small>
                     </span>
                     &nbsp;
                     <span>{suggest.duration}</span>&nbsp;
@@ -130,4 +144,4 @@ class VideoMoreLikeThis extends Helper {
   }
 }
 
-export default withToastManager(VideoMoreLikeThis);
+export default withToastManager(translate(VideoMoreLikeThis));
