@@ -5,6 +5,18 @@ import api from "../../Environment";
 import { withToastManager } from "react-toast-notifications";
 import ToastDemo from "../Helper/toaster";
 
+
+import {
+  setTranslations,
+  setDefaultLanguage,
+  translate
+} from "react-multi-lang";
+import en from "../translation/en.json";
+import pt from "../translation/pt.json";
+
+setTranslations({ pt, en });
+setDefaultLanguage("pt");
+
 class RegisterComponent extends Helper {
   state = {
     data: {
@@ -20,7 +32,7 @@ class RegisterComponent extends Helper {
     event.preventDefault();
     const { state } = this.props.location;
     this.setState({
-      loadingContent: "Loading... Please wait..",
+      loadingContent: this.props.t('button_loading'),
       buttonDisable: true
     });
     api
@@ -46,6 +58,7 @@ class RegisterComponent extends Helper {
   };
 
   render() {
+    const { t } = this.props;
     var bgImg = {
       backgroundImage: "url(../assets/img/bg.jpg)"
     };
@@ -66,10 +79,10 @@ class RegisterComponent extends Helper {
           <div className="row">
             <div className="col-sm-9 col-md-7 col-lg-5 col-xl-4 auto-margin">
               <div className="register-box">
-                <h3 className="register-box-head">Sign up</h3>
+                <h3 className="register-box-head">{t("signup")}</h3>
                 <form className="auth-form" onSubmit={this.handleSubmit}>
                   <div className="form-group">
-                    <label htmlFor="name">full name</label>
+                    <label htmlFor="name">{t("full_name")}</label>
                     <input
                       onChange={this.handleChange}
                       className="form-control"
@@ -79,7 +92,7 @@ class RegisterComponent extends Helper {
                     />
                   </div>
                   <div className="form-group">
-                    <label htmlFor="email">Email address</label>
+                    <label htmlFor="email">{t("email_address")}</label>
                     <input
                       type="email"
                       onChange={this.handleChange}
@@ -90,7 +103,7 @@ class RegisterComponent extends Helper {
                     />
                   </div>
                   <div className="form-group">
-                    <label htmlFor="pwd">Password</label>
+                    <label htmlFor="pwd">{t("password")}</label>
                     <input
                       type="password"
                       onChange={this.handleChange}
@@ -116,7 +129,7 @@ class RegisterComponent extends Helper {
                       <span>
                         <i className="fab fa-facebook fb social-icons" />
                       </span>
-                      login with facebook
+                      {t("login_with")} {t("facebook")}
                     </p>
                   </Link>
                 </div>
@@ -126,15 +139,15 @@ class RegisterComponent extends Helper {
                       <span>
                         <i className="fab fa-google-plus-square google social-icons" />
                       </span>
-                      login with google
+                      {t("login_with")} {t("google")}
                     </p>
                   </Link>
                 </div>
 
                 <p className="auth-link">
-                  Already have an account?{" "}
+                  {t("already_have_account")}{" "}
                   <Link to={"/login"} className="btn-link">
-                    sign in now
+                    {t("sign_in_now")}
                   </Link>
                 </p>
               </div>
@@ -146,4 +159,4 @@ class RegisterComponent extends Helper {
   }
 }
 
-export default withToastManager(RegisterComponent);
+export default withToastManager(translate(RegisterComponent));

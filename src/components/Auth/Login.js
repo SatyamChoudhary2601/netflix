@@ -140,7 +140,7 @@ class LoginCommponent extends Helper {
                       <span>
                         <i className="fab fa-google-plus-square google social-icons" />
                       </span>
-                      {t("login_with")}  {t("google")}
+                      {t("login_with")} {t("google")}
                     </p>
                   </Link>
                 </div>
