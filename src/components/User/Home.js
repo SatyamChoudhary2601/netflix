@@ -7,6 +7,17 @@ import Slider from "../SliderView/MainSlider";
 import HomePageBanner from "./homePageBanner";
 import ContentLoader from "../Static/contentLoader";
 
+import {
+  setTranslations,
+  setDefaultLanguage,
+  translate
+} from "react-multi-lang";
+import en from "../translation/en.json";
+import pt from "../translation/pt.json";
+
+setTranslations({ pt, en });
+setDefaultLanguage("pt");
+
 class Home extends Component {
   state = {
     maindata: null,
@@ -68,6 +79,8 @@ class Home extends Component {
   };
 
   render() {
+    const { t } = this.props;
+
     const { loading, maindata, banner } = this.state;
 
     return (
@@ -93,4 +106,4 @@ class Home extends Component {
   }
 }
 
-export default Home;
+export default translate(Home);

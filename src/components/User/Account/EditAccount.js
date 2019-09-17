@@ -4,6 +4,18 @@ import { withToastManager } from "react-toast-notifications";
 import api from "../../../Environment";
 import ToastDemo from "../../Helper/toaster";
 
+
+import {
+  setTranslations,
+  setDefaultLanguage,
+  translate
+} from "react-multi-lang";
+import en from "../../translation/en.json";
+import pt from "../../translation/pt.json";
+
+setTranslations({ pt, en });
+setDefaultLanguage("pt");
+
 class EditAccountComponent extends Helper {
   state = {
     data: null,
@@ -18,7 +30,7 @@ class EditAccountComponent extends Helper {
   handleSubmit = event => {
     event.preventDefault();
     this.setState({
-      loadingContent: "Loading... Please wait..",
+      loadingContent: this.props.t('button_loading'),
       buttonDisable: true
     });
     let userDetails = { ...this.state.data };
@@ -44,6 +56,8 @@ class EditAccountComponent extends Helper {
     });
   };
   render() {
+    const { t } = this.props;
+
     const { loading, data } = this.state;
     var bgImg = {
       backgroundImage: "url(../assets/img/bg.jpg)"
@@ -55,10 +69,10 @@ class EditAccountComponent extends Helper {
             <div className="row">
               <div className="col-sm-9 col-md-7 col-lg-5 col-xl-4 auto-margin">
                 <div className="register-box">
-                  <h3 className="register-box-head">edit profile</h3>
+                  <h3 className="register-box-head">{t("edit")} {t("profile")}</h3>
                   <form onSubmit={this.handleSubmit} className="auth-form">
                     <div className="form-group">
-                      <label htmlFor="name">name</label>
+                      <label htmlFor="name">{t("full_name")}</label>
                       <input
                         type="text"
                         onChange={this.handleChange}
@@ -69,7 +83,7 @@ class EditAccountComponent extends Helper {
                       />
                     </div>
                     <div className="form-group">
-                      <label htmlFor="email">Email address</label>
+                      <label htmlFor="email">{t("email_address")} </label>
                       <input
                         type="text"
                         onChange={this.handleChange}
@@ -80,7 +94,7 @@ class EditAccountComponent extends Helper {
                       />
                     </div>
                     <div className="form-group">
-                      <label htmlFor="mobile">mobile number</label>
+                      <label htmlFor="mobile">{t("mobile_number")}</label>
                       <input
                         type="text"
                         onChange={this.handleChange}
@@ -96,7 +110,7 @@ class EditAccountComponent extends Helper {
                     >
                       {this.state.loadingContent != null
                         ? this.state.loadingContent
-                        : "save"}
+                        : this.props.t('save')}
                     </button>
                   </form>
                 </div>
@@ -109,4 +123,4 @@ class EditAccountComponent extends Helper {
   }
 }
 
-export default withToastManager(EditAccountComponent);
+export default withToastManager(translate(EditAccountComponent));

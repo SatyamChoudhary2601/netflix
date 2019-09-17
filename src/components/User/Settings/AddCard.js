@@ -7,6 +7,15 @@ import api from "../../../Environment";
 import { withToastManager } from "react-toast-notifications";
 import ToastDemo from "../../Helper/toaster";
 
+
+import {
+  setTranslations,
+  setDefaultLanguage,
+  translate
+} from "react-multi-lang";
+import en from "../../translation/en.json";
+import pt from "../../translation/pt.json";
+
 class AddCardComponent extends Helper {
   state = {
     data: {
@@ -68,6 +77,7 @@ class AddCardComponent extends Helper {
   };
 
   render() {
+    const { t } = this.props;
     const { data } = this.state;
     var billingImg = {
       backgroundImage: "url(../assets/img/card-image.png)"
@@ -84,7 +94,7 @@ class AddCardComponent extends Helper {
                       <div className="view-cards d-none d-md-block do-lg-block d-xl-block">
                         <Link to="/card-details" className="capitalize">
                           <i className="fas fa-chevron-right mr-1" />
-                          card details
+                          {t("card_details")}
                         </Link>
                       </div>
                     </div>
@@ -93,7 +103,7 @@ class AddCardComponent extends Helper {
                     <div className="billing-content-sec">
                       <h4 className="billing-head">
                         <i className="far fa-credit-card" />
-                        add card
+                        {t("add")} {t("card")}
                       </h4>
                       <p className="grey-line" />
                       <form className="auth-form" onSubmit={this.addCard}>
@@ -105,7 +115,7 @@ class AddCardComponent extends Helper {
                           >
                             {this.state.loadingContent != null
                               ? this.state.loadingContent
-                              : "save card"}
+                              : this.props.t('save')}
                           </button>
                         </div>
                       </form>
@@ -177,4 +187,4 @@ class AddCardComponent extends Helper {
   }
 }
 
-export default injectStripe(withToastManager(AddCardComponent));
+export default injectStripe(withToastManager(translate(AddCardComponent)));

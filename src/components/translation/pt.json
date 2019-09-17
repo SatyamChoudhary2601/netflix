@@ -38,8 +38,10 @@
   "about_us":"Aabout us",
   "terms_and_conditions":"Terms and Conditions",
   "contact_us" :"Contact Us",
-  "edit_profile" :"Edit Profile",
   "change_password" :"Change Password",
+  "old_password" :"Old Password",
+  "new_password" :"New Password",
+  "confirm_password" :"Confirm Password",
   "delete" :"Delete",
   "manage" :"Manage",
   "done" :"Done",
@@ -48,7 +50,19 @@
   "save" :"Save",
   "account":"Account",
   "profile":"profile",
-  "profiles":"profiles"
-  
-  
+  "profiles":"profiles",
+  "change_plan":"change plan",
+  "billing_details":"billing details",
+  "card":"Card",
+  "details":"Details",
+  "mobile_number":"Mobile Number",
+  "note":"Note",
+  "delete_account_note":"Once your account is deleted, you would be losing your history and Wish-List details.",  
+  "enter_password":"enter password",
+  "manage_profile" :"Manage Profile",
+  "card_details" :"Card Detaills",
+  "card_default" :"Default Card",
+  "set_card_default" :"Set as Default Card",
+  "play" :"Play",
+  "my_list":"My List"
 }

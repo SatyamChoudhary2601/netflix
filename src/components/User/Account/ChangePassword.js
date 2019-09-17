@@ -4,6 +4,17 @@ import api from "../../../Environment";
 import { withToastManager } from "react-toast-notifications";
 import ToastDemo from "../../Helper/toaster";
 
+import {
+  setTranslations,
+  setDefaultLanguage,
+  translate
+} from "react-multi-lang";
+import en from "../../translation/en.json";
+import pt from "../../translation/pt.json";
+
+setTranslations({ pt, en });
+setDefaultLanguage("pt");
+
 class ChangePasswordComponent extends Helper {
   state = {
     data: {},
@@ -42,6 +53,8 @@ class ChangePasswordComponent extends Helper {
       });
   };
   render() {
+    const { t } = this.props;
+
     var bgImg = {
       backgroundImage: "url(../assets/img/bg.jpg)"
     };
@@ -53,10 +66,10 @@ class ChangePasswordComponent extends Helper {
             <div className="row">
               <div className="col-sm-9 col-md-7 col-lg-5 col-xl-4 auto-margin">
                 <div className="register-box">
-                  <h3 className="register-box-head">change password</h3>
+                  <h3 className="register-box-head">{t("change_password")}</h3>
                   <form className="auth-form" onSubmit={this.handleSubmit}>
                     <div className="form-group">
-                      <label htmlFor="old">old password</label>
+                      <label htmlFor="old">{t("old_password")}</label>
                       <input
                         type="password"
                         className="form-control"
@@ -67,7 +80,7 @@ class ChangePasswordComponent extends Helper {
                       />
                     </div>
                     <div className="form-group">
-                      <label htmlFor="new">new password</label>
+                      <label htmlFor="new">{t("new_password")}</label>
                       <input
                         type="password"
                         className="form-control"
@@ -78,7 +91,7 @@ class ChangePasswordComponent extends Helper {
                       />
                     </div>
                     <div className="form-group">
-                      <label htmlFor="confirm">confirm password</label>
+                      <label htmlFor="confirm">{t("confirm_password")}</label>
                       <input
                         type="password"
                         className="form-control"
@@ -94,7 +107,7 @@ class ChangePasswordComponent extends Helper {
                     >
                       {this.state.loadingContent != null
                         ? this.state.loadingContent
-                        : "change password"}
+                        : this.props.t('change_password') } 
                     </button>
                   </form>
                 </div>
@@ -107,4 +120,4 @@ class ChangePasswordComponent extends Helper {
   }
 }
 
-export default withToastManager(ChangePasswordComponent);
+export default withToastManager(translate(ChangePasswordComponent));

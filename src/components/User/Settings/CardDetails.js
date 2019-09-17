@@ -7,6 +7,14 @@ import ContentLoader from "../../Static/contentLoader";
 import { withToastManager } from "react-toast-notifications";
 import ToastDemo from "../../Helper/toaster";
 
+import {
+  setTranslations,
+  setDefaultLanguage,
+  translate
+} from "react-multi-lang";
+import en from "../../translation/en.json";
+import pt from "../../translation/pt.json";
+
 class CardDetailsComponent extends Component {
   state = {
     cardDetails: null,
@@ -78,6 +86,8 @@ class CardDetailsComponent extends Component {
   };
 
   render() {
+    const { t } = this.props;
+
     var billingImg = {
       backgroundImage: "url(../assets/img/card-image.png)"
     };
@@ -94,7 +104,7 @@ class CardDetailsComponent extends Component {
                       <div className="view-cards d-none d-md-block do-lg-block d-xl-block">
                         <Link to="/add-card" className="capitalize">
                           <i className="fas fa-chevron-right mr-1" />
-                          add card
+                          {t("add")} {t("card")}
                         </Link>
                       </div>
                     </div>
@@ -103,7 +113,7 @@ class CardDetailsComponent extends Component {
                     <div className="billing-content-sec">
                       <h4 className="billing-head">
                         <i className="far fa-credit-card" />
-                        card details
+                        {t("card_details")}
                       </h4>
                       <p className="grey-line" />
                       {loading ? (
@@ -137,7 +147,7 @@ class CardDetailsComponent extends Component {
                                   <p className="m-0">
                                     {card.is_default ? (
                                       <div className="green-clr">
-                                        default card
+                                        {t("card_default")}
                                       </div>
                                     ) : (
                                       <Link
@@ -147,7 +157,7 @@ class CardDetailsComponent extends Component {
                                         }
                                         className="red-clr"
                                       >
-                                        set as default
+                                        {t("set_card_default")}
                                       </Link>
                                     )}
                                   </p>
@@ -167,7 +177,7 @@ class CardDetailsComponent extends Component {
                           <div className="card-deatils">
                             <div className="add-card">
                               <Link to={"/add-card"} className="btn-link">
-                                add card
+                              {t("add")} {t("card")}
                               </Link>
                             </div>
                           </div>
@@ -185,4 +195,4 @@ class CardDetailsComponent extends Component {
   }
 }
 
-export default withToastManager(CardDetailsComponent);
+export default withToastManager(translate(CardDetailsComponent));

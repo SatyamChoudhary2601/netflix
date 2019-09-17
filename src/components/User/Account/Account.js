@@ -25,8 +25,9 @@ class AccountComponent extends Helper {
     this.getUserDetails();
   }
   render() {
-    const { loading, data } = this.state;
     const { t } = this.props;
+
+    const { loading, data } = this.state;
 
     return (
       <div>
@@ -63,13 +64,13 @@ class AccountComponent extends Helper {
                       <div className="col-12 col-sm-4 col-md-4 col-lg-4 col-xl-4">
                         <ul className="account-nav-link">
                           <li>
-                            <Link to="/edit-account">{t("edit_profile")}</Link>
+                            <Link to="/edit-account">{t("edit")} {t("profile")}</Link>
                           </li>
                           <li>
                             <Link to="/change-password">{t("change_password")}</Link>
                           </li>
                           <li>
-                            <Link to="/delete-account">{t("delete_account")}</Link>
+                            <Link to="/delete-account">{t("delete")} {t("account")}</Link>
                           </li>
                         </ul>
                       </div>
@@ -87,10 +88,10 @@ class AccountComponent extends Helper {
                       <div className="col-12 col-sm-4 col-md-4 col-lg-4 col-xl-4">
                         <ul className="account-nav-link">
                           <li>
-                            <Link to="/subscription">change plan</Link>
+                            <Link to="/subscription">{t("change_plan")}</Link>
                           </li>
                           <li>
-                            <Link to="/billing-details">billing details</Link>
+                            <Link to="/billing-details">{t("billing_details")}</Link>
                           </li>
                         </ul>
                       </div>
@@ -100,7 +101,7 @@ class AccountComponent extends Helper {
                   <div className="account-sec">
                     <div className="row">
                       <div className="col-12 col-sm-3 col-md-3 col-lg-3 col-xl-3">
-                        <h4 className="account-sec-head">manage profile</h4>
+                        <h4 className="account-sec-head">{t("manage")} {t("profile")}</h4>
                       </div>
                       <div className="col-12 col-sm-5 col-md-5 col-lg-5 col-xl-5">
                         <div>
@@ -117,7 +118,7 @@ class AccountComponent extends Helper {
                       <div className="col-12 col-sm-4 col-md-4 col-lg-4 col-xl-4">
                         <ul className="account-nav-link">
                           <li>
-                            <Link to="/manage-profiles">manage profile</Link>
+                            <Link to="/manage-profiles">{t("manage")} {t("profile")}</Link>
                           </li>
                         </ul>
                       </div>
@@ -127,7 +128,7 @@ class AccountComponent extends Helper {
                   <div className="account-sec">
                     <div className="row">
                       <div className="col-12 col-sm-3 col-md-3 col-lg-3 col-xl-3">
-                        <h4 className="account-sec-head">card details</h4>
+                        <h4 className="account-sec-head">{t("card_details")}</h4>
                       </div>
                       <div className="col-12 col-sm-5 col-md-5 col-lg-5 col-xl-5">
                         {data.card_last_four_number == "" ? (
@@ -141,10 +142,10 @@ class AccountComponent extends Helper {
                       <div className="col-12 col-sm-4 col-md-4 col-lg-4 col-xl-4">
                         <ul className="account-nav-link">
                           <li>
-                            <Link to="/add-card">add card</Link>
+                            <Link to="/add-card">{t("add")} {t("card")}</Link>
                           </li>
                           <li>
-                            <Link to="/card-details">card details</Link>
+                            <Link to="/card-details">{t("card_details")}</Link>
                           </li>
                         </ul>
                       </div>

@@ -243,7 +243,7 @@ class ManageProfilesComponent extends Helper {
                     onClick={this.backToManageProfile}
                     className="grey-outline-btn"
                   >
-                    cancel
+                    {t("cancel")}
                   </Link>
                   <Link
                     to="#"
@@ -264,7 +264,7 @@ class ManageProfilesComponent extends Helper {
           <div className="view-profile">
             <div className="edit-profile-content">
               <div className="head-section">
-                <h1 className="view-profiles-head">{t("Add")} {("profile")}</h1>
+                <h1 className="view-profiles-head">{t("add")} {("profile")}</h1>
               </div>
               <form onSubmit={this.handleAddProfileSubmit}>
                 <div className="edit-profile-sec">

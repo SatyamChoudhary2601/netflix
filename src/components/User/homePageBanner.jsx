@@ -9,6 +9,17 @@ import ToastDemo from "../Helper/toaster";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 
+import {
+  setTranslations,
+  setDefaultLanguage,
+  translate
+} from "react-multi-lang";
+import en from "../translation/en.json";
+import pt from "../translation/pt.json";
+
+setTranslations({ pt, en });
+setDefaultLanguage("pt");
+
 class HomePageBanner extends Helper {
   state = {
     wishlistApiCall: false,
@@ -81,6 +92,8 @@ class HomePageBanner extends Helper {
   };
 
   render() {
+    const { t } = this.props;
+
     const { banner } = this.props;
 
     if (this.state.playButtonClicked) {
@@ -148,7 +161,7 @@ class HomePageBanner extends Helper {
                         className="btn btn-grey"
                       >
                         <i className="fas fa-play mr-2" />
-                        play
+                        {t("play")}
                       </Link>
                       <Link
                         to="#"
@@ -165,7 +178,7 @@ class HomePageBanner extends Helper {
                               src={window.location.origin + "/images/tick.png"}
                               className="mr-2 banner-wishlist-icon"
                             />
-                            My list
+                            {t("my_list")}
                           </div>
                         ) : (
                           <div>
@@ -174,7 +187,7 @@ class HomePageBanner extends Helper {
                               src={window.location.origin + "/images/add.png"}
                               className="mr-2 banner-wishlist-icon"
                             />
-                            my list
+                            {t("my_list")}
                           </div>
                         )}
                       </Link>
@@ -190,4 +203,4 @@ class HomePageBanner extends Helper {
   }
 }
 
-export default withToastManager(HomePageBanner);
+export default withToastManager(translate(HomePageBanner));
