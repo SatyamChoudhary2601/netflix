@@ -4,6 +4,14 @@ import { Link } from "react-router-dom";
 
 import ContentLoader from "../../Static/contentLoader";
 
+import {
+  setTranslations,
+  setDefaultLanguage,
+  translate
+} from "react-multi-lang";
+import en from "../../translation/en.json";
+import pt from "../../translation/pt.json";
+
 class PaymentOptions extends Component {
   state = {
     loadingFirst: true

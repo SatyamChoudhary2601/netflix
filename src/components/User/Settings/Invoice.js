@@ -313,7 +313,7 @@ class InvoiceComponent extends Helper {
                             value="paypal"
                             onChange={this.handleChangePayment}
                           />
-                          <label htmlFor="paypal">paypal</label>
+                          <label htmlFor="paypal">{t("paypal")}</label>
                         </div>
                         <div className="form-check-inline">
                           <input

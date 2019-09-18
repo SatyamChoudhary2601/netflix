@@ -40,11 +40,13 @@ class PaymentHistory extends Component {
       });
   };
   render() {
+
     const { t } = this.props;
 
     var invoiceImg = {
       backgroundImage: "url(../assets/img/invoice.gif)"
     };
+    
     const { loading, ppvList } = this.state;
     return (
       <div>
