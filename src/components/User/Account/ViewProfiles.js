@@ -5,6 +5,14 @@ import Helper from "../../Helper/helper";
 import ContentLoader from "../../Static/contentLoader";
 import ProgressiveImage from "react-progressive-image";
 
+import {
+  setTranslations,
+  setDefaultLanguage,
+  translate
+} from "react-multi-lang";
+import en from "../../translation/en.json";
+import pt from "../../translation/pt.json";
+
 class ViewProfilesComponent extends Helper {
   state = {
     loading: true,
@@ -57,6 +65,8 @@ class ViewProfilesComponent extends Helper {
   };
 
   render() {
+    const { t } = this.props;
+
     var bgImg = {
       backgroundImage: "url(../assets/img/bg.jpg)"
     };
@@ -79,7 +89,7 @@ class ViewProfilesComponent extends Helper {
             <div className="view-profile">
               <div className="view-profile-content">
                 <div className="head-section">
-                  <h1 className="view-profiles-head">who's watching?</h1>
+                  <h1 className="view-profiles-head">{t("who_is_watching")}</h1>
                 </div>
                 <ul className="choose-profile">
                   {loading ? (
@@ -90,7 +100,7 @@ class ViewProfilesComponent extends Helper {
                 </ul>
                 <div>
                   <Link to="/manage-profiles" className="grey-outline-btn">
-                    manage profiles
+                    {t("manage")} {t("profiles")}
                   </Link>
                 </div>
               </div>
@@ -102,4 +112,4 @@ class ViewProfilesComponent extends Helper {
   }
 }
 
-export default ViewProfilesComponent;
+export default translate(ViewProfilesComponent);

@@ -50,7 +50,7 @@ class AccountComponent extends Helper {
                       <div className="col-12 col-sm-5 col-md-5 col-lg-5 col-xl-5">
                         <h5 className="email">{data.email}</h5>
                         <h5 className="password">
-                          password:
+                          {t("password")}
                           <span className="asterisk">
                             <i className="fas fa-asterisk" />
                             <i className="fas fa-asterisk" />
@@ -80,10 +80,10 @@ class AccountComponent extends Helper {
                   <div className="account-sec">
                     <div className="row">
                       <div className="col-12 col-sm-3 col-md-3 col-lg-3 col-xl-3">
-                        <h4 className="account-sec-head">plan details</h4>
+                        <h4 className="account-sec-head">{t("plan_details")}</h4>
                       </div>
                       <div className="col-12 col-sm-5 col-md-5 col-lg-5 col-xl-5">
-                        <h5 className="email capitalize">basic</h5>
+                        <h5 className="email capitalize">{t("basic")}</h5>
                       </div>
                       <div className="col-12 col-sm-4 col-md-4 col-lg-4 col-xl-4">
                         <ul className="account-nav-link">

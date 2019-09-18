@@ -13,6 +13,7 @@
   "sign_in_now": "sign in now",
   "password":"Password",
   "forgot_password": "forgot password?",
+  "forgot_password_text": "We will send you an email with instructions on how to reset your password.",
   "button_loading": "Loading... Please wait..",
   "email_address":"Email address",
   "new_to_streamview":"new to Streamview?",
@@ -56,6 +57,8 @@
   "profile":"profile",
   "profiles":"profiles",
   "change_plan":"change plan",
+  "plan_details":"Plan Details",
+  "basic":"Basic",
   "billing_details":"billing details",
   "card":"Card",
   "details":"Details",
@@ -99,5 +102,6 @@
   "payment_mode":"Payment Modle",
   "get_app":"Get the latest App :",
   "find_us":"Find us on :",
+  "who_is_watching":"who's watching?",
   "netflix_india":"Netflix India"
 }

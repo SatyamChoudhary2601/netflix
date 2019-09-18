@@ -7,6 +7,16 @@ import Helper from "../Helper/helper";
 import { withToastManager } from "react-toast-notifications";
 import ToastDemo from "../Helper/toaster";
 
+import {
+  setTranslations,
+  setDefaultLanguage,
+  translate
+} from "react-multi-lang";
+import en from "../translation/en.json";
+import pt from "../translation/pt.json";
+
+setTranslations({ pt, en });
+setDefaultLanguage("pt");
 class ForgotPasswordComponent extends Helper {
   state = {
     data: {
@@ -46,6 +56,8 @@ class ForgotPasswordComponent extends Helper {
       });
   };
   render() {
+    const { t } = this.props;
+
     var bgImg = {
       backgroundImage: "url(../assets/img/bg.jpg)"
     };
@@ -66,10 +78,10 @@ class ForgotPasswordComponent extends Helper {
           <div className="row">
             <div className="col-sm-9 col-md-7 col-lg-5 col-xl-4 auto-margin">
               <div className="register-box">
-                <h3 className="register-box-head">forgot password</h3>
+                <h3 className="register-box-head">{t("forgot_password")}</h3>
                 <form className="auth-form" onSubmit={this.handleSubmit}>
                   <div className="form-group">
-                    <label htmlFor="email">Email address</label>
+                    <label htmlFor="email">{t("email_address")}</label>
                     <input
                       type="email"
                       onChange={this.handleChange}
@@ -81,8 +93,7 @@ class ForgotPasswordComponent extends Helper {
                     />
                   </div>
                   <p className="mt-4 black-clr">
-                    We will send you an email with instructions on how to reset
-                    your password.
+                    {t("forgot_password_text")}
                   </p>
                   <button
                     className="btn btn-danger auth-btn"
@@ -90,7 +101,7 @@ class ForgotPasswordComponent extends Helper {
                   >
                     {this.state.loadingContent != null
                       ? this.state.loadingContent
-                      : "Submit"}
+                      : this.props.t('submit')}
                   </button>
                 </form>
               </div>
@@ -102,4 +113,4 @@ class ForgotPasswordComponent extends Helper {
   }
 }
 
-export default withToastManager(ForgotPasswordComponent);
+export default withToastManager(translate(ForgotPasswordComponent));
