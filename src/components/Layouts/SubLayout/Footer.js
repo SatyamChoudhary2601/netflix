@@ -1,6 +1,13 @@
 import React, {Component} from 'react';
 
 import {Link} from 'react-router-dom';
+import {
+    setTranslations,
+    setDefaultLanguage,
+    translate
+  } from "react-multi-lang";
+  import en from "../../translation/en.json";
+  import pt from "../../translation/pt.json";
 
 const $ = window.$;
 
@@ -27,41 +34,41 @@ class Footer extends Component {
     }
 
     render() {
-
+        const{t} =this.props;
         return (
 
             <div>
                 <div className="bottom-height"></div>
                 <div className="footer" id="footer">
                     <div className="site-footer">
-                        <p className="footer-top"><Link to="#">questions? contact us</Link></p>
+                        <p className="footer-top"><Link to="#">{t("questions_contact_us")}</Link></p>
                         <div className="row">
                             <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
                                 <ul className="footer-link">
                                     <li className="footer-link-list">
-                                        <Link to="/page">about us</Link>
+                                        <Link to="/page">{t("about_us")}</Link>
                                     </li>
                                     <li className="footer-link-list">
-                                        <Link to="/page">terms and conditions</Link>
+                                        <Link to="/page">{t("terms_and_conditions")}</Link>
                                     </li>
                                     <li className="footer-link-list">
-                                        <Link to="/page">contact us</Link>
+                                        <Link to="/page">{t("contact_us")}</Link>
                                     </li>
                                     <li className="footer-link-list">
-                                        <Link to="/page">refund policy</Link>
+                                        <Link to="/page">{t("refund_policy")}</Link>
                                     </li>
                                     <li className="footer-link-list">
-                                        <Link to="/page">help</Link>
+                                        <Link to="/page">{t("help")}</Link>
                                     </li>
                                     <li className="footer-link-list">
-                                        <Link to="/page">privacy policy</Link>
+                                        <Link to="/page">{t("privacy_policy")}</Link>
                                     </li>
                                 </ul>
                             </div>
                             <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
                                 <div className="row">
                                     <div className="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-                                        <p className="footer-head">Get the latest App :</p>
+                                        <p className="footer-head">{t("get_app")}</p>
                                         <Link to="https://itunes.apple.com/us/app/streamflix/id1373623182?ls=1&mt=8">
                                             <img src="assets/img/app-store.png" className="app-img" alt="Playstore"/>
                                         </Link>
@@ -70,7 +77,7 @@ class Footer extends Component {
                                         </Link>
                                     </div>
                                     <div className="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-                                        <p className="footer-head">find us on :</p>
+                                        <p className="footer-head">{t("find_us")}</p>
                                         <div className="social-share">
                                             <span className="fa-stack fa-lg">
                                                 <i className="fas fa-circle fa-stack-2x facebook"></i>
@@ -98,7 +105,7 @@ class Footer extends Component {
                                 </div>
                             </div>
                         </div>
-                        <p className="footer-bottom">netflix india</p>
+                        <p className="footer-bottom">{t("netflix_india")}</p>
                     </div>
                 </div>
             </div>
@@ -109,4 +116,4 @@ class Footer extends Component {
 }
 
 
-export default Footer;
+export default translate(Footer);

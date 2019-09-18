@@ -4,6 +4,14 @@ import { withToastManager } from "react-toast-notifications";
 import api from "../../../Environment";
 import ToastDemo from "../../Helper/toaster";
 
+import {
+  setTranslations,
+  setDefaultLanguage,
+  translate
+} from "react-multi-lang";
+import en from "../../translation/en.json";
+import pt from "../../translation/pt.json";
+
 class PaymentHistory extends Component {
   state = {
     ppvList: null,
@@ -32,6 +40,8 @@ class PaymentHistory extends Component {
       });
   };
   render() {
+    const { t } = this.props;
+
     var invoiceImg = {
       backgroundImage: "url(../assets/img/invoice.gif)"
     };
@@ -45,7 +55,7 @@ class PaymentHistory extends Component {
                 <div style={invoiceImg} className="payment-his-img">
                   <div className="row">
                     <div className="col-md-6">
-                      <h4>payment history</h4>
+                      <h4>{t("payment_history")}</h4>
                     </div>
                     <div className="col-md-6 text-right">
                       {/* <h4 className="grey-clr">Total</h4>
@@ -79,14 +89,14 @@ class PaymentHistory extends Component {
                                 }}
                                 className="btn btn-danger mt-3 btn-sm"
                               >
-                                View details
+                                {t("video_details")}
                               </Link>
                             </div>
                           </div>
                           <div className="clearfix" />
                         </div>
                       ))
-                    : "No Data Found"}
+                    : this.props.t('no_data_found')}
                 </div>
               </div>
             </div>
@@ -97,4 +107,4 @@ class PaymentHistory extends Component {
   }
 }
 
-export default withToastManager(PaymentHistory);
+export default withToastManager(translate(PaymentHistory));

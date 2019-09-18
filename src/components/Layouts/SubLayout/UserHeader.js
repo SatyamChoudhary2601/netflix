@@ -7,6 +7,14 @@ import api from "../../../Environment";
 import { withToastManager } from "react-toast-notifications";
 import ToastDemo from "../../Helper/toaster";
 
+import {
+  setTranslations,
+  setDefaultLanguage,
+  translate
+} from "react-multi-lang";
+import en from "../../translation/en.json";
+import pt from "../../translation/pt.json";
+
 const $ = window.$;
 
 class UserHeader extends Helper {
@@ -165,6 +173,9 @@ class UserHeader extends Helper {
   };
 
   render() {
+
+    const { t } = this.props;
+
     const {
       loading,
       activeProfile,
@@ -181,7 +192,9 @@ class UserHeader extends Helper {
       "star wars 4",
       "aaa"
     ];
+
     const placeholder = "title...";
+
     const inputPosition = "center";
 
     if (this.state.playButtonClicked) {
@@ -240,23 +253,23 @@ class UserHeader extends Helper {
           </ul>
           <ul className="navbar-nav desktop-nav ">
             <li className="nav-item active">
-              <Link className="nav-link" to={"/home"}>
-                home
+              <Link className="nav-link" to={"/home"}>                
+                {t("home")}
               </Link>
             </li>
             <li className="nav-item">
               <Link className="nav-link" to={`/genre/${apiConstants.SERIES}`}>
-                Series
+                {t("series")}
               </Link>
             </li>
             <li className="nav-item">
               <Link className="nav-link" to={`/genre/${apiConstants.MOVIES}`}>
-                Movies
+                {t("movies")}
               </Link>
             </li>
             <li className="nav-item">
               <Link className="nav-link" to={`/genre/${apiConstants.KIDS}`}>
-                Kids
+                {t("kids")}
               </Link>
             </li>
             <li className="nav-item dropdown">
@@ -265,7 +278,7 @@ class UserHeader extends Helper {
                 data-toggle="dropdown"
                 to="#"
               >
-                Browse
+                {t("browse")}
               </Link>
               <div className="dropdown-menu browse">
                 {loadingCategory
@@ -308,7 +321,7 @@ class UserHeader extends Helper {
               </Link>
               <div className="dropdown-menu notification-drop">
                 <div className="notification-onoff">
-                  notification
+                  {t("notification")}
                   <div className="float-right">
                     <label className="switch">
                       <input
@@ -354,7 +367,7 @@ class UserHeader extends Helper {
                 </div>
                 <div className="notification-seeall">
                   <Link to={"notification/view-all"}>
-                    see all
+                    {t("see_all")}
                     <i className="fas fa-chevron-right" />
                   </Link>
                 </div>
@@ -377,18 +390,18 @@ class UserHeader extends Helper {
                   {loading ? "Loading" : this.renderList(activeProfile)}
 
                   <Link className="dropdown-item" to="/manage-profiles">
-                    manage profiles
+                    {t("manage_profile")}
                   </Link>
                 </div>
                 <p className="profile-drop-line" />
                 <Link className="dropdown-item" to="/account">
-                  your account
+                  {t("account")}
                 </Link>
                 <Link className="dropdown-item" to="/payment-history">
-                  payment history
+                  {t("payment_history")}
                 </Link>
                 <Link className="dropdown-item" to={"/logout"}>
-                  signout
+                  {t("signout")}
                 </Link>
               </div>
             </li>
@@ -409,33 +422,33 @@ class UserHeader extends Helper {
                   </div>
                   <div className="right-name">
                     <h5>ronan</h5>
-                    <h6>switch profiles</h6>
+                    <h6>{t("switch_profiles")}</h6>
                   </div>
                 </div>
               </Link>
             </div>
             <ul className="sidebar-menu">
               <li className="active">
-                <Link to="/account">account</Link>
+                <Link to="/account">{("account")}</Link>
               </li>
               <li>
-                <Link to="/">logout</Link>
+                <Link to="/">{t("logout")}</Link>
               </li>
               <li className="line" />
               <li>
-                <Link to="/home">home</Link>
+                <Link to="/home">{t("home")}</Link>
               </li>
               <li>
-                <Link to="/sub-category">my list</Link>
+                <Link to="/sub-category">{t("my_list")}</Link>
               </li>
               <li>
-                <Link to="/sub-category">series</Link>
+                <Link to="/sub-category">{t("series")}</Link>
               </li>
               <li>
-                <Link to="/sub-category">comedies</Link>
+                <Link to="/sub-category">{t("comedies")}</Link>
               </li>
               <li>
-                <Link to="/sub-category">crime flims</Link>
+                <Link to="/sub-category">{t("crime_flims")}</Link>
               </li>
             </ul>
           </div>
@@ -444,4 +457,4 @@ class UserHeader extends Helper {
     );
   }
 }
-export default withToastManager(UserHeader);
+export default withToastManager(translate(UserHeader));

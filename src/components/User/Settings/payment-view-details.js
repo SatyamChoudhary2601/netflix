@@ -2,6 +2,14 @@ import React, { Component } from "react";
 
 // import {Link} from 'react-router-dom';
 
+import {
+  setTranslations,
+  setDefaultLanguage,
+  translate
+} from "react-multi-lang";
+import en from "../../translation/en.json";
+import pt from "../../translation/pt.json";
+
 class PaymentViewDetails extends Component {
   state = {
     loadingFirst: true
@@ -15,6 +23,8 @@ class PaymentViewDetails extends Component {
   }
 
   render() {
+    const { t } = this.props;
+
     const { loadingFirst } = this.state;
     if (loadingFirst) {
       return "Loading...";
@@ -49,21 +59,21 @@ class PaymentViewDetails extends Component {
                       <div className="col-sm-6 col-md-6">
                         <ul className="paid-video-details">
                           <li className="">
-                            <p>paid amount</p>
+                            <p>{t("paid_amount")}</p>
                             <h4>
                               {ppvDetails.currency}
                               {ppvDetails.total_amount}
                             </h4>
                           </li>
                           <li className="">
-                            <p>coupon amount</p>
+                            <p>{t("coupon_amount")}</p>
                             <h4>
                               {ppvDetails.currency}
                               {ppvDetails.coupon_amount}
                             </h4>
                           </li>
                           <li className="">
-                            <p>payment id</p>
+                            <p>{t("payment_id")}</p>
                             <h4>{ppvDetails.payment_id}</h4>
                           </li>
                         </ul>
@@ -71,15 +81,15 @@ class PaymentViewDetails extends Component {
                       <div className="col-sm-6 col-md-6">
                         <ul className="paid-video-details">
                           <li className="">
-                            <p>subscription type</p>
-                            <h4>one time payment</h4>
+                            <p>{t("subscription_type")}</p>
+                            <h4>{t("one_time_payment")}</h4>
                           </li>
                           <li className="">
-                            <p>user type</p>
+                            <p>{t("user_type")}</p>
                             <h4>{ppvDetails.type_of_user}</h4>
                           </li>
                           <li className="">
-                            <p>payment mode</p>
+                            <p>{t("payment_mode")}</p>
                             <h4>{ppvDetails.payment_mode}</h4>
                           </li>
                         </ul>
@@ -96,4 +106,4 @@ class PaymentViewDetails extends Component {
   }
 }
 
-export default PaymentViewDetails;
+export default translate(PaymentViewDetails);
