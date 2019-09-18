@@ -40,7 +40,7 @@ class PaymentViewDetails extends Component {
               <div className="row">
                 <div className="col-sm-10 col-md-10 col-lg-7 col-xl-6 auto-margin">
                   <div className="payment-history p-4">
-                    <h4 className="mt-0 mb-3 capitalize">payment history</h4>
+                    <h4 className="mt-0 mb-3 capitalize">{t("payment_history")}</h4>
                     <div style={videoImg} className="paid-video-img">
                       <div className="black-sec">
                         {ppvDetails.currency}

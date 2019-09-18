@@ -8,6 +8,14 @@ import api from "../../../Environment";
 import { withToastManager } from "react-toast-notifications";
 import ToastDemo from "../../Helper/toaster";
 
+import {
+  setTranslations,
+  setDefaultLanguage,
+  translate
+} from "react-multi-lang";
+import en from "../../translation/en.json";
+import pt from "../../translation/pt.json";
+
 class InvoiceComponent extends Helper {
   state = {
     loading: true,
@@ -132,6 +140,8 @@ class InvoiceComponent extends Helper {
   };
 
   render() {
+    const { t } = this.props;
+
     if (this.state.loading) {
       return <ContentLoader />;
     } else {
@@ -211,7 +221,7 @@ class InvoiceComponent extends Helper {
                         {subscription.description}
                       </p>
                       <h5 className="">
-                        No of accounts - {subscription.no_of_account}
+                       {t("no_of_accounts")} - {subscription.no_of_account}
                       </h5>
                     </div>
                     {/* <!-- table1 --> */}
@@ -219,21 +229,21 @@ class InvoiceComponent extends Helper {
                       <table className="table white-bg m-0 mt-3">
                         <tbody>
                           <tr className="table-secondary">
-                            <td>amount</td>
+                            <td>{t("amount")}</td>
                             <td>
                               {subscription.currency}
                               {subscription.amount}
                             </td>
                           </tr>
                           <tr>
-                            <td>Promo Code amount</td>
+                            <td>{t("promo_code_amount")}</td>
                             <td>
                               {subscription.currency}
                               {loadingPromoCode ? "0" : promoCode.coupon_amount}
                             </td>
                           </tr>
                           <tr className="table-secondary">
-                            <td>total</td>
+                            <td>{t("total")}</td>
                             <td>
                               {subscription.currency}
                               {loadingPromoCode
@@ -248,7 +258,7 @@ class InvoiceComponent extends Helper {
 
                     {/* <!-- coupon --> */}
                     <div className="mt-4">
-                      <h5 className="capitalize">have a coupon?</h5>
+                      <h5 className="capitalize">{t("have_a_coupon")}</h5>
                       <form
                         className="auth-form"
                         onSubmit={this.handlePromoCode}
@@ -277,14 +287,14 @@ class InvoiceComponent extends Helper {
                         ""
                       ) : (
                         <p className="capitalize">
-                          Promo code applied - {promoCode.coupon_code} for{" "}
+                          {t("promo_code_applied")} - {promoCode.coupon_code} for{" "}
                           {promoCode.original_coupon_amount} -{" "}
                           <Link
                             to="#"
                             className="btn-danger"
                             onClick={this.handlePromoCodeCancel}
                           >
-                            Cancel
+                            {t("cancel")}
                           </Link>
                         </p>
                       )}
@@ -293,7 +303,7 @@ class InvoiceComponent extends Helper {
 
                     {/* <!-- payment option --> */}
                     <div className="mt-4">
-                      <h5 className="capitalize">choose payment option</h5>
+                      <h5 className="capitalize">{t("choose_payment_option")}</h5>
                       <form className="mt-3">
                         <div className="form-check-inline">
                           <input
@@ -314,11 +324,11 @@ class InvoiceComponent extends Helper {
                             value="card"
                             onChange={this.handleChangePayment}
                           />
-                          <label htmlFor="card">card payment</label>
+                          <label htmlFor="card">{t("card_payment")}</label>
                         </div>
 
                         <Link to="/add-card" className="float-right btn-link">
-                          add card
+                          {t("add")} {t("card")}
                         </Link>
 
                         <div className="text-right mb-3 mt-3">
@@ -358,4 +368,4 @@ class InvoiceComponent extends Helper {
   }
 }
 
-export default withToastManager(InvoiceComponent);
+export default withToastManager(translate(InvoiceComponent));
