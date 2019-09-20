@@ -17,9 +17,6 @@ import {
 import en from "../translation/en.json";
 import pt from "../translation/pt.json";
 
-setTranslations({ pt, en });
-setDefaultLanguage("pt");
-
 class HomePageBanner extends Helper {
   state = {
     wishlistApiCall: false,

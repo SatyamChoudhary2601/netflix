@@ -18,9 +18,6 @@ import {
 import en from "../translation/en.json";
 import pt from "../translation/pt.json";
 
-setTranslations({ pt, en });
-setDefaultLanguage("pt");
-
 class LoginCommponent extends Helper {
   state = {
     data: {
@@ -35,7 +32,7 @@ class LoginCommponent extends Helper {
     event.preventDefault();
     // const { toastManager } = this.props;
     this.setState({
-      loadingContent: this.props.t('button_loading'),
+      loadingContent: this.props.t("button_loading"),
       buttonDisable: true
     });
     api
@@ -121,7 +118,7 @@ class LoginCommponent extends Helper {
                   >
                     {this.state.loadingContent != null
                       ? this.state.loadingContent
-                      : t('signin')}
+                      : t("signin")}
                   </button>
                 </form>
                 <div>

@@ -5,7 +5,6 @@ import Helper from "../../Helper/helper";
 import { withToastManager } from "react-toast-notifications";
 import ToastDemo from "../../Helper/toaster";
 
-
 import {
   setTranslations,
   setDefaultLanguage,
@@ -13,9 +12,6 @@ import {
 } from "react-multi-lang";
 import en from "../../translation/en.json";
 import pt from "../../translation/pt.json";
-
-setTranslations({ pt, en });
-setDefaultLanguage("pt");
 
 class VideoMoreLikeThis extends Helper {
   state = {

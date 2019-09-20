@@ -13,9 +13,6 @@ import {
 import en from "../../translation/en.json";
 import pt from "../../translation/pt.json";
 
-setTranslations({ pt, en });
-setDefaultLanguage("pt");
-
 const DATE_OPTIONS = {
   year: "numeric",
   month: "short"

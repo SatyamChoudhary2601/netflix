@@ -71,6 +71,16 @@ import Genres from "./components/User/genres";
 import Category from "./components/User/category";
 import ViewAll from "./components/User/viewAll";
 import Notifications from "./components/User/Account/notificationsViewAll";
+import {
+  setTranslations,
+  setDefaultLanguage,
+  translate
+} from "react-multi-lang";
+import en from "./components/translation/en.json";
+import pt from "./components/translation/pt.json";
+
+setTranslations({ pt, en });
+setDefaultLanguage("en");
 
 const history = createHistory();
 
@@ -152,6 +162,7 @@ class App extends Component {
 
   componentDidMount() {
     //this.loadingFn();
+    localStorage.setItem("lang", "en");
   }
 
   render() {

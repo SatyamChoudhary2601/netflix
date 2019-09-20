@@ -3,18 +3,18 @@ import React, { Component } from "react";
 import {
   setTranslations,
   setDefaultLanguage,
-  translate
+  translate,
+  getLanguage,
+  setLanguage
 } from "react-multi-lang";
 import en from "../translation/en.json";
 import pt from "../translation/pt.json";
 import { Link } from "react-router-dom";
 
-setTranslations({ pt, en });
-setDefaultLanguage("pt");
-
 class LandingPage extends Component {
   componentDidMount() {
     // Call api function
+    console.log(getLanguage());
   }
 
   render() {
@@ -45,9 +45,7 @@ class LandingPage extends Component {
           <div className="banner-black-overlay">
             <div className="text-center">
               <h1 className="benner-text-head">{t("see_whats_next")}</h1>
-              <h4 className="banner-text-para">
-                {t("watch_and_cancel_text")}
-              </h4>
+              <h4 className="banner-text-para">{t("watch_and_cancel_text")}</h4>
               <Link to="/register" className="btn btn-danger banner-large-btn">
                 {t("join_free_a_month")}
                 <i className="fas fa-chevron-right ml-3" />
@@ -74,7 +72,9 @@ class LandingPage extends Component {
                       <br />
                       {t("cancel_online_anytime")}
                     </p>
-                    <p className="show-xs landing-nav-list-text-xs">{t("cancel")}</p>
+                    <p className="show-xs landing-nav-list-text-xs">
+                      {t("cancel")}
+                    </p>
                   </a>
                 </li>
                 <li className="nav-item">
@@ -85,7 +85,9 @@ class LandingPage extends Component {
                     <p className="hide-xs landing-nav-list-text">
                       {t("watch_anywhere")}
                     </p>
-                    <p className="show-xs landing-nav-list-text-xs">{t("devices")}</p>
+                    <p className="show-xs landing-nav-list-text-xs">
+                      {t("devices")}
+                    </p>
                   </a>
                 </li>
                 <li className="nav-item">
@@ -94,7 +96,9 @@ class LandingPage extends Component {
                     <p className="hide-xs landing-nav-list-text">
                       {t("pick_price")}
                     </p>
-                    <p className="show-xs landing-nav-list-text-xs">{t("devices")}</p>
+                    <p className="show-xs landing-nav-list-text-xs">
+                      {t("devices")}
+                    </p>
                   </a>
                 </li>
               </ul>
@@ -106,14 +110,12 @@ class LandingPage extends Component {
                 <div id="home" className="tab-pane active">
                   <div className="row">
                     <div className="col-sm-12 col-md-12 col-lg-6 col-xl-6 center-align">
-                      <h2 className="cancel-text">
-                        {t("cancel_online_text")}
-                      </h2>
+                      <h2 className="cancel-text">{t("cancel_online_text")}</h2>
                       <Link
                         to={"/register"}
                         className="btn btn-danger join-btn"
                       >
-                       {t("join_free_a_month")}
+                        {t("join_free_a_month")}
                       </Link>
                     </div>
                     <div className="col-sm-12 col-md-12 col-lg-6 col-xl-6">
@@ -135,7 +137,7 @@ class LandingPage extends Component {
                         to={"/register"}
                         className="btn btn-danger join-btn"
                       >
-                       {t("join_free_a_month")}
+                        {t("join_free_a_month")}
                       </Link>
                     </div>
                   </div>
@@ -144,7 +146,9 @@ class LandingPage extends Component {
                       <div className="devices-img">
                         <img src="assets/img/tv.png" alt="Tv" />
                       </div>
-                      <h4 className="device-img-txt">{t("watch_on_your_tv")}</h4>
+                      <h4 className="device-img-txt">
+                        {t("watch_on_your_tv")}
+                      </h4>
                       <p className="device-img-para">
                         {t("watch_on_your_tv_text")}
                       </p>
@@ -153,9 +157,7 @@ class LandingPage extends Component {
                       <div className="devices-img">
                         <img src="assets/img/tab.png" alt="Tab" />
                       </div>
-                      <h4 className="device-img-txt">
-                       {t("watch_instantly")}
-                      </h4>
+                      <h4 className="device-img-txt">{t("watch_instantly")}</h4>
                       <p className="device-img-para">
                         {t("watch_instantly_text")}
                       </p>
@@ -164,7 +166,9 @@ class LandingPage extends Component {
                       <div className="devices-img">
                         <img src="assets/img/lap.png" alt="Lap" />
                       </div>
-                      <h4 className="device-img-txt">{t("use_any_computer")}</h4>
+                      <h4 className="device-img-txt">
+                        {t("use_any_computer")}
+                      </h4>
                       <p className="device-img-para">
                         {t("watch_instantly_in_browser")}
                       </p>
@@ -177,7 +181,7 @@ class LandingPage extends Component {
                       {t("watch_instantly_in_browser_text")}
                     </h3>
                     <Link to={"/register"} className="btn btn-danger join-btn">
-                     {t("join_free_a_month")}
+                      {t("join_free_a_month")}
                     </Link>
                   </div>
                 </div>

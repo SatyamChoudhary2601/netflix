@@ -15,9 +15,6 @@ import {
 import en from "../translation/en.json";
 import pt from "../translation/pt.json";
 
-setTranslations({ pt, en });
-setDefaultLanguage("pt");
-
 class Home extends Component {
   state = {
     maindata: null,

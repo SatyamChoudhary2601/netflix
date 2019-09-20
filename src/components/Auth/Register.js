@@ -5,7 +5,6 @@ import api from "../../Environment";
 import { withToastManager } from "react-toast-notifications";
 import ToastDemo from "../Helper/toaster";
 
-
 import {
   setTranslations,
   setDefaultLanguage,
@@ -13,9 +12,6 @@ import {
 } from "react-multi-lang";
 import en from "../translation/en.json";
 import pt from "../translation/pt.json";
-
-setTranslations({ pt, en });
-setDefaultLanguage("pt");
 
 class RegisterComponent extends Helper {
   state = {
@@ -32,7 +28,7 @@ class RegisterComponent extends Helper {
     event.preventDefault();
     const { state } = this.props.location;
     this.setState({
-      loadingContent: this.props.t('button_loading'),
+      loadingContent: this.props.t("button_loading"),
       buttonDisable: true
     });
     api

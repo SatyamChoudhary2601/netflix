@@ -10,9 +10,6 @@ import {
 import en from "../../translation/en.json";
 import pt from "../../translation/pt.json";
 
-setTranslations({ pt, en });
-setDefaultLanguage("pt");
-
 class DeleteAccountComponent extends Component {
   state = {
     data: {}
@@ -38,7 +35,9 @@ class DeleteAccountComponent extends Component {
             <div className="row">
               <div className="col-sm-9 col-md-7 col-lg-5 col-xl-4 auto-margin">
                 <div className="register-box">
-                  <h3 className="register-box-head">{t("delete")} {t("profaccountile")}</h3>
+                  <h3 className="register-box-head">
+                    {t("delete")} {t("profaccountile")}
+                  </h3>
                   <form
                     onSubmit={this.handleDelete}
                     className="auth-form"
@@ -58,7 +57,7 @@ class DeleteAccountComponent extends Component {
                       />
                     </div>
                     <button className="btn btn-danger auth-btn mt-4">
-                    {t("change_password")}
+                      {t("change_password")}
                     </button>
                   </form>
                 </div>

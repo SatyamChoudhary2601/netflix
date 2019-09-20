@@ -15,8 +15,6 @@ import {
 import en from "../translation/en.json";
 import pt from "../translation/pt.json";
 
-setTranslations({ pt, en });
-setDefaultLanguage("pt");
 class ForgotPasswordComponent extends Helper {
   state = {
     data: {
@@ -92,16 +90,14 @@ class ForgotPasswordComponent extends Helper {
                       value={this.state.data.email}
                     />
                   </div>
-                  <p className="mt-4 black-clr">
-                    {t("forgot_password_text")}
-                  </p>
+                  <p className="mt-4 black-clr">{t("forgot_password_text")}</p>
                   <button
                     className="btn btn-danger auth-btn"
                     disabled={this.state.buttonDisable}
                   >
                     {this.state.loadingContent != null
                       ? this.state.loadingContent
-                      : this.props.t('submit')}
+                      : this.props.t("submit")}
                   </button>
                 </form>
               </div>

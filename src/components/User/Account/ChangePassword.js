@@ -12,9 +12,6 @@ import {
 import en from "../../translation/en.json";
 import pt from "../../translation/pt.json";
 
-setTranslations({ pt, en });
-setDefaultLanguage("pt");
-
 class ChangePasswordComponent extends Helper {
   state = {
     data: {},
@@ -107,7 +104,7 @@ class ChangePasswordComponent extends Helper {
                     >
                       {this.state.loadingContent != null
                         ? this.state.loadingContent
-                        : this.props.t('change_password') } 
+                        : this.props.t("change_password")}
                     </button>
                   </form>
                 </div>

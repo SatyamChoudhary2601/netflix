@@ -10,19 +10,14 @@ import {
 import en from "../../translation/en.json";
 import pt from "../../translation/pt.json";
 
-setTranslations({ pt, en });
-setDefaultLanguage("pt");
-
 class VideoDetails extends Helper {
- 
   render() {
-    
     const { t } = this.props;
 
     const { videoDetailsFirst } = this.props;
-   
+
     console.log("video details,", videoDetailsFirst);
-    
+
     return (
       <div className="slider-topbottom-spacing slider-overlay">
         <h1 className="banner_video_title">{videoDetailsFirst.title}</h1>

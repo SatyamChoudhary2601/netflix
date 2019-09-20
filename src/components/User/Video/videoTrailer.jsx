@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import Slider from "react-slick";
 import { Link } from "react-router-dom";
 
@@ -10,20 +10,15 @@ import {
 import en from "../../translation/en.json";
 import pt from "../../translation/pt.json";
 
-setTranslations({ pt, en });
-setDefaultLanguage("pt");
-
 class VideoTrailer extends Component {
-  
-  state = {  }
-  
-  render() { 
+  state = {};
 
+  render() {
     const { t } = this.props;
     const trailerDetails = this.props.trailer;
 
     let slidesToShowCount = 1;
-    
+
     if (trailerDetails.length > 3) {
       slidesToShowCount = 4;
     } else {
@@ -36,11 +31,11 @@ class VideoTrailer extends Component {
       slidesToScroll: 1,
       infinite: false
     };
-    
+
     return (
       <div className="slider-topbottom-spacing pl-0 pr-0 slider-overlay">
         <div className="pr-4per pl-4per">
-          <h1 className="banner_video_title">{t('trailer_and_more')}</h1>
+          <h1 className="banner_video_title">{t("trailer_and_more")}</h1>
         </div>
         <div>
           <Slider {...trailerSlider} className="more-like-slider slider">
@@ -86,10 +81,7 @@ class VideoTrailer extends Component {
         </div>
       </div>
     );
-
   }
-
 }
- 
-export default translate(VideoTrailer);
 
+export default translate(VideoTrailer);

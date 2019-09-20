@@ -4,7 +4,6 @@ import { withToastManager } from "react-toast-notifications";
 import api from "../../../Environment";
 import ToastDemo from "../../Helper/toaster";
 
-
 import {
   setTranslations,
   setDefaultLanguage,
@@ -12,9 +11,6 @@ import {
 } from "react-multi-lang";
 import en from "../../translation/en.json";
 import pt from "../../translation/pt.json";
-
-setTranslations({ pt, en });
-setDefaultLanguage("pt");
 
 class EditAccountComponent extends Helper {
   state = {
@@ -30,7 +26,7 @@ class EditAccountComponent extends Helper {
   handleSubmit = event => {
     event.preventDefault();
     this.setState({
-      loadingContent: this.props.t('button_loading'),
+      loadingContent: this.props.t("button_loading"),
       buttonDisable: true
     });
     let userDetails = { ...this.state.data };
@@ -69,7 +65,9 @@ class EditAccountComponent extends Helper {
             <div className="row">
               <div className="col-sm-9 col-md-7 col-lg-5 col-xl-4 auto-margin">
                 <div className="register-box">
-                  <h3 className="register-box-head">{t("edit")} {t("profile")}</h3>
+                  <h3 className="register-box-head">
+                    {t("edit")} {t("profile")}
+                  </h3>
                   <form onSubmit={this.handleSubmit} className="auth-form">
                     <div className="form-group">
                       <label htmlFor="name">{t("full_name")}</label>
@@ -110,7 +108,7 @@ class EditAccountComponent extends Helper {
                     >
                       {this.state.loadingContent != null
                         ? this.state.loadingContent
-                        : this.props.t('save')}
+                        : this.props.t("save")}
                     </button>
                   </form>
                 </div>
