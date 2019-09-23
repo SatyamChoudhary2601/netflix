@@ -1,70 +1,72 @@
 export const apiConstants = {
-  // Common variables
+    // Common variables
 
-  LOGIN_BY: "manual",
+    LOGIN_BY: "manual",
 
-  DEVICE_TYPE: "web",
+    DEVICE_TYPE: "web",
 
-  DEVICE_TOKEN: "123456",
+    DEVICE_TOKEN: "123456",
 
-  // Song download status
+    // Song download status
 
-  DOWNLOAD_INITIATE_STAUTS: 1,
+    DOWNLOAD_INITIATE_STAUTS: 1,
 
-  DOWNLOAD_PROGRESSING_STAUTS: 2,
+    DOWNLOAD_PROGRESSING_STAUTS: 2,
 
-  DOWNLOAD_PAUSE_STAUTS: 3,
+    DOWNLOAD_PAUSE_STAUTS: 3,
 
-  DOWNLOAD_COMPLETE_STAUTS: 4,
+    DOWNLOAD_COMPLETE_STAUTS: 4,
 
-  DOWNLOAD_CANCEL_STAUTS: 5,
+    DOWNLOAD_CANCEL_STAUTS: 5,
 
-  // Wishlist status
+    // Wishlist status
 
-  WISHLIST_CLEAR_ALL: 1,
+    WISHLIST_CLEAR_ALL: 1,
 
-  WISHLIST_CLEAR_SINGLE_AUDIO: 0,
+    WISHLIST_CLEAR_SINGLE_AUDIO: 0,
 
-  // History status
+    // History status
 
-  HISTORY_CLEAR_ALL: 1,
+    HISTORY_CLEAR_ALL: 1,
 
-  HISTORY_CLEAR_SINGLE_AUDIO: 0,
+    HISTORY_CLEAR_SINGLE_AUDIO: 0,
 
-  // PAGE TYPES
+    // PAGE TYPES
 
-  PRIVACY_PAGE_TYPE: "privacy",
+    PRIVACY_PAGE_TYPE: "privacy",
 
-  TERMS_PAGE_TYPE: "terms",
+    TERMS_PAGE_TYPE: "terms",
 
-  // Social Login Credentials
+    // Hisotry status
 
-  GOOGLE_CLIENT_ID:
-    "603748490991-lta5s2ju9krs16uvq0thb2f5rjohpqbd.apps.googleusercontent.com",
+    HISTORY_INITIATE_STATUS: 1,
 
-  FACEBOOK_APP_ID: "285371778766319",
+    HISTORY_COMPLETE_STATUS: 2,
 
-  JWPLAYER_KEY: "M2NCefPoiiKsaVB8nTttvMBxfb1J3Xl7PDXSaw==",
+    HISTORY_DELETE_STATUS: 3,
 
-  // Hisotry status
+    USER_API_CALL: "/user",
 
-  HISTORY_INITIATE_STATUS: 1,
+    HOST_API_CALL: "/provider",
 
-  HISTORY_COMPLETE_STATUS: 2,
+    SERIES: 21,
 
-  HISTORY_DELETE_STATUS: 3,
+    MOVIES: 25,
 
-  USER_API_CALL: "/user",
+    RECENTLY_ADDED: 33,
 
-  HOST_API_CALL: "/provider",
+    CATEGORY: 54,
 
-  SERIES: 21,
+    KIDS: 12,
 
-  MOVIES: 25,
+    // Social Login Credentials
 
-  RECENTLY_ADDED: 33,
+    GOOGLE_CLIENT_ID:
+        "603748490991-lta5s2ju9krs16uvq0thb2f5rjohpqbd.apps.googleusercontent.com",
 
-  CATEGORY: 54,
+    FACEBOOK_APP_ID: "285371778766319",
 
-  KIDS: 12
+    JWPLAYER_KEY: "M2NCefPoiiKsaVB8nTttvMBxfb1J3Xl7PDXSaw==",
+
+    settingsUrl: "http://adminview.streamhash.com/userApi/get_settings_json"
 };

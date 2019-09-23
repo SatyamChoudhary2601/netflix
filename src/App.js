@@ -71,6 +71,11 @@ import Genres from "./components/User/genres";
 import Category from "./components/User/category";
 import ViewAll from "./components/User/viewAll";
 import Notifications from "./components/User/Account/notificationsViewAll";
+
+import configuration from "react-global-configuration";
+import { apiConstants } from "./components/Constant/constants";
+import configData from "./json/settings.json";
+
 import {
   setTranslations,
   setDefaultLanguage,
@@ -131,6 +136,7 @@ class App extends Component {
 
     this.state = {
       loading: true,
+      configLoading: true,
       authentication: userId && accessToken ? true : false
     };
 
@@ -152,7 +158,18 @@ class App extends Component {
 
       document.body.scrollTop = 0;
     });
+    this.fetchConfig();
   }
+
+  async fetchConfig() {
+    const response = await fetch(apiConstants.settingsUrl);
+    console.log("respi", response);
+    const configValue = await response.json();
+    configuration.set({
+        configData: configValue.data
+    });
+    this.setState({ configLoading: false });
+}
 
   loadingFn() {
     this.props.setTimeout(() => {
@@ -163,31 +180,23 @@ class App extends Component {
   componentDidMount() {
     //this.loadingFn();
     localStorage.setItem("lang", "en");
+    document.title = configData.data.site_name;
   }
 
   render() {
-    /*const isLoading = this.state.loading;
-      
+    const isLoading = this.state.configLoading;
+
       if (isLoading) {
-  
-        return (
-          <div className="wrapper">
-            <div className="loader-warpper">
-                <div id="loader">
-                  <ul>
-                      <li></li>
-                      <li></li>
-                      <li></li>
-                      <li></li>
-                      <li></li>
-                      <li></li>
-                  </ul>
+          return (
+              <div className="wrapper">
+                  <div className="loader-warpper">
+                      <div id="loader">
+                          <p>Project setting up</p>
+                      </div>
+                  </div>
               </div>
-            </div>
-          </div>
-        );
-  
-      } */
+          );
+      }
 
     return (
       <StripeProvider apiKey="pk_test_uDYrTXzzAuGRwDYtu7dkhaF3">

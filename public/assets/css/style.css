@@ -201,8 +201,8 @@ a, a:hover, a:focus {
     width: 100%;
 }
 .footer-link-list{
-    float:left;
-    width: 50%;
+    /* float:left; */
+    /* width: 50%; */
     font-size:.93em;
     color: #999;
     font-weight: normal;
