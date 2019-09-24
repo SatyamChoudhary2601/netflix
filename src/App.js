@@ -75,6 +75,7 @@ import Notifications from "./components/User/Account/notificationsViewAll";
 import configuration from "react-global-configuration";
 import { apiConstants } from "./components/Constant/constants";
 import configData from "./json/settings.json";
+import { Helmet } from 'react-helmet';
 
 import {
   setTranslations,
@@ -198,323 +199,333 @@ class App extends Component {
           );
       }
 
+
     return (
-      <StripeProvider apiKey="pk_test_uDYrTXzzAuGRwDYtu7dkhaF3">
-        <ToastProvider>
-          <Router history={history}>
-            <Switch>
-              {/***Auth layout - Having only footer ****/}
+      <div>
+        <Helmet>
+          <title>{configData.data.site_name}</title>
+          <link rel="icon" href={configData.data.site_icon} sizes="16x16" />
+          {/* <link rel="shortcut icon" href={configData.data.site_icon}></link> */}
+          {/* <meta name="description" content="This is a different description for this route." /> */}
+        </Helmet>
+        <StripeProvider apiKey="pk_test_uDYrTXzzAuGRwDYtu7dkhaF3">
+          <ToastProvider>
+            <Router history={history}>
+              <Switch>
+                {/***Auth layout - Having only footer ****/}
 
-              <AppRoute
-                exact
-                path={"/"}
-                component={LandingPage}
-                layout={AuthLayout}
-                screenProps={this.eventEmitter}
-              />
-              <AppRoute
-                path={"/register"}
-                component={RegisterComponent}
-                layout={AuthLayout}
-                screenProps={this.eventEmitter}
-              />
-              <AppRoute
-                path={"/login"}
-                component={LoginCommponent}
-                layout={AuthLayout}
-                screenProps={this.eventEmitter}
-              />
-              <Route path={"/logout"} component={Logout} />
-              <AppRoute
-                path={"/forgot-password"}
-                component={ForgotPasswordComponent}
-                layout={AuthLayout}
-                screenProps={this.eventEmitter}
-              />
+                <AppRoute
+                  exact
+                  path={"/"}
+                  component={LandingPage}
+                  layout={AuthLayout}
+                  screenProps={this.eventEmitter}
+                />
+                <AppRoute
+                  path={"/register"}
+                  component={RegisterComponent}
+                  layout={AuthLayout}
+                  screenProps={this.eventEmitter}
+                />
+                <AppRoute
+                  path={"/login"}
+                  component={LoginCommponent}
+                  layout={AuthLayout}
+                  screenProps={this.eventEmitter}
+                />
+                <Route path={"/logout"} component={Logout} />
+                <AppRoute
+                  path={"/forgot-password"}
+                  component={ForgotPasswordComponent}
+                  layout={AuthLayout}
+                  screenProps={this.eventEmitter}
+                />
 
-              <PrivateRoute
-                authentication={this.state.authentication}
-                path={"/genre/:id"}
-                component={Genres}
-                layout={UserLayout}
-                screenProps={this.eventEmitter}
-              />
-
-              <PrivateRoute
-                authentication={this.state.authentication}
-                path={"/view-all"}
-                component={ViewAll}
-                layout={UserLayout}
-                screenProps={this.eventEmitter}
-              />
-
-              <PrivateRoute
-                authentication={this.state.authentication}
-                path={"/notification/view-all"}
-                component={Notifications}
-                layout={UserLayout}
-                screenProps={this.eventEmitter}
-              />
-
-              {/***Empty layout ****/}
-              <AppRoute
-                path={"/sample"}
-                component={Sample}
-                layout={EmptyLayout}
-                screenProps={this.screenProps}
-              />
-              <AppRoute
-                path={"/error"}
-                component={ErrorComponent}
-                layout={EmptyLayout}
-                screenProps={this.eventEmitter}
-              />
-              <PrivateRoute
-                authentication={this.state.authentication}
-                path={"/view-profiles"}
-                component={ViewProfilesComponent}
-                layout={EmptyLayout}
-                screenProps={this.EmptyLayout}
-              />
-              <PrivateRoute
-                authentication={this.state.authentication}
-                path={"/manage-profiles"}
-                component={ManageProfilesComponent}
-                layout={EmptyLayout}
-                screenProps={this.eventEmitter}
-              />
-              <PrivateRoute
-                authentication={this.state.authentication}
-                path={"/edit-profile/:id"}
-                component={EditProfilesComponent}
-                layout={EmptyLayout}
-                screenProps={this.eventEmitter}
-              />
-              <AppRoute
-                path={"/loader"}
-                component={LoaderComponent}
-                layout={EmptyLayout}
-                screenProps={this.eventEmitter}
-              />
-              <AppRoute
-                path={"/video/:id"}
-                component={VideoComponent}
-                layout={EmptyLayout}
-                screenProps={this.eventEmitter}
-              />
-
-              {/***user layout - Having differnt header and footer ****/}
-              {/* <AppRoute authentication={this.state.authentication} path={"/home"} component={Home} layout={UserLayout} screenProps={this.eventEmitter}/> */}
-
-              <PrivateRoute
-                authentication={this.state.authentication}
-                path={"/home"}
-                component={Home}
-                layout={UserLayout}
-                screenProps={this.eventEmitter}
-              />
-              <PrivateRoute
-                authentication={this.state.authentication}
-                path={"/account"}
-                component={AccountComponent}
-                layout={UserLayout}
-                screenProps={this.eventEmitter}
-              />
-              <PrivateRoute
-                authentication={this.state.authentication}
-                path={"/edit-account"}
-                component={EditAccountComponent}
-                layout={UserLayout}
-                screenProps={this.eventEmitter}
-              />
-              <PrivateRoute
-                authentication={this.state.authentication}
-                path={"/change-password"}
-                component={ChangePasswordComponent}
-                layout={UserLayout}
-                screenProps={this.eventEmitter}
-              />
-              <PrivateRoute
-                authentication={this.state.authentication}
-                path={"/delete-account"}
-                component={DeleteAccountComponent}
-                layout={UserLayout}
-                screenProps={this.eventEmitter}
-              />
-              <PrivateRoute
-                authentication={this.state.authentication}
-                path={"/search"}
-                component={SearchComponent}
-                layout={UserLayout}
-                screenProps={this.eventEmitter}
-              />
-              <PrivateRoute
-                authentication={this.state.authentication}
-                path={"/subscription"}
-                component={SubscriptionComponent}
-                layout={UserLayout}
-                screenProps={this.eventEmitter}
-              />
-              <PrivateRoute
-                authentication={this.state.authentication}
-                path={"/billing-details"}
-                component={BillingDetailsComponent}
-                layout={UserLayout}
-                screenProps={this.eventEmitter}
-              />
-              <PrivateRoute
-                authentication={this.state.authentication}
-                path={"/billing-detail/view"}
-                component={BillingDetailsView}
-                layout={UserLayout}
-                screenProps={this.eventEmitter}
-              />
-
-              <PrivateRoute
-                authentication={this.state.authentication}
-                path={"/card-details"}
-                component={CardDetailsComponent}
-                layout={UserLayout}
-                screenProps={this.eventEmitter}
-              />
-              <PrivateRoute
-                authentication={this.state.authentication}
-                path={"/wishlist"}
-                component={Wishlist}
-                layout={UserLayout}
-                screenProps={this.eventEmitter}
-              />
-              <PrivateRoute
-                authentication={this.state.authentication}
-                path={"/category/:id"}
-                component={Category}
-                layout={UserLayout}
-                screenProps={this.eventEmitter}
-              />
-
-              <PrivateRoute
-                authentication={this.state.authentication}
-                path={"/invoice"}
-                component={InvoiceComponent}
-                layout={UserLayout}
-                screenProps={this.eventEmitter}
-              />
-              <PrivateRoute
-                authentication={this.state.authentication}
-                path={"/pay-per-view"}
-                component={PayPerView}
-                layout={UserLayout}
-                screenProps={this.eventEmitter}
-              />
-              <PrivateRoute
-                authentication={this.state.authentication}
-                path={"/payment-history"}
-                component={PaymentHistory}
-                layout={UserLayout}
-                screenProps={this.eventEmitter}
-              />
-              <PrivateRoute
-                authentication={this.state.authentication}
-                path={"/payment/view-details"}
-                component={PaymentViewDetails}
-                layout={UserLayout}
-                screenProps={this.eventEmitter}
-              />
-              <PrivateRoute
-                authentication={this.state.authentication}
-                path={"/payment-options"}
-                component={PaymentOptions}
-                layout={UserLayout}
-                screenProps={this.eventEmitter}
-              />
-              <PrivateRoute
-                authentication={this.state.authentication}
-                path={"/payment-success"}
-                component={PaymentSuccess}
-                layout={UserLayout}
-                screenProps={this.eventEmitter}
-              />
-
-              <PrivateRoute
-                authentication={this.state.authentication}
-                path={"/payment-failure"}
-                component={PaymentFailure}
-                layout={UserLayout}
-                screenProps={this.eventEmitter}
-              />
-
-              <PrivateRoute
-                authentication={this.state.authentication}
-                path={"/history"}
-                component={History}
-                layout={UserLayout}
-                screenProps={this.eventEmitter}
-              />
-
-              <PrivateRoute
-                authentication={this.state.authentication}
-                path={"/sub-category"}
-                component={SubCategory}
-                layout={UserLayout}
-                screenProps={this.eventEmitter}
-              />
-              <AppRoute
-                path={"/home-banner"}
-                component={HomeBanner}
-                layout={UserLayout}
-                screenProps={this.eventEmitter}
-              />
-
-              {/***kids layout - Having white header and footer ****/}
-
-              <PrivateRoute
-                authentication={this.state.authentication}
-                path="/kids"
-                exact
-                component={Kids}
-                layout={KidsLayout}
-                screenProps={this.eventEmitter}
-              />
-              <AppRoute
-                path="/kids/originals"
-                component={KidsOriginals}
-                layout={KidsLayout}
-                screenProps={this.eventEmitter}
-              />
-              <AppRoute
-                path="/kids/characters"
-                component={KidsCharacters}
-                layout={KidsLayout}
-                screenProps={this.eventEmitter}
-              />
-              <AppRoute
-                path="/kids/category"
-                component={KidsCategory}
-                layout={KidsLayout}
-                screenProps={this.eventEmitter}
-              />
-
-              {/***static layout - Having differnt header and footer ****/}
-
-              <AppRoute
-                path="/page"
-                component={Page}
-                layout={StaticLayout}
-                screenProps={this.eventEmitter}
-              />
-              <Elements>
                 <PrivateRoute
                   authentication={this.state.authentication}
-                  path={"/add-card"}
-                  component={AddCardComponent}
+                  path={"/genre/:id"}
+                  component={Genres}
                   layout={UserLayout}
                   screenProps={this.eventEmitter}
                 />
-              </Elements>
-            </Switch>
-          </Router>
-        </ToastProvider>
-      </StripeProvider>
+
+                <PrivateRoute
+                  authentication={this.state.authentication}
+                  path={"/view-all"}
+                  component={ViewAll}
+                  layout={UserLayout}
+                  screenProps={this.eventEmitter}
+                />
+
+                <PrivateRoute
+                  authentication={this.state.authentication}
+                  path={"/notification/view-all"}
+                  component={Notifications}
+                  layout={UserLayout}
+                  screenProps={this.eventEmitter}
+                />
+
+                {/***Empty layout ****/}
+                <AppRoute
+                  path={"/sample"}
+                  component={Sample}
+                  layout={EmptyLayout}
+                  screenProps={this.screenProps}
+                />
+                <AppRoute
+                  path={"/error"}
+                  component={ErrorComponent}
+                  layout={EmptyLayout}
+                  screenProps={this.eventEmitter}
+                />
+                <PrivateRoute
+                  authentication={this.state.authentication}
+                  path={"/view-profiles"}
+                  component={ViewProfilesComponent}
+                  layout={EmptyLayout}
+                  screenProps={this.EmptyLayout}
+                />
+                <PrivateRoute
+                  authentication={this.state.authentication}
+                  path={"/manage-profiles"}
+                  component={ManageProfilesComponent}
+                  layout={EmptyLayout}
+                  screenProps={this.eventEmitter}
+                />
+                <PrivateRoute
+                  authentication={this.state.authentication}
+                  path={"/edit-profile/:id"}
+                  component={EditProfilesComponent}
+                  layout={EmptyLayout}
+                  screenProps={this.eventEmitter}
+                />
+                <AppRoute
+                  path={"/loader"}
+                  component={LoaderComponent}
+                  layout={EmptyLayout}
+                  screenProps={this.eventEmitter}
+                />
+                <AppRoute
+                  path={"/video/:id"}
+                  component={VideoComponent}
+                  layout={EmptyLayout}
+                  screenProps={this.eventEmitter}
+                />
+
+                {/***user layout - Having differnt header and footer ****/}
+                {/* <AppRoute authentication={this.state.authentication} path={"/home"} component={Home} layout={UserLayout} screenProps={this.eventEmitter}/> */}
+
+                <PrivateRoute
+                  authentication={this.state.authentication}
+                  path={"/home"}
+                  component={Home}
+                  layout={UserLayout}
+                  screenProps={this.eventEmitter}
+                />
+                <PrivateRoute
+                  authentication={this.state.authentication}
+                  path={"/account"}
+                  component={AccountComponent}
+                  layout={UserLayout}
+                  screenProps={this.eventEmitter}
+                />
+                <PrivateRoute
+                  authentication={this.state.authentication}
+                  path={"/edit-account"}
+                  component={EditAccountComponent}
+                  layout={UserLayout}
+                  screenProps={this.eventEmitter}
+                />
+                <PrivateRoute
+                  authentication={this.state.authentication}
+                  path={"/change-password"}
+                  component={ChangePasswordComponent}
+                  layout={UserLayout}
+                  screenProps={this.eventEmitter}
+                />
+                <PrivateRoute
+                  authentication={this.state.authentication}
+                  path={"/delete-account"}
+                  component={DeleteAccountComponent}
+                  layout={UserLayout}
+                  screenProps={this.eventEmitter}
+                />
+                <PrivateRoute
+                  authentication={this.state.authentication}
+                  path={"/search"}
+                  component={SearchComponent}
+                  layout={UserLayout}
+                  screenProps={this.eventEmitter}
+                />
+                <PrivateRoute
+                  authentication={this.state.authentication}
+                  path={"/subscription"}
+                  component={SubscriptionComponent}
+                  layout={UserLayout}
+                  screenProps={this.eventEmitter}
+                />
+                <PrivateRoute
+                  authentication={this.state.authentication}
+                  path={"/billing-details"}
+                  component={BillingDetailsComponent}
+                  layout={UserLayout}
+                  screenProps={this.eventEmitter}
+                />
+                <PrivateRoute
+                  authentication={this.state.authentication}
+                  path={"/billing-detail/view"}
+                  component={BillingDetailsView}
+                  layout={UserLayout}
+                  screenProps={this.eventEmitter}
+                />
+
+                <PrivateRoute
+                  authentication={this.state.authentication}
+                  path={"/card-details"}
+                  component={CardDetailsComponent}
+                  layout={UserLayout}
+                  screenProps={this.eventEmitter}
+                />
+                <PrivateRoute
+                  authentication={this.state.authentication}
+                  path={"/wishlist"}
+                  component={Wishlist}
+                  layout={UserLayout}
+                  screenProps={this.eventEmitter}
+                />
+                <PrivateRoute
+                  authentication={this.state.authentication}
+                  path={"/category/:id"}
+                  component={Category}
+                  layout={UserLayout}
+                  screenProps={this.eventEmitter}
+                />
+
+                <PrivateRoute
+                  authentication={this.state.authentication}
+                  path={"/invoice"}
+                  component={InvoiceComponent}
+                  layout={UserLayout}
+                  screenProps={this.eventEmitter}
+                />
+                <PrivateRoute
+                  authentication={this.state.authentication}
+                  path={"/pay-per-view"}
+                  component={PayPerView}
+                  layout={UserLayout}
+                  screenProps={this.eventEmitter}
+                />
+                <PrivateRoute
+                  authentication={this.state.authentication}
+                  path={"/payment-history"}
+                  component={PaymentHistory}
+                  layout={UserLayout}
+                  screenProps={this.eventEmitter}
+                />
+                <PrivateRoute
+                  authentication={this.state.authentication}
+                  path={"/payment/view-details"}
+                  component={PaymentViewDetails}
+                  layout={UserLayout}
+                  screenProps={this.eventEmitter}
+                />
+                <PrivateRoute
+                  authentication={this.state.authentication}
+                  path={"/payment-options"}
+                  component={PaymentOptions}
+                  layout={UserLayout}
+                  screenProps={this.eventEmitter}
+                />
+                <PrivateRoute
+                  authentication={this.state.authentication}
+                  path={"/payment-success"}
+                  component={PaymentSuccess}
+                  layout={UserLayout}
+                  screenProps={this.eventEmitter}
+                />
+
+                <PrivateRoute
+                  authentication={this.state.authentication}
+                  path={"/payment-failure"}
+                  component={PaymentFailure}
+                  layout={UserLayout}
+                  screenProps={this.eventEmitter}
+                />
+
+                <PrivateRoute
+                  authentication={this.state.authentication}
+                  path={"/history"}
+                  component={History}
+                  layout={UserLayout}
+                  screenProps={this.eventEmitter}
+                />
+
+                <PrivateRoute
+                  authentication={this.state.authentication}
+                  path={"/sub-category"}
+                  component={SubCategory}
+                  layout={UserLayout}
+                  screenProps={this.eventEmitter}
+                />
+                <AppRoute
+                  path={"/home-banner"}
+                  component={HomeBanner}
+                  layout={UserLayout}
+                  screenProps={this.eventEmitter}
+                />
+
+                {/***kids layout - Having white header and footer ****/}
+
+                <PrivateRoute
+                  authentication={this.state.authentication}
+                  path="/kids"
+                  exact
+                  component={Kids}
+                  layout={KidsLayout}
+                  screenProps={this.eventEmitter}
+                />
+                <AppRoute
+                  path="/kids/originals"
+                  component={KidsOriginals}
+                  layout={KidsLayout}
+                  screenProps={this.eventEmitter}
+                />
+                <AppRoute
+                  path="/kids/characters"
+                  component={KidsCharacters}
+                  layout={KidsLayout}
+                  screenProps={this.eventEmitter}
+                />
+                <AppRoute
+                  path="/kids/category"
+                  component={KidsCategory}
+                  layout={KidsLayout}
+                  screenProps={this.eventEmitter}
+                />
+
+                {/***static layout - Having differnt header and footer ****/}
+
+                <AppRoute
+                  path="/page"
+                  component={Page}
+                  layout={StaticLayout}
+                  screenProps={this.eventEmitter}
+                />
+                <Elements>
+                  <PrivateRoute
+                    authentication={this.state.authentication}
+                    path={"/add-card"}
+                    component={AddCardComponent}
+                    layout={UserLayout}
+                    screenProps={this.eventEmitter}
+                  />
+                </Elements>
+              </Switch>
+            </Router>
+          </ToastProvider>
+        </StripeProvider>
+      </div>
+
     );
   }
 }
