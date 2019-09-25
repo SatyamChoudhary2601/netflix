@@ -7,6 +7,8 @@ import ToastDemo from "../../Helper/toaster";
 import { withToastManager } from "react-toast-notifications";
 import Helper from "../../Helper/helper";
 
+import $ from "jquery";
+
 class BillingDetailsComponent extends Helper {
   state = {
     subscriptions: [],
@@ -14,7 +16,8 @@ class BillingDetailsComponent extends Helper {
     redirect: false,
     data: {},
     loadingContent: null,
-    buttonDisable: false
+    buttonDisable: false,
+    cancelled_status: 0
   };
   componentDidMount() {
     // api call
@@ -25,7 +28,7 @@ class BillingDetailsComponent extends Helper {
     api.postMethod("subscribedPlans", data).then(response => {
       if (response.data.success) {
         let subscriptions = response.data.data;
-        this.setState({ loading: false, subscriptions: subscriptions });
+        this.setState({ loading: false, subscriptions: subscriptions, cancelled_status: subscriptions ? subscriptions[0].cancelled_status : 0 });
       } else {
         this.props.history.push("/account");
         ToastDemo(this.props.toastManager, response.data.error, "error");
@@ -34,8 +37,8 @@ class BillingDetailsComponent extends Helper {
   }
 
   handleCancelAutoRenewal = event => {
-    event.preventDefault();
 
+    event.preventDefault();
     this.setState({
       loadingContent: "Loading... Please wait..",
       buttonDisable: true
@@ -48,7 +51,39 @@ class BillingDetailsComponent extends Helper {
       .then(response => {
         if (response.data.success) {
           ToastDemo(this.props.toastManager, response.data.message, "success");
+          this.setState({ loadingContent: null, buttonDisable: false, cancelled_status: 1});
+          window.$('#cancel-subs').modal('toggle');
+        } else {
+          ToastDemo(
+            this.props.toastManager,
+            response.data.error_messages,
+            "error"
+          );
           this.setState({ loadingContent: null, buttonDisable: false });
+        }
+      })
+      .catch(error => {
+        ToastDemo(this.props.toastManager, error, "error");
+        this.setState({ loadingContent: null, buttonDisable: false });
+      });
+  };
+  
+  handleEnableAutoRenewal = event => {
+
+    event.preventDefault();
+    this.setState({
+      loadingContent: "Loading... Please wait..",
+      buttonDisable: true
+    });
+    let inputData = {
+      cancel_reason: this.state.data.cancel_reason
+    };
+    api
+      .postMethod("autorenewal/enable", inputData)
+      .then(response => {
+        if (response.data.success) {
+          ToastDemo(this.props.toastManager, response.data.message, "success");
+          this.setState({ loadingContent: null, buttonDisable: false, cancelled_status: 0});
         } else {
           ToastDemo(
             this.props.toastManager,
@@ -65,7 +100,7 @@ class BillingDetailsComponent extends Helper {
   };
 
   render() {
-    const { loading, subscriptions, data } = this.state;
+    const { loading, subscriptions, data, cancelled_status } = this.state;
     if (loading) {
       return "Loading...";
     } else {
@@ -148,14 +183,20 @@ class BillingDetailsComponent extends Helper {
                             </Link>
                           </div>
                           <div className="text-center mt-3">
-                            <a
-                              href="#"
-                              className="btn btn-danger"
-                              data-toggle="modal"
-                              data-target="#cancel-subs"
-                            >
-                              cancel subcription
-                            </a>
+                            {cancelled_status == 1 ? 
+                              <a href="#" onClick={this.handleEnableAutoRenewal} className="btn btn-success">
+                                Enable Auto Renewal
+                              </a>
+                              :
+                              <a
+                                href="#"
+                                className="btn btn-danger"
+                                data-toggle="modal"
+                                data-target="#cancel-subs"
+                              >
+                                cancel subcription
+                              </a>
+                            }
                           </div>
                         </div>
                       </div>

@@ -205,8 +205,6 @@ class App extends Component {
         <Helmet>
           <title>{configData.data.site_name}</title>
           <link rel="icon" href={configData.data.site_icon} sizes="16x16" />
-          {/* <link rel="shortcut icon" href={configData.data.site_icon}></link> */}
-          {/* <meta name="description" content="This is a different description for this route." /> */}
         </Helmet>
         <StripeProvider apiKey="pk_test_uDYrTXzzAuGRwDYtu7dkhaF3">
           <ToastProvider>

@@ -235,6 +235,7 @@ class InvoiceComponent extends Helper {
                               {subscription.amount}
                             </td>
                           </tr>
+                          {subscription.amount > 0 ? (
                           <tr>
                             <td>{t("promo_code_amount")}</td>
                             <td>
@@ -242,6 +243,7 @@ class InvoiceComponent extends Helper {
                               {loadingPromoCode ? "0" : promoCode.coupon_amount}
                             </td>
                           </tr>
+                          ) : ""}
                           <tr className="table-secondary">
                             <td>{t("total")}</td>
                             <td>
@@ -257,6 +259,7 @@ class InvoiceComponent extends Helper {
                     {/* <!-- table --> */}
 
                     {/* <!-- coupon --> */}
+                    {subscription.amount > 0 ? (
                     <div className="mt-4">
                       <h5 className="capitalize">{t("have_a_coupon")}</h5>
                       <form
@@ -299,12 +302,17 @@ class InvoiceComponent extends Helper {
                         </p>
                       )}
                     </div>
+                    ) : ""}
                     {/* <!-- coupon --> */}
 
                     {/* <!-- payment option --> */}
+                    
                     <div className="mt-4">
-                      <h5 className="capitalize">{t("choose_payment_option")}</h5>
-                      <form className="mt-3">
+                     <form className="mt-3">
+                    
+                      {subscription.amount > 0 ? (
+                        <div>
+                          <h5 className="capitalize">{t("choose_payment_option")}</h5>
                         <div className="form-check-inline">
                           <input
                             type="radio"
@@ -330,6 +338,8 @@ class InvoiceComponent extends Helper {
                         <Link to="/add-card" className="float-right btn-link">
                           {t("add")} {t("card")}
                         </Link>
+                        </div>
+                        ) : ""}
 
                         <div className="text-right mb-3 mt-3">
                           {paymentMode == "card" ? (
@@ -340,7 +350,7 @@ class InvoiceComponent extends Helper {
                             >
                               {this.state.loadingContentCard != null
                                 ? this.state.loadingContentCard
-                                : "pay now using Card"}
+                                : subscription.amount > 0 ? "pay now using Card" : "Subscribe Now"}
                             </button>
                           ) : (
                             <PaypalExpressBtn
@@ -356,6 +366,7 @@ class InvoiceComponent extends Helper {
                         </div>
                       </form>
                     </div>
+                    
                     {/* <!-- payment option --> */}
                   </div>
                 </div>

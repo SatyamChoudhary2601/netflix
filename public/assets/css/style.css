@@ -404,6 +404,9 @@ a, a:hover, a:focus {
     margin-bottom: 0;
     color: #007bff;
     text-transform: capitalize;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
 }
 .fb{
     color: #3b5998;
