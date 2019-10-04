@@ -237,14 +237,14 @@ class VideoOverView extends Helper {
             >
               <i className="far fa-thumbs-down" />
             </Link>
-            <Link
+            {/* <Link
               to="#"
               data-toggle="modal"
               data-target="#spam-popup"
               className="btn express-btn btn-right-space"
             >
               <i className="fas fa-info" />
-            </Link>
+            </Link> */}
           </div>
         </div>
 

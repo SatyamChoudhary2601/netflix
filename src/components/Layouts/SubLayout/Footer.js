@@ -93,7 +93,10 @@ class Footer extends Component {
                         alt="Playstore"
                       />
                     </a>
-                    <a href={configuration.get("configData.playstore")}>
+                    <a
+                      href={configuration.get("configData.playstore")}
+                      target="_blank"
+                    >
                       <img
                         src="assets/img/play-store.png"
                         className="app-img"

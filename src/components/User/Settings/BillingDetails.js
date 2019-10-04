@@ -27,8 +27,20 @@ class BillingDetailsComponent extends Helper {
 
     api.postMethod("subscribedPlans", data).then(response => {
       if (response.data.success) {
-        let subscriptions = response.data.data;
-        this.setState({ loading: false, subscriptions: subscriptions, cancelled_status: subscriptions ? subscriptions[0].cancelled_status : 0 });
+        if (response.data.data != "") {
+          this.setState({
+            loading: false,
+            subscriptions: response.data.data,
+            cancelled_status: response.data.data
+              ? response.data.data[0].cancelled_status
+              : 0
+          });
+        } else {
+          this.setState({
+            loading: false,
+            subscriptions: response.data.data
+          });
+        }
       } else {
         this.props.history.push("/account");
         ToastDemo(this.props.toastManager, response.data.error, "error");
@@ -37,7 +49,6 @@ class BillingDetailsComponent extends Helper {
   }
 
   handleCancelAutoRenewal = event => {
-
     event.preventDefault();
     this.setState({
       loadingContent: "Loading... Please wait..",
@@ -51,8 +62,12 @@ class BillingDetailsComponent extends Helper {
       .then(response => {
         if (response.data.success) {
           ToastDemo(this.props.toastManager, response.data.message, "success");
-          this.setState({ loadingContent: null, buttonDisable: false, cancelled_status: 1});
-          window.$('#cancel-subs').modal('toggle');
+          this.setState({
+            loadingContent: null,
+            buttonDisable: false,
+            cancelled_status: 1
+          });
+          window.$("#cancel-subs").modal("toggle");
         } else {
           ToastDemo(
             this.props.toastManager,
@@ -67,9 +82,8 @@ class BillingDetailsComponent extends Helper {
         this.setState({ loadingContent: null, buttonDisable: false });
       });
   };
-  
-  handleEnableAutoRenewal = event => {
 
+  handleEnableAutoRenewal = event => {
     event.preventDefault();
     this.setState({
       loadingContent: "Loading... Please wait..",
@@ -83,7 +97,11 @@ class BillingDetailsComponent extends Helper {
       .then(response => {
         if (response.data.success) {
           ToastDemo(this.props.toastManager, response.data.message, "success");
-          this.setState({ loadingContent: null, buttonDisable: false, cancelled_status: 0});
+          this.setState({
+            loadingContent: null,
+            buttonDisable: false,
+            cancelled_status: 0
+          });
         } else {
           ToastDemo(
             this.props.toastManager,
@@ -101,14 +119,14 @@ class BillingDetailsComponent extends Helper {
 
   render() {
     const { loading, subscriptions, data, cancelled_status } = this.state;
-    if (loading) {
-      return "Loading...";
-    } else {
-      if (subscriptions.length == 0) {
-        this.props.history.push("/account");
-        ToastDemo(this.props.toastManager, "No Data found", "error");
-      }
-    }
+    // if (loading) {
+    //   return "Loading...";
+    // } else {
+    //   if (subscriptions.length == 0) {
+    //     this.props.history.push("/account");
+    //     ToastDemo(this.props.toastManager, "No Data found", "error");
+    //   }
+    // }
 
     return (
       <div>
@@ -119,7 +137,7 @@ class BillingDetailsComponent extends Helper {
                 <div className="row m-0">
                   <div className="col-sm-12 col-md-5 col-lg-5 col-xl-5 p-0">
                     {loading ? (
-                      ""
+                      "Loading..."
                     ) : subscriptions.length > 0 ? (
                       <div
                         className="billing-img"
@@ -183,11 +201,15 @@ class BillingDetailsComponent extends Helper {
                             </Link>
                           </div>
                           <div className="text-center mt-3">
-                            {cancelled_status == 1 ? 
-                              <a href="#" onClick={this.handleEnableAutoRenewal} className="btn btn-success">
+                            {cancelled_status == 1 ? (
+                              <a
+                                href="#"
+                                onClick={this.handleEnableAutoRenewal}
+                                className="btn btn-success"
+                              >
                                 Enable Auto Renewal
                               </a>
-                              :
+                            ) : (
                               <a
                                 href="#"
                                 className="btn btn-danger"
@@ -196,7 +218,7 @@ class BillingDetailsComponent extends Helper {
                               >
                                 cancel subcription
                               </a>
-                            }
+                            )}
                           </div>
                         </div>
                       </div>
