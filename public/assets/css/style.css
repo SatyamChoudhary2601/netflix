@@ -3675,3 +3675,6 @@ display: none!important;
     height: 15px;
     margin-top: 4px;
 }
+.suggestions-container li:hover {
+    background:red;
+}

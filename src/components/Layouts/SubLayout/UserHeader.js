@@ -12,8 +12,6 @@ import {
   setDefaultLanguage,
   translate
 } from "react-multi-lang";
-import en from "../../translation/en.json";
-import pt from "../../translation/pt.json";
 
 const $ = window.$;
 
@@ -29,7 +27,11 @@ class UserHeader extends Helper {
     loadingNotification: true,
     notificationCount: null,
     notifications: null,
-    playButtonClicked: false
+    playButtonClicked: false,
+    value: "",
+    suggestions: null,
+    loadingSuggesstion: true,
+    displaySuggesstion: "none"
   };
 
   componentDidMount() {
@@ -72,7 +74,25 @@ class UserHeader extends Helper {
   }
 
   handleSearchChange = ({ currentTarget: input }) => {
-    console.log("Input:");
+    console.log("Input:", input);
+    if (input.value != "") {
+      this.setState({ displaySuggesstion: "block" });
+    } else {
+      this.setState({ displaySuggesstion: "none" });
+    }
+    api
+      .postMethod("searchVideo", { key: input.value })
+      .then(response => {
+        if (response.data.success === true) {
+          console.log("REsponse", response.data);
+          this.setState({
+            suggestions: response.data.data,
+            loadingSuggesstion: false
+          });
+        } else {
+        }
+      })
+      .catch(function(error) {});
   };
 
   handleOnSubmit = (event, value) => {
@@ -173,7 +193,6 @@ class UserHeader extends Helper {
   };
 
   render() {
-
     const { t } = this.props;
 
     const {
@@ -183,7 +202,10 @@ class UserHeader extends Helper {
       categories,
       loadingNotification,
       notificationCount,
-      notifications
+      notifications,
+      value,
+      suggestions,
+      loadingSuggesstion
     } = this.state;
     const recentSearches = [
       "star wars 1",
@@ -206,6 +228,12 @@ class UserHeader extends Helper {
         return returnToVideo;
       }
     }
+
+    const inputProps = {
+      placeholder: "Type...",
+      value,
+      onChange: this.onChange
+    };
 
     return (
       <div>
@@ -253,7 +281,7 @@ class UserHeader extends Helper {
           </ul>
           <ul className="navbar-nav desktop-nav ">
             <li className="nav-item active">
-              <Link className="nav-link" to={"/home"}>                
+              <Link className="nav-link" to={"/home"}>
                 {t("home")}
               </Link>
             </li>
@@ -298,14 +326,48 @@ class UserHeader extends Helper {
           <ul className="navbar-nav ml-auto">
             <li className="nav-item">
               <form className="search-suggestion-form">
-                <SuggestionInputSearch
-                  onSubmitFunction={this.handleOnSubmit}
-                  recentSearches={recentSearches}
-                  placeholder={placeholder}
-                  inputPosition={inputPosition}
-                  inputClass="form-control search-form"
-                  onChange={this.handleSearchChange}
-                ></SuggestionInputSearch>
+                <div class="search-input-container center">
+                  <div class="search-input-container__inner">
+                    <input
+                      type="text"
+                      name="search"
+                      placeholder="title..."
+                      class="form-control search-form"
+                      onChange={this.handleSearchChange}
+                    />
+                    <div
+                      class="suggestions-container center"
+                      style={{
+                        maxHeight: "207.95px;",
+                        display: this.state.displaySuggesstion
+                      }}
+                    >
+                      <ul>
+                        {loadingSuggesstion ? (
+                          "loading..."
+                        ) : suggestions[0].length > 0 ? (
+                          suggestions[0].map(suggesstion => (
+                            <li
+                              class=""
+                              onClick={event =>
+                                this.handlePlayVideo(
+                                  event,
+                                  suggesstion.admin_video_id
+                                )
+                              }
+                            >
+                              <span>{suggesstion.title}</span>
+                            </li>
+                          ))
+                        ) : (
+                          <li class="">
+                            <span>No result</span>
+                          </li>
+                        )}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
               </form>
             </li>
             <li className="nav-item dropdown mobile-view">
@@ -429,7 +491,7 @@ class UserHeader extends Helper {
             </div>
             <ul className="sidebar-menu">
               <li className="active">
-                <Link to="/account">{("account")}</Link>
+                <Link to="/account">{"account"}</Link>
               </li>
               <li>
                 <Link to="/">{t("logout")}</Link>
