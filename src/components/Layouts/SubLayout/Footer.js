@@ -108,35 +108,41 @@ class Footer extends Component {
                     <p className="footer-head">{t("find_us")}</p>
                     <div className="social-share">
                       <span className="fa-stack fa-lg">
-                        <Link
-                          to={configuration.get("configData.facebook_link")}
+                        <a
+                          href={configuration.get("configData.facebook_link")}
+                          target="_blank"
                         >
                           <i className="fas fa-circle fa-stack-2x facebook"></i>
                           <i className="fab fa-facebook-f fa-stack-1x fa-inverse white-clr"></i>
-                        </Link>
+                        </a>
                       </span>
                       <span className="fa-stack fa-lg">
-                        <Link to={configuration.get("configData.twitter_link")}>
+                        <a
+                          href={configuration.get("configData.twitter_link")}
+                          target="_blank"
+                        >
                           <i className="fas fa-circle fa-stack-2x twitter"></i>
                           <i className="fab fa-twitter fa-stack-1x fa-inverse white-clr"></i>
-                        </Link>
+                        </a>
                       </span>
                       <span className="fa-stack fa-lg">
-                        <Link
+                        <a
                           to={configuration.get("configData.linkedin_link")}
+                          target="_blank"
                         >
                           <i className="fas fa-circle fa-stack-2x linkedin"></i>
                           <i className="fab fa-linkedin-in fa-stack-1x fa-inverse white-clr"></i>
-                        </Link>
+                        </a>
                       </span>
 
                       <span className="fa-stack fa-lg">
-                        <Link
-                          to={configuration.get("configData.pinterest_link")}
+                        <a
+                          href={configuration.get("configData.pinterest_link")}
+                          target="_blank"
                         >
                           <i className="fas fa-circle fa-stack-2x pinterest"></i>
                           <i className="fab fa-pinterest-p fa-stack-1x fa-inverse white-clr"></i>
-                        </Link>
+                        </a>
                       </span>
                     </div>
                     <hr></hr>

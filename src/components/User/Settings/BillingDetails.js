@@ -241,7 +241,7 @@ class BillingDetailsComponent extends Helper {
                               key={subscription.user_subscription_id}
                             >
                               <div className="card-header bg-dark text-white">
-                                basic
+                                {subscription.title}
                               </div>
                               <div className="card-body">
                                 <table className="table table-bordered m-0">
