@@ -140,7 +140,7 @@ class UserHeader extends Helper {
     event.preventDefault();
 
     localStorage.removeItem("active_profile_id");
-    localStorage.setItem("active_profile_id", profile.id);
+    localStorage.setItem("active_profile_id", profile.sub_profile_id);
     localStorage.setItem("active_profile_image", profile.picture);
     window.location = "/home";
   };
@@ -170,12 +170,13 @@ class UserHeader extends Helper {
     return (
       <div>
         {activeProfile.map(profile =>
-          profile.id == localStorage.getItem("active_profile_id") ? (
+          profile.sub_profile_id ==
+          localStorage.getItem("active_profile_id") ? (
             ""
           ) : (
             <Link
               className="dropdown-item"
-              key={profile.id}
+              key={profile.sub_profile_id}
               to="/view-profiles"
               onClick={event => this.changeProfile(profile, event)}
             >

@@ -13,8 +13,6 @@ import {
   setDefaultLanguage,
   translate
 } from "react-multi-lang";
-import en from "../../translation/en.json";
-import pt from "../../translation/pt.json";
 
 class ManageProfilesComponent extends Helper {
   state = {
@@ -26,7 +24,8 @@ class ManageProfilesComponent extends Helper {
     loadingContent: null,
     buttonDisable: false,
     inputData: [],
-    imagePreviewUrl: null
+    imagePreviewUrl: null,
+    addNewProfileOption: null
   };
   componentDidMount() {
     // view all sub profile
@@ -65,19 +64,19 @@ class ManageProfilesComponent extends Helper {
 
     if (this.state.data.inputData == undefined) {
       data = {
-        sub_profile_id: this.state.data.id,
+        sub_profile_id: this.state.data.sub_profile_id,
         name: this.state.data.name
       };
     } else {
       data = {
-        sub_profile_id: this.state.data.id,
+        sub_profile_id: this.state.data.sub_profile_id,
         name: this.state.data.name,
         picture: this.state.inputData.picture
       };
     }
 
     this.setState({
-      loadingContent: this.props.t('button_loading'),
+      loadingContent: this.props.t("button_loading"),
       buttonDisable: true
     });
 
@@ -98,17 +97,25 @@ class ManageProfilesComponent extends Helper {
     });
   };
 
-  handleDelete = event => {
+  handleDelete = (event, sub_profile_id) => {
     event.preventDefault();
 
     const data = {
-      sub_profile_id: this.state.data.id
+      delete_sub_profile_id: sub_profile_id
     };
 
-    api.postMethod("delete-sub-profile", data).then(response => {
+    api.postMethod("sub_profiles/delete", data).then(response => {
       if (response.data.success) {
-        window.location = "/manage-profiles";
         ToastDemo(this.props.toastManager, response.data.message, "success");
+        localStorage.setItem("active_profile_id", response.data.sub_profile_id);
+
+        window.location = "/manage-profiles";
+      } else {
+        ToastDemo(
+          this.props.toastManager,
+          response.data.error_messages,
+          "error"
+        );
       }
     });
   };
@@ -155,7 +162,7 @@ class ManageProfilesComponent extends Helper {
     return (
       <React.Fragment>
         {activeProfile.map(detail => (
-          <li className="profile" key={detail.id}>
+          <li className="profile" key={detail.sub_profile_id}>
             <Link onClick={event => this.handleClick(detail, event)} to="#">
               <div className="relative">
                 <img
@@ -183,7 +190,13 @@ class ManageProfilesComponent extends Helper {
     var bgImg = {
       backgroundImage: "url(../assets/img/bg.jpg)"
     };
-    const { data, loading, activeProfile, imagePreviewUrl } = this.state;
+    const {
+      data,
+      loading,
+      activeProfile,
+      imagePreviewUrl,
+      addNewProfileOption
+    } = this.state;
     let renderData;
     if (this.state.renderManageProfile === 1) {
       renderData = (
@@ -191,7 +204,9 @@ class ManageProfilesComponent extends Helper {
           <div className="view-profile">
             <div className="edit-profile-content">
               <div className="head-section">
-                <h1 className="view-profiles-head">{t("edit")} {t("profile")}</h1>
+                <h1 className="view-profiles-head">
+                  {t("edit")} {t("profile")}
+                </h1>
               </div>
               <form onSubmit={this.handleSubmit}>
                 <div className="edit-profile-sec">
@@ -247,7 +262,9 @@ class ManageProfilesComponent extends Helper {
                   </Link>
                   <Link
                     to="#"
-                    onClick={this.handleDelete}
+                    onClick={event =>
+                      this.handleDelete(event, data.sub_profile_id)
+                    }
                     className="grey-outline-btn"
                   >
                     {t("delete")} {t("profile")}
@@ -264,7 +281,9 @@ class ManageProfilesComponent extends Helper {
           <div className="view-profile">
             <div className="edit-profile-content">
               <div className="head-section">
-                <h1 className="view-profiles-head">{t("add")} {("profile")}</h1>
+                <h1 className="view-profiles-head">
+                  {t("add")} {"profile"}
+                </h1>
               </div>
               <form onSubmit={this.handleAddProfileSubmit}>
                 <div className="edit-profile-sec">
@@ -315,24 +334,34 @@ class ManageProfilesComponent extends Helper {
           <div className="view-profile">
             <div className="view-profile-content">
               <div className="head-section">
-                <h1 className="view-profiles-head">{t("manage")} {t("profiles")}</h1>
+                <h1 className="view-profiles-head">
+                  {t("manage")} {t("profiles")}
+                </h1>
               </div>
               <ul className="choose-profile">
-                {loading ? "Loading" : this.renderProfile(activeProfile)}
-                <li className="profile">
-                  <Link to="#" onClick={this.addProfile}>
-                    <div className="relative">
-                      <div className="">
-                        <i className="fa fa-plus-circle fa-5x" />
+                {loading ? "Loading.." : this.renderProfile(activeProfile)}
+                {loading ? (
+                  ""
+                ) : addNewProfileOption == 1 ? (
+                  <li className="profile">
+                    <Link to="#" onClick={this.addProfile}>
+                      <div className="relative">
+                        <div className="">
+                          <i className="fa fa-plus-circle fa-5x" />
+                        </div>
                       </div>
-                    </div>
-                    <p className="profile-name">{t("add")} {t("profile")}</p>
-                  </Link>
-                </li>
+                      <p className="profile-name">
+                        {t("add")} {t("profile")}
+                      </p>
+                    </Link>
+                  </li>
+                ) : (
+                  ""
+                )}
               </ul>
               <div>
                 <Link to="/view-profiles" className="white-btn">
-                {t("done")}
+                  {t("done")}
                 </Link>
               </div>
             </div>
@@ -356,6 +385,5 @@ class ManageProfilesComponent extends Helper {
     );
   }
 }
-
 
 export default withToastManager(translate(ManageProfilesComponent));

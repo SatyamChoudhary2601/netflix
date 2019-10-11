@@ -27,7 +27,7 @@ class ViewProfilesComponent extends Helper {
   handleClick = (profile, event) => {
     event.preventDefault();
 
-    localStorage.setItem("active_profile_id", profile.id);
+    localStorage.setItem("active_profile_id", profile.sub_profile_id);
     localStorage.setItem("active_profile_image", profile.picture);
   };
 

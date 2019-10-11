@@ -36,7 +36,8 @@ class Helper extends Component {
     redirectPPV: false,
     redirectPaymentOption: false,
     loadingHomeSecondSection: false,
-    homeSecondData: null
+    homeSecondData: null,
+    addNewProfileOption: null
   };
 
   handleChange = ({ currentTarget: input }) => {
@@ -55,10 +56,14 @@ class Helper extends Component {
   }
 
   viewProfiles() {
-    api.postMethod("active-profiles").then(response => {
+    api.postMethod("sub_profiles").then(response => {
       if (response.data.success === true) {
-        let activeProfile = response.data.data;
-        this.setState({ loading: false, activeProfile: activeProfile });
+        let activeProfile = response.data.data.sub_profiles;
+        this.setState({
+          loading: false,
+          activeProfile: activeProfile,
+          addNewProfileOption: response.data.data.is_new_sub_profile_allowed
+        });
       }
     });
   }
