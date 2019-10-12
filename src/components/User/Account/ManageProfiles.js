@@ -62,7 +62,7 @@ class ManageProfilesComponent extends Helper {
     event.preventDefault();
     let data;
 
-    if (this.state.data.inputData == undefined) {
+    if (this.state.inputData == undefined) {
       data = {
         sub_profile_id: this.state.data.sub_profile_id,
         name: this.state.data.name
@@ -79,7 +79,7 @@ class ManageProfilesComponent extends Helper {
       loadingContent: this.props.t("button_loading"),
       buttonDisable: true
     });
-
+    console.log("Data", data);
     api.postMethod("edit-sub-profile", data).then(response => {
       if (response.data.success) {
         // this.props.history.push("/manage-profiles");
@@ -139,10 +139,18 @@ class ManageProfilesComponent extends Helper {
 
   handleAddProfileSubmit = event => {
     event.preventDefault();
+    let data;
 
-    const data = {
-      name: this.state.data.name
-    };
+    if (this.state.inputData == undefined) {
+      data = {
+        name: this.state.data.name
+      };
+    } else {
+      data = {
+        name: this.state.data.name,
+        picture: this.state.inputData.picture
+      };
+    }
 
     api.postMethod("add-profile", data).then(response => {
       if (response.data.success === true) {
@@ -290,9 +298,22 @@ class ManageProfilesComponent extends Helper {
                   <div className="display-inline">
                     <div className="edit-left-sec">
                       <div className="edit-profile-imgsec">
-                        <img src="../assets/img/icon1.png" alt="profile_img" />
+                        <img
+                          src={
+                            imagePreviewUrl
+                              ? imagePreviewUrl
+                              : "../assets/img/icon1.png"
+                          }
+                          alt="profile_img"
+                        />
                         <div className="edit-icon">
                           <div className="edit-icon-circle">
+                            <input
+                              type="file"
+                              className="form-control"
+                              onChange={this.handleChangeImage}
+                              name="picture"
+                            />
                             <i className="fas fa-pencil-alt" />
                           </div>
                         </div>
