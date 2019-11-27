@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 
 import { Link } from "react-router-dom";
+import configuration from "react-global-configuration";
 
 const $ = window.$;
-import configuration from "react-global-configuration";
 
 class KidsHeader extends Component {
     constructor(props) {

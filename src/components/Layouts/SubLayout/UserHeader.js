@@ -6,6 +6,7 @@ import SuggestionInputSearch from "suggestion-react-input-search";
 import api from "../../../Environment";
 import { withToastManager } from "react-toast-notifications";
 import ToastDemo from "../../Helper/toaster";
+import configuration from "react-global-configuration";
 
 import {
   setTranslations,
@@ -14,7 +15,6 @@ import {
 } from "react-multi-lang";
 
 const $ = window.$;
-import configuration from "react-global-configuration";
 
 class UserHeader extends Helper {
   constructor(props) {
