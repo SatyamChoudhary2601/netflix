@@ -53,8 +53,8 @@ class Category extends Helper {
                             state: {
                                 url_type: maindata.url_type,
                                 url_type_id: maindata.url_type_id,
-                                page_type: maindata.page_type,
-                                category_id: maindata.category_id,
+                                page_type: inputData.page_type,
+                                category_id: inputData.category_id,
                                 title: maindata.title
                             }
                         }}

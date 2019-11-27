@@ -69,7 +69,7 @@ class Genres extends Helper {
                             state: {
                                 url_type: maindata.url_type,
                                 url_type_id: maindata.url_type_id,
-                                page_type: maindata.page_type,
+                                page_type: inputData.page_type,
                                 title: maindata.title
                             }
                         }}
