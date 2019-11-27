@@ -82,7 +82,7 @@ class UserHeader extends Helper {
       this.setState({ displaySuggesstion: "none" });
     }
     api
-      .postMethod("searchVideo", { key: input.value })
+      .postMethod("search_videos", { key: input.value })
       .then(response => {
         if (response.data.success === true) {
           console.log("REsponse", response.data);
@@ -347,9 +347,8 @@ class UserHeader extends Helper {
                       <ul>
                         {loadingSuggesstion ? (
                           "loading..."
-                        ) : suggestions[0].length > 0 ? (
-                          suggestions[0].map(
-                            (suggesstion, index) => (
+                        ) : suggestions.length > 0 ? (
+                          suggestions.map((suggesstion, index) => (
                             <li
                               class=""
                               key={`suggestion-video/${index}`}
