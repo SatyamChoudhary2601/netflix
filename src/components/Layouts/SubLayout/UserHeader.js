@@ -282,27 +282,27 @@ class UserHeader extends Helper {
             </li>
           </ul>
           <ul className="navbar-nav desktop-nav ">
-            <li className="nav-item active">
+            <li className="nav-item active" key="home">
               <Link className="nav-link" to={"/home"}>
                 {t("home")}
               </Link>
             </li>
-            <li className="nav-item">
+            <li className="nav-item" key="series-header">
               <Link className="nav-link" to={`/genre/${apiConstants.SERIES}`}>
                 {t("series")}
               </Link>
             </li>
-            <li className="nav-item">
+            <li className="nav-item" key="movies-header">
               <Link className="nav-link" to={`/genre/${apiConstants.MOVIES}`}>
                 {t("movies")}
               </Link>
             </li>
-            <li className="nav-item">
+            <li className="nav-item" key="kids-header">
               <Link className="nav-link" to={`/genre/${apiConstants.KIDS}`}>
                 {t("kids")}
               </Link>
             </li>
-            <li className="nav-item dropdown">
+            <li className="nav-item dropdown" key="browse-header">
               <Link
                 className="nav-link dropdown-toggle"
                 data-toggle="dropdown"
@@ -348,9 +348,11 @@ class UserHeader extends Helper {
                         {loadingSuggesstion ? (
                           "loading..."
                         ) : suggestions[0].length > 0 ? (
-                          suggestions[0].map(suggesstion => (
+                          suggestions[0].map(
+                            (suggesstion, index) => (
                             <li
                               class=""
+                              key={`suggestion-video/${index}`}
                               onClick={event =>
                                 this.handlePlayVideo(
                                   event,
@@ -492,26 +494,26 @@ class UserHeader extends Helper {
               </Link>
             </div>
             <ul className="sidebar-menu">
-              <li className="active">
+              <li className="active" key="account-sidemenu">
                 <Link to="/account">{"account"}</Link>
               </li>
-              <li>
+              <li key="logout-sidemenu">
                 <Link to="/">{t("logout")}</Link>
               </li>
               <li className="line" />
-              <li>
+              <li key="home-sidemenu">
                 <Link to="/home">{t("home")}</Link>
               </li>
-              <li>
+              <li key="mylist-sidemenu">
                 <Link to="/sub-category">{t("my_list")}</Link>
               </li>
-              <li>
+              <li key="series-sidemenu">
                 <Link to="/sub-category">{t("series")}</Link>
               </li>
-              <li>
+              <li key="comedies-sidemenu">
                 <Link to="/sub-category">{t("comedies")}</Link>
               </li>
-              <li>
+              <li key="crime_flims-sidemenu">
                 <Link to="/sub-category">{t("crime_flims")}</Link>
               </li>
             </ul>
