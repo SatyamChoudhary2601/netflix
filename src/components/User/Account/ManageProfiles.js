@@ -14,6 +14,8 @@ import {
   translate
 } from "react-multi-lang";
 
+import configuration from "react-global-configuration";
+
 class ManageProfilesComponent extends Helper {
   state = {
     renderManageProfile: "",
@@ -395,7 +397,7 @@ class ManageProfilesComponent extends Helper {
         <div className="account-page-header">
           <Link to="/home">
             <img
-              src="../assets/img/streamview1.png"
+              src={configuration.get("configData.site_logo")}
               className="logo-img"
               alt="logo_img"
             />

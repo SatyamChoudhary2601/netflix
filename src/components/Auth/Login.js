@@ -14,6 +14,8 @@ import GoogleLogin from "react-google-login";
 
 import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
 import { Helmet } from "react-helmet";
+import configuration from "react-global-configuration";
+
 import {
     setTranslations,
     setDefaultLanguage,
@@ -167,7 +169,7 @@ class LoginCommponent extends Helper {
                     <div className="auth-page-header">
                         <Link to={"/"}>
                             <img
-                                src="../assets/img/streamview1.png"
+                                src={configuration.get("configData.site_logo")}
                                 className="site-logo"
                                 alt="logo_img"
                             />
