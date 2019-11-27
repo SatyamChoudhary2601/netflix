@@ -14,6 +14,7 @@ import {
 } from "react-multi-lang";
 
 const $ = window.$;
+import configuration from "react-global-configuration";
 
 class UserHeader extends Helper {
   constructor(props) {
@@ -250,12 +251,12 @@ class UserHeader extends Helper {
           </span>
           <Link className="navbar-brand abs" to="/home">
             <img
-              src={window.location.origin + "/assets/img/streamview.png"}
+              src={configuration.get("configData.site_logo")}
               className="logo-img desktop-logo"
               alt="Streamview"
             />
             <img
-              src={window.location.origin + "/assets/img/streamview-icon.png"}
+              src={configuration.get("configData.site_icon")}
               className="logo-img mobile-logo"
               alt="Streamview"
             />

@@ -1,94 +1,151 @@
-import React, {Component} from 'react';
+import React, { Component } from "react";
 
-import {Link} from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 const $ = window.$;
+import configuration from "react-global-configuration";
 
 class KidsHeader extends Component {
-
     constructor(props) {
-
         super(props);
 
         this.state = {
-            
-            isAuthenticated : this.props.data,
-            
+            isAuthenticated: this.props.data
         };
-
     }
 
     componentDidMount() {
-        var headerHeight = $('#header').outerHeight();
+        var headerHeight = $("#header").outerHeight();
 
-        $('.header-height').height(headerHeight);
+        $(".header-height").height(headerHeight);
 
         // Call api function
-
     }
 
     render() {
-
         return (
             <div>
-                <nav className="navbar navbar-expand navbar-dark kids-nav fixed-top" id="header">
+                <nav
+                    className="navbar navbar-expand navbar-dark kids-nav fixed-top"
+                    id="header"
+                >
                     <span className="menu-icon" id="menu_icon">
                         <img src="assets/img/menu-black.png" alt="menu_img" />
                     </span>
                     <Link className="navbar-brand abs" to="/home">
-                        <img src="assets/img/streamview.png" className="logo-img desktop-logo" alt="Streamview" />
-                        <img src="assets/img/streamview-icon.png" className="logo-img mobile-logo" alt="Streamview" />
+                        <img
+                            src={configuration.get("configData.site_logo")}
+                            className="logo-img desktop-logo"
+                            alt={configuration.get("configData.site_name")}
+                        />
+                        <img
+                            src={configuration.get("configData.site_icon")}
+                            className="logo-img mobile-logo"
+                            alt={configuration.get("configData.site_name")}
+                        />
                     </Link>
                     <ul className="navbar-nav hidden-kids-nav">
                         <li className="nav-item active">
-                            <Link className="nav-link" to="#">Children</Link>
+                            <Link className="nav-link" to="#">
+                                Children
+                            </Link>
                         </li>
                         <li className="nav-item dropdown">
-                            <Link className="nav-link dropdown-toggle" to="#" data-toggle="dropdown">categories</Link>
+                            <Link
+                                className="nav-link dropdown-toggle"
+                                to="#"
+                                data-toggle="dropdown"
+                            >
+                                categories
+                            </Link>
                             <div class="dropdown-menu kids-dropmenu">
                                 <div className="row m-0">
                                     <div className="col-md-3 p-0">
                                         <ul className="kids-category-list">
-                                            <Link to="/kids/characters"><li>characters</li></Link>
-                                            <Link to="/kids/originals"><li>originals</li></Link>
+                                            <Link to="/kids/characters">
+                                                <li>characters</li>
+                                            </Link>
+                                            <Link to="/kids/originals">
+                                                <li>originals</li>
+                                            </Link>
                                         </ul>
                                     </div>
                                     <div className="col-md-9 p-0">
                                         <ul className="kids-category-list2">
                                             <li className="section">
                                                 <ul className="kids-category-list3">
-                                                    <Link to="/kids/category"><li>christmas</li></Link>
-                                                    <Link to="/kids/category"><li>action</li></Link>
-                                                    <Link to="/kids/category"><li>adventures</li></Link>
-                                                    <Link to="/kids/category"><li>animals</li></Link>
-                                                    <Link to="/kids/category"><li>sports</li></Link>
+                                                    <Link to="/kids/category">
+                                                        <li>christmas</li>
+                                                    </Link>
+                                                    <Link to="/kids/category">
+                                                        <li>action</li>
+                                                    </Link>
+                                                    <Link to="/kids/category">
+                                                        <li>adventures</li>
+                                                    </Link>
+                                                    <Link to="/kids/category">
+                                                        <li>animals</li>
+                                                    </Link>
+                                                    <Link to="/kids/category">
+                                                        <li>sports</li>
+                                                    </Link>
                                                 </ul>
                                             </li>
                                             <li className="section">
                                                 <ul className="kids-category-list3">
-                                                    <Link to="/kids/category"><li>christmas</li></Link>
-                                                    <Link to="/kids/category"><li>action</li></Link>
-                                                    <Link to="/kids/category"><li>adventures</li></Link>
-                                                    <Link to="/kids/category"><li>animals</li></Link>
-                                                    <Link to="/kids/category"><li>sports</li></Link>
+                                                    <Link to="/kids/category">
+                                                        <li>christmas</li>
+                                                    </Link>
+                                                    <Link to="/kids/category">
+                                                        <li>action</li>
+                                                    </Link>
+                                                    <Link to="/kids/category">
+                                                        <li>adventures</li>
+                                                    </Link>
+                                                    <Link to="/kids/category">
+                                                        <li>animals</li>
+                                                    </Link>
+                                                    <Link to="/kids/category">
+                                                        <li>sports</li>
+                                                    </Link>
                                                 </ul>
                                             </li>
                                             <li className="section">
                                                 <ul className="kids-category-list3">
-                                                    <Link to="/kids/category"><li>christmas</li></Link>
-                                                    <Link to="/kids/category"><li>action</li></Link>
-                                                    <Link to="/kids/category"><li>adventures</li></Link>
-                                                    <Link to="/kids/category"><li>animals</li></Link>
-                                                    <Link to="/kids/category"><li>sports</li></Link>
+                                                    <Link to="/kids/category">
+                                                        <li>christmas</li>
+                                                    </Link>
+                                                    <Link to="/kids/category">
+                                                        <li>action</li>
+                                                    </Link>
+                                                    <Link to="/kids/category">
+                                                        <li>adventures</li>
+                                                    </Link>
+                                                    <Link to="/kids/category">
+                                                        <li>animals</li>
+                                                    </Link>
+                                                    <Link to="/kids/category">
+                                                        <li>sports</li>
+                                                    </Link>
                                                 </ul>
                                             </li>
                                             <li className="section">
                                                 <ul className="kids-category-list3">
-                                                    <Link to="/kids/category"><li>christmas</li></Link>
-                                                    <Link to="/kids/category"><li>action</li></Link>
-                                                    <Link to="/kids/category"><li>adventures</li></Link>
-                                                    <Link to="/kids/category"><li>animals</li></Link>
-                                                    <Link to="/kids/category"><li>sports</li></Link>
+                                                    <Link to="/kids/category">
+                                                        <li>christmas</li>
+                                                    </Link>
+                                                    <Link to="/kids/category">
+                                                        <li>action</li>
+                                                    </Link>
+                                                    <Link to="/kids/category">
+                                                        <li>adventures</li>
+                                                    </Link>
+                                                    <Link to="/kids/category">
+                                                        <li>animals</li>
+                                                    </Link>
+                                                    <Link to="/kids/category">
+                                                        <li>sports</li>
+                                                    </Link>
                                                 </ul>
                                             </li>
                                         </ul>
@@ -100,17 +157,28 @@ class KidsHeader extends Component {
                     <ul className="navbar-nav ml-auto">
                         <li className="nav-item">
                             <form>
-                                <input type="text" name="search" placeholder="title.." className="form-control white-search-form" />
+                                <input
+                                    type="text"
+                                    name="search"
+                                    placeholder="title.."
+                                    className="form-control white-search-form"
+                                />
                             </form>
                         </li>
                         <li className="nav-item mobile-view">
                             <Link className="nav-link" to="#">
-                                <img src="assets/img/icon1.png" className="nav-profile-img" alt="profile_img" />
+                                <img
+                                    src="assets/img/icon1.png"
+                                    className="nav-profile-img"
+                                    alt="profile_img"
+                                />
                             </Link>
                         </li>
                         <li className="nav-item mobile-view">
                             <Link className="nav-link" to="/home">
-                                <button class="btn btn-danger exit-btn">exit Children</button>
+                                <button class="btn btn-danger exit-btn">
+                                    exit Children
+                                </button>
                             </Link>
                         </li>
                     </ul>
@@ -122,7 +190,12 @@ class KidsHeader extends Component {
                         <div className="p-3">
                             <Link to="/view-profiles">
                                 <div className="display-inline">
-                                    <div className="left-sec"><img src="assets/img/icon1.png" alt="User "/></div>
+                                    <div className="left-sec">
+                                        <img
+                                            src="assets/img/icon1.png"
+                                            alt="User "
+                                        />
+                                    </div>
                                     <div className="right-name">
                                         <h5>ronan</h5>
                                         <h6>switch profiles</h6>
@@ -177,14 +250,9 @@ class KidsHeader extends Component {
                         </ul>
                     </div>
                 </div>
-
             </div>
         );
-
     }
-
 }
 
-
 export default KidsHeader;
-
