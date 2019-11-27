@@ -6,7 +6,9 @@ import configuration from "react-global-configuration";
 class EditProfilesComponent extends Component {
     render() {
         var bgImg = {
-            backgroundImage: "url(../assets/img/bg.jpg)"
+            backgroundImage: `url(${configuration.get(
+                "configData.common_bg_image"
+            )})`
         };
 
         return (

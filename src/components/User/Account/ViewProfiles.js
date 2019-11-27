@@ -69,7 +69,9 @@ class ViewProfilesComponent extends Helper {
         const { t } = this.props;
 
         var bgImg = {
-            backgroundImage: "url(../assets/img/bg.jpg)"
+            backgroundImage: `url(${configuration.get(
+                "configData.common_bg_image"
+            )})`
         };
         const { loading, activeProfile } = this.state;
 
