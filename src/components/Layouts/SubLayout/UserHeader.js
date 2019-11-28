@@ -328,17 +328,17 @@ class UserHeader extends Helper {
           <ul className="navbar-nav ml-auto">
             <li className="nav-item">
               <form className="search-suggestion-form">
-                <div class="search-input-container center">
-                  <div class="search-input-container__inner">
+                <div className="search-input-container center">
+                  <div className="search-input-container__inner">
                     <input
                       type="text"
                       name="search"
                       placeholder="title..."
-                      class="form-control search-form"
+                      className="form-control search-form"
                       onChange={this.handleSearchChange}
                     />
                     <div
-                      class="suggestions-container center"
+                      className="suggestions-container center"
                       style={{
                         maxHeight: "207.95px;",
                         display: this.state.displaySuggesstion
@@ -350,7 +350,7 @@ class UserHeader extends Helper {
                         ) : suggestions.length > 0 ? (
                           suggestions.map((suggesstion, index) => (
                             <li
-                              class=""
+                              className=""
                               key={`suggestion-video/${index}`}
                               onClick={event =>
                                 this.handlePlayVideo(
@@ -363,7 +363,7 @@ class UserHeader extends Helper {
                             </li>
                           ))
                         ) : (
-                          <li class="">
+                          <li className="">
                             <span>No result</span>
                           </li>
                         )}

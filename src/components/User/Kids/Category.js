@@ -284,10 +284,10 @@ class KidsCategory extends Component{
                     </div>
                 </div>
 
-                <div class="modal fade kids" id="kids-episode">
-                    <div class="modal-dialog modal-lg">
-                        <div class="modal-content">
-                            <div class="modal-header">
+                <div className="modal fade kids" id="kids-episode">
+                    <div className="modal-dialog modal-lg">
+                        <div className="modal-content">
+                            <div className="modal-header">
                                 <div className="relative width-100">
                                     <img src='assets/img/thumb1.jpg' className="kids-episode-img" alt="banner_image" />
                                     <div className="kids-banner-details">
@@ -302,10 +302,10 @@ class KidsCategory extends Component{
                                         <img src="assets/img/play-button.png" alt="play-button" />
                                     </div>
                                 </div>
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <button type="button" className="close" data-dismiss="modal">&times;</button>
                             </div>
                             
-                            <div class="modal-body">
+                            <div className="modal-body">
                                <div className="row">
                                    <div className="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
                                         <Link to="/video">
