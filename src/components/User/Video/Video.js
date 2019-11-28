@@ -42,7 +42,7 @@ class VideoComponent extends Helper {
                 <div>
                     <div className="single-video">
                         <ReactPlayer
-                            url="https://admin.ozeanis.net/uploads/videos/original/SV-2019-11-26-07-24-00-09c92e17596643ed2993eba12e3599fcaf65814c.mp4"
+                            url={mainVideo}
                             controls={true}
                             width="100%"
                             height="100vh"
