@@ -273,8 +273,9 @@ class UserHeader extends Helper {
               <div className="dropdown-menu browse">
                 {loadingCategory
                   ? ""
-                  : categories.map(category => (
-                      <Link className="dropdown-item" to="#">
+                  : categories.map(
+                    (category, index) => (
+                      <Link className="dropdown-item" to="#" key={`category-drop-${index}`}>
                         {category.name}
                       </Link>
                     ))}
@@ -340,7 +341,7 @@ class UserHeader extends Helper {
                     <div
                       className="suggestions-container center"
                       style={{
-                        maxHeight: "207.95px;",
+                        maxHeight: "207.95px",
                         display: this.state.displaySuggesstion
                       }}
                     >
@@ -363,7 +364,7 @@ class UserHeader extends Helper {
                             </li>
                           ))
                         ) : (
-                          <li className="">
+                          <li className="" key="suggestion-no-result">
                             <span>No result</span>
                           </li>
                         )}
