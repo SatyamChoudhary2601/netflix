@@ -83,10 +83,10 @@ class KidsCharacters extends Component{
 
                 </div>
 
-                <div class="modal fade kids" id="kids-char">
-                    <div class="modal-dialog modal-lg">
-                        <div class="modal-content">
-                            <div class="modal-header">
+                <div className="modal fade kids" id="kids-char">
+                    <div className="modal-dialog modal-lg">
+                        <div className="modal-content">
+                            <div className="modal-header">
                                 <div className="kids-char-bg width-100">
                                     <div>
                                         <h3 className="txt-overflow capz mb-5">the boss baby</h3>
@@ -106,10 +106,10 @@ class KidsCharacters extends Component{
                                         </div>
                                     </div>
                                 </div>
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <button type="button" className="close" data-dismiss="modal">&times;</button>
                             </div>
                             
-                            <div class="modal-body">
+                            <div className="modal-body">
                                 <h5 className="black-clr bold capz mb-3">season1</h5>
                                <div className="row">
                                    <div className="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">

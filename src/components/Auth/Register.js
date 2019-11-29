@@ -131,7 +131,9 @@ class RegisterComponent extends Helper {
     render() {
         const { t } = this.props;
         var bgImg = {
-            backgroundImage: "url(../assets/img/bg.jpg)"
+            backgroundImage: `url(${configuration.get(
+                "configData.common_bg_image"
+            )})`
         };
         const { data } = this.state;
         return (

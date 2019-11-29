@@ -82,7 +82,7 @@ class UserHeader extends Helper {
       this.setState({ displaySuggesstion: "none" });
     }
     api
-      .postMethod("searchVideo", { key: input.value })
+      .postMethod("search_videos", { key: input.value })
       .then(response => {
         if (response.data.success === true) {
           console.log("REsponse", response.data);
@@ -273,8 +273,9 @@ class UserHeader extends Helper {
               <div className="dropdown-menu browse">
                 {loadingCategory
                   ? ""
-                  : categories.map(category => (
-                      <Link className="dropdown-item" to="#">
+                  : categories.map(
+                    (category, index) => (
+                      <Link className="dropdown-item" to="#" key={`category-drop-${index}`}>
                         {category.name}
                       </Link>
                     ))}
@@ -328,30 +329,29 @@ class UserHeader extends Helper {
           <ul className="navbar-nav ml-auto">
             <li className="nav-item">
               <form className="search-suggestion-form">
-                <div class="search-input-container center">
-                  <div class="search-input-container__inner">
+                <div className="search-input-container center">
+                  <div className="search-input-container__inner">
                     <input
                       type="text"
                       name="search"
                       placeholder="title..."
-                      class="form-control search-form"
+                      className="form-control search-form"
                       onChange={this.handleSearchChange}
                     />
                     <div
-                      class="suggestions-container center"
+                      className="suggestions-container center"
                       style={{
-                        maxHeight: "207.95px;",
+                        maxHeight: "207.95px",
                         display: this.state.displaySuggesstion
                       }}
                     >
                       <ul>
                         {loadingSuggesstion ? (
                           "loading..."
-                        ) : suggestions[0].length > 0 ? (
-                          suggestions[0].map(
-                            (suggesstion, index) => (
+                        ) : suggestions.length > 0 ? (
+                          suggestions.map((suggesstion, index) => (
                             <li
-                              class=""
+                              className=""
                               key={`suggestion-video/${index}`}
                               onClick={event =>
                                 this.handlePlayVideo(
@@ -364,7 +364,7 @@ class UserHeader extends Helper {
                             </li>
                           ))
                         ) : (
-                          <li class="">
+                          <li className="" key="suggestion-no-result">
                             <span>No result</span>
                           </li>
                         )}
