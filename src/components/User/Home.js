@@ -8,12 +8,12 @@ import HomePageBanner from "./homePageBanner";
 import ContentLoader from "../Static/contentLoader";
 
 import {
-    setTranslations,
-    setDefaultLanguage,
+    // setTranslations,
+    // setDefaultLanguage,
     translate
 } from "react-multi-lang";
-import en from "../translation/en.json";
-import pt from "../translation/pt.json";
+// import en from "../translation/en.json";
+// import pt from "../translation/pt.json";
 
 class Home extends Component {
     state = {

@@ -5,12 +5,12 @@ import api from "../../../Environment";
 import ToastDemo from "../../Helper/toaster";
 
 import {
-    setTranslations,
-    setDefaultLanguage,
+    // setTranslations,
+    // setDefaultLanguage,
     translate
 } from "react-multi-lang";
-import en from "../../translation/en.json";
-import pt from "../../translation/pt.json";
+// import en from "../../translation/en.json";
+// import pt from "../../translation/pt.json";
 
 class PaymentHistory extends Component {
     state = {

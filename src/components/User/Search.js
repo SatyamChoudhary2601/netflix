@@ -507,7 +507,7 @@ class SearchComponent extends Component {
 
             <div className="slider-content-close-sec">
               <div onClick={this.closeSliderContent}>
-                <i class="fas fa-times" />
+                <i className="fas fa-times" />
               </div>
             </div>
 

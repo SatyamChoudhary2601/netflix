@@ -58,7 +58,7 @@ class KidsHeader extends Component {
                             >
                                 categories
                             </Link>
-                            <div class="dropdown-menu kids-dropmenu">
+                            <div className="dropdown-menu kids-dropmenu">
                                 <div className="row m-0">
                                     <div className="col-md-3 p-0">
                                         <ul className="kids-category-list">
@@ -176,7 +176,7 @@ class KidsHeader extends Component {
                         </li>
                         <li className="nav-item mobile-view">
                             <Link className="nav-link" to="/home">
-                                <button class="btn btn-danger exit-btn">
+                                <button className="btn btn-danger exit-btn">
                                     exit Children
                                 </button>
                             </Link>
