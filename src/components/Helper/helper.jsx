@@ -37,7 +37,8 @@ class Helper extends Component {
     redirectPaymentOption: false,
     loadingHomeSecondSection: false,
     homeSecondData: null,
-    addNewProfileOption: null
+    addNewProfileOption: null,
+    onPlayStarted: false
   };
 
   handleChange = ({ currentTarget: input }) => {
@@ -199,17 +200,24 @@ class Helper extends Component {
     }
   }
 
-  renderRedirectPage(videoDetailsFirst) {
+  renderRedirectPage(videoDetailsFirst, pageType) {
     if (this.state.redirect) {
-      return (
-        <Redirect
-          to={{
-            pathname: `/video/${videoDetailsFirst.admin_video_id}`,
-            state: { videoDetailsFirst: videoDetailsFirst }
-          }}
-        />
-      );
+      this.setState({ redirect: false });
+      if (pageType == "videoPage") {
+        // Don't do anything.
+      } else {
+        return (
+          <Redirect
+            to={{
+              pathname: `/video/${videoDetailsFirst.admin_video_id}`,
+              state: { videoDetailsFirst: videoDetailsFirst }
+            }}
+          />
+        );
+      }
     } else if (this.state.redirectPPV) {
+      this.setState({ redirectPPV: false });
+
       return (
         <Redirect
           to={{
@@ -221,6 +229,8 @@ class Helper extends Component {
         />
       );
     } else if (this.state.redirectPaymentOption) {
+      this.setState({ redirectPaymentOption: false });
+
       return (
         <Redirect
           to={{
