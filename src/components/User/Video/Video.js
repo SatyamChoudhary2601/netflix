@@ -14,7 +14,8 @@ class VideoComponent extends Helper {
   state = {
     loadingFirst: true,
     videoDetailsFirst: null,
-    onPlayStarted: false
+    onPlayStarted: false,
+    videoList: {}
   };
   componentDidMount() {
     if (this.props.location.state) {
@@ -65,6 +66,8 @@ class VideoComponent extends Helper {
     const { loadingFirst } = this.state;
     let mainVideo;
     let videoTitle;
+    let videoLists;
+
     if (loadingFirst) {
       return <ContentLoader />;
     } else {
@@ -74,13 +77,38 @@ class VideoComponent extends Helper {
         videoTitle = this.props.location.state.videoDetailsFirst.name;
       } else {
         mainVideo = this.props.location.state.videoDetailsFirst.main_video;
+
+        // let newArr = Object.keys(mainVideo);
+
+        // videoLists = newArr.map(i => {
+        //   const videoList = { ...this.state.videoList };
+        //   videoList["src"] = mainVideo[i];
+        //   videoList["type"] = "video/mp4";
+
+        //   return { src: mainVideo[i], type: "video/mp4" };
+        // });
+        // console.log("video :", videoLists);
+
         videoTitle = this.props.location.state.videoDetailsFirst.title;
       }
-      // const { videoDetailsFirst } = this.props.location.state;
+
       return (
         <div>
           <div className="single-video">
             <ReactPlayer
+              // url={[
+              //   {
+              //     src:
+              //       "http://adminview.streamhash.com:8080/426x240SV-201…8-59-443b8c7d4d68e41bb9a618a0de9a5f4003710241.mp4",
+              //     type: "video/webm"
+              //   },
+
+              //   {
+              //     src:
+              //       "http://adminview.streamhash.com:8080/640x360SV-2019-09-23-05-18-59-443b8c7d4d68e41bb9a618a0de9a5f4003710241.mp4",
+              //     type: "video/ogg"
+              //   }
+              // ]}
               url={mainVideo}
               controls={true}
               width="100%"
@@ -90,6 +118,24 @@ class VideoComponent extends Helper {
               onEnded={this.onCompleteVideo}
               config={{
                 file: {
+                  tracks: [
+                    {
+                      kind: "subtitles",
+                      src: "subs/subtitles.en.vtt",
+                      srcLang: "en",
+                      default: true
+                    },
+                    {
+                      kind: "subtitles",
+                      src: "subs/subtitles.ja.vtt",
+                      srcLang: "ja"
+                    },
+                    {
+                      kind: "subtitles",
+                      src: "subs/subtitles.de.vtt",
+                      srcLang: "de"
+                    }
+                  ],
                   attributes: {
                     controlsList: "nodownload"
                   }
