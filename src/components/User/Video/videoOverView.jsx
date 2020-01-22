@@ -186,6 +186,12 @@ class VideoOverView extends Helper {
                 ? disLikeReponse.dislike_count
                 : videoDetailsFirst.dislikes}
             </span>
+            {videoDetailsFirst.should_display_ppv == 1 ? 
+                <span className="red-box">
+                {videoDetailsFirst.currency} {videoDetailsFirst.ppv_amount}
+                {/* <span className="small">Views</span> */}
+                </span>
+            : "" }
           </h4>
           <h4 className="slider_video_text">{videoDetailsFirst.description}</h4>
           <div className="banner-btn-sec">

@@ -1692,6 +1692,14 @@ label{
     padding: .2em .5em;
     font-size: .9em; 
 }
+
+.red-box{
+    background-color: #e63631;
+    margin:0 .4em;
+    padding: .2em .5em;
+    font-size: .9em; 
+    color: #fff;
+}
 .yellow-clr{
     color:#e1cb2b;
 }
