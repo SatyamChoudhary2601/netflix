@@ -89,7 +89,55 @@ class LoginCommponent extends Helper {
     };
 
     responseFacebook = response => {
-        console.log("Facebook Response", response);
+        const path = this.props.location;
+        const googleLoginInput = {
+            social_unique_id: response.profileObj.googleId,
+            login_by: "google",
+            email: response.profileObj.email,
+            name: response.profileObj.name,
+            picture: response.profileObj.imageUrl,
+            device_type: "web",
+            device_token: "123466"
+        };
+        api.postMethod("v4/register", googleLoginInput)
+            .then(response => {
+                if (response.data.success === true) {
+                    localStorage.setItem("userId", response.data.data.user_id);
+                    localStorage.setItem(
+                        "accessToken",
+                        response.data.data.token
+                    );
+                    localStorage.setItem(
+                        "push_status",
+                        response.data.data.push_status
+                    );
+                    localStorage.setItem("username", response.data.data.name);
+                    ToastDemo(
+                        this.props.toastManager,
+                        response.data.message,
+                        "success"
+                    );
+                    this.props.history.push("/view-profiles");
+                    this.setState({
+                        loadingContent: null,
+                        buttonDisable: false
+                    });
+                } else {
+                    ToastDemo(
+                        this.props.toastManager,
+                        response.data.error_messages,
+                        "error"
+                    );
+                    this.setState({
+                        loadingContent: null,
+                        buttonDisable: false
+                    });
+                }
+            })
+            .catch(error => {
+                ToastDemo(this.props.toastManager, error, "error");
+                this.setState({ loadingContent: null, buttonDisable: false });
+            });
     };
 
     responseGoogle = response => {
