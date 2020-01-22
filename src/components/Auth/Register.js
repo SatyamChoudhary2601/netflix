@@ -87,7 +87,7 @@ class RegisterComponent extends Helper {
             device_type: "web",
             device_token: "123466"
         };
-        api.postMethod("register", googleLoginInput)
+        api.postMethod("v4/register", googleLoginInput)
             .then(response => {
                 if (response.data.success === true) {
                     localStorage.setItem("userId", response.data.data.user_id);

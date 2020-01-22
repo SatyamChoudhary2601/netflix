@@ -106,7 +106,7 @@ class LoginCommponent extends Helper {
                 device_type: "web",
                 device_token: "123466"
             };
-            api.postMethod("register", googleLoginInput)
+            api.postMethod("v4/register", googleLoginInput)
                 .then(response => {
                     if (response.data.success === true) {
                         localStorage.setItem(
@@ -130,6 +130,7 @@ class LoginCommponent extends Helper {
                             response.data.message,
                             "success"
                         );
+                        console.log("ALL CORRECT");
                         this.props.history.push("/view-profiles");
                         this.setState({
                             loadingContent: null,
@@ -154,6 +155,8 @@ class LoginCommponent extends Helper {
                         buttonDisable: false
                     });
                 });
+        } else {
+            console.log("Google Error");
         }
     };
     render() {
