@@ -236,7 +236,7 @@ class LoginCommponent extends Helper {
                                         ""
                                     ) : (
                                         <FacebookLogin
-                                            appId="506021046543799"
+                                            appId={apiConstants.FACEBOOK_APP_ID}
                                             // autoLoad
                                             callback={this.responseFacebook}
                                             render={renderProps => (
