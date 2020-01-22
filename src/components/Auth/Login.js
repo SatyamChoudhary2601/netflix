@@ -112,6 +112,10 @@ class LoginCommponent extends Helper {
                         response.data.data.push_status
                     );
                     localStorage.setItem("username", response.data.data.name);
+                    localStorage.setItem(
+                        "active_profile_id",
+                        response.data.data.sub_profile_id
+                    );
                     ToastDemo(
                         this.props.toastManager,
                         response.data.message,
@@ -172,6 +176,10 @@ class LoginCommponent extends Helper {
                         localStorage.setItem(
                             "username",
                             response.data.data.name
+                        );
+                        localStorage.setItem(
+                            "active_profile_id",
+                            response.data.data.sub_profile_id
                         );
                         ToastDemo(
                             this.props.toastManager,
