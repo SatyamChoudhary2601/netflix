@@ -52,6 +52,10 @@ class LoginCommponent extends Helper {
                         response.data.data.token
                     );
                     localStorage.setItem(
+                        "userType",
+                        response.data.data.user_type
+                    );
+                    localStorage.setItem(
                         "push_status",
                         response.data.data.push_status
                     );
@@ -111,6 +115,11 @@ class LoginCommponent extends Helper {
                         "push_status",
                         response.data.data.push_status
                     );
+                    localStorage.setItem(
+                        "userType",
+                        response.data.data.user_type
+                    );
+
                     localStorage.setItem("username", response.data.data.name);
                     localStorage.setItem(
                         "active_profile_id",
@@ -168,6 +177,10 @@ class LoginCommponent extends Helper {
                         localStorage.setItem(
                             "accessToken",
                             response.data.data.token
+                        );
+                        localStorage.setItem(
+                            "userType",
+                            response.data.data.user_type
                         );
                         localStorage.setItem(
                             "push_status",

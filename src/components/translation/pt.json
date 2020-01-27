@@ -104,6 +104,7 @@
     "payment_id": "Payment Id",
     "subscription_type": "Subscription Type",
     "one_time_payment": "One Time Payment",
+    "recurring_payment": "Recurring Payment",
     "user_type": "User Type",
     "payment_mode": "Payment Modle",
     "get_app": "Get the latest App :",
@@ -119,5 +120,6 @@
     "total": "Total",
     "have_a_coupon": "have a coupon?",
     "netflix_india": "StreamView",
-    "view_details": "View Details"
+    "view_details": "View Details",
+    "cast_crews": "Cast"
 }

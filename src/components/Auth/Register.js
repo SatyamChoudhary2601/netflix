@@ -92,6 +92,10 @@ class RegisterComponent extends Helper {
                         response.data.data.token
                     );
                     localStorage.setItem(
+                        "userType",
+                        response.data.data.user_type
+                    );
+                    localStorage.setItem(
                         "push_status",
                         response.data.data.push_status
                     );
@@ -146,6 +150,10 @@ class RegisterComponent extends Helper {
                     localStorage.setItem(
                         "accessToken",
                         response.data.data.token
+                    );
+                    localStorage.setItem(
+                        "userType",
+                        response.data.data.user_type
                     );
                     localStorage.setItem(
                         "push_status",

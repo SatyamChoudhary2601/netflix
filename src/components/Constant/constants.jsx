@@ -69,6 +69,7 @@ export const apiConstants = {
     JWPLAYER_KEY: "M2NCefPoiiKsaVB8nTttvMBxfb1J3Xl7PDXSaw==",
 
     settingsUrl: "http://adminview.streamhash.com/userApi/get_settings_json",
+
     homeSettingsUrl:
         "http://adminview.streamhash.com/userApi/get_home_settings_json"
 };
