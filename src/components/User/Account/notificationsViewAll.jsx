@@ -23,6 +23,7 @@ class Notifications extends Component {
                         loadingNotification: false,
                         notifications: notifications
                     });
+                    console.log("Length", response.data.data.notifications);
                 } else {
                 }
             })
@@ -47,7 +48,7 @@ class Notifications extends Component {
         if (this.state.loadingNotification) {
             return <ContentLoader />;
         } else {
-            result = this.chunkArray(this.state.notifications, 5);
+            result = this.chunkArray(this.state.notifications.notifications, 5);
         }
         return (
             <div className="main p-40">
@@ -56,7 +57,7 @@ class Notifications extends Component {
                         View All Notification
                         {/* <i className="fas fa-angle-right ml-2" /> */}
                     </h3>
-                    {this.state.notifications.length > 0 ? (
+                    {this.state.notifications.notifications.length > 0 ? (
                         result.map((res, index) => (
                             <Slider key={res.index}>
                                 {res.map(movie => (
