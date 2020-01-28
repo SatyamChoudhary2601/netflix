@@ -2681,6 +2681,8 @@ a:active, a:focus, .slick-slide:focus, .slick-slide:active{
     border-radius: 50%;
     object-fit: cover;
     object-position: center;
+    min-height: 250px !important;
+    min-width: 250px !important;
 }
 .edit-profile-content .grey-outline-btn{
     margin-left: .75em;

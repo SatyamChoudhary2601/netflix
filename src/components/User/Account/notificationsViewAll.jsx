@@ -49,28 +49,34 @@ class Notifications extends Component {
         } else {
             result = this.chunkArray(this.state.notifications, 5);
         }
-
-        // Outputs : [ [1,2,3] , [4,5,6] ,[7,8] ]
-
         return (
             <div className="main p-40">
                 <div className="main-slidersec">
                     <h3 className="">
                         View All Notification
-                        <i className="fas fa-angle-right ml-2" />
+                        {/* <i className="fas fa-angle-right ml-2" /> */}
                     </h3>
-                    {result.map((res, index) => (
-                        <Slider key={res.index}>
-                            {res.map(movie => (
-                                <Slider.Item
-                                    movie={movie}
-                                    key={movie.admin_video_id}
-                                >
-                                    item1
-                                </Slider.Item>
-                            ))}
-                        </Slider>
-                    ))}
+                    {this.state.notifications.length > 0 ? (
+                        result.map((res, index) => (
+                            <Slider key={res.index}>
+                                {res.map(movie => (
+                                    <Slider.Item
+                                        movie={movie}
+                                        key={movie.admin_video_id}
+                                    >
+                                        item1
+                                    </Slider.Item>
+                                ))}
+                            </Slider>
+                        ))
+                    ) : (
+                        <div className="text-center">
+                            <img
+                                src="../assets/img/no-results.png"
+                                className="no-result-img"
+                            ></img>
+                        </div>
+                    )}
                 </div>
                 <div className="height-100" />
             </div>
