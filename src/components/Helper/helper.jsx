@@ -35,6 +35,7 @@ class Helper extends Component {
     redirect: false,
     redirectPPV: false,
     redirectPaymentOption: false,
+    redirectSubscription: false,
     loadingHomeSecondSection: false,
     homeSecondData: null,
     addNewProfileOption: null,
@@ -196,7 +197,11 @@ class Helper extends Component {
         this.setState({ redirectPPV: true });
       }
     } else {
-      this.setState({ redirect: true });
+      if (StatusData.is_user_need_subscription == 0) {
+        this.setState({ redirect: true });
+      } else {
+        this.setState({ redirectSubscription: true });
+      }
     }
   }
 
@@ -235,6 +240,18 @@ class Helper extends Component {
         <Redirect
           to={{
             pathname: "/payment-options",
+            state: {
+              videoDetailsFirst: videoDetailsFirst
+            }
+          }}
+        />
+      );
+    } else if (this.state.redirectSubscription) {
+      this.setState({ redirectSubscription: false });
+      return (
+        <Redirect
+          to={{
+            pathname: "/subscription",
             state: {
               videoDetailsFirst: videoDetailsFirst
             }
