@@ -16,12 +16,15 @@ import {
     setDefaultLanguage,
     translate
 } from "react-multi-lang";
+var const_time_zone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
 class RegisterComponent extends Helper {
     state = {
         data: {
             email: "",
             password: "",
-            name: ""
+            name: "",
+            timezone: const_time_zone
         },
         loadingContent: null,
         buttonDisable: false
@@ -81,7 +84,8 @@ class RegisterComponent extends Helper {
             name: response.profileObj.name,
             picture: response.profileObj.imageUrl,
             device_type: "web",
-            device_token: "123466"
+            device_token: "123466",
+            timezone: const_time_zone
         };
         api.postMethod("v4/register", googleLoginInput)
             .then(response => {
@@ -141,7 +145,8 @@ class RegisterComponent extends Helper {
             name: response.profileObj.name,
             picture: response.profileObj.imageUrl,
             device_type: "web",
-            device_token: "123466"
+            device_token: "123466",
+            timezone: const_time_zone
         };
         api.postMethod("v4/register", googleLoginInput)
             .then(response => {

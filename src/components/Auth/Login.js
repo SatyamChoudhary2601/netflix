@@ -25,12 +25,14 @@ import {
 import { apiConstants } from "../Constant/constants";
 
 const $ = window.$;
+var const_time_zone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
 class LoginCommponent extends Helper {
     state = {
         data: {
             email: "",
-            password: ""
+            password: "",
+            timezone: const_time_zone
         },
         loadingContent: null,
         buttonDisable: false
@@ -101,7 +103,8 @@ class LoginCommponent extends Helper {
             name: response.profileObj.name,
             picture: response.profileObj.imageUrl,
             device_type: "web",
-            device_token: "123466"
+            device_token: "123466",
+            timezone: const_time_zone
         };
         api.postMethod("v4/register", googleLoginInput)
             .then(response => {
@@ -165,7 +168,8 @@ class LoginCommponent extends Helper {
                 name: response.profileObj.name,
                 picture: response.profileObj.imageUrl,
                 device_type: "web",
-                device_token: "123466"
+                device_token: "123466",
+                timezone: const_time_zone
             };
             api.postMethod("v4/register", googleLoginInput)
                 .then(response => {

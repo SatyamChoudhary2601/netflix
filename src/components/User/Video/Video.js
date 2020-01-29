@@ -77,8 +77,14 @@ class VideoComponent extends Helper {
 
             console.log(this.props.location.state.videoFrom);
             if (this.props.location.state.videoFrom != undefined) {
-                mainVideo = this.props.location.state.videoDetailsFirst
-                    .resolutions.original;
+                if (this.props.location.state.videoFrom == "trailer") {
+                    mainVideo = this.props.location.state.videoDetailsFirst
+                        .resolutions.original;
+                } else {
+                    mainVideo = this.props.location.state.videoDetailsFirst
+                        .resolutions.original;
+                }
+
                 videoTitle = this.props.location.state.videoDetailsFirst.name;
             } else {
                 mainVideo = this.props.location.state.videoDetailsFirst

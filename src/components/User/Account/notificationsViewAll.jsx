@@ -23,7 +23,8 @@ class Notifications extends Component {
                         loadingNotification: false,
                         notifications: notifications
                     });
-                    console.log("Length", response.data.data.notifications);
+                    // console.log("notifications", notifications);
+                    // console.log("Length", Object.keys(notifications).length);
                 } else {
                 }
             })
@@ -57,27 +58,18 @@ class Notifications extends Component {
                         View All Notification
                         {/* <i className="fas fa-angle-right ml-2" /> */}
                     </h3>
-                    {this.state.notifications.notifications.length > 0 ? (
-                        result.map((res, index) => (
-                            <Slider key={res.index}>
-                                {res.map(movie => (
-                                    <Slider.Item
-                                        movie={movie}
-                                        key={movie.admin_video_id}
-                                    >
-                                        item1
-                                    </Slider.Item>
-                                ))}
-                            </Slider>
-                        ))
-                    ) : (
-                        <div className="text-center">
-                            <img
-                                src="../assets/img/no-results.png"
-                                className="no-result-img"
-                            ></img>
-                        </div>
-                    )}
+                    {result.map((res, index) => (
+                        <Slider key={res.index}>
+                            {res.map(movie => (
+                                <Slider.Item
+                                    movie={movie}
+                                    key={movie.admin_video_id}
+                                >
+                                    item1
+                                </Slider.Item>
+                            ))}
+                        </Slider>
+                    ))}
                 </div>
                 <div className="height-100" />
             </div>
