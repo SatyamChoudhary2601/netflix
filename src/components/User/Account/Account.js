@@ -77,12 +77,18 @@ class AccountComponent extends Helper {
                                                             )}
                                                         </Link>
                                                     </li>
-                                                    <li>
-                                                        <Link to="/delete-account">
-                                                            {t("delete")}{" "}
-                                                            {t("account")}
-                                                        </Link>
-                                                    </li>
+                                                    {data.login_by ==
+                                                    "manual" ? (
+                                                        <li>
+                                                            <Link to="/delete-account">
+                                                                {t(
+                                                                    "delete_account"
+                                                                )}
+                                                            </Link>
+                                                        </li>
+                                                    ) : (
+                                                        ""
+                                                    )}
                                                 </ul>
                                             </div>
                                         </div>

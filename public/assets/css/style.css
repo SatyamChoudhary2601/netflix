@@ -1578,6 +1578,9 @@ label{
     margin-bottom: .3em;
     font-family: 'Bold';
     text-align: left;
+    white-space: nowrap;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
 }
 .banner_video_text{
     font-size: 1.14em;

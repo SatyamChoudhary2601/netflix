@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-
 import api from "../../../Environment";
 import { withToastManager } from "react-toast-notifications";
 
@@ -80,5 +79,4 @@ class DeleteAccountComponent extends Helper {
     );
   }
 }
-
 export default withToastManager(translate(DeleteAccountComponent));
