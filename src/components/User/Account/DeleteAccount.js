@@ -7,19 +7,21 @@ import { translate } from "react-multi-lang";
 import configuration from "react-global-configuration";
 
 class DeleteAccountComponent extends Helper {
-    constructor(props) {
-        super(props);
-    }
+    // constructor(props) {
+    //     super(props);
+    // }
 
     state = {
-        data: {},
+        data: {
+            password: ""
+        },
         loadingContent: null,
         buttonDisable: false
     };
 
     handleDelete = event => {
         event.preventDefault();
-        const { state } = this.props.location;
+        // const { state } = this.props.location;
         this.setState({
             loadingContent: "Loading... Please wait..",
             buttonDisable: true
@@ -40,11 +42,12 @@ class DeleteAccountComponent extends Helper {
                         buttonDisable: false
                     });
                 } else {
-                    ToastDemo(
-                        this.props.toastManager,
-                        response.data.error_messages,
-                        "error"
-                    );
+                    alert(response.data.error_messages);
+                    // ToastDemo(
+                    //     this.props.toastManager,
+                    //     response.data.error_messages,
+                    //     "error"
+                    // );
                     this.setState({
                         loadingContent: null,
                         buttonDisable: false

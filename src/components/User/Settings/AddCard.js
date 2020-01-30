@@ -40,7 +40,7 @@ class AddCardComponent extends Helper {
                     name: localStorage.getItem("username")
                 })
                 .then(payload => {
-                    if (payload.error.message != "undefined") {
+                    if (payload.error) {
                         ToastDemo(
                             this.props.toastManager,
                             payload.error.message,
