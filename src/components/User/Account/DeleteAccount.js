@@ -26,6 +26,7 @@ class DeleteAccountComponent extends Helper {
         });
         api.postMethod("deleteAccount", this.state.data)
             .then(function(response) {
+                console.log("RESPONSE", response);
                 if (response.data.success) {
                     ToastDemo(
                         this.props.toastManager,
