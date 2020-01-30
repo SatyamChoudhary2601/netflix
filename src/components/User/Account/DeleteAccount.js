@@ -7,10 +7,6 @@ import { translate } from "react-multi-lang";
 import configuration from "react-global-configuration";
 
 class DeleteAccountComponent extends Helper {
-    // constructor(props) {
-    //     super(props);
-    // }
-
     state = {
         data: {
             password: ""
@@ -35,12 +31,11 @@ class DeleteAccountComponent extends Helper {
                         response.data.message,
                         "success"
                     );
-                    this.props.history.push("/logout");
-
                     this.setState({
                         loadingContent: null,
                         buttonDisable: false
                     });
+                    this.props.history.push("/logout");
                 } else {
                     alert(response.data.error_messages);
                     // ToastDemo(
