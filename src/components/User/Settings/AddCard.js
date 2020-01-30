@@ -50,45 +50,47 @@ class AddCardComponent extends Helper {
                             loadingContent: null,
                             buttonDisable: false
                         });
-
-                        return false;
-                    }
-
-                    const inputData = {
-                        card_token: payload.token.id
-                    };
-                    api.postMethod("payment_card_add", inputData)
-                        .then(response => {
-                            if (response.data.success) {
+                    } else {
+                        const inputData = {
+                            card_token: payload.token.id
+                        };
+                        api.postMethod("payment_card_add", inputData)
+                            .then(response => {
+                                if (response.data.success) {
+                                    ToastDemo(
+                                        this.props.toastManager,
+                                        response.data.message,
+                                        "success"
+                                    );
+                                    this.setState({
+                                        loadingContent: null,
+                                        buttonDisable: false
+                                    });
+                                    this.props.history.push("/card-details");
+                                } else {
+                                    ToastDemo(
+                                        this.props.toastManager,
+                                        response.data.error_message,
+                                        "error"
+                                    );
+                                    this.setState({
+                                        loadingContent: null,
+                                        buttonDisable: false
+                                    });
+                                }
+                            })
+                            .catch(error => {
                                 ToastDemo(
                                     this.props.toastManager,
-                                    response.data.message,
-                                    "success"
-                                );
-                                this.setState({
-                                    loadingContent: null,
-                                    buttonDisable: false
-                                });
-                                this.props.history.push("/card-details");
-                            } else {
-                                ToastDemo(
-                                    this.props.toastManager,
-                                    response.data.error_message,
+                                    error,
                                     "error"
                                 );
                                 this.setState({
                                     loadingContent: null,
                                     buttonDisable: false
                                 });
-                            }
-                        })
-                        .catch(error => {
-                            ToastDemo(this.props.toastManager, error, "error");
-                            this.setState({
-                                loadingContent: null,
-                                buttonDisable: false
                             });
-                        });
+                    }
                 });
         } else {
             ToastDemo(
