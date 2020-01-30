@@ -1,29 +1,59 @@
 import React, { Component } from "react";
-
 import api from "../../../Environment";
-
-import {
-    setTranslations,
-    setDefaultLanguage,
-    translate
-} from "react-multi-lang";
-import en from "../../translation/en.json";
-import pt from "../../translation/pt.json";
+import Helper from "../../Helper/helper";
+import { withToastManager } from "react-toast-notifications";
+import ToastDemo from "../../Helper/toaster";
+import { translate } from "react-multi-lang";
 import configuration from "react-global-configuration";
 
-class DeleteAccountComponent extends Component {
+class DeleteAccountComponent extends Helper {
+    constructor(props) {
+        super(props);
+    }
+
     state = {
-        data: {}
+        data: {},
+        loadingContent: null,
+        buttonDisable: false
     };
 
     handleDelete = event => {
         event.preventDefault();
-        api.postMethod("delete_account", this.state.data).then(function(
-            response
-        ) {
-            if (response.data.success === true) {
-            }
+        const { state } = this.props.location;
+        this.setState({
+            loadingContent: "Loading... Please wait..",
+            buttonDisable: true
         });
+        api.postMethod("deleteAccount", this.state.data)
+            .then(function(response) {
+                if (response.data.success) {
+                    ToastDemo(
+                        this.props.toastManager,
+                        response.data.message,
+                        "success"
+                    );
+                    this.props.history.push("/logout");
+
+                    this.setState({
+                        loadingContent: null,
+                        buttonDisable: false
+                    });
+                } else {
+                    ToastDemo(
+                        this.props.toastManager,
+                        response.data.error_messages,
+                        "error"
+                    );
+                    this.setState({
+                        loadingContent: null,
+                        buttonDisable: false
+                    });
+                }
+            })
+            .catch(error => {
+                this.setState({ loadingContent: null, buttonDisable: false });
+                ToastDemo(this.props.toastManager, error, "error");
+            });
     };
     render() {
         const { t } = this.props;
@@ -41,12 +71,11 @@ class DeleteAccountComponent extends Component {
                             <div className="col-sm-9 col-md-7 col-lg-5 col-xl-4 auto-margin">
                                 <div className="register-box">
                                     <h3 className="register-box-head">
-                                        {t("delete")} {t("profaccountile")}
+                                        {t("delete_account")}
                                     </h3>
                                     <form
                                         onSubmit={this.handleDelete}
                                         className="auth-form"
-                                        action=""
                                     >
                                         <p className="note">
                                             <b>{t("note")}:</b>{" "}
@@ -62,8 +91,14 @@ class DeleteAccountComponent extends Component {
                                                 onChange={this.handleChange}
                                             />
                                         </div>
-                                        <button className="btn btn-danger auth-btn mt-4">
-                                            {t("change_password")}
+
+                                        <button
+                                            className="btn btn-danger auth-btn mt-4"
+                                            disabled={this.state.buttonDisable}
+                                        >
+                                            {this.state.loadingContent != null
+                                                ? this.state.loadingContent
+                                                : this.props.t("delete")}
                                         </button>
                                     </form>
                                 </div>
@@ -75,5 +110,4 @@ class DeleteAccountComponent extends Component {
         );
     }
 }
-
-export default translate(DeleteAccountComponent);
+export default withToastManager(translate(DeleteAccountComponent));
