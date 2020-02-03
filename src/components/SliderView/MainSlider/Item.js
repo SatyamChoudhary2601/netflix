@@ -95,6 +95,14 @@ class Item extends Helper {
                                         {movie.watch_count}{" "}
                                         <span className="small">Views</span>
                                     </span>
+                                    {/* Not used */}
+                                    {movie.should_display_ppv == 1 ? (
+                                        <span className="red-box">
+                                            {movie.currency} {movie.ppv_amount}
+                                        </span>
+                                    ) : (
+                                        ""
+                                    )}
                                 </h5>
                                 <p className="thumb-desc">
                                     {movie.description}{" "}

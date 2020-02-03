@@ -113,8 +113,19 @@ class PaymentViewDetails extends Component {
                                                             )}
                                                         </p>
                                                         <h4>
-                                                            {t(
-                                                                "one_time_payment"
+                                                            {ppvDetails.ppv_page_type ==
+                                                            1 ? (
+                                                                <span>
+                                                                    {t(
+                                                                        "one_time_payment"
+                                                                    )}
+                                                                </span>
+                                                            ) : (
+                                                                <span>
+                                                                    {t(
+                                                                        "recurring_payment"
+                                                                    )}
+                                                                </span>
                                                             )}
                                                         </h4>
                                                     </li>

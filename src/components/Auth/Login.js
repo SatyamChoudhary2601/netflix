@@ -25,12 +25,14 @@ import {
 import { apiConstants } from "../Constant/constants";
 
 const $ = window.$;
+var const_time_zone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
 class LoginCommponent extends Helper {
     state = {
         data: {
             email: "",
-            password: ""
+            password: "",
+            timezone: const_time_zone
         },
         loadingContent: null,
         buttonDisable: false
@@ -50,6 +52,10 @@ class LoginCommponent extends Helper {
                     localStorage.setItem(
                         "accessToken",
                         response.data.data.token
+                    );
+                    localStorage.setItem(
+                        "userType",
+                        response.data.data.user_type
                     );
                     localStorage.setItem(
                         "push_status",
@@ -89,7 +95,65 @@ class LoginCommponent extends Helper {
     };
 
     responseFacebook = response => {
-        console.log("Facebook Response", response);
+        const path = this.props.location;
+        const googleLoginInput = {
+            social_unique_id: response.profileObj.googleId,
+            login_by: "google",
+            email: response.profileObj.email,
+            name: response.profileObj.name,
+            picture: response.profileObj.imageUrl,
+            device_type: "web",
+            device_token: "123466",
+            timezone: const_time_zone
+        };
+        api.postMethod("v4/register", googleLoginInput)
+            .then(response => {
+                if (response.data.success === true) {
+                    localStorage.setItem("userId", response.data.data.user_id);
+                    localStorage.setItem(
+                        "accessToken",
+                        response.data.data.token
+                    );
+                    localStorage.setItem(
+                        "push_status",
+                        response.data.data.push_status
+                    );
+                    localStorage.setItem(
+                        "userType",
+                        response.data.data.user_type
+                    );
+
+                    localStorage.setItem("username", response.data.data.name);
+                    localStorage.setItem(
+                        "active_profile_id",
+                        response.data.data.sub_profile_id
+                    );
+                    ToastDemo(
+                        this.props.toastManager,
+                        response.data.message,
+                        "success"
+                    );
+                    this.props.history.push("/view-profiles");
+                    this.setState({
+                        loadingContent: null,
+                        buttonDisable: false
+                    });
+                } else {
+                    ToastDemo(
+                        this.props.toastManager,
+                        response.data.error_messages,
+                        "error"
+                    );
+                    this.setState({
+                        loadingContent: null,
+                        buttonDisable: false
+                    });
+                }
+            })
+            .catch(error => {
+                ToastDemo(this.props.toastManager, error, "error");
+                this.setState({ loadingContent: null, buttonDisable: false });
+            });
     };
 
     responseGoogle = response => {
@@ -104,9 +168,10 @@ class LoginCommponent extends Helper {
                 name: response.profileObj.name,
                 picture: response.profileObj.imageUrl,
                 device_type: "web",
-                device_token: "123466"
+                device_token: "123466",
+                timezone: const_time_zone
             };
-            api.postMethod("register", googleLoginInput)
+            api.postMethod("v4/register", googleLoginInput)
                 .then(response => {
                     if (response.data.success === true) {
                         localStorage.setItem(
@@ -118,6 +183,10 @@ class LoginCommponent extends Helper {
                             response.data.data.token
                         );
                         localStorage.setItem(
+                            "userType",
+                            response.data.data.user_type
+                        );
+                        localStorage.setItem(
                             "push_status",
                             response.data.data.push_status
                         );
@@ -125,11 +194,16 @@ class LoginCommponent extends Helper {
                             "username",
                             response.data.data.name
                         );
+                        localStorage.setItem(
+                            "active_profile_id",
+                            response.data.data.sub_profile_id
+                        );
                         ToastDemo(
                             this.props.toastManager,
                             response.data.message,
                             "success"
                         );
+                        console.log("ALL CORRECT");
                         this.props.history.push("/view-profiles");
                         this.setState({
                             loadingContent: null,
@@ -154,6 +228,8 @@ class LoginCommponent extends Helper {
                         buttonDisable: false
                     });
                 });
+        } else {
+            console.log("Google Error");
         }
     };
     render() {
@@ -236,7 +312,7 @@ class LoginCommponent extends Helper {
                                         ""
                                     ) : (
                                         <FacebookLogin
-                                            appId="506021046543799"
+                                            appId={apiConstants.FACEBOOK_APP_ID}
                                             // autoLoad
                                             callback={this.responseFacebook}
                                             render={renderProps => (

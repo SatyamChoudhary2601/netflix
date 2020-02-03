@@ -35,9 +35,11 @@ class Helper extends Component {
     redirect: false,
     redirectPPV: false,
     redirectPaymentOption: false,
+    redirectSubscription: false,
     loadingHomeSecondSection: false,
     homeSecondData: null,
-    addNewProfileOption: null
+    addNewProfileOption: null,
+    onPlayStarted: false
   };
 
   handleChange = ({ currentTarget: input }) => {
@@ -195,21 +197,32 @@ class Helper extends Component {
         this.setState({ redirectPPV: true });
       }
     } else {
-      this.setState({ redirect: true });
+      if (StatusData.is_user_need_subscription == 0) {
+        this.setState({ redirect: true });
+      } else {
+        this.setState({ redirectSubscription: true });
+      }
     }
   }
 
-  renderRedirectPage(videoDetailsFirst) {
+  renderRedirectPage(videoDetailsFirst, pageType) {
     if (this.state.redirect) {
-      return (
-        <Redirect
-          to={{
-            pathname: `/video/${videoDetailsFirst.admin_video_id}`,
-            state: { videoDetailsFirst: videoDetailsFirst }
-          }}
-        />
-      );
+      this.setState({ redirect: false });
+      if (pageType == "videoPage") {
+        // Don't do anything.
+      } else {
+        return (
+          <Redirect
+            to={{
+              pathname: `/video/${videoDetailsFirst.admin_video_id}`,
+              state: { videoDetailsFirst: videoDetailsFirst }
+            }}
+          />
+        );
+      }
     } else if (this.state.redirectPPV) {
+      this.setState({ redirectPPV: false });
+
       return (
         <Redirect
           to={{
@@ -221,10 +234,24 @@ class Helper extends Component {
         />
       );
     } else if (this.state.redirectPaymentOption) {
+      this.setState({ redirectPaymentOption: false });
+
       return (
         <Redirect
           to={{
             pathname: "/payment-options",
+            state: {
+              videoDetailsFirst: videoDetailsFirst
+            }
+          }}
+        />
+      );
+    } else if (this.state.redirectSubscription) {
+      this.setState({ redirectSubscription: false });
+      return (
+        <Redirect
+          to={{
+            pathname: "/subscription",
             state: {
               videoDetailsFirst: videoDetailsFirst
             }

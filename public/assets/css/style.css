@@ -1578,6 +1578,9 @@ label{
     margin-bottom: .3em;
     font-family: 'Bold';
     text-align: left;
+    white-space: nowrap;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
 }
 .banner_video_text{
     font-size: 1.14em;
@@ -1691,6 +1694,14 @@ label{
     margin:0 .4em;
     padding: .2em .5em;
     font-size: .9em; 
+}
+
+.red-box{
+    background-color: #e63631;
+    margin:0 .4em;
+    padding: .2em .5em;
+    font-size: .9em; 
+    color: #fff;
 }
 .yellow-clr{
     color:#e1cb2b;
@@ -2673,6 +2684,8 @@ a:active, a:focus, .slick-slide:focus, .slick-slide:active{
     border-radius: 50%;
     object-fit: cover;
     object-position: center;
+    min-height: 250px !important;
+    min-width: 250px !important;
 }
 .edit-profile-content .grey-outline-btn{
     margin-left: .75em;

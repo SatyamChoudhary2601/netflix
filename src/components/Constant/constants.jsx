@@ -62,13 +62,14 @@ export const apiConstants = {
     // Social Login Credentials
 
     GOOGLE_CLIENT_ID:
-        "603748490991-lta5s2ju9krs16uvq0thb2f5rjohpqbd.apps.googleusercontent.com",
+        "476054132464-f8qo28a3lmdahr1odt5e77af3410634s.apps.googleusercontent.com",
 
     FACEBOOK_APP_ID: "",
 
     JWPLAYER_KEY: "M2NCefPoiiKsaVB8nTttvMBxfb1J3Xl7PDXSaw==",
 
     settingsUrl: "http://adminview.streamhash.com/userApi/get_settings_json",
+
     homeSettingsUrl:
         "http://adminview.streamhash.com/userApi/get_home_settings_json"
 };

@@ -4,97 +4,97 @@ import { apiConstants } from "./components/Constant/constants";
 
 const apiUrl = "http://adminview.streamhash.com/userApi/"; // Production Mode
 
-// const apiUrl = "http://localhost:8000"; // Development Mode
+// const apiUrl = "http://localhost:8000/userApi/"; // Development Mode
 
 const Environment = {
-  postMethod(action, object) {
-    let userId =
-      localStorage.getItem("userId") !== "" &&
-      localStorage.getItem("userId") !== null &&
-      localStorage.getItem("userId") !== undefined
-        ? localStorage.getItem("userId")
-        : "";
+    postMethod(action, object) {
+        let userId =
+            localStorage.getItem("userId") !== "" &&
+            localStorage.getItem("userId") !== null &&
+            localStorage.getItem("userId") !== undefined
+                ? localStorage.getItem("userId")
+                : "";
 
-    let accessToken =
-      localStorage.getItem("accessToken") !== "" &&
-      localStorage.getItem("accessToken") !== null &&
-      localStorage.getItem("accessToken") !== undefined
-        ? localStorage.getItem("accessToken")
-        : "";
+        let accessToken =
+            localStorage.getItem("accessToken") !== "" &&
+            localStorage.getItem("accessToken") !== null &&
+            localStorage.getItem("accessToken") !== undefined
+                ? localStorage.getItem("accessToken")
+                : "";
 
-    const url = apiUrl + action;
+        const url = apiUrl + action;
 
-    let formData = new FormData();
+        let formData = new FormData();
 
-    // By Default Id and token
+        // By Default Id and token
 
-    formData.append("id", userId);
-    formData.append("token", accessToken);
-    formData.append(
-      "sub_profile_id",
-      localStorage.getItem("active_profile_id")
-    );
+        formData.append("id", userId);
+        formData.append("token", accessToken);
+        formData.append(
+            "sub_profile_id",
+            localStorage.getItem("active_profile_id")
+        );
 
-    var socialLoginUser = 0;
+        var socialLoginUser = 0;
 
-    // append your data
-    for (var key in object) {
-      formData.append(key, object[key]);
+        // append your data
+        for (var key in object) {
+            formData.append(key, object[key]);
 
-      if (key === "social_unique_id") {
-        socialLoginUser = 1;
-      }
+            if (key === "social_unique_id") {
+                socialLoginUser = 1;
+            }
+        }
+
+        // By Default added device type and login type in future use
+        if (!socialLoginUser) {
+            formData.append("login_by", apiConstants.LOGIN_BY);
+        }
+
+        formData.append("device_type", apiConstants.DEVICE_TYPE);
+        formData.append("device_token", apiConstants.DEVICE_TOKEN);
+
+        return axios.post(url, formData);
+    },
+
+    getMethod(action, object) {
+        let userId =
+            localStorage.getItem("userId") !== "" &&
+            localStorage.getItem("userId") !== null &&
+            localStorage.getItem("userId") !== undefined
+                ? localStorage.getItem("userId")
+                : "";
+        let accessToken =
+            localStorage.getItem("accessToken") !== "" &&
+            localStorage.getItem("accessToken") !== null &&
+            localStorage.getItem("accessToken") !== undefined
+                ? localStorage.getItem("accessToken")
+                : "";
+
+        const url = apiUrl + action;
+
+        let formData = new FormData();
+
+        // By Default Id and token
+
+        formData.append("id", userId);
+        formData.append("token", accessToken);
+
+        // append your data
+        for (var key in object) {
+            formData.append(key, object[key]);
+        }
+
+        // By Default added device type and login type in future use
+
+        formData.append("login_by", apiConstants.LOGIN_BY);
+        formData.append("device_type", apiConstants.DEVICE_TYPE);
+        formData.append("device_token", apiConstants.DEVICE_TOKEN);
+
+        return axios.get(url, formData);
     }
 
-    // By Default added device type and login type in future use
-    if (!socialLoginUser) {
-      formData.append("login_by", apiConstants.LOGIN_BY);
-    }
-
-    formData.append("device_type", apiConstants.DEVICE_TYPE);
-    formData.append("device_token", apiConstants.DEVICE_TOKEN);
-
-    return axios.post(url, formData);
-  },
-
-  getMethod(action, object) {
-    let userId =
-      localStorage.getItem("userId") !== "" &&
-      localStorage.getItem("userId") !== null &&
-      localStorage.getItem("userId") !== undefined
-        ? localStorage.getItem("userId")
-        : "";
-    let accessToken =
-      localStorage.getItem("accessToken") !== "" &&
-      localStorage.getItem("accessToken") !== null &&
-      localStorage.getItem("accessToken") !== undefined
-        ? localStorage.getItem("accessToken")
-        : "";
-
-    const url = apiUrl + action;
-
-    let formData = new FormData();
-
-    // By Default Id and token
-
-    formData.append("id", userId);
-    formData.append("token", accessToken);
-
-    // append your data
-    for (var key in object) {
-      formData.append(key, object[key]);
-    }
-
-    // By Default added device type and login type in future use
-
-    formData.append("login_by", apiConstants.LOGIN_BY);
-    formData.append("device_type", apiConstants.DEVICE_TYPE);
-    formData.append("device_token", apiConstants.DEVICE_TOKEN);
-
-    return axios.get(url, formData);
-  }
-
-  /*methods(action) {
+    /*methods(action) {
 
         const url = apiUrl+'/api/'+action;
 

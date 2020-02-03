@@ -16,12 +16,15 @@ import {
     setDefaultLanguage,
     translate
 } from "react-multi-lang";
+var const_time_zone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
 class RegisterComponent extends Helper {
     state = {
         data: {
             email: "",
             password: "",
-            name: ""
+            name: "",
+            timezone: const_time_zone
         },
         loadingContent: null,
         buttonDisable: false
@@ -73,7 +76,64 @@ class RegisterComponent extends Helper {
     };
 
     responseFacebook = response => {
-        console.log("Facebook Response", response);
+        const path = this.props.location;
+        const googleLoginInput = {
+            social_unique_id: response.profileObj.googleId,
+            login_by: "google",
+            email: response.profileObj.email,
+            name: response.profileObj.name,
+            picture: response.profileObj.imageUrl,
+            device_type: "web",
+            device_token: "123466",
+            timezone: const_time_zone
+        };
+        api.postMethod("v4/register", googleLoginInput)
+            .then(response => {
+                if (response.data.success === true) {
+                    localStorage.setItem("userId", response.data.data.user_id);
+                    localStorage.setItem(
+                        "accessToken",
+                        response.data.data.token
+                    );
+                    localStorage.setItem(
+                        "userType",
+                        response.data.data.user_type
+                    );
+                    localStorage.setItem(
+                        "push_status",
+                        response.data.data.push_status
+                    );
+                    localStorage.setItem("username", response.data.data.name);
+                    localStorage.setItem(
+                        "active_profile_id",
+                        response.data.data.sub_profile_id
+                    );
+                    ToastDemo(
+                        this.props.toastManager,
+                        response.data.message,
+                        "success"
+                    );
+                    this.props.history.push("/view-profiles");
+                    this.setState({
+                        loadingContent: null,
+                        buttonDisable: false
+                    });
+                } else {
+                    ToastDemo(
+                        this.props.toastManager,
+                        response.data.error_messages,
+                        "error"
+                    );
+                    this.setState({
+                        loadingContent: null,
+                        buttonDisable: false
+                    });
+                }
+            })
+            .catch(error => {
+                ToastDemo(this.props.toastManager, error, "error");
+                this.setState({ loadingContent: null, buttonDisable: false });
+            });
     };
 
     responseGoogle = response => {
@@ -85,9 +145,10 @@ class RegisterComponent extends Helper {
             name: response.profileObj.name,
             picture: response.profileObj.imageUrl,
             device_type: "web",
-            device_token: "123466"
+            device_token: "123466",
+            timezone: const_time_zone
         };
-        api.postMethod("register", googleLoginInput)
+        api.postMethod("v4/register", googleLoginInput)
             .then(response => {
                 if (response.data.success === true) {
                     localStorage.setItem("userId", response.data.data.user_id);
@@ -96,10 +157,18 @@ class RegisterComponent extends Helper {
                         response.data.data.token
                     );
                     localStorage.setItem(
+                        "userType",
+                        response.data.data.user_type
+                    );
+                    localStorage.setItem(
                         "push_status",
                         response.data.data.push_status
                     );
                     localStorage.setItem("username", response.data.data.name);
+                    localStorage.setItem(
+                        "active_profile_id",
+                        response.data.data.sub_profile_id
+                    );
                     ToastDemo(
                         this.props.toastManager,
                         response.data.message,
@@ -212,7 +281,7 @@ class RegisterComponent extends Helper {
                                         ""
                                     ) : (
                                         <FacebookLogin
-                                            appId="506021046543799"
+                                            appId={apiConstants.FACEBOOK_APP_ID}
                                             // autoLoad
                                             callback={this.responseFacebook}
                                             render={renderProps => (
