@@ -3,7 +3,7 @@
   transition: transform 300ms ease 100ms;
   margin: 0 2px;
   position: relative;
-  height: 175px;
+  height: 400px;
   background-size: cover;
   background-position: center center;
 
@@ -15,7 +15,7 @@
     font-size: 0.7em;
     padding: 1em;
     position: absolute;
-    /* top: 0; */
+    top: 50%;
     bottom: 0;
     background-image: linear-gradient(
       to top,
