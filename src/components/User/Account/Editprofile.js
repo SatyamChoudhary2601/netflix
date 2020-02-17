@@ -43,6 +43,7 @@ class EditProfilesComponent extends Component {
                                                 <div className="edit-icon">
                                                     <input
                                                         type="file"
+                                                        accept="image/*"
                                                         className="form-control"
                                                     />
                                                     <div className="edit-icon-circle">

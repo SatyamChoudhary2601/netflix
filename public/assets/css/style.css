@@ -3619,6 +3619,13 @@ display: none!important;
         .item{
                 flex: 0 0 50%!important;
         }
+        .overview-content {
+            width: 85%;
+        }
+        .content{
+            height: 28em!important;
+            margin-bottom: 1em;
+        }
     }
 
 
@@ -3638,7 +3645,7 @@ display: none!important;
             z-index: 9999;
         }
 .content{
-    height: 50vh!important;
+    height: 30em!important;
     margin-bottom: 1em;
 }
 
