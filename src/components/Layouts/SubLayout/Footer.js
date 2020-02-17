@@ -41,7 +41,7 @@ class Footer extends Component {
 
         var footerHeight = $("#footer").outerHeight();
 
-        $(".bottom-height").height(footerHeight);
+        // $(".bottom-height").height(footerHeight);       
         // Call api function
 
         if (configuration.get("configData.footer_pages1")) {
