@@ -98,11 +98,10 @@ class LoginCommponent extends Helper {
         console.log("responseFacebook", response);
         const path = this.props.location;
         const googleLoginInput = {
-            social_unique_id: response.profileObj.googleId,
-            login_by: "google",
-            email: response.profileObj.email,
-            name: response.profileObj.name,
-            picture: response.profileObj.imageUrl,
+            social_unique_id: response.id,
+            login_by: "facebook",
+            email: response.email,
+            name: response.name,
             device_type: "web",
             device_token: "123466",
             timezone: const_time_zone
