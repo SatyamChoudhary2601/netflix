@@ -96,11 +96,15 @@ class LoginCommponent extends Helper {
 
     responseFacebook = response => {
         console.log("responseFacebook", response);
+
         const path = this.props.location;
-        const emailAddress = response.email
-            ? response.email
-            : response.id + "@facebook.com";
-        const googleLoginInput = {
+        const emailAddress =
+            response.email != "undefined"
+                ? response.email
+                : response.id + "@facebook.com";
+        console.log("emailAddress", emailAddress);
+
+        const facebookLoginInput = {
             social_unique_id: response.id,
             login_by: "facebook",
             email: emailAddress,
@@ -109,7 +113,7 @@ class LoginCommponent extends Helper {
             device_token: "123466",
             timezone: const_time_zone
         };
-        api.postMethod("v4/register", googleLoginInput)
+        api.postMethod("v4/register", facebookLoginInput)
             .then(response => {
                 if (response.data.success === true) {
                     localStorage.setItem("userId", response.data.data.user_id);
@@ -316,7 +320,8 @@ class LoginCommponent extends Helper {
                                     ) : (
                                         <FacebookLogin
                                             appId={apiConstants.FACEBOOK_APP_ID}
-                                            // autoLoad
+                                            fields="name,email,picture"
+                                            scope="public_profile"
                                             callback={this.responseFacebook}
                                             render={renderProps => (
                                                 <button
