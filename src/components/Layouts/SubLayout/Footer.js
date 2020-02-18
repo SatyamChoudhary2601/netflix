@@ -41,7 +41,7 @@ class Footer extends Component {
 
         var footerHeight = $("#footer").outerHeight();
 
-        // $(".bottom-height").height(footerHeight);       
+        // $(".bottom-height").height(footerHeight);
         // Call api function
 
         if (configuration.get("configData.footer_pages1")) {
@@ -126,7 +126,7 @@ class Footer extends Component {
                                             target="_blank"
                                         >
                                             <img
-                                                src="assets/img/app-store.png"
+                                                src="/assets/img/app-store.png"
                                                 className="app-img"
                                                 alt="Playstore"
                                             />
@@ -138,7 +138,7 @@ class Footer extends Component {
                                             target="_blank"
                                         >
                                             <img
-                                                src="assets/img/play-store.png"
+                                                src="/assets/img/play-store.png"
                                                 className="app-img"
                                                 alt="Playstore"
                                             />

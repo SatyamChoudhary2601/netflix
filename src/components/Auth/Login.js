@@ -95,6 +95,7 @@ class LoginCommponent extends Helper {
     };
 
     responseFacebook = response => {
+        console.log("responseFacebook", response);
         const path = this.props.location;
         const googleLoginInput = {
             social_unique_id: response.profileObj.googleId,
