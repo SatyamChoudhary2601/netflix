@@ -97,10 +97,13 @@ class LoginCommponent extends Helper {
     responseFacebook = response => {
         console.log("responseFacebook", response);
         const path = this.props.location;
+        const emailAddress = response.email
+            ? response.email
+            : response.id + "@facebook.com";
         const googleLoginInput = {
             social_unique_id: response.id,
             login_by: "facebook",
-            email: response.email,
+            email: emailAddress,
             name: response.name,
             device_type: "web",
             device_token: "123466",
