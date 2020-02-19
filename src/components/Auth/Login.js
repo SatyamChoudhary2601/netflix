@@ -95,14 +95,11 @@ class LoginCommponent extends Helper {
     };
 
     responseFacebook = response => {
-        console.log("responseFacebook", response);
-
         const path = this.props.location;
         const emailAddress =
             response.email != "undefined"
                 ? response.email
                 : response.id + "@facebook.com";
-        console.log("emailAddress", emailAddress);
 
         const facebookLoginInput = {
             social_unique_id: response.id,
