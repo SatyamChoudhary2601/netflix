@@ -25,15 +25,11 @@ $(document).ready(function () {
     });
 
     var header_height = $('#header').outerHeight();
-    console.log(header_height);
+    console.log("test", header_height);
     $('.header-height').height(header_height);
     $('.landing-header-height').height(header_height);
 
     var footer_height = $('#footer').outerHeight();
     console.log(footer_height);
     $('.bottom-height').height(footer_height);
-
-    $("#menu_icon").click(function(){
-        $("#menu_content").toggle();
-    });
 });

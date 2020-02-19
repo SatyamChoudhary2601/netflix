@@ -31,6 +31,7 @@ class UserHeader extends Helper {
         playButtonClicked: false,
         value: "",
         suggestions: null,
+        mobileSidebar: false,
         loadingSuggesstion: true,
         displaySuggesstion: "none"
     };
@@ -200,6 +201,12 @@ class UserHeader extends Helper {
         );
     };
 
+    toggleMobileSidebar = () => {
+        this.setState({
+            mobileSidebar: !this.state.mobileSidebar
+        })
+    }
+
     render() {
         const { t } = this.props;
 
@@ -249,7 +256,7 @@ class UserHeader extends Helper {
                     className="navbar navbar-expand navbar-dark main-nav fixed-top"
                     id="header"
                 >
-                    <span className="menu-icon" id="menu_icon">
+                    <span className="menu-icon" id="menu_icon" onClick={() => this.toggleMobileSidebar()}>
                         <img
                             src={
                                 window.location.origin + "/assets/img/menu.png"
@@ -533,7 +540,7 @@ class UserHeader extends Helper {
                 </nav>
                 <div className="header-height" />
 
-                <div className="mobile-sidebar" id="menu_content">
+                <div className="mobile-sidebar" id="menu_content" style={{ display: this.state.mobileSidebar ? "block" : "none" }}>
                     <div className="sidebar-content">
                         <div className="p-3">
                             <Link to="/view-profiles">
