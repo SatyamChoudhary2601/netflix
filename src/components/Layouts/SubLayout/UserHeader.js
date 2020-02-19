@@ -145,6 +145,8 @@ class UserHeader extends Helper {
         localStorage.removeItem("active_profile_id");
         localStorage.setItem("active_profile_id", profile.sub_profile_id);
         localStorage.setItem("active_profile_image", profile.picture);
+        localStorage.setItem("active_profile_name", profile.name);
+
         window.location = "/home";
     };
 
@@ -204,8 +206,8 @@ class UserHeader extends Helper {
     toggleMobileSidebar = () => {
         this.setState({
             mobileSidebar: !this.state.mobileSidebar
-        })
-    }
+        });
+    };
 
     render() {
         const { t } = this.props;
@@ -256,7 +258,11 @@ class UserHeader extends Helper {
                     className="navbar navbar-expand navbar-dark main-nav fixed-top"
                     id="header"
                 >
-                    <span className="menu-icon" id="menu_icon" onClick={() => this.toggleMobileSidebar()}>
+                    <span
+                        className="menu-icon"
+                        id="menu_icon"
+                        onClick={() => this.toggleMobileSidebar()}
+                    >
                         <img
                             src={
                                 window.location.origin + "/assets/img/menu.png"
@@ -540,7 +546,13 @@ class UserHeader extends Helper {
                 </nav>
                 <div className="header-height" />
 
-                <div className="mobile-sidebar" id="menu_content" style={{ display: this.state.mobileSidebar ? "block" : "none" }}>
+                <div
+                    className="mobile-sidebar"
+                    id="menu_content"
+                    style={{
+                        display: this.state.mobileSidebar ? "block" : "none"
+                    }}
+                >
                     <div className="sidebar-content">
                         <div className="p-3">
                             <Link to="/view-profiles">
@@ -554,13 +566,17 @@ class UserHeader extends Helper {
                                         />
                                     </div>
                                     <div className="right-name">
-                                        <h5>ronan</h5>
+                                        <h5>
+                                            {localStorage.getItem(
+                                                "active_profile_name"
+                                            )}
+                                        </h5>
                                         <h6>{t("switch_profiles")}</h6>
                                     </div>
                                 </div>
                             </Link>
                         </div>
-                        <ul className="sidebar-menu">
+                        <ul className="sidebar-menu" id="mobile-side-menu">
                             <li className="active" key="account-sidemenu">
                                 <Link to="/account">{"account"}</Link>
                             </li>
@@ -571,19 +587,46 @@ class UserHeader extends Helper {
                             <li key="home-sidemenu">
                                 <Link to="/home">{t("home")}</Link>
                             </li>
-                            <li key="mylist-sidemenu">
-                                <Link to="/sub-category">{t("my_list")}</Link>
-                            </li>
-                            <li key="series-sidemenu">
-                                <Link to="/sub-category">{t("series")}</Link>
-                            </li>
-                            <li key="comedies-sidemenu">
-                                <Link to="/sub-category">{t("comedies")}</Link>
-                            </li>
-                            <li key="crime_flims-sidemenu">
-                                <Link to="/sub-category">
-                                    {t("crime_flims")}
+
+                            <li key="series-mobile-header">
+                                <Link to={`/genre/${apiConstants.SERIES}`}>
+                                    {t("series")}
                                 </Link>
+                            </li>
+
+                            <li key="movies-mobile-header">
+                                <Link to={`/genre/${apiConstants.MOVIES}`}>
+                                    {t("movies")}
+                                </Link>
+                            </li>
+
+                            <li key="kids-mobile-header">
+                                <Link to={`/genre/${apiConstants.KIDS}`}>
+                                    {t("kids")}
+                                </Link>
+                            </li>
+
+                            <li className="dropdown" key="browse-mobile-header">
+                                <Link
+                                    className="dropdown-toggle"
+                                    data-toggle="dropdown"
+                                    to="#"
+                                >
+                                    {t("browse")}
+                                </Link>
+                                <div className="dropdown-menu browse">
+                                    {loadingCategory
+                                        ? ""
+                                        : categories.map(category => (
+                                              <Link
+                                                  key={category.category_id}
+                                                  className="dropdown-item"
+                                                  to={`/category/${category.category_id}`}
+                                              >
+                                                  {category.name}
+                                              </Link>
+                                          ))}
+                                </div>
                             </li>
                         </ul>
                     </div>
