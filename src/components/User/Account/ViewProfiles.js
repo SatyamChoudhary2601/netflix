@@ -30,6 +30,7 @@ class ViewProfilesComponent extends Helper {
 
         localStorage.setItem("active_profile_id", profile.sub_profile_id);
         localStorage.setItem("active_profile_image", profile.picture);
+        localStorage.setItem("active_profile_name", profile.name);
     };
 
     renderProfile = activeProfile => {
