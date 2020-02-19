@@ -88,7 +88,7 @@ class Home extends Component {
         const { loading, maindata, banner } = this.state;
 
         return (
-            <div>
+            <div className="main-sec-content">
                 {loading ? (
                     <ContentLoader />
                 ) : (

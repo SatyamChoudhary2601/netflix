@@ -40,6 +40,9 @@ class Footer extends Component {
             .catch(function(error) {});
 
         var footerHeight = $("#footer").outerHeight();
+        var deviceheight = $(window).outerHeight();
+        var contentheight = deviceheight - footerHeight - 66;
+        $(".main-sec-content").css("min-height", contentheight)
 
         // $(".bottom-height").height(footerHeight);
         // Call api function
@@ -64,7 +67,7 @@ class Footer extends Component {
         const { t } = this.props;
         const { loading, footerList } = this.state;
         return (
-            <div>
+            <div className="main-footer-sec-content">
                 <div className="bottom-height"></div>
                 <div className="footer" id="footer">
                     <div className="site-footer">
