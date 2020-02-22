@@ -9,6 +9,7 @@ import { withToastManager } from "react-toast-notifications";
 import ToastDemo from "../../Helper/toaster";
 
 import { translate } from "react-multi-lang";
+import configuration from "react-global-configuration";
 
 class InvoiceComponent extends Helper {
     state = {
@@ -217,17 +218,15 @@ class InvoiceComponent extends Helper {
                 // => sometimes it may take about 0.5 second for everything to get set, or for the button to appear
             };
 
-            let env = "sandbox"; // you can set here to 'production' for production
+            let env = configuration.get("configData.PAYPAL_MODE"); // you can set here to 'production' for production
             let currency = "USD"; // or you can set this value from your props or state
             let total = loadingPromoCode
                 ? subscription.amount
                 : promoCode.remaining_amount; // same as above, this is the total amount (based on currency) to be paid by using Paypal express checkout
 
             const client = {
-                sandbox:
-                    "AX5Ut9TBRNu6dgVBTNo0pOzRo7APIhfoVg34QzfycTZaQOT6vKN1B2Kpej4isx8VNDf26tsdbQAN4QjD",
-                production:
-                    "AUr5bpSyosn6V5uIdnUdqvCWLR6DXgz0bjBBOLKUUjHQFWVfjudQCCzAjpVaBNHeQ_gn575mJCVoYFBo"
+                sandbox: configuration.get("configData.PAYPAL_ID"),
+                production: configuration.get("configData.PAYPAL_ID")
             };
 
             return (
