@@ -462,23 +462,29 @@ class PayPerView extends Helper {
                                                     </h5>
                                                     <form
                                                         className="mt-3"
-                                                        action="invoice.html"
+                                                        action=""
                                                     >
-                                                        <div className="form-check-inline">
-                                                            <input
-                                                                type="radio"
-                                                                id="paypal"
-                                                                name="payment_mode"
-                                                                value="paypal"
-                                                                onChange={
-                                                                    this
-                                                                        .handleChangePayment
-                                                                }
-                                                            />
-                                                            <label htmlFor="paypal">
-                                                                paypal
-                                                            </label>
-                                                        </div>
+                                                        {configuration.get(
+                                                            "configData.PAYPAL_ID"
+                                                        ) ? (
+                                                            <div className="form-check-inline">
+                                                                <input
+                                                                    type="radio"
+                                                                    id="paypal"
+                                                                    name="payment_mode"
+                                                                    value="paypal"
+                                                                    onChange={
+                                                                        this
+                                                                            .handleChangePayment
+                                                                    }
+                                                                />
+                                                                <label htmlFor="paypal">
+                                                                    paypal
+                                                                </label>
+                                                            </div>
+                                                        ) : (
+                                                            ""
+                                                        )}
                                                         <div className="form-check-inline">
                                                             <input
                                                                 type="radio"
