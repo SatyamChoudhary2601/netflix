@@ -201,11 +201,11 @@ class UserHeader extends Helper {
         );
     };
 
-    toggleMobileSidebar = () => {
-        this.setState({
-            mobileSidebar: !this.state.mobileSidebar
-        })
-    }
+    // toggleMobileSidebar = () => {
+    //     this.setState({
+    //         mobileSidebar: !this.state.mobileSidebar
+    //     })
+    // }
 
     render() {
         const { t } = this.props;
