@@ -9,6 +9,7 @@ import { withToastManager } from "react-toast-notifications";
 import ToastDemo from "../../Helper/toaster";
 
 import { translate } from "react-multi-lang";
+import configuration from "react-global-configuration";
 
 class InvoiceComponent extends Helper {
     state = {
@@ -181,6 +182,7 @@ class InvoiceComponent extends Helper {
             } = this.state;
 
             const onSuccess = payment => {
+                console.log("Success");
                 // Congratulation, it came here means everything's fine!
 
                 let inputData;
@@ -207,27 +209,27 @@ class InvoiceComponent extends Helper {
             };
 
             const onCancel = data => {
+                console.log("ERROR");
                 // User pressed "cancel" or close Paypal's popup!
                 // You can bind the "data" object's value to your state or props or whatever here, please see below for sample returned data
             };
 
             const onError = err => {
+                console.log("ERROR");
                 // The main Paypal's script cannot be loaded or somethings block the loading of that script!
                 // Because the Paypal's main script is loaded asynchronously from "https://www.paypalobjects.com/api/checkout.js"
                 // => sometimes it may take about 0.5 second for everything to get set, or for the button to appear
             };
 
-            let env = "sandbox"; // you can set here to 'production' for production
+            let env = "production"; // you can set here to 'production' for production
             let currency = "USD"; // or you can set this value from your props or state
             let total = loadingPromoCode
                 ? subscription.amount
                 : promoCode.remaining_amount; // same as above, this is the total amount (based on currency) to be paid by using Paypal express checkout
 
             const client = {
-                sandbox:
-                    "AX5Ut9TBRNu6dgVBTNo0pOzRo7APIhfoVg34QzfycTZaQOT6vKN1B2Kpej4isx8VNDf26tsdbQAN4QjD",
-                production:
-                    "AUr5bpSyosn6V5uIdnUdqvCWLR6DXgz0bjBBOLKUUjHQFWVfjudQCCzAjpVaBNHeQ_gn575mJCVoYFBo"
+                sandbox: configuration.get("configData.PAYPAL_ID"),
+                production: configuration.get("configData.PAYPAL_ID")
             };
 
             return (
@@ -396,21 +398,29 @@ class InvoiceComponent extends Helper {
                                                                 "choose_payment_option"
                                                             )}
                                                         </h5>
-                                                        <div className="form-check-inline">
-                                                            <input
-                                                                type="radio"
-                                                                id="paypal"
-                                                                name="payment_mode"
-                                                                value="paypal"
-                                                                onChange={
-                                                                    this
-                                                                        .handleChangePayment
-                                                                }
-                                                            />
-                                                            <label htmlFor="paypal">
-                                                                {t("paypal")}
-                                                            </label>
-                                                        </div>
+                                                        {configuration.get(
+                                                            "configData.PAYPAL_ID"
+                                                        ) ? (
+                                                            <div className="form-check-inline">
+                                                                <input
+                                                                    type="radio"
+                                                                    id="paypal"
+                                                                    name="payment_mode"
+                                                                    value="paypal"
+                                                                    onChange={
+                                                                        this
+                                                                            .handleChangePayment
+                                                                    }
+                                                                />
+                                                                <label htmlFor="paypal">
+                                                                    {t(
+                                                                        "paypal"
+                                                                    )}
+                                                                </label>
+                                                            </div>
+                                                        ) : (
+                                                            ""
+                                                        )}
                                                         <div className="form-check-inline">
                                                             <input
                                                                 type="radio"
