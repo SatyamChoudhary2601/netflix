@@ -34,6 +34,7 @@ import Home from "../src/components/User/Home";
 import AccountComponent from "../src/components/User/Account/Account";
 import EditAccountComponent from "../src/components/User/Account/EditAccount";
 import ChangePasswordComponent from "../src/components/User/Account/ChangePassword";
+import ReferalFriend from "../src/components/Referal/ReferalFriend";
 import DeleteAccountComponent from "../src/components/User/Account/DeleteAccount";
 import SearchComponent from "./components/User/Search";
 
@@ -367,6 +368,13 @@ class App extends Component {
                                     authentication={this.state.authentication}
                                     path={"/change-password"}
                                     component={ChangePasswordComponent}
+                                    layout={UserLayout}
+                                    screenProps={this.eventEmitter}
+                                />
+                                <PrivateRoute
+                                    authentication={this.state.authentication}
+                                    path={"/referal"}
+                                    component={ReferalFriend}
                                     layout={UserLayout}
                                     screenProps={this.eventEmitter}
                                 />

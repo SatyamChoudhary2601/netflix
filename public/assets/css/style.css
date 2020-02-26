@@ -3698,3 +3698,196 @@ display: none!important;
 .suggestions-container li:hover {
     background:red;
 }
+
+/*Referal Friend CSS*/
+.sm-padding {
+    padding:4em 0;
+}
+.bg-color-white {
+    background-color: #f3f3f3;
+}
+.referal .referal-head-icon {
+    max-width:0.8em;
+    float:left;
+}
+.referal .title {
+    margin-left:2em;
+    color: #000000;
+    font-size: 0.8em;
+    font-weight: 700;
+}
+.referal .sub-title {
+    font-size: 1.25em;
+    color: #373737;
+    font-weight: 600;
+}
+
+.referal .input-group>.input-group-append>.input-group-text {
+    background-color: #ffffff;
+    border: 0;
+}
+
+.referal .form-control {
+    border: 0;
+    padding: 1em 1em;
+}
+
+.referal .form-control:focus {
+    box-shadow: none;
+    outline: 0;
+}
+
+.referal .form-control::placeholder {
+    color: #373737;
+    font-size: 0.9em;
+    font-weight: 600;
+}
+
+.btn.btn-referal {
+    background: #e50914;
+    color: #ffffff;
+    padding: 0.5em 1em;
+    border-radius: 5px;
+    font-size: 0.8em;
+}
+.referal .border-right-1 {
+    border-right: 1px solid #d3d3d3;
+}
+
+.referal .alternative-social {
+    padding: 0.8em 0;
+}
+
+.referal .referal-sub-sec {
+    background-color: #e6e6e6;
+    padding: 3em;
+    padding-right: 3em;
+}
+
+.referal .referal-sub-div {
+    padding-top: 2em;
+}
+
+.referal .social-link {
+    padding-top: 0.8em;
+}
+.referal .social-link i {
+    color: #373737;
+}
+
+.referal .social-desc {
+    font-size: 0.75em;
+    font-weight: 600;
+    color: #373737;
+    padding-top: 1.5em;
+    margin: 0;
+}
+
+.referal .social-desc.big {
+    font-size: 0.9em;
+}
+
+.referal .referal-sub-head {
+    padding-top: 2em;
+}
+
+.referal .referal-sub-head .sub-head {
+    font-size: 1.2em;
+    font-weight: 500;
+    color: #373737;
+}
+
+.pt-45 {
+    padding-top: 0.8em;
+    padding-bottom: 3em
+}
+
+.referal .referal-box {
+    background-color: #e6e6e6;
+    padding: 1em 1em;
+    border-radius: 8px;
+    height: 100%;
+}
+
+.referal .referal-box .referal-info {
+    margin-left: 4em;
+    color: #373737;
+}
+
+.referal .referal-box .referal-icon {
+    float: left;
+    font-size: 3em;
+    color: #373737;
+    padding: 0.3em 0;
+}
+
+.referal .referal-arrow {
+    color: #373737;
+    position: absolute;
+    left: 35.6%;
+    top: 54%;
+}
+
+.referal .referal-arrow-1 {
+    color: #373737;
+    position: absolute;
+    left: 63.8%;
+    top: 54%;
+}
+
+.border-thick {
+    border-top: 3px solid #c2c2c2 !important;
+}
+
+.border-thin {
+    border-top: 1px solid #e6e6e6 !important;
+}
+
+.referal .referal-footer .referal-footer-desc {
+    color: #9e9e9e;
+    font-size: 1em;
+    font-weight: 600;
+    text-decoration: underline;
+    padding-top: 1em;
+}
+
+.referal .referal-count {
+    font-size: 0.95em;
+    font-weight: 500;
+    margin-bottom: 0;
+    line-height: 1.8em;
+    color: #373737;
+}
+
+.referal .referal-info .referal-info-title {
+    font-size: 1em;
+    font-weight: 900;
+    color: #373737;
+}
+
+.referal .referal-info .referal-info-desc {
+    font-weight: 600;
+    font-size: 1em;
+    margin-bottom:0;
+}
+
+.referal .referal-sub-div .fa-envelope {
+    font-size: 1.5em;
+    color:#ce522d;
+}
+.referal .referal-sub-div .fa-whatsapp {
+    font-size: 1.5em;
+    color:#6fe687;
+}
+.referal .referal-sub-div .fa-facebook-square {
+    font-size: 1.5em;
+    color:#4267b2;
+}
+.referal .referal-sub-div .fa-twitter  {
+    font-size: 1.5em;
+    color:#39a2f2;
+}
+.referal .referal-sub-div .fa-facebook-messenger {
+    font-size: 1.5em;
+    color:#167af6;
+}
