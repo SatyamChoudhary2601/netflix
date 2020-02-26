@@ -40,37 +40,37 @@ const ReferalFriend = () => {
                                 </div>
                             </div>
                             <div className="col-md-6 resp-width resp-mrg-btm">
-                                <div className="row">
+                                <div className="row resp-mrg-btm-1">
                                     <div className="col-md-2 border-right-1 resp-width resp-no-border resp-mrg-btm">
                                         <div className="text-center alternative-social">
                                             <h2 className="social-desc big">Or</h2>
                                         </div>
                                     </div>
-                                    <div className="col-md-2 border-right-1 resp-width-1">
+                                    <div className="col-md-2 border-right-1 resp-width-1 resp-width-5">
                                         <div className="text-center social-link">
                                             <i class="fas fa-envelope"></i>
                                             <h2 className="social-desc">Email</h2>
                                         </div>
                                     </div>
-                                    <div className="col-md-2 border-right-1 resp-width-1">
+                                    <div className="col-md-2 border-right-1 resp-width-1 resp-width-5">
                                         <div className="text-center social-link">
                                         <i class="fab fa-whatsapp"></i>
                                             <h2 className="social-desc">WhatsApp</h2>
                                         </div>
                                     </div>
-                                    <div className="col-md-2 border-right-1 resp-width-1">
+                                    <div className="col-md-2 border-right-1 resp-width-1 resp-width-5">
                                         <div className="text-center social-link">
                                         <i class="fab fa-facebook-square"></i>
                                             <h2 className="social-desc">Facebook</h2>
                                         </div>
                                     </div>
-                                    <div className="col-md-2 border-right-1 resp-width-1">
+                                    <div className="col-md-2 border-right-1 resp-width-1 resp-width-5">
                                         <div className="text-center social-link">
                                         <i class="fab fa-twitter"></i>
                                             <h2 className="social-desc">Twitter</h2>
                                         </div>
                                     </div>
-                                    <div className="col-md-2 border-right-1 resp-width-1">
+                                    <div className="col-md-2 border-right-1 resp-width-1 resp-width-5">
                                         <div className="text-center social-link">
                                         <i class="fab fa-facebook-messenger"></i>
                                             <h2 className="social-desc">Messenger</h2>
@@ -91,7 +91,7 @@ const ReferalFriend = () => {
                     <h3 className="sub-head">HOW IT WORKS</h3>
                 </div>
                 <div className="row pt-45">
-                    <div className="col-md-4">
+                    <div className="col-md-4 resp-mrg-btm-1">
                         <div className="referal-box">
                             <div class="referal-icon">
                                 <img
@@ -108,7 +108,7 @@ const ReferalFriend = () => {
                         </div>
                     </div>
                     <div className="referal-arrow"><i class="fas fa-chevron-right"></i></div>
-                    <div className="col-md-4">
+                    <div className="col-md-4 resp-mrg-btm-1">
                         <div className="referal-box">
                             <div class="referal-icon">
                                 <img

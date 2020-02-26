@@ -203,19 +203,11 @@ class UserHeader extends Helper {
         );
     };
 
-<<<<<<< HEAD
-    // toggleMobileSidebar = () => {
-    //     this.setState({
-    //         mobileSidebar: !this.state.mobileSidebar
-    //     })
-    // }
-=======
     toggleMobileSidebar = () => {
         this.setState({
             mobileSidebar: !this.state.mobileSidebar
         });
     };
->>>>>>> 5691da066174d25579c56bd7440a09ad51d86887
 
     render() {
         const { t } = this.props;
