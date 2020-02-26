@@ -35,7 +35,7 @@ class Genres extends Helper {
         } else {
             inputData = {
                 ...inputData,
-                page_type: "MOVIES"
+                page_type: "FLIMS"
             };
         }
         console.log("active", inputData);
