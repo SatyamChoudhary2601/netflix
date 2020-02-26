@@ -161,6 +161,7 @@ body,html{
 
 /*small devices*/
 @media (min-width: 576px) and (max-width: 767px) {
+
 body,html{
     font-size:13px;
 }
@@ -294,6 +295,25 @@ body,html{
 .kids-char .kids-char-sec{
     width: 25%;
 }
+
+}
+@media (max-width: 767.98px) {
+    .resp-width-5 {
+        max-width: 20%;
+        flex: 0 0 20%;
+    }
+    .resp-mrg-btm-1 {
+        margin-bottom: 2em;
+    }
+    .referal .border-right-1 {
+        border-right:0;
+    }
+    .referal .referal-arrow-1 {
+        display: none;
+    }
+    .referal .referal-arrow {
+        display: none;
+    }
 }
 
 /* Tablets */
@@ -404,10 +424,49 @@ body,html{
 .kids-char .kids-char-sec{
     width: 20%;
 }
+    .resp-width {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    .resp-width-1 {
+        flex: 0 0 18.666667%;
+        max-width: 18.666667%;
+    }
+    .resp-no-border {
+        border:0!important;
+    }
+    .resp-mrg-btm{
+        margin-bottom:2em;
+    }
+    .referal .referal-arrow {
+        left: 34%;
+        top:59%;
+    }
+    .referal .referal-arrow-1 {
+        left: 65%;
+        top:59%;
+    }
+    .referal .referal-info .referal-info-desc {
+        font-size: 0.85em;
+    }
 }
 
  /*Medium Devices, */
 @media (min-width : 992px) and (max-width: 1199px){
+.referal .referal-arrow {
+    left: 34%;
+    top:55%;
+}
+.referal .referal-arrow-1 {
+    left: 65%;
+    top:55%;
+}
+.referal .referal-info .referal-info-desc {
+    font-size: 0.9em;
+}
+.referal .social-desc {
+    font-size: 0.62em;
+}
 .landing-banner-sec{
 	font-size: 24px;
 }
