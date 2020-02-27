@@ -411,7 +411,7 @@ class UserHeader extends Helper {
                                                         className=""
                                                         key="suggestion-no-result"
                                                     >
-                                                        <span>No result</span>
+                                                        <span>{t("no_results_found")}</span>
                                                     </li>
                                                 )}
                                             </ul>

@@ -261,7 +261,7 @@ class VideoOverView extends Helper {
             <div className="modal-content">
               <form>
                 <div className="modal-header">
-                  <h4 className="modal-title">Report This Video</h4>
+                  <h4 className="modal-title">{t("report_this_video")}</h4>
                   <button type="button" className="close" data-dismiss="modal">
                     &times;
                   </button>
@@ -269,49 +269,46 @@ class VideoOverView extends Helper {
 
                 <div className="modal-body">
                   <p>
-                    Note:If you report this video, you won't see again the same
-                    video in anywhere in your account except "Spam Videos". If
-                    you want to continue to report this video as same. Click
-                    continue and proceed the same.
+                  {t("report_video_note")}
                   </p>
 
                   <div className="form-check">
                     <input type="radio" id="test1" name="radio-group" checked />
-                    <label htmlFor="test1">Sexual content</label>
+                    <label htmlFor="test1">{t("sexual_content")}</label>
                   </div>
                   <div className="form-check">
                     <input type="radio" id="test2" name="radio-group" />
-                    <label htmlFor="test2">Violent or repulsive content.</label>
+                    <label htmlFor="test2">{t("violent_repulsive")}</label>
                   </div>
                   <div className="form-check">
                     <input type="radio" id="test3" name="radio-group" />
-                    <label htmlFor="test3">Hateful or abusive content.</label>
+                    <label htmlFor="test3">{t("hateful_or_abusive")}</label>
                   </div>
                   <div className="form-check">
                     <input type="radio" id="test4" name="radio-group" />
-                    <label htmlFor="test4">Harmful dangerous acts.</label>
+                    <label htmlFor="test4">{t("harmful_act")}</label>
                   </div>
                   <div className="form-check">
                     <input type="radio" id="test5" name="radio-group" />
-                    <label htmlFor="test5">Child abuse.</label>
+                    <label htmlFor="test5">{t("child_abuse")}</label>
                   </div>
                   <div className="form-check">
                     <input type="radio" id="test6" name="radio-group" />
-                    <label htmlFor="test6">Spam or misleading.</label>
+                    <label htmlFor="test6">{t("spam_or_misleading")}</label>
                   </div>
                   <div className="form-check">
                     <input type="radio" id="test7" name="radio-group" />
-                    <label htmlFor="test7">Infringes my rights.</label>
+                    <label htmlFor="test7">{t("infringers")}</label>
                   </div>
                   <div className="form-check">
                     <input type="radio" id="test8" name="radio-group" />
-                    <label htmlFor="test8">Captions issue.</label>
+                    <label htmlFor="test8">{t("caption_issue")}</label>
                   </div>
                 </div>
 
                 <div className="modal-footer">
                   <button type="button" className="btn btn-danger">
-                    submit
+                  {t("submit")}
                   </button>
                 </div>
               </form>
@@ -323,4 +320,4 @@ class VideoOverView extends Helper {
   }
 }
 
-export default withToastManager(VideoOverView);
+export default withToastManager(translate(VideoOverView));
