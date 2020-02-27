@@ -42,7 +42,7 @@ class Footer extends Component {
         var footerHeight = $("#footer").outerHeight();
         var deviceheight = $(window).outerHeight();
         var contentheight = deviceheight - footerHeight - 66;
-        $(".main-sec-content").css("min-height", contentheight)
+        $(".main-sec-content").css("min-height", contentheight);
 
         // $(".bottom-height").height(footerHeight);
         // Call api function
@@ -78,7 +78,7 @@ class Footer extends Component {
                             <div className="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3">
                                 <ul className="footer-link">
                                     {loading
-                                        ? "Loading... "
+                                        ? t("loading")
                                         : footerList.length > 0
                                         ? footerList.map(
                                               (static_page, index) => (
@@ -104,18 +104,18 @@ class Footer extends Component {
                                 </ul>
                             </div>
                             {/* <div className="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3">
-                <ul className="footer-link">
-                  {this.state.footer_pages2.length > 0
-                    ? this.state.footer_pages2.map((static_page, index) => (
-                        <li className="footer-link-list" key={`page2${index}`}>
-                          <Link to={`/page/${static_page.unique_id}`}>
-                            {static_page.heading}
-                          </Link>
-                        </li>
-                      ))
-                    : ""}
-                </ul>
-              </div> */}
+                                <ul className="footer-link">
+                                {this.state.footer_pages2.length > 0
+                                    ? this.state.footer_pages2.map((static_page, index) => (
+                                        <li className="footer-link-list" key={`page2${index}`}>
+                                        <Link to={`/page/${static_page.unique_id}`}>
+                                            {static_page.heading}
+                                        </Link>
+                                        </li>
+                                    ))
+                                    : ""}
+                                </ul>
+                            </div> */}
                             <div className="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
                                 <div className="row">
                                     <div className="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">

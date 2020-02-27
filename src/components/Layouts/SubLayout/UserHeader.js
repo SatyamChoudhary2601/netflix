@@ -381,7 +381,7 @@ class UserHeader extends Helper {
                                         >
                                             <ul>
                                                 {loadingSuggesstion ? (
-                                                    "loading..."
+                                                    t("loading")
                                                 ) : suggestions.length > 0 ? (
                                                     suggestions.map(
                                                         (
@@ -437,20 +437,20 @@ class UserHeader extends Helper {
                                 <div className="notification-onoff">
                                     {t("notification")}
                                     {/* <div className="float-right">
-                    <label className="switch">
-                      <input
-                        type="checkbox"
-                        defaultChecked={
-                          localStorage.getItem("push_status") == 1
-                            ? true
-                            : false
-                        }
-                        onChange={this.handleNotificationChange}
-                        name="notificationStatus"
-                      />
-                      <span className="switch-slider round" />
-                    </label>
-                  </div> */}
+                                        <label className="switch">
+                                        <input
+                                            type="checkbox"
+                                            defaultChecked={
+                                            localStorage.getItem("push_status") == 1
+                                                ? true
+                                                : false
+                                            }
+                                            onChange={this.handleNotificationChange}
+                                            name="notificationStatus"
+                                        />
+                                        <span className="switch-slider round" />
+                                        </label>
+                                    </div> */}
                                     <div className="clearfix" />
                                 </div>
                                 <div className="notification-drop-height">
