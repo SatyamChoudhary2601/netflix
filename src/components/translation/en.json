@@ -122,5 +122,8 @@
     "netflix_india": "StreamView",
     "view_details": "View Details",
     "cast_crews": "Cast",
-    "delete_account": "Delete Account"
+    "delete_account": "Delete Account",
+    "loading_text": "Loading... Please wait..",
+    "loading": "Loading..."
+
 }

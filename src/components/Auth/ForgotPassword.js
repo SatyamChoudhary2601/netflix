@@ -23,7 +23,7 @@ class ForgotPasswordComponent extends Helper {
         event.preventDefault();
         const { state } = this.props.location;
         this.setState({
-            loadingContent: "Loading... Please wait..",
+            loadingContent: this.props.t("loading_text"),
             buttonDisable: true
         });
         api.postMethod("forgotpassword", this.state.data)
@@ -74,7 +74,7 @@ class ForgotPasswordComponent extends Helper {
                             <img
                                 src={configuration.get("configData.site_logo")}
                                 className="site-logo"
-                                alt="logo_img"
+                                alt={configuration.get("configData.site_name")}
                             />
                         </Link>
                     </div>

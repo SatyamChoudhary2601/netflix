@@ -3891,3 +3891,10 @@ display: none!important;
     font-size: 1.5em;
     color:#167af6;
 }
+/*Manage Profile */
+.image-upload>input {
+    display: none;
+}
+.image-upload>label {
+    margin-bottom: 0;
+}
