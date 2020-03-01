@@ -253,7 +253,7 @@ class ManageProfilesComponent extends Helper {
                                                 />
                                                 <div className="edit-icon">
                                                     <div className="edit-icon-circle">
-                                                        <input
+                                                    {/*   <input
                                                             type="file"
                                                             className="form-control"
                                                             accept="image/*"
@@ -263,7 +263,13 @@ class ManageProfilesComponent extends Helper {
                                                             }
                                                             name="picture"
                                                         />
-                                                        <i className="fas fa-pencil-alt" />
+                                                        <i className="fas fa-pencil-alt" /> */}
+                                                        <div class="image-upload">
+                                                            <label for="file-input">
+                                                            <i className="fas fa-pencil-alt" />
+                                                            </label>
+                                                            <input id="file-input" type="file" />
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
