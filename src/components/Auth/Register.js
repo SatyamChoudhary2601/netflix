@@ -26,9 +26,19 @@ class RegisterComponent extends Helper {
             name: "",
             timezone: const_time_zone
         },
+        referral_code: "",
         loadingContent: null,
-        buttonDisable: false
+        buttonDisable: false,
+        check_referral_response: ""
     };
+
+    componentDidMount() {
+        const query = new URLSearchParams(this.props.location.search);
+        const referral = query.get("referral");
+        if (referral) {
+            this.setState({ referral_code: referral });
+        }
+    }
 
     handleSubmit = event => {
         event.preventDefault();
@@ -77,107 +87,160 @@ class RegisterComponent extends Helper {
 
     responseFacebook = response => {
         const path = this.props.location;
-        const googleLoginInput = {
-            social_unique_id: response.profileObj.googleId,
-            login_by: "google",
-            email: response.profileObj.email,
-            name: response.profileObj.name,
-            picture: response.profileObj.imageUrl,
-            device_type: "web",
-            device_token: "123466",
-            timezone: const_time_zone
-        };
-        api.postMethod("v4/register", googleLoginInput)
-            .then(response => {
-                if (response.data.success === true) {
-                    localStorage.setItem("userId", response.data.data.user_id);
-                    localStorage.setItem(
-                        "accessToken",
-                        response.data.data.token
-                    );
-                    localStorage.setItem(
-                        "userType",
-                        response.data.data.user_type
-                    );
-                    localStorage.setItem(
-                        "push_status",
-                        response.data.data.push_status
-                    );
-                    localStorage.setItem("username", response.data.data.name);
-                    localStorage.setItem(
-                        "active_profile_id",
-                        response.data.data.sub_profile_id
-                    );
-                    ToastDemo(
-                        this.props.toastManager,
-                        response.data.message,
-                        "success"
-                    );
-                    this.props.history.push("/view-profiles");
+        if (response.profileObj) {
+            const googleLoginInput = {
+                social_unique_id: response.profileObj.googleId,
+                login_by: "google",
+                email: response.profileObj.email,
+                name: response.profileObj.name,
+                picture: response.profileObj.imageUrl,
+                device_type: "web",
+                device_token: "123466",
+                timezone: const_time_zone
+            };
+            api.postMethod("v4/register", googleLoginInput)
+                .then(response => {
+                    if (response.data.success === true) {
+                        localStorage.setItem(
+                            "userId",
+                            response.data.data.user_id
+                        );
+                        localStorage.setItem(
+                            "accessToken",
+                            response.data.data.token
+                        );
+                        localStorage.setItem(
+                            "userType",
+                            response.data.data.user_type
+                        );
+                        localStorage.setItem(
+                            "push_status",
+                            response.data.data.push_status
+                        );
+                        localStorage.setItem(
+                            "username",
+                            response.data.data.name
+                        );
+                        localStorage.setItem(
+                            "active_profile_id",
+                            response.data.data.sub_profile_id
+                        );
+                        ToastDemo(
+                            this.props.toastManager,
+                            response.data.message,
+                            "success"
+                        );
+                        this.props.history.push("/view-profiles");
+                        this.setState({
+                            loadingContent: null,
+                            buttonDisable: false
+                        });
+                    } else {
+                        ToastDemo(
+                            this.props.toastManager,
+                            response.data.error_messages,
+                            "error"
+                        );
+                        this.setState({
+                            loadingContent: null,
+                            buttonDisable: false
+                        });
+                    }
+                })
+                .catch(error => {
+                    ToastDemo(this.props.toastManager, error, "error");
                     this.setState({
                         loadingContent: null,
                         buttonDisable: false
                     });
-                } else {
-                    ToastDemo(
-                        this.props.toastManager,
-                        response.data.error_messages,
-                        "error"
-                    );
-                    this.setState({
-                        loadingContent: null,
-                        buttonDisable: false
-                    });
-                }
-            })
-            .catch(error => {
-                ToastDemo(this.props.toastManager, error, "error");
-                this.setState({ loadingContent: null, buttonDisable: false });
-            });
+                });
+        }
     };
 
     responseGoogle = response => {
         const path = this.props.location;
-        const googleLoginInput = {
-            social_unique_id: response.profileObj.googleId,
-            login_by: "google",
-            email: response.profileObj.email,
-            name: response.profileObj.name,
-            picture: response.profileObj.imageUrl,
-            device_type: "web",
-            device_token: "123466",
-            timezone: const_time_zone
-        };
-        api.postMethod("v4/register", googleLoginInput)
-            .then(response => {
-                if (response.data.success === true) {
-                    localStorage.setItem("userId", response.data.data.user_id);
-                    localStorage.setItem(
-                        "accessToken",
-                        response.data.data.token
-                    );
-                    localStorage.setItem(
-                        "userType",
-                        response.data.data.user_type
-                    );
-                    localStorage.setItem(
-                        "push_status",
-                        response.data.data.push_status
-                    );
-                    localStorage.setItem("username", response.data.data.name);
-                    localStorage.setItem(
-                        "active_profile_id",
-                        response.data.data.sub_profile_id
-                    );
-                    ToastDemo(
-                        this.props.toastManager,
-                        response.data.message,
-                        "success"
-                    );
-                    this.props.history.push("/view-profiles");
+        if (response.profileObj) {
+            const googleLoginInput = {
+                social_unique_id: response.profileObj.googleId,
+                login_by: "google",
+                email: response.profileObj.email,
+                name: response.profileObj.name,
+                picture: response.profileObj.imageUrl,
+                device_type: "web",
+                device_token: "123466",
+                timezone: const_time_zone
+            };
+            api.postMethod("v4/register", googleLoginInput)
+                .then(response => {
+                    if (response.data.success === true) {
+                        localStorage.setItem(
+                            "userId",
+                            response.data.data.user_id
+                        );
+                        localStorage.setItem(
+                            "accessToken",
+                            response.data.data.token
+                        );
+                        localStorage.setItem(
+                            "userType",
+                            response.data.data.user_type
+                        );
+                        localStorage.setItem(
+                            "push_status",
+                            response.data.data.push_status
+                        );
+                        localStorage.setItem(
+                            "username",
+                            response.data.data.name
+                        );
+                        localStorage.setItem(
+                            "active_profile_id",
+                            response.data.data.sub_profile_id
+                        );
+                        ToastDemo(
+                            this.props.toastManager,
+                            response.data.message,
+                            "success"
+                        );
+                        this.props.history.push("/view-profiles");
+                        this.setState({
+                            loadingContent: null,
+                            buttonDisable: false
+                        });
+                    } else {
+                        ToastDemo(
+                            this.props.toastManager,
+                            response.data.error_messages,
+                            "error"
+                        );
+                        this.setState({
+                            loadingContent: null,
+                            buttonDisable: false
+                        });
+                    }
+                })
+                .catch(error => {
+                    ToastDemo(this.props.toastManager, error, "error");
                     this.setState({
                         loadingContent: null,
                         buttonDisable: false
+                    });
+                });
+        }
+    };
+
+    checkReferralCode = event => {
+        event.preventDefault();
+        let inputData = {
+            referral_code: this.state.referral_code
+        };
+        api.postMethod("referral_code_validate", inputData)
+            .then(response => {
+                if (response.data.success === true) {
+                    this.setState({
+                        loadingContent: null,
+                        buttonDisable: false,
+                        check_referral_response: response.data.message
                     });
                 } else {
                     ToastDemo(
@@ -185,15 +248,14 @@ class RegisterComponent extends Helper {
                         response.data.error_messages,
                         "error"
                     );
-                    this.setState({
-                        loadingContent: null,
-                        buttonDisable: false
-                    });
+
+                    // this.setState({
+                    //     check_referral_response: response.data.error
+                    // });
                 }
             })
             .catch(error => {
                 ToastDemo(this.props.toastManager, error, "error");
-                this.setState({ loadingContent: null, buttonDisable: false });
             });
     };
 
@@ -266,6 +328,40 @@ class RegisterComponent extends Helper {
                                             value={data.password}
                                         />
                                     </div>
+
+                                    <div className="form-group">
+                                        <label htmlFor="referral_code">
+                                            {t("signup_referral_code_label")}
+                                        </label>
+                                        <input
+                                            type="text"
+                                            onChange={this.handleChange}
+                                            className="form-control"
+                                            id="referral_code"
+                                            name="referral_code"
+                                            value={this.state.referral_code}
+                                        />
+                                        <a
+                                            className="text-warning"
+                                            href=""
+                                            onClick={this.checkReferralCode}
+                                        >
+                                            {t("check_referral_code_valid")}
+
+                                            {this.state
+                                                .check_referral_response ? (
+                                                <p className="text-success">
+                                                    {
+                                                        this.state
+                                                            .check_referral_response
+                                                    }
+                                                </p>
+                                            ) : (
+                                                ""
+                                            )}
+                                        </a>
+                                    </div>
+
                                     <button
                                         className="btn btn-danger auth-btn mt-4"
                                         disabled={this.state.buttonDisable}

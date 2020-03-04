@@ -124,6 +124,25 @@
     "cast_crews": "Cast",
     "delete_account": "Delete Account",
     "loading_text": "Loading... Please wait..",
-    "loading": "Loading..."
+    "loading": "Loading...",
+    "tell_friends_about": "Tell friends about",
+    "referral_code": "Referral Code",
+    "referral_code_note": "Share this link so your friends can join the conversation around all your favorite TV shows and movies.",
+    "total_referrals": "No of friends joined:",
+    "credits": "Credits",
+    "how_it_works_referral": "HOW IT WORKS",
+    "referral_step1": "Step 1",
+    "referral_step1_content": "Share your link with friends by copying the link, or choose an icon.",
+    "referral_step2": "Step 2",
+    "referral_step2_content": "We'll let you know when a friend signs up.",
+    "referral_step3": "Step 3",
+    "referral_step3_content": "You can share with as many friends and family as you like!",
+    "copied": "Copied",
+    "signup_referral_code_label": "Do you have referral?",
+    "check_referral_code_valid": "Check Referral",
+    "copy_link": "Copy Link",
+    "whatsapp": "WhatsApp",
+    "email": "Email",
+    "reddit": "Reddit"
 
 }
