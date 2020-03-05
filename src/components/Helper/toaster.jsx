@@ -5,7 +5,6 @@ const ToastDemo = (toastManager, message, type) => {
     if (!message) {
         return "";
     }
-    alert(message);
     return toastManager.add(message, {
         appearance: type,
         autoDismiss: true,

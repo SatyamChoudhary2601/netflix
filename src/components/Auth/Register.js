@@ -230,33 +230,35 @@ class RegisterComponent extends Helper {
     };
 
     checkReferralCode = event => {
-        event.preventDefault();
-        let inputData = {
-            referral_code: this.state.referral_code
-        };
-        api.postMethod("referral_code_validate", inputData)
-            .then(response => {
-                if (response.data.success === true) {
-                    this.setState({
-                        loadingContent: null,
-                        buttonDisable: false,
-                        check_referral_response: response.data.message
-                    });
-                } else {
-                    ToastDemo(
-                        this.props.toastManager,
-                        response.data.error_messages,
-                        "error"
-                    );
+        if (this.state.referral_code) {
+            event.preventDefault();
+            let inputData = {
+                referral_code: this.state.referral_code
+            };
+            api.postMethod("referral_code_validate", inputData)
+                .then(response => {
+                    if (response.data.success === true) {
+                        this.setState({
+                            loadingContent: null,
+                            buttonDisable: false,
+                            check_referral_response: response.data.message
+                        });
+                    } else {
+                        ToastDemo(
+                            this.props.toastManager,
+                            response.data.error_messages,
+                            "error"
+                        );
 
-                    // this.setState({
-                    //     check_referral_response: response.data.error
-                    // });
-                }
-            })
-            .catch(error => {
-                ToastDemo(this.props.toastManager, error, "error");
-            });
+                        // this.setState({
+                        //     check_referral_response: response.data.error
+                        // });
+                    }
+                })
+                .catch(error => {
+                    ToastDemo(this.props.toastManager, error, "error");
+                });
+        }
     };
 
     render() {

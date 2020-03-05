@@ -143,6 +143,10 @@
     "copy_link": "Copy Link",
     "whatsapp": "WhatsApp",
     "email": "Email",
-    "reddit": "Reddit"
+    "reddit": "Reddit",
+    "referral_amount_applied": "Referral Earnings applied",
+    "referral_amount": "Referral Discount",
+    "total_credits": "Total Credits",
+    "remaining_credits": "Remaining Credits"
 
 }

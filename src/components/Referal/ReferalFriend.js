@@ -281,12 +281,22 @@ class ReferalFriend extends Helper {
                                         </strong>
                                     </p>
                                     <p className="desc no-margin">
-                                        {t("credits")}
+                                        {t("total_credits")}
                                         <strong>
                                             <span className="float-right">
                                                 {
                                                     data.referral_earnings_formatted
                                                 }
+                                            </span>
+                                        </strong>
+                                    </p>
+
+                                    <p className="desc no-margin">
+                                        {t("remaining_credits")}
+                                        <strong>
+                                            <span className="float-right">
+                                                {data.currency}
+                                                {data.remaining}
                                             </span>
                                         </strong>
                                     </p>

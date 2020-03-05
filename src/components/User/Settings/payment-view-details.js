@@ -126,6 +126,26 @@ class PaymentViewDetails extends Component {
                                                             }
                                                         </h4>
                                                     </li>
+                                                    {ppvDetails.wallet_amount >=
+                                                    0 ? (
+                                                        <li className="">
+                                                            <p>
+                                                                {t(
+                                                                    "referral_amount"
+                                                                )}
+                                                            </p>
+                                                            <h4>
+                                                                {
+                                                                    ppvDetails.currency
+                                                                }
+                                                                {
+                                                                    ppvDetails.wallet_amount
+                                                                }
+                                                            </h4>
+                                                        </li>
+                                                    ) : (
+                                                        ""
+                                                    )}
                                                 </ul>
                                             </div>
                                             <div className="col-sm-12 col-md-12">
