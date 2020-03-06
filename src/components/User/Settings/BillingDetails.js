@@ -153,7 +153,7 @@ class BillingDetailsComponent extends Helper {
                               </h4>
                             </div>
                             <div className="content-right">
-                              <h4 className="billing-head">Billing Details</h4>
+                              <h4 className="billing-head">{t("billing_details")}</h4>
                             </div>
                           </div>
                           <div className="clearfix" />
@@ -166,7 +166,7 @@ class BillingDetailsComponent extends Helper {
                             </div>
                             <div className="content-right">
                               <h5 className="billing-head mb-3">
-                                next billing date
+                                {t("next_billing_date")}
                               </h5>
                               <p className="m-0">
                                 {subscriptions[0].expiry_date}
@@ -188,7 +188,7 @@ class BillingDetailsComponent extends Helper {
                               <p className="m-0">
                                 {subscriptions[0].currency}
                                 {subscriptions[0].amount} /{" "}
-                                {subscriptions[0].plan} Months
+                                {subscriptions[0].plan} {t("months")}
                               </p>
                             </div>
                           </div>
@@ -197,7 +197,7 @@ class BillingDetailsComponent extends Helper {
                           <div className="text-right">
                             <Link to={"/subscription"} className="capitalize">
                               <i className="fas fa-chevron-right mr-1" />
-                              view plan details
+                              {t("view_plan_details")}
                             </Link>
                           </div>
                           <div className="text-center mt-3">
@@ -207,7 +207,7 @@ class BillingDetailsComponent extends Helper {
                                 onClick={this.handleEnableAutoRenewal}
                                 className="btn btn-success"
                               >
-                                Enable Auto Renewal
+                                {t("enable_auto_renewal")}
                               </a>
                             ) : (
                               <a
@@ -216,7 +216,7 @@ class BillingDetailsComponent extends Helper {
                                 data-toggle="modal"
                                 data-target="#cancel-subs"
                               >
-                                cancel subcription
+                                {t("cancel_subscription")}
                               </a>
                             )}
                           </div>
@@ -247,23 +247,23 @@ class BillingDetailsComponent extends Helper {
                                 <table className="table table-bordered m-0">
                                   <tbody>
                                     <tr>
-                                      <td>subscribed date</td>
+                                      <td>{t("subscribed_date")}</td>
                                       <td>{subscription.created_at}</td>
                                     </tr>
                                     <tr>
-                                      <td>expiry date</td>
+                                      <td>{t("expiry_date")}</td>
                                       <td>{subscription.expiry_date}</td>
                                     </tr>
                                     <tr>
-                                      <td>no of account</td>
+                                      <td>{t("no_of_account")}</td>
                                       <td>{subscription.no_of_account}</td>
                                     </tr>
                                     <tr>
-                                      <td>no of month</td>
+                                      <td>{t("no_of_month")}</td>
                                       <td>{subscription.plan}</td>
                                     </tr>
                                     <tr>
-                                      <td>total amount</td>
+                                      <td>{t("total_amount")}</td>
                                       <td>
                                         {subscription.currency}
                                         {subscription.total_amount}
@@ -273,7 +273,7 @@ class BillingDetailsComponent extends Helper {
                                       ""
                                     ) : (
                                       <tr>
-                                        <td>coupon amount</td>
+                                        <td>{t("coupon_amount")}</td>
                                         <td>
                                           {subscription.currency}
                                           {subscription.coupon_amount}
@@ -281,14 +281,14 @@ class BillingDetailsComponent extends Helper {
                                       </tr>
                                     )}
                                     <tr>
-                                      <td>paid amount</td>
+                                      <td>{t("paid_amount")}</td>
                                       <td>
                                         {subscription.currency}
                                         {subscription.amount}
                                       </td>
                                     </tr>
                                     <tr>
-                                      <td>payment mode</td>
+                                      <td>{t("payment_mode")}</td>
                                       <td>{subscription.payment_mode}</td>
                                     </tr>
                                   </tbody>
@@ -312,7 +312,7 @@ class BillingDetailsComponent extends Helper {
                 onSubmit={this.handleCancelAutoRenewal}
               >
                 <div className="modal-header">
-                  <h4 className="modal-title">Pause autorenewal</h4>
+                  <h4 className="modal-title">{t("pause_auto_renewal")}</h4>
                   <button type="button" className="close" data-dismiss="modal">
                     &times;
                   </button>
@@ -320,7 +320,7 @@ class BillingDetailsComponent extends Helper {
 
                 <div className="modal-body">
                   <div className="form-group">
-                    <label htmlFor="name">cancel reason</label>
+                    <label htmlFor="name">{t("cancel_reason")}</label>
                     <input
                       type="text"
                       className="form-control"
@@ -338,7 +338,7 @@ class BillingDetailsComponent extends Helper {
                     className="btn btn-link"
                     data-dismiss="modal"
                   >
-                    Cancel
+                    {t("cancel")}
                   </button>
                   <button
                     type="submit"
@@ -359,4 +359,4 @@ class BillingDetailsComponent extends Helper {
   }
 }
 
-export default withToastManager(BillingDetailsComponent);
+export default withToastManager(translate(BillingDetailsComponent));

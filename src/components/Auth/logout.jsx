@@ -12,11 +12,7 @@ class Logout extends Component {
         localStorage.removeItem("userType");
 
         this.props.history.push("/");
-        ToastDemo(
-            this.props.toastManager,
-            "Logout Successfully..!!",
-            "success"
-        );
+        ToastDemo(this.props.toastManager,this.props.t("logout_success"), "success");
     }
     render() {
         return null;
