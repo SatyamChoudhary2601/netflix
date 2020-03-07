@@ -54,7 +54,7 @@ class StaticSidebar extends Component {
     }
 
     render() {
-        const { t } = this.props;
+        // const { t } = this.props;
 
         const { loading, footerList } = this.state;
         return (
@@ -62,7 +62,7 @@ class StaticSidebar extends Component {
                 <div className="top-bottom-spacing">
                     <ul className="static-sidebar-list">
                         {loading
-                            ? t("loading")
+                            ? this.state.loading
                             : footerList.length > 0
                             ? footerList.map((static_page, index) => (
                                   <li className="" key={`page1${index}`}>

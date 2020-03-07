@@ -4,6 +4,7 @@ import Slider from "../SliderView/MainSlider";
 import HomePageBanner from "./homePageBanner";
 import ContentLoader from "../Static/contentLoader";
 import Helper from "../Helper/helper";
+import { t } from "react-multi-lang";
 
 let inputData = {};
 
@@ -101,7 +102,7 @@ class Category extends Helper {
                               mainDa.data.length === 0
                                   ? ""
                                   : loading
-                                  ? "loading"
+                                  ? t("loading")
                                   : this.renderVideoList(mainDa, index)
                           )}
 
@@ -111,7 +112,7 @@ class Category extends Helper {
                               mainDa.data.length === 0
                                   ? ""
                                   : loading
-                                  ? "loading"
+                                  ? t("loading")
                                   : this.renderVideoList(mainDa, index)
                           )}
 

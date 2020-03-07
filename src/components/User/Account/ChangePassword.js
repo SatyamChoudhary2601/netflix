@@ -4,7 +4,7 @@ import api from "../../../Environment";
 import { withToastManager } from "react-toast-notifications";
 import ToastDemo from "../../Helper/toaster";
 
-import { translate } from "react-multi-lang";
+import { translate, t } from "react-multi-lang";
 import configuration from "react-global-configuration";
 
 class ChangePasswordComponent extends Helper {
@@ -17,7 +17,7 @@ class ChangePasswordComponent extends Helper {
     handleSubmit = event => {
         event.preventDefault();
         this.setState({
-            loadingContent: "Loading... Please wait..",
+            loadingContent: t("loading_text"),
             buttonDisable: true
         });
         this.changePassword();

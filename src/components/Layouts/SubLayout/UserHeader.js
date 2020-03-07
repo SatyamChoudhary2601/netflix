@@ -406,7 +406,11 @@ class UserHeader extends Helper {
                                                         className=""
                                                         key="suggestion-no-result"
                                                     >
-                                                        <span>No result</span>
+                                                        <span>
+                                                            {t(
+                                                                "no_results_found"
+                                                            )}
+                                                        </span>
                                                     </li>
                                                 )}
                                             </ul>
@@ -414,6 +418,11 @@ class UserHeader extends Helper {
                                     </div>
                                 </div>
                             </form>
+                        </li>
+                        <li className="nav-item">
+                            <Link to="/referfriends">
+                                <i className="nav-link fas fa-gift"></i> Gift
+                            </Link>
                         </li>
                         <li className="nav-item dropdown mobile-view">
                             <Link
@@ -512,7 +521,7 @@ class UserHeader extends Helper {
                             <div className="dropdown-menu profile-drop">
                                 <div className="pro-sec-height">
                                     {loading
-                                        ? "Loading"
+                                        ? t("loading")
                                         : this.renderList(activeProfile)}
 
                                     <Link

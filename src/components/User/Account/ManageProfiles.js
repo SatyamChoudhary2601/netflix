@@ -398,7 +398,7 @@ class ManageProfilesComponent extends Helper {
                             </div>
                             <ul className="choose-profile">
                                 {loading
-                                    ? "Loading.."
+                                    ? t("loading")
                                     : this.renderProfile(activeProfile)}
                                 {loading ? (
                                     ""

@@ -147,9 +147,8 @@ class LoginCommponent extends Helper {
 
     responseGoogle = response => {
         const path = this.props.location;
-        console.log("googleId", response.profileObj);
 
-        if (response.profileObj != "undefined") {
+        if (response.profileObj) {
             const googleLoginInput = {
                 social_unique_id: response.profileObj.googleId,
                 login_by: "google",

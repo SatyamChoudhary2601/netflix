@@ -8,7 +8,7 @@ import api from "../../../Environment";
 import { withToastManager } from "react-toast-notifications";
 import ToastDemo from "../../Helper/toaster";
 
-import { translate } from "react-multi-lang";
+import { translate, t } from "react-multi-lang";
 import configuration from "react-global-configuration";
 
 class InvoiceComponent extends Helper {
@@ -83,7 +83,7 @@ class InvoiceComponent extends Helper {
     handlePromoCode = event => {
         event.preventDefault();
         this.setState({
-            loadingContent: "Loading... Please wait..",
+            loadingContent: t("loading_text"),
             buttonDisable: true
         });
         let inputData = {
@@ -97,7 +97,7 @@ class InvoiceComponent extends Helper {
                 if (response.data.success) {
                     ToastDemo(
                         this.props.toastManager,
-                        "Promo code applied successfully!",
+                        t("promo_code_applied_success"),
                         "success"
                     );
                     this.setState({
@@ -141,7 +141,7 @@ class InvoiceComponent extends Helper {
     handlePromoCodeCancel = event => {
         event.preventDefault();
         this.setState({ promoCode: null, loadingPromoCode: true });
-        ToastDemo(this.props.toastManager, "Promo code removed..", "error");
+        ToastDemo(this.props.toastManager, t("promo_code_removed"), "error");
     };
 
     handleChangePayment = ({ currentTarget: input }) => {
@@ -151,7 +151,7 @@ class InvoiceComponent extends Helper {
     handlePayment = event => {
         event.preventDefault();
         this.setState({
-            loadingContentCard: "Loading... Please wait..",
+            loadingContentCard: t("loading_text"),
             buttonDisableCard: true
         });
         let inputData;
@@ -290,7 +290,7 @@ class InvoiceComponent extends Helper {
                                         style={invoiceImg}
                                         className="invoice-img"
                                     >
-                                        <h1>invoice</h1>
+                                        <h1>{t("invoice")}</h1>
                                     </div>
                                     <div className="payment-option">
                                         <h4 className="billing-head">
@@ -423,7 +423,9 @@ class InvoiceComponent extends Helper {
                                                                         ? this
                                                                               .state
                                                                               .loadingContent
-                                                                        : "send"}
+                                                                        : t(
+                                                                              "send"
+                                                                          )}
                                                                 </button>
                                                             </div>
                                                         </div>
@@ -553,9 +555,15 @@ class InvoiceComponent extends Helper {
                                                                           .loadingContentCard
                                                                     : subscription.amount >
                                                                       0
-                                                                    ? "pay now using Card"
-                                                                    : "Subscribe Now"
-                                                                : "Subscribe Now"}
+                                                                    ? t(
+                                                                          "pay_now_using_card"
+                                                                      )
+                                                                    : t(
+                                                                          "subscribe_now"
+                                                                      )
+                                                                : t(
+                                                                      "subscribe_now"
+                                                                  )}
                                                         </button>
                                                     ) : (
                                                         <PaypalExpressBtn

@@ -7,7 +7,7 @@ import ToastDemo from "../../Helper/toaster";
 import { withToastManager } from "react-toast-notifications";
 import Helper from "../../Helper/helper";
 
-import { t } from "react-multi-lang";
+import { t, translate } from "react-multi-lang";
 
 class BillingDetailsComponent extends Helper {
     state = {
@@ -55,7 +55,7 @@ class BillingDetailsComponent extends Helper {
     handleCancelAutoRenewal = event => {
         event.preventDefault();
         this.setState({
-            loadingContent: "Loading... Please wait..",
+            loadingContent: t("loading_text"),
             buttonDisable: true
         });
         let inputData = {
@@ -96,7 +96,7 @@ class BillingDetailsComponent extends Helper {
     handleEnableAutoRenewal = event => {
         event.preventDefault();
         this.setState({
-            loadingContent: "Loading... Please wait..",
+            loadingContent: t("loading_text"),
             buttonDisable: true
         });
         let inputData = {
@@ -153,7 +153,7 @@ class BillingDetailsComponent extends Helper {
                                 <div className="row m-0">
                                     <div className="col-sm-12 col-md-5 col-lg-5 col-xl-5 p-0">
                                         {loading ? (
-                                            "Loading..."
+                                            t("loading")
                                         ) : subscriptions.length > 0 ? (
                                             <div
                                                 className="billing-img"
@@ -499,4 +499,4 @@ class BillingDetailsComponent extends Helper {
     }
 }
 
-export default withToastManager(BillingDetailsComponent);
+export default withToastManager(translate(BillingDetailsComponent));

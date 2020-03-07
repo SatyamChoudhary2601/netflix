@@ -37,16 +37,18 @@ class StaticLayout extends Component {
     return (
       <div className="wrapper">
         <StaticHeader />
-        <div className="main pl-5 pr-5">
-          <div className="row">
-            <div className="col-sm-12 col-md-3 col-lg-2">
-              <StaticSidebar />
-            </div>
-            <div className="col-sm-12 col-md-9 col-lg-10">
-              {React.cloneElement(this.props.children, {
-                eventEmitter: this.eventEmitter,
-                data: isAuthenticated
-              })}
+        <div className="main-sec-content">
+          <div className="main pl-5 pr-5">
+            <div className="row">
+              <div className="col-sm-12 col-md-3 col-lg-2">
+                <StaticSidebar />
+              </div>
+              <div className="col-sm-12 col-md-9 col-lg-10">
+                {React.cloneElement(this.props.children, {
+                  eventEmitter: this.eventEmitter,
+                  data: isAuthenticated
+                })}
+              </div>
             </div>
           </div>
         </div>

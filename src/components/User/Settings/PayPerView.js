@@ -7,6 +7,7 @@ import ToastDemo from "../../Helper/toaster";
 import api from "../../../Environment";
 import Helper from "../../Helper/helper";
 import configuration from "react-global-configuration";
+import { translate, t } from "react-multi-lang";
 
 class PayPerView extends Helper {
     state = {
@@ -18,7 +19,10 @@ class PayPerView extends Helper {
         loadingContent: null,
         buttonDisable: false,
         loadingContentCard: null,
-        buttonDisableCard: false
+        buttonDisableCard: false,
+        referralData: null,
+        loadingReferral: true,
+        pay_amount: 0
     };
     componentDidMount() {
         if (this.props.location.state) {
@@ -26,12 +30,56 @@ class PayPerView extends Helper {
         } else {
             window.location = "/home";
         }
+
+        this.checkReferralInvoice();
+
+        this.setState({
+            pay_amount: this.props.location.state.videoDetailsFirst.ppv_amount
+        });
     }
+
+    checkReferralInvoice = event => {
+        let inputData = {
+            amount: this.props.location.state.videoDetailsFirst.ppv_amount
+        };
+        api.postMethod("invoice_referral_amount", inputData)
+            .then(response => {
+                if (response.data.success) {
+                    if (response.data.data.pay_amount <= 0) {
+                        // Hide promocode section
+                        // Enable subscribe now button
+                        this.setState({
+                            freeSubscription: true
+                        });
+                    }
+
+                    this.setState({
+                        referralData: response.data.data,
+                        pay_amount: response.data.data.pay_amount,
+                        loadingReferral: false
+                    });
+                } else {
+                    ToastDemo(
+                        this.props.toastManager,
+                        response.data.error_messages,
+                        "error"
+                    );
+                    this.setState({
+                        loadingContent: null,
+                        buttonDisable: false
+                    });
+                }
+            })
+            .catch(error => {
+                // ToastDemo(this.props.toastManager, error, "error");
+                // this.setState({ loadingContent: null, buttonDisable: false });
+            });
+    };
 
     handlePromoCode = event => {
         event.preventDefault();
         this.setState({
-            loadingContent: "Loading... Please wait..",
+            loadingContent: this.props.t("button_loading"),
             buttonDisable: true
         });
         let inputData = {
@@ -44,18 +92,15 @@ class PayPerView extends Helper {
                 if (response.data.success) {
                     ToastDemo(
                         this.props.toastManager,
-                        "Promo code applied successfully!",
+                        this.props.t("promo_code_applied_success"),
                         "success"
                     );
                     this.setState({
                         loadingContent: null,
-                        buttonDisable: false,
                         loadingPromoCode: false,
-                        promoCode: response.data.data
-                    });
-                    this.setState({
-                        loadingContent: null,
-                        buttonDisable: false
+                        promoCode: response.data.data,
+                        buttonDisable: false,
+                        pay_amount: response.data.data.remaining_amount
                     });
                 } else {
                     ToastDemo(
@@ -78,7 +123,11 @@ class PayPerView extends Helper {
     handlePromoCodeCancel = event => {
         event.preventDefault();
         this.setState({ promoCode: null, loadingPromoCode: true });
-        ToastDemo(this.props.toastManager, "Promo code removed..", "error");
+        ToastDemo(
+            this.props.toastManager,
+            this.props.t("promo_code_removed"),
+            "error"
+        );
     };
 
     handleChangePayment = ({ currentTarget: input }) => {
@@ -87,7 +136,7 @@ class PayPerView extends Helper {
     handlePayment = event => {
         event.preventDefault();
         this.setState({
-            loadingContentCard: "Loading... Please wait..",
+            loadingContentCard: this.props.t("button_loading"),
             buttonDisableCard: true
         });
         let inputData;
@@ -206,9 +255,7 @@ class PayPerView extends Helper {
 
             let env = configuration.get("configData.PAYPAL_MODE"); // you can set here to 'production' for production
             let currency = "USD"; // or you can set this value from your props or state
-            let total = loadingPromoCode
-                ? videoDetailsFirst.ppv_amount
-                : promoCode.remaining_amount; // same as above, this is the total amount (based on currency) to be paid by using Paypal express checkout
+            let total = this.pay_amount; // same as above, this is the total amount (based on currency) to be paid by using Paypal express checkout
 
             const client = {
                 sandbox: configuration.get("configData.PAYPAL_ID"),
@@ -266,7 +313,7 @@ class PayPerView extends Helper {
                                                         </div>
                                                         <div className="content-right">
                                                             <h5 className="billing-head mb-3">
-                                                                title
+                                                                {t("title")}
                                                             </h5>
                                                             <p className="m-0">
                                                                 {
@@ -285,7 +332,7 @@ class PayPerView extends Helper {
                                                         </div>
                                                         <div className="content-right">
                                                             <h5 className="billing-head mb-3">
-                                                                user type
+                                                                {t("user_type")}
                                                             </h5>
                                                             <p className="m-0">
                                                                 {videoDetailsFirst.type_of_user ==
@@ -308,8 +355,9 @@ class PayPerView extends Helper {
                                                         </div>
                                                         <div className="content-right">
                                                             <h5 className="billing-head mb-3">
-                                                                subscription
-                                                                type
+                                                                {t(
+                                                                    "subscription_type"
+                                                                )}
                                                             </h5>
                                                             <p className="m-0">
                                                                 {videoDetailsFirst.type_of_subscription ==
@@ -327,16 +375,17 @@ class PayPerView extends Helper {
                                             <div className="billing-content-sec">
                                                 <h4 className="billing-head">
                                                     <i className="far fa-credit-card" />
-                                                    pay per view
+                                                    {t("pay_per_view")}
                                                 </h4>
                                                 <p className="grey-line" />
                                                 <div className="">
-                                                    <h5 className="">Amount</h5>
+                                                    <h5 className="">
+                                                        {t("amount")}
+                                                    </h5>
                                                     <p className="grey-clr pay-perview-text">
-                                                        You need to pay for the
-                                                        selected video, even if
-                                                        you are a subscribed
-                                                        User.
+                                                        {t(
+                                                            "pay_for_video_text"
+                                                        )}
                                                     </p>
                                                 </div>
                                                 {/* <!-- table1 --> */}
@@ -344,20 +393,26 @@ class PayPerView extends Helper {
                                                     <table className="table white-bg m-0">
                                                         <tbody>
                                                             <tr className="table-secondary">
-                                                                <td>amount</td>
+                                                                <td>
+                                                                    {t(
+                                                                        "amount"
+                                                                    )}
+                                                                </td>
                                                                 <td>
                                                                     {
                                                                         videoDetailsFirst.currency
                                                                     }
                                                                     {
-                                                                        videoDetailsFirst.ppv_amount
+                                                                        this
+                                                                            .pay_amount
                                                                     }
                                                                 </td>
                                                             </tr>
                                                             <tr>
                                                                 <td>
-                                                                    Promo Code
-                                                                    amount
+                                                                    {t(
+                                                                        "promo_code_amount"
+                                                                    )}
                                                                 </td>
                                                                 <td>
                                                                     {
@@ -369,14 +424,17 @@ class PayPerView extends Helper {
                                                                 </td>
                                                             </tr>
                                                             <tr className="table-secondary">
-                                                                <td>total</td>
+                                                                <td>
+                                                                    {t("total")}
+                                                                </td>
                                                                 <td>
                                                                     {
                                                                         videoDetailsFirst.currency
                                                                     }
-                                                                    {loadingPromoCode
-                                                                        ? videoDetailsFirst.ppv_amount
-                                                                        : promoCode.remaining_amount}
+                                                                    {
+                                                                        this
+                                                                            .pay_amount
+                                                                    }
                                                                 </td>
                                                             </tr>
                                                         </tbody>
@@ -387,7 +445,7 @@ class PayPerView extends Helper {
                                                 {/* <!-- coupon --> */}
                                                 <div className="mt-4">
                                                     <h5 className="capitalize">
-                                                        have a coupon?
+                                                        {t("have_a_coupon")}
                                                     </h5>
                                                     <form
                                                         className="auth-form"
@@ -400,7 +458,9 @@ class PayPerView extends Helper {
                                                                 <input
                                                                     type="text"
                                                                     className="form-control m-0 mb-0"
-                                                                    placeholder="promo code"
+                                                                    placeholder={t(
+                                                                        "promocode"
+                                                                    )}
                                                                     name="coupon_code"
                                                                     value={
                                                                         data.coupon_code
@@ -422,7 +482,9 @@ class PayPerView extends Helper {
                                                                             ? this
                                                                                   .state
                                                                                   .loadingContent
-                                                                            : "send"}
+                                                                            : t(
+                                                                                  "send"
+                                                                              )}
                                                                     </button>
                                                                 </div>
                                                             </div>
@@ -449,7 +511,7 @@ class PayPerView extends Helper {
                                                                         .handlePromoCodeCancel
                                                                 }
                                                             >
-                                                                Cancel
+                                                                {t("cancel")}
                                                             </Link>
                                                         </p>
                                                     )}
@@ -459,7 +521,9 @@ class PayPerView extends Helper {
                                                 {/* <!-- payment option --> */}
                                                 <div className="mt-4">
                                                     <h5 className="capitalize">
-                                                        choose payment option
+                                                        {t(
+                                                            "choose_payment_option"
+                                                        )}
                                                     </h5>
                                                     <form
                                                         className="mt-3"
@@ -480,7 +544,9 @@ class PayPerView extends Helper {
                                                                     }
                                                                 />
                                                                 <label htmlFor="paypal">
-                                                                    paypal
+                                                                    {t(
+                                                                        "paypal"
+                                                                    )}
                                                                 </label>
                                                             </div>
                                                         ) : (
@@ -501,14 +567,16 @@ class PayPerView extends Helper {
                                                                 }
                                                             />
                                                             <label htmlFor="card">
-                                                                card payment
+                                                                {t(
+                                                                    "card_payment"
+                                                                )}
                                                             </label>
                                                         </div>
                                                         <Link
                                                             to="/add-card"
                                                             className="float-right btn-link"
                                                         >
-                                                            add card
+                                                            {t("add_card")}
                                                         </Link>
                                                         <div className="text-right mb-3 mt-3">
                                                             {paymentMode ==
@@ -531,7 +599,9 @@ class PayPerView extends Helper {
                                                                         ? this
                                                                               .state
                                                                               .loadingContentCard
-                                                                        : "pay now using Card"}
+                                                                        : t(
+                                                                              "pay_now_using_card"
+                                                                          )}
                                                                 </button>
                                                             ) : (
                                                                 <PaypalExpressBtn
@@ -573,4 +643,4 @@ class PayPerView extends Helper {
     }
 }
 
-export default withToastManager(PayPerView);
+export default withToastManager(translate(PayPerView));

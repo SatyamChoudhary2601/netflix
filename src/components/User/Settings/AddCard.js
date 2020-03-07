@@ -7,7 +7,7 @@ import api from "../../../Environment";
 import { withToastManager } from "react-toast-notifications";
 import ToastDemo from "../../Helper/toaster";
 
-import { translate } from "react-multi-lang";
+import { translate, t } from "react-multi-lang";
 
 class AddCardComponent extends Helper {
     state = {
@@ -24,7 +24,7 @@ class AddCardComponent extends Helper {
     addCard = ev => {
         ev.preventDefault();
         this.setState({
-            loadingContent: "Loading... Please wait..",
+            loadingContent: t("loading_text"),
             buttonDisable: true
         });
         if (this.props.stripe) {

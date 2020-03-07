@@ -33,33 +33,30 @@ class PaymentOptions extends Component {
                                     <div className="payment-option">
                                         <h4 className="billing-head">
                                             <i className="far fa-credit-card" />
-                                            select option
+                                            {t("select_option")}
                                         </h4>
                                         <div className="payment-note">
                                             <p className="mb-0">
                                                 <span className="bold">
-                                                    Note:
+                                                    {t("note")}:
                                                 </span>{" "}
-                                                You are a Normal User. If you
-                                                are Paid User, you need not make
-                                                any payment to watch the video.
-                                                If you want to become a paid
-                                                user, please choose a plan so as
-                                                to become a paid user.
+                                                {t("payment_option_note")}
                                             </p>
                                         </div>
 
                                         <div className="payment-method">
                                             <div className="left">
-                                                <h4>plans</h4>
+                                                <h4>{t("plans")}</h4>
                                             </div>
                                             <div className="right">
-                                                <h4>subscription plan</h4>
+                                                <h4>
+                                                    {t("subscription_plan")}
+                                                </h4>
                                                 <Link
                                                     to="/subscription"
                                                     className="btn-link"
                                                 >
-                                                    click here to subscribe
+                                                    {t("click_to_subscribe")}
                                                 </Link>
                                             </div>
                                         </div>
@@ -75,8 +72,8 @@ class PaymentOptions extends Component {
                                             </div>
                                             <div className="right">
                                                 <h4>
-                                                    pay per video (
-                                                    {videoDetailsFirst.ppv_page_type ===
+                                                    {t("pay_per_video")} (
+                                                    {videoDetailsFirst.ppv_page_type ==
                                                     1 ? (
                                                         <span>
                                                             {t(
@@ -102,7 +99,7 @@ class PaymentOptions extends Component {
                                                     }}
                                                     className="btn-link"
                                                 >
-                                                    click here to pay per video
+                                                    {t("click_to_pay")}
                                                 </Link>
                                             </div>
                                         </div>

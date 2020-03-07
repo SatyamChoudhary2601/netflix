@@ -39,8 +39,11 @@ class ReferalFriend extends Helper {
 
         $("#referral_copy_success")
             .html("copied")
-            .delay(3000)
-            .fadeOut("slow");
+            .fadeIn("slow");
+
+        setTimeout(function() {
+            $("#referral_copy_success").html("");
+        }, 1000);
     };
     getReferralDetails = event => {
         api.postMethod("referral_code")

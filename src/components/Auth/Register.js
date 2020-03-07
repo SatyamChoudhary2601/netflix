@@ -1,21 +1,15 @@
-import React, { Component } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import Helper from "../Helper/helper";
 import api from "../../Environment";
 import { withToastManager } from "react-toast-notifications";
 import ToastDemo from "../Helper/toaster";
 import GoogleLogin from "react-google-login";
-
 import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
 import { apiConstants } from "../Constant/constants";
-
 import configuration from "react-global-configuration";
 
-import {
-    setTranslations,
-    setDefaultLanguage,
-    translate
-} from "react-multi-lang";
+import { translate } from "react-multi-lang";
 var const_time_zone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
 class RegisterComponent extends Helper {
@@ -27,7 +21,6 @@ class RegisterComponent extends Helper {
             timezone: const_time_zone,
             referral_code: ""
         },
-        referral_code: "",
         loadingContent: null,
         buttonDisable: false,
         check_referral_response: ""
@@ -37,7 +30,7 @@ class RegisterComponent extends Helper {
         const query = new URLSearchParams(this.props.location.search);
         const referral = query.get("referral");
         if (referral) {
-            this.setState({ referral_code: referral });
+            this.setState({ data: { referral_code: referral } });
         }
     }
 
@@ -231,10 +224,11 @@ class RegisterComponent extends Helper {
     };
 
     checkReferralCode = event => {
-        if (this.state.referral_code) {
-            event.preventDefault();
+        event.preventDefault();
+
+        if (this.state.data.referral_code) {
             let inputData = {
-                referral_code: this.state.referral_code
+                referral_code: this.state.data.referral_code
             };
             api.postMethod("referral_code_validate", inputData)
                 .then(response => {
@@ -342,13 +336,15 @@ class RegisterComponent extends Helper {
                                             className="form-control"
                                             id="referral_code"
                                             name="referral_code"
-                                            value={this.state.referral_code}
+                                            value={
+                                                this.state.data.referral_code
+                                            }
                                         />
 
-                                        {this.state.referral_code ? (
+                                        {this.state.data.referral_code ? (
                                             <a
                                                 className="text-warning"
-                                                href=""
+                                                href="#"
                                                 onClick={this.checkReferralCode}
                                             >
                                                 {t("check_referral_code_valid")}
@@ -371,7 +367,7 @@ class RegisterComponent extends Helper {
                                     </div>
 
                                     <button
-                                        className="btn btn-danger auth-btn mt-4"
+                                        className="btn btn-danger auth-btn"
                                         disabled={this.state.buttonDisable}
                                     >
                                         {this.state.loadingContent != null

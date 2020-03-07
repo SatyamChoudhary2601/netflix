@@ -19,7 +19,7 @@ class PaymentViewDetails extends Component {
 
         const { loadingFirst } = this.state;
         if (loadingFirst) {
-            return "Loading...";
+            return t("loading");
         } else {
             const ppvDetails = this.props.location.state;
             var videoImg = {

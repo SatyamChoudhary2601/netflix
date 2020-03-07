@@ -71,7 +71,7 @@ class PaymentHistory extends Component {
                                 </div>
                                 <div className="payment-history">
                                     {loading
-                                        ? "Loading..."
+                                        ? t("loading")
                                         : ppvList.length > 0
                                         ? ppvList.map(ppv => (
                                               <div key={ppv.admin_video_id}>
