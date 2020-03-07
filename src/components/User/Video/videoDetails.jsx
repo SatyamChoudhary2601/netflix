@@ -1,14 +1,8 @@
-import React, { Component } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import Helper from "../../Helper/helper";
 
-import {
-    setTranslations,
-    setDefaultLanguage,
-    translate
-} from "react-multi-lang";
-import en from "../../translation/en.json";
-import pt from "../../translation/pt.json";
+import { translate } from "react-multi-lang";
 
 class VideoDetails extends Helper {
     render() {

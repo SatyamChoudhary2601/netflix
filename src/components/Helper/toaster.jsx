@@ -1,5 +1,5 @@
-import React from "react";
-import { withToastManager } from "react-toast-notifications";
+// import React from "react";
+// import { withToastManager } from "react-toast-notifications";
 
 const ToastDemo = (toastManager, message, type) => {
     if (!message) {

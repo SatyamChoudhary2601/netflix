@@ -1,13 +1,12 @@
-import React, { Component } from "react";
+import React from "react";
 
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import api from "../../../Environment";
 import ToastDemo from "../../Helper/toaster";
 import { withToastManager } from "react-toast-notifications";
 import Helper from "../../Helper/helper";
 
-import $ from "jquery";
 import { t } from "react-multi-lang";
 
 class BillingDetailsComponent extends Helper {

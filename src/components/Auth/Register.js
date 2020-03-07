@@ -24,7 +24,8 @@ class RegisterComponent extends Helper {
             email: "",
             password: "",
             name: "",
-            timezone: const_time_zone
+            timezone: const_time_zone,
+            referral_code: ""
         },
         referral_code: "",
         loadingContent: null,
@@ -343,25 +344,30 @@ class RegisterComponent extends Helper {
                                             name="referral_code"
                                             value={this.state.referral_code}
                                         />
-                                        <a
-                                            className="text-warning"
-                                            href=""
-                                            onClick={this.checkReferralCode}
-                                        >
-                                            {t("check_referral_code_valid")}
 
-                                            {this.state
-                                                .check_referral_response ? (
-                                                <p className="text-success">
-                                                    {
-                                                        this.state
-                                                            .check_referral_response
-                                                    }
-                                                </p>
-                                            ) : (
-                                                ""
-                                            )}
-                                        </a>
+                                        {this.state.referral_code ? (
+                                            <a
+                                                className="text-warning"
+                                                href=""
+                                                onClick={this.checkReferralCode}
+                                            >
+                                                {t("check_referral_code_valid")}
+
+                                                {this.state
+                                                    .check_referral_response ? (
+                                                    <p className="text-success">
+                                                        {
+                                                            this.state
+                                                                .check_referral_response
+                                                        }
+                                                    </p>
+                                                ) : (
+                                                    ""
+                                                )}
+                                            </a>
+                                        ) : (
+                                            ""
+                                        )}
                                     </div>
 
                                     <button

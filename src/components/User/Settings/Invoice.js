@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import PaypalExpressBtn from "react-paypal-express-checkout";
 
 import { Link } from "react-router-dom";

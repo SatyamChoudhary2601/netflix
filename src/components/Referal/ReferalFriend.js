@@ -1,8 +1,6 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import React from "react";
 import api from "../../Environment";
 import Helper from "../Helper/helper";
-import { withToastManager } from "react-toast-notifications";
 import ToastDemo from "../Helper/toaster";
 import { translate, t } from "react-multi-lang";
 import configuration from "react-global-configuration";
@@ -23,7 +21,7 @@ const $ = window.$;
 
 class ReferalFriend extends Helper {
     state = {
-        loading: true,
+        // loading: true,
         data: {
             referral_code: "",
             referrals_signup_url: "",

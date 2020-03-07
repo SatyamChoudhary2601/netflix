@@ -1,17 +1,9 @@
-import React, { Component } from "react";
-import { Link, Redirect } from "react-router-dom";
+import React from "react";
+import { Link} from "react-router-dom";
 import { withToastManager } from "react-toast-notifications";
 import api from "../../../Environment";
 import ToastDemo from "../../Helper/toaster";
 import Helper from "../../Helper/helper";
-
-import {
-  setTranslations,
-  setDefaultLanguage,
-  translate
-} from "react-multi-lang";
-import en from "../../translation/en.json";
-import pt from "../../translation/pt.json";
 
 const DATE_OPTIONS = {
   year: "numeric",

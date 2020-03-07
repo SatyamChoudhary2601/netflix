@@ -1,14 +1,6 @@
 import React, { Component } from "react";
 
-// import {Link} from 'react-router-dom';
-
-import {
-    setTranslations,
-    setDefaultLanguage,
-    translate
-} from "react-multi-lang";
-import en from "../../translation/en.json";
-import pt from "../../translation/pt.json";
+import { translate } from "react-multi-lang";
 
 class PaymentViewDetails extends Component {
     state = {

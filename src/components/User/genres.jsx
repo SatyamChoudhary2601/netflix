@@ -1,7 +1,5 @@
-import React, { Component } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-
-import api from "../../Environment";
 
 import Slider from "../SliderView/MainSlider";
 import HomePageBanner from "./homePageBanner";

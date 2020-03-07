@@ -1,19 +1,10 @@
-import React, { Component } from "react";
-
-import { Link, Redirect } from "react-router-dom";
-
+import React from "react";
+import { Link } from "react-router-dom";
 import api from "../../../Environment";
 import Helper from "../../Helper/helper";
 import { withToastManager } from "react-toast-notifications";
-
 import ToastDemo from "../../Helper/toaster";
-
-import {
-    setTranslations,
-    setDefaultLanguage,
-    translate
-} from "react-multi-lang";
-
+import { translate } from "react-multi-lang";
 import configuration from "react-global-configuration";
 
 class ManageProfilesComponent extends Helper {
@@ -253,7 +244,7 @@ class ManageProfilesComponent extends Helper {
                                                 />
                                                 <div className="edit-icon">
                                                     <div className="edit-icon-circle">
-                                                    {/*   <input
+                                                        {/*   <input
                                                             type="file"
                                                             className="form-control"
                                                             accept="image/*"
@@ -266,9 +257,12 @@ class ManageProfilesComponent extends Helper {
                                                         <i className="fas fa-pencil-alt" /> */}
                                                         <div class="image-upload">
                                                             <label for="file-input">
-                                                            <i className="fas fa-pencil-alt" />
+                                                                <i className="fas fa-pencil-alt" />
                                                             </label>
-                                                            <input id="file-input" type="file" />
+                                                            <input
+                                                                id="file-input"
+                                                                type="file"
+                                                            />
                                                         </div>
                                                     </div>
                                                 </div>
