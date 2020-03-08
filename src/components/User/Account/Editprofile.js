@@ -64,12 +64,12 @@ class EditProfilesComponent extends Component {
                                     </div>
                                 </div>
                                 <div className="button-topspace">
-                                    <button className="white-btn">save</button>
+                                    <button className="white-btn">{t("save")}</button>
                                     <button className="grey-outline-btn">
-                                        cancel
+                                        {t('cancel')}
                                     </button>
                                     <button className="grey-outline-btn">
-                                        delete profile
+                                    {t('delete_profile')}
                                     </button>
                                 </div>
                             </form>

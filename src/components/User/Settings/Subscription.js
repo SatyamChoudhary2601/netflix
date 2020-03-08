@@ -42,7 +42,7 @@ class SubscriptionComponent extends Component {
                 <p>plan</p>
                 <h4>
                   {subscription.currency}
-                  {subscription.amount} / {subscription.plan} month
+                  {subscription.amount} / {subscription.plan} {t('month')}
                 </h4>
               </div>
               <div className="subcsription-details">
