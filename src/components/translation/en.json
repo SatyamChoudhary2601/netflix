@@ -106,7 +106,7 @@
     "one_time_payment": "One Time Payment",
     "recurring_payment": "Recurring Payment",
     "user_type": "User Type",
-    "payment_mode": "Payment Modle",
+    "payment_mode": "Payment Mode",
     "get_app": "Get the latest App :",
     "find_us": "Find us on :",
     "who_is_watching": "who's watching?",
@@ -190,6 +190,7 @@
     "pay_now_using_card": "pay now using Card",
     "subscribe_now": "Subscribe Now",
     "add_card": "Add Card",
-    "promocode": "Promo Code"
+    "promocode": "Promo Code",
+    "watch_now_free" : "Watch Now"
 
 }
