@@ -7,7 +7,14 @@ import ToastDemo from "../../Helper/toaster";
 import { withToastManager } from "react-toast-notifications";
 import Helper from "../../Helper/helper";
 
+import {
+
+    translate, t
+} from "react-multi-lang";
+
+
 import $ from "jquery";
+
 
 class BillingDetailsComponent extends Helper {
   state = {
