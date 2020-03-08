@@ -4,6 +4,7 @@ import Slider from "../../SliderView/MainSlider";
 
 import api from "../../../Environment";
 import ContentLoader from "../../Static/contentLoader";
+import { translate, t } from "react-multi-lang";
 
 class Notifications extends Component {
     state = {

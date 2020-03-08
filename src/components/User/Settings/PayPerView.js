@@ -7,6 +7,7 @@ import ToastDemo from "../../Helper/toaster";
 import api from "../../../Environment";
 import Helper from "../../Helper/helper";
 import configuration from "react-global-configuration";
+import { translate, t } from "react-multi-lang";
 
 class PayPerView extends Helper {
     state = {
@@ -78,7 +79,11 @@ class PayPerView extends Helper {
     handlePromoCodeCancel = event => {
         event.preventDefault();
         this.setState({ promoCode: null, loadingPromoCode: true });
-        ToastDemo(this.props.toastManager, this.props.t("promo_code_removed"), "error");
+        ToastDemo(
+            this.props.toastManager,
+            this.props.t("promo_code_removed"),
+            "error"
+        );
     };
 
     handleChangePayment = ({ currentTarget: input }) => {
@@ -308,7 +313,9 @@ class PayPerView extends Helper {
                                                         </div>
                                                         <div className="content-right">
                                                             <h5 className="billing-head mb-3">
-                                                                {t("subscription_type")}
+                                                                {t(
+                                                                    "subscription_type"
+                                                                )}
                                                             </h5>
                                                             <p className="m-0">
                                                                 {videoDetailsFirst.type_of_subscription ==
@@ -330,9 +337,13 @@ class PayPerView extends Helper {
                                                 </h4>
                                                 <p className="grey-line" />
                                                 <div className="">
-                                                    <h5 className="">{t("amount")}</h5>
+                                                    <h5 className="">
+                                                        {t("amount")}
+                                                    </h5>
                                                     <p className="grey-clr pay-perview-text">
-                                                    {t("pay_for_video_text")}
+                                                        {t(
+                                                            "pay_for_video_text"
+                                                        )}
                                                     </p>
                                                 </div>
                                                 {/* <!-- table1 --> */}
@@ -340,7 +351,11 @@ class PayPerView extends Helper {
                                                     <table className="table white-bg m-0">
                                                         <tbody>
                                                             <tr className="table-secondary">
-                                                                <td>{t("amount")}</td>
+                                                                <td>
+                                                                    {t(
+                                                                        "amount"
+                                                                    )}
+                                                                </td>
                                                                 <td>
                                                                     {
                                                                         videoDetailsFirst.currency
@@ -352,7 +367,9 @@ class PayPerView extends Helper {
                                                             </tr>
                                                             <tr>
                                                                 <td>
-                                                                {t("promo_code_amount")}
+                                                                    {t(
+                                                                        "promo_code_amount"
+                                                                    )}
                                                                 </td>
                                                                 <td>
                                                                     {
@@ -364,7 +381,9 @@ class PayPerView extends Helper {
                                                                 </td>
                                                             </tr>
                                                             <tr className="table-secondary">
-                                                                <td>{t("total")}</td>
+                                                                <td>
+                                                                    {t("total")}
+                                                                </td>
                                                                 <td>
                                                                     {
                                                                         videoDetailsFirst.currency
@@ -454,7 +473,9 @@ class PayPerView extends Helper {
                                                 {/* <!-- payment option --> */}
                                                 <div className="mt-4">
                                                     <h5 className="capitalize">
-                                                        {t("choose_payment_option")}
+                                                        {t(
+                                                            "choose_payment_option"
+                                                        )}
                                                     </h5>
                                                     <form
                                                         className="mt-3"
