@@ -2,6 +2,10 @@ import axios from "axios";
 
 import { apiConstants } from "./components/Constant/constants";
 
+import {
+    getLanguage
+} from "react-multi-lang";
+
 const apiUrl = "http://adminview.streamhash.com/userApi/"; // Production Mode
 
 // const apiUrl = "http://localhost:8000/userApi/"; // Development Mode
@@ -23,6 +27,8 @@ const Environment = {
                 : "";
 
         const url = apiUrl + action;
+        
+        let language = getLanguage();
 
         let formData = new FormData();
 
@@ -30,6 +36,7 @@ const Environment = {
 
         formData.append("id", userId);
         formData.append("token", accessToken);
+        formData.append("language", language);
         formData.append(
             "sub_profile_id",
             localStorage.getItem("active_profile_id")
@@ -74,11 +81,14 @@ const Environment = {
         const url = apiUrl + action;
 
         let formData = new FormData();
+         
+        let language = getLanguage();
 
         // By Default Id and token
 
         formData.append("id", userId);
         formData.append("token", accessToken);
+        formData.append("language", language);
 
         // append your data
         for (var key in object) {

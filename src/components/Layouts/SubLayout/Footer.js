@@ -5,7 +5,8 @@ import {
     setTranslations,
     setDefaultLanguage,
     setLanguage,
-    translate
+    translate,
+    getLanguage
 } from "react-multi-lang";
 import en from "../../translation/en.json";
 import pt from "../../translation/pt.json";
@@ -60,7 +61,10 @@ class Footer extends Component {
     }
 
     handleChangeLang = ({ currentTarget: input }) => {
+        console.log(input.value);
         setLanguage(input.value);
+        localStorage.setItem("lang", input.value);
+        // window.location.reload();
     };
 
     render() {
@@ -204,8 +208,30 @@ class Footer extends Component {
                                             onChange={this.handleChangeLang}
                                             name="lang"
                                         >
-                                            <option value="en">English</option>
-                                            <option value="pt">Spanish</option>
+                                            <option
+                                                value="en"
+                                                selected={
+                                                    localStorage.getItem(
+                                                        "lang"
+                                                    ) == "en"
+                                                        ? true
+                                                        : false
+                                                }
+                                            >
+                                                English
+                                            </option>
+                                            <option
+                                                value="pt"
+                                                selected={
+                                                    localStorage.getItem(
+                                                        "lang"
+                                                    ) == "pt"
+                                                        ? true
+                                                        : false
+                                                }
+                                            >
+                                                Spanish
+                                            </option>
                                         </select>
                                     </div>
                                 </div>

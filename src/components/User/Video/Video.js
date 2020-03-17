@@ -10,27 +10,69 @@ import ContentLoader from "../../Static/contentLoader";
 
 import api from "../../../Environment";
 
+import io from "socket.io-client";
+
+import { apiConstants } from "../../Services/Constants";
+
+const socket = io(apiConstants.socketUrl);
+
+let userId = localStorage.getItem("userId");
+
+let accessToken = localStorage.getItem("accessToken");
+
 class VideoComponent extends Helper {
+
   state = {
     loadingFirst: true,
     videoDetailsFirst: null,
     onPlayStarted: false,
-    videoList: {}
+    videoList: {},
+    videoData: null,
+    videoId: 0,
+    socket: false,
+    query:''
   };
+
   componentDidMount() {
+
     if (this.props.location.state) {
       this.setState({ loadingFirst: false });
     } else {
       window.location = "/home";
     }
   }
+  
+  handleStateChange(state) {
+    // copy player state to this component's state
+    this.setState({
+      player: state,
+      currentTime: state.currentTime
+    });
+  }
+
+  timer = async () => {
+    // setState method is used to update the state
+    await this.socketConnectionfun(userId,accessToken);
+  }
+
+  componentWillUnmount() {
+    // use intervalId from the state to clear the interval
+    clearInterval(this.state.intervalId);
+  }
 
   onCompleteVideo = () => {
     this.addHistory(this.props.location.state.videoDetailsFirst.admin_video_id);
     this.setState({ onPlayStarted: false });
+
+    socket.emit('disconnect'); 
   };
 
   onVideoPlay = async () => {
+
+    let intervalId = setInterval(this.timer, 3000);
+
+    this.setState({intervalId: intervalId});
+
     this.setState({ onPlayStarted: true });
     let inputData = {
       admin_video_id: this.props.location.state.videoDetailsFirst.admin_video_id
@@ -39,7 +81,7 @@ class VideoComponent extends Helper {
 
     this.redirectStatus(this.state.videoDetailsFirst);
   };
-
+  
   addHistory = admin_video_id => {
     api
       .postMethod("addHistory", { admin_video_id: admin_video_id })
@@ -49,6 +91,44 @@ class VideoComponent extends Helper {
         }
       })
       .catch(function(error) {});
+  };
+
+  socketConnectionfun = (userId,accessToken) => {
+    console.log('Inside')
+    let videoId = this.props.location.state.videoDetailsFirst.admin_video_id;
+
+    socket.on('connect', function(){
+      let query = `user_id=` +
+        userId +
+        `&video_id=` +
+        videoId
+    });
+
+    socket.on('connected', function () {
+      console.log('Connected');
+    });
+
+    socket.on('disconnect', function () {
+      console.log('disconnect');
+    });
+
+    let videoData = [
+      {
+        sub_profile_id: '',
+        admin_video_id: videoId,
+        id: userId,
+        token: accessToken,
+        duration:'00:11'
+      }
+    ];
+
+    socket.emit("save_continue_watching_video", videoData[0]);
+  };
+
+  onPauseVideo = async () => {
+    console.log('onPause')
+    socket.emit('disconnect'); 
+    clearInterval(this.state.intervalId);
   };
 
   render() {
@@ -66,14 +146,13 @@ class VideoComponent extends Helper {
     const { loadingFirst } = this.state;
     let mainVideo;
     let videoTitle;
-    let videoLists;
+    let seekTime;
 
     if (loadingFirst) {
       return <ContentLoader />;
     } else {
       // Check the whether we need to play the trailer or main video
-
-      console.log(this.props.location.state.videoFrom);
+      
       if (this.props.location.state.videoFrom != undefined) {
         if (this.props.location.state.videoFrom == "trailer") {
           mainVideo = this.props.location.state.videoDetailsFirst.resolutions
@@ -84,16 +163,26 @@ class VideoComponent extends Helper {
         }
 
         videoTitle = this.props.location.state.videoDetailsFirst.name;
+
+        seekTime = this.props.location.state.videoDetailsFirst.seek_time_in_seconds;
+        
+        console.log(seekTime);
       } else {
         mainVideo = this.props.location.state.videoDetailsFirst.main_video;
 
         videoTitle = this.props.location.state.videoDetailsFirst.title;
+
+        seekTime = this.props.location.state.videoDetailsFirst.seek_time_in_seconds;
+        console.log(seekTime);
       }
 
       return (
         <div>
           <div className="single-video">
             <ReactPlayer
+              ref={player => {
+               this.player = player;
+              }}
               // url={[
               //   {
               //     src:
@@ -112,11 +201,13 @@ class VideoComponent extends Helper {
               width="100%"
               height="100vh"
               playing={true}
+              onPause={this.onPauseVideo}
               onPlay={
                 this.props.location.state.videoFrom == "trailer"
                   ? ""
                   : this.onVideoPlay
               }
+              onSeek={seekTime}
               onEnded={this.onCompleteVideo}
               config={{
                 file: {

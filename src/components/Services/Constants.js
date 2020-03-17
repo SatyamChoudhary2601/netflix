@@ -52,5 +52,7 @@ export const apiConstants = {
 
     HISTORY_COMPLETE_STATUS : 2,
 
-    HISTORY_DELETE_STATUS : 3
+    HISTORY_DELETE_STATUS : 3,
+
+    socketUrl: "http://adminview.streamhash.com:3003/",
 }

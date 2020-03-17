@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { withToastManager } from "react-toast-notifications";
 import ToastDemo from "../Helper/toaster";
 
+import { translate } from "react-multi-lang";
+
 class Logout extends Component {
     componentDidMount() {
         localStorage.removeItem("accessToken");
@@ -19,4 +21,4 @@ class Logout extends Component {
     }
 }
 
-export default withToastManager(Logout);
+export default withToastManager(translate(Logout));
