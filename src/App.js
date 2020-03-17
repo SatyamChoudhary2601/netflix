@@ -81,13 +81,13 @@ import { Helmet } from "react-helmet";
 import {
     setTranslations,
     setDefaultLanguage,
-    translate
+    translate,
+    setLanguage
 } from "react-multi-lang";
 import en from "./components/translation/en.json";
 import pt from "./components/translation/pt.json";
 
 setTranslations({ pt, en });
-setDefaultLanguage("en");
 
 const history = createHistory();
 const $ = window.$;
@@ -192,7 +192,11 @@ class App extends Component {
     }
 
     componentDidMount() {
-        localStorage.setItem("lang", "en");
+        let userLanguage = localStorage.getItem("lang")
+           ? localStorage.getItem("lang") : "en";
+        console.log(userLanguage);
+        localStorage.setItem("lang", userLanguage);
+        setLanguage(userLanguage);
         // console.log("Google", configuration.get("configData"));
     }
 
