@@ -31,7 +31,9 @@ class VideoComponent extends Helper {
     videoId: 0,
     socket: false,
     query:'',
-    onSeekPlay:true
+    onSeekPlay:true,
+    socketConnection:true,
+    videoDuration: 0
   };
 
   componentDidMount() {
@@ -45,8 +47,9 @@ class VideoComponent extends Helper {
 
 
   timer = async () => {
-    // setState method is used to update the state
-    await this.socketConnectionfun(userId,accessToken);
+    if (this.state.onPlayStarted) {
+     await this.socketConnectionfun(userId,accessToken);
+    }
   }
 
   componentWillUnmount() {
@@ -56,18 +59,17 @@ class VideoComponent extends Helper {
 
   onCompleteVideo = () => {
     this.addHistory(this.props.location.state.videoDetailsFirst.admin_video_id);
-    this.setState({ onPlayStarted: false });
+    this.setState({ onPlayStarted: false,socketConnection: false });
 
     socket.emit('disconnect'); 
   };
 
   onVideoPlay = async () => {
-
     let intervalId = setInterval(this.timer, 3000);
 
     this.setState({intervalId: intervalId});
 
-    this.setState({ onPlayStarted: true });
+    this.setState({ onPlayStarted: true,socketConnection: true });
 
     let inputData = {
       admin_video_id: this.props.location.state.videoDetailsFirst.admin_video_id
@@ -76,8 +78,10 @@ class VideoComponent extends Helper {
 
     this.redirectStatus(this.state.videoDetailsFirst);
 
-    const seekTime = this.state.videoDetailsFirst.seek_time_in_seconds;
-        
+    const seekTime = this.state.videoDetailsFirst.seek_time_in_seconds ? this.state.videoDetailsFirst.seek_time_in_seconds : 0;
+    
+    console.log(seekTime);
+
     if (this.state.onSeekPlay) {
 
       this.player.seekTo(parseFloat(seekTime));
@@ -118,13 +122,15 @@ class VideoComponent extends Helper {
       console.log('disconnect');
     });
 
+    console.log(this.state.videoDuration);
+
     let videoData = [
       {
         sub_profile_id: '',
         admin_video_id: videoId,
         id: userId,
         token: accessToken,
-        duration:'00:11'
+        duration:this.state.videoDuration
       }
     ];
 
@@ -137,6 +143,21 @@ class VideoComponent extends Helper {
     clearInterval(this.state.intervalId);
   };
   
+  onVideoTimeUpdate = (duration) => {
+    let video_duration = duration.target.currentTime;
+
+    let sec = parseInt(video_duration % 60);
+    let min = parseInt((video_duration / 60) % 60);
+    let hours = parseInt(video_duration / 3600);
+
+    if(hours > 1) {
+      this.setState({videoDuration: hours + ':' + min + ':' + sec}); 
+    } else {
+      this.setState({videoDuration: min + ':' + sec});
+    }
+    
+  }
+
   ref = (player) => {
     this.player = player
   }
@@ -213,6 +234,7 @@ class VideoComponent extends Helper {
                   : this.onVideoPlay
               }
               onEnded={this.onCompleteVideo}
+              onTimeUpdate={this.onVideoTimeUpdate.bind(this)}
               config={{
                 file: {
                   tracks: [
