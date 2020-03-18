@@ -30,7 +30,8 @@ class VideoComponent extends Helper {
     videoData: null,
     videoId: 0,
     socket: false,
-    query:''
+    query:'',
+    onSeekPlay:true
   };
 
   componentDidMount() {
@@ -41,14 +42,7 @@ class VideoComponent extends Helper {
       window.location = "/home";
     }
   }
-  
-  handleStateChange(state) {
-    // copy player state to this component's state
-    this.setState({
-      player: state,
-      currentTime: state.currentTime
-    });
-  }
+
 
   timer = async () => {
     // setState method is used to update the state
@@ -74,12 +68,24 @@ class VideoComponent extends Helper {
     this.setState({intervalId: intervalId});
 
     this.setState({ onPlayStarted: true });
+
     let inputData = {
       admin_video_id: this.props.location.state.videoDetailsFirst.admin_video_id
     };
     await this.onlySingleVideoFirst(inputData);
 
     this.redirectStatus(this.state.videoDetailsFirst);
+
+    const seekTime = this.state.videoDetailsFirst.seek_time_in_seconds;
+        
+    if (this.state.onSeekPlay) {
+
+      this.player.seekTo(parseFloat(seekTime));
+
+    }
+
+    this.setState({ onSeekPlay: false });
+
   };
   
   addHistory = admin_video_id => {
@@ -130,8 +136,13 @@ class VideoComponent extends Helper {
     socket.emit('disconnect'); 
     clearInterval(this.state.intervalId);
   };
-
+  
+  ref = (player) => {
+    this.player = player
+  }
+  
   render() {
+    
     const pageType = "videoPage";
     if (this.state.onPlayStarted) {
       const returnToVideo = this.renderRedirectPage(
@@ -146,7 +157,6 @@ class VideoComponent extends Helper {
     const { loadingFirst } = this.state;
     let mainVideo;
     let videoTitle;
-    let seekTime;
 
     if (loadingFirst) {
       return <ContentLoader />;
@@ -164,25 +174,19 @@ class VideoComponent extends Helper {
 
         videoTitle = this.props.location.state.videoDetailsFirst.name;
 
-        seekTime = this.props.location.state.videoDetailsFirst.seek_time_in_seconds;
         
-        console.log(seekTime);
       } else {
         mainVideo = this.props.location.state.videoDetailsFirst.main_video;
 
         videoTitle = this.props.location.state.videoDetailsFirst.title;
 
-        seekTime = this.props.location.state.videoDetailsFirst.seek_time_in_seconds;
-        console.log(seekTime);
       }
 
       return (
         <div>
           <div className="single-video">
             <ReactPlayer
-              ref={player => {
-               this.player = player;
-              }}
+              ref={this.ref}
               // url={[
               //   {
               //     src:
@@ -201,13 +205,13 @@ class VideoComponent extends Helper {
               width="100%"
               height="100vh"
               playing={true}
+              onStart={this.onLoad}
               onPause={this.onPauseVideo}
               onPlay={
                 this.props.location.state.videoFrom == "trailer"
                   ? ""
                   : this.onVideoPlay
               }
-              onSeek={seekTime}
               onEnded={this.onCompleteVideo}
               config={{
                 file: {
