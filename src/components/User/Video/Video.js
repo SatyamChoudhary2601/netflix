@@ -30,7 +30,10 @@ class VideoComponent extends Helper {
     videoData: null,
     videoId: 0,
     socket: false,
-    query:''
+    query:'',
+    onSeekPlay:true,
+    socketConnection:true,
+    videoDuration: 0
   };
 
   componentDidMount() {
@@ -41,18 +44,12 @@ class VideoComponent extends Helper {
       window.location = "/home";
     }
   }
-  
-  handleStateChange(state) {
-    // copy player state to this component's state
-    this.setState({
-      player: state,
-      currentTime: state.currentTime
-    });
-  }
+
 
   timer = async () => {
-    // setState method is used to update the state
-    await this.socketConnectionfun(userId,accessToken);
+    if (this.state.onPlayStarted) {
+     await this.socketConnectionfun(userId,accessToken);
+    }
   }
 
   componentWillUnmount() {
@@ -62,24 +59,37 @@ class VideoComponent extends Helper {
 
   onCompleteVideo = () => {
     this.addHistory(this.props.location.state.videoDetailsFirst.admin_video_id);
-    this.setState({ onPlayStarted: false });
+    this.setState({ onPlayStarted: false,socketConnection: false });
 
     socket.emit('disconnect'); 
   };
 
   onVideoPlay = async () => {
-
     let intervalId = setInterval(this.timer, 3000);
 
     this.setState({intervalId: intervalId});
 
-    this.setState({ onPlayStarted: true });
+    this.setState({ onPlayStarted: true,socketConnection: true });
+
     let inputData = {
       admin_video_id: this.props.location.state.videoDetailsFirst.admin_video_id
     };
     await this.onlySingleVideoFirst(inputData);
 
     this.redirectStatus(this.state.videoDetailsFirst);
+
+    const seekTime = this.state.videoDetailsFirst.seek_time_in_seconds ? this.state.videoDetailsFirst.seek_time_in_seconds : 0;
+    
+    console.log(seekTime);
+
+    if (this.state.onSeekPlay) {
+
+      this.player.seekTo(parseFloat(seekTime));
+
+    }
+
+    this.setState({ onSeekPlay: false });
+
   };
   
   addHistory = admin_video_id => {
@@ -112,13 +122,15 @@ class VideoComponent extends Helper {
       console.log('disconnect');
     });
 
+    console.log(this.state.videoDuration);
+
     let videoData = [
       {
         sub_profile_id: '',
         admin_video_id: videoId,
         id: userId,
         token: accessToken,
-        duration:'00:11'
+        duration:this.state.videoDuration
       }
     ];
 
@@ -130,8 +142,28 @@ class VideoComponent extends Helper {
     socket.emit('disconnect'); 
     clearInterval(this.state.intervalId);
   };
+  
+  onVideoTimeUpdate = (duration) => {
+    let video_duration = duration.target.currentTime;
 
+    let sec = parseInt(video_duration % 60);
+    let min = parseInt((video_duration / 60) % 60);
+    let hours = parseInt(video_duration / 3600);
+
+    if(hours > 1) {
+      this.setState({videoDuration: hours + ':' + min + ':' + sec}); 
+    } else {
+      this.setState({videoDuration: min + ':' + sec});
+    }
+    
+  }
+
+  ref = (player) => {
+    this.player = player
+  }
+  
   render() {
+    
     const pageType = "videoPage";
     if (this.state.onPlayStarted) {
       const returnToVideo = this.renderRedirectPage(
@@ -146,7 +178,6 @@ class VideoComponent extends Helper {
     const { loadingFirst } = this.state;
     let mainVideo;
     let videoTitle;
-    let seekTime;
 
     if (loadingFirst) {
       return <ContentLoader />;
@@ -164,25 +195,19 @@ class VideoComponent extends Helper {
 
         videoTitle = this.props.location.state.videoDetailsFirst.name;
 
-        seekTime = this.props.location.state.videoDetailsFirst.seek_time_in_seconds;
         
-        console.log(seekTime);
       } else {
         mainVideo = this.props.location.state.videoDetailsFirst.main_video;
 
         videoTitle = this.props.location.state.videoDetailsFirst.title;
 
-        seekTime = this.props.location.state.videoDetailsFirst.seek_time_in_seconds;
-        console.log(seekTime);
       }
 
       return (
         <div>
           <div className="single-video">
             <ReactPlayer
-              ref={player => {
-               this.player = player;
-              }}
+              ref={this.ref}
               // url={[
               //   {
               //     src:
@@ -201,14 +226,15 @@ class VideoComponent extends Helper {
               width="100%"
               height="100vh"
               playing={true}
+              onStart={this.onLoad}
               onPause={this.onPauseVideo}
               onPlay={
                 this.props.location.state.videoFrom == "trailer"
                   ? ""
                   : this.onVideoPlay
               }
-              onSeek={seekTime}
               onEnded={this.onCompleteVideo}
+              onTimeUpdate={this.onVideoTimeUpdate.bind(this)}
               config={{
                 file: {
                   tracks: [
