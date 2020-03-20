@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import PaypalExpressBtn from "react-paypal-express-checkout";
 
 import { Link } from "react-router-dom";
@@ -8,7 +8,7 @@ import api from "../../../Environment";
 import { withToastManager } from "react-toast-notifications";
 import ToastDemo from "../../Helper/toaster";
 
-import { translate } from "react-multi-lang";
+import { translate, t } from "react-multi-lang";
 import configuration from "react-global-configuration";
 
 class InvoiceComponent extends Helper {
@@ -22,7 +22,10 @@ class InvoiceComponent extends Helper {
         buttonDisable: false,
         loadingContentCard: null,
         buttonDisableCard: false,
-        freeSubscription: false
+        freeSubscription: false,
+        referralData: null,
+        loadingReferral: true,
+        pay_amount: 0
     };
 
     componentDidMount() {
@@ -31,12 +34,56 @@ class InvoiceComponent extends Helper {
         } else {
             window.location = "/subscription";
         }
+
+        this.checkReferralInvoice();
+
+        this.setState({
+            pay_amount: this.props.location.state.subscription.amount
+        });
     }
+
+    checkReferralInvoice = event => {
+        let inputData = {
+            amount: this.props.location.state.subscription.amount
+        };
+        api.postMethod("invoice_referral_amount", inputData)
+            .then(response => {
+                if (response.data.success) {
+                    if (response.data.data.pay_amount <= 0) {
+                        // Hide promocode section
+                        // Enable subscribe now button
+                        this.setState({
+                            freeSubscription: true
+                        });
+                    }
+
+                    this.setState({
+                        referralData: response.data.data,
+                        pay_amount: response.data.data.pay_amount,
+                        loadingReferral: false
+                    });
+                } else {
+                    ToastDemo(
+                        this.props.toastManager,
+                        response.data.error_messages,
+                        "error"
+                    );
+                    this.setState({
+                        loadingContent: null,
+                        buttonDisable: false
+                    });
+                }
+            })
+            .catch(error => {
+                // ToastDemo(this.props.toastManager, error, "error");
+                // this.setState({ loadingContent: null, buttonDisable: false });
+            });
+    };
 
     handlePromoCode = event => {
         event.preventDefault();
         this.setState({
-            loadingContent: "Loading... Please wait..",
+            loadingContent: t("loading_text"),
             buttonDisable: true
         });
         let inputData = {
@@ -50,7 +97,7 @@ class InvoiceComponent extends Helper {
                 if (response.data.success) {
                     ToastDemo(
                         this.props.toastManager,
-                        "Promo code applied successfully!",
+                        t("promo_code_applied_success"),
                         "success"
                     );
                     this.setState({
@@ -70,7 +117,8 @@ class InvoiceComponent extends Helper {
                     }
                     this.setState({
                         loadingContent: null,
-                        buttonDisable: false
+                        buttonDisable: false,
+                        pay_amount: response.data.data.remaining_amount
                     });
                 } else {
                     ToastDemo(
@@ -93,7 +141,7 @@ class InvoiceComponent extends Helper {
     handlePromoCodeCancel = event => {
         event.preventDefault();
         this.setState({ promoCode: null, loadingPromoCode: true });
-        ToastDemo(this.props.toastManager, "Promo code removed..", "error");
+        ToastDemo(this.props.toastManager, t("promo_code_removed"), "error");
     };
 
     handleChangePayment = ({ currentTarget: input }) => {
@@ -103,7 +151,7 @@ class InvoiceComponent extends Helper {
     handlePayment = event => {
         event.preventDefault();
         this.setState({
-            loadingContentCard: "Loading... Please wait..",
+            loadingContentCard: t("loading_text"),
             buttonDisableCard: true
         });
         let inputData;
@@ -242,7 +290,7 @@ class InvoiceComponent extends Helper {
                                         style={invoiceImg}
                                         className="invoice-img"
                                     >
-                                        <h1>invoice</h1>
+                                        <h1>{t("invoice")}</h1>
                                     </div>
                                     <div className="payment-option">
                                         <h4 className="billing-head">
@@ -293,15 +341,42 @@ class InvoiceComponent extends Helper {
                                                     ) : (
                                                         ""
                                                     )}
+                                                    {!this.state
+                                                        .loadingReferral ? (
+                                                        this.state.referralData
+                                                            .referral_amount >
+                                                        0 ? (
+                                                            <tr>
+                                                                <td>
+                                                                    {t(
+                                                                        "referral_amount_applied"
+                                                                    )}
+                                                                </td>
+                                                                <td>
+                                                                    {
+                                                                        this
+                                                                            .state
+                                                                            .referralData
+                                                                            .referral_amount_formatted
+                                                                    }
+                                                                </td>
+                                                            </tr>
+                                                        ) : (
+                                                            ""
+                                                        )
+                                                    ) : (
+                                                        ""
+                                                    )}
                                                     <tr className="table-secondary">
                                                         <td>{t("total")}</td>
                                                         <td>
                                                             {
                                                                 subscription.currency
                                                             }
-                                                            {loadingPromoCode
-                                                                ? subscription.amount
-                                                                : promoCode.remaining_amount}
+                                                            {
+                                                                this.state
+                                                                    .pay_amount
+                                                            }
                                                         </td>
                                                     </tr>
                                                 </tbody>
@@ -310,7 +385,8 @@ class InvoiceComponent extends Helper {
                                         {/* <!-- table --> */}
 
                                         {/* <!-- coupon --> */}
-                                        {subscription.amount > 0 ? (
+                                        {subscription.amount > 0 &&
+                                        !this.state.freeSubscription ? (
                                             <div className="mt-4">
                                                 <h5 className="capitalize">
                                                     {t("have_a_coupon")}
@@ -347,7 +423,9 @@ class InvoiceComponent extends Helper {
                                                                         ? this
                                                                               .state
                                                                               .loadingContent
-                                                                        : "send"}
+                                                                        : t(
+                                                                              "send"
+                                                                          )}
                                                                 </button>
                                                             </div>
                                                         </div>
@@ -477,9 +555,15 @@ class InvoiceComponent extends Helper {
                                                                           .loadingContentCard
                                                                     : subscription.amount >
                                                                       0
-                                                                    ? "pay now using Card"
-                                                                    : "Subscribe Now"
-                                                                : "Subscribe Now"}
+                                                                    ? t(
+                                                                          "pay_now_using_card"
+                                                                      )
+                                                                    : t(
+                                                                          "subscribe_now"
+                                                                      )
+                                                                : t(
+                                                                      "subscribe_now"
+                                                                  )}
                                                         </button>
                                                     ) : (
                                                         <PaypalExpressBtn

@@ -2,9 +2,11 @@ import axios from "axios";
 
 import { apiConstants } from "./components/Constant/constants";
 
-const apiUrl = "http://adminview.streamhash.com/userApi/"; // Production Mode
+// const apiUrl = "http://adminview.streamhash.com/userApi/"; // Production Mode
 
-// const apiUrl = "http://localhost:8000/userApi/"; // Development Mode
+const apiUrl = "https://admin-streamview.botfingers.com/userApi/"; // Development Mode
+
+// const apiUrl = "http://localhost:8000/userApi/"; // Local Mode
 
 const Environment = {
     postMethod(action, object) {

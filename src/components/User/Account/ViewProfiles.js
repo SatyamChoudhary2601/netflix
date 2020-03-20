@@ -1,17 +1,11 @@
-import React, { Component } from "react";
+import React from "react";
 
 import { Link } from "react-router-dom";
 import Helper from "../../Helper/helper";
 import ContentLoader from "../../Static/contentLoader";
 import ProgressiveImage from "react-progressive-image";
 
-import {
-    setTranslations,
-    setDefaultLanguage,
-    translate
-} from "react-multi-lang";
-import en from "../../translation/en.json";
-import pt from "../../translation/pt.json";
+import { translate } from "react-multi-lang";
 import configuration from "react-global-configuration";
 
 class ViewProfilesComponent extends Helper {

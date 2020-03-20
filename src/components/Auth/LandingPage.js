@@ -1,13 +1,5 @@
 import React, { Component } from "react";
-import {
-    setTranslations,
-    setDefaultLanguage,
-    translate,
-    getLanguage,
-    setLanguage
-} from "react-multi-lang";
-import en from "../translation/en.json";
-import pt from "../translation/pt.json";
+import { translate, getLanguage } from "react-multi-lang";
 import { Link } from "react-router-dom";
 import configuration from "react-global-configuration";
 import { apiConstants } from "../../components/Constant/constants";

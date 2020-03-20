@@ -1,9 +1,8 @@
 import React, { Component } from "react";
-
 import Slider from "../../SliderView/MainSlider";
-
 import api from "../../../Environment";
 import ContentLoader from "../../Static/contentLoader";
+import { translate, t } from "react-multi-lang";
 
 class Notifications extends Component {
     state = {
@@ -55,7 +54,7 @@ class Notifications extends Component {
             <div className="main p-40">
                 <div className="main-slidersec">
                     <h3 className="">
-                        View All Notification
+                        {t("view_all_notification")}
                         {/* <i className="fas fa-angle-right ml-2" /> */}
                     </h3>
                     {result.map((res, index) => (

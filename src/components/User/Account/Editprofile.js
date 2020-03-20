@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-
 import { Link } from "react-router-dom";
 import configuration from "react-global-configuration";
+import { translate, t } from "react-multi-lang";
 
 class EditProfilesComponent extends Component {
     render() {
@@ -64,12 +64,14 @@ class EditProfilesComponent extends Component {
                                     </div>
                                 </div>
                                 <div className="button-topspace">
-                                    <button className="white-btn">save</button>
-                                    <button className="grey-outline-btn">
-                                        cancel
+                                    <button className="white-btn">
+                                        {t("save")}
                                     </button>
                                     <button className="grey-outline-btn">
-                                        delete profile
+                                        {t("cancel")}
+                                    </button>
+                                    <button className="grey-outline-btn">
+                                        {t("delete_profile")}
                                     </button>
                                 </div>
                             </form>

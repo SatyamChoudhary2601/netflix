@@ -1,11 +1,10 @@
-import React, { Component } from "react";
+import React from "react";
 import Slider from "react-slick";
 import { Link } from "react-router-dom";
 import api from "../../../Environment";
 import { withToastManager } from "react-toast-notifications";
 import ToastDemo from "../../Helper/toaster";
 import Helper from "../../Helper/helper";
-// import ContentLoader from "../../Static/contentLoader";
 
 class VideoEpisode extends Helper {
     state = {
