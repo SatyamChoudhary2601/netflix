@@ -7,8 +7,8 @@ const ToastDemo = (toastManager, message, type) => {
     }
     return toastManager.add(message, {
         appearance: type,
-        autoDismiss: true,
-        pauseOnHover: false
+        autoDismiss: false,
+        //pauseOnHover: false
     });
 };
 
