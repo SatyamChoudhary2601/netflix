@@ -49,6 +49,7 @@ class PayPerView extends Helper {
         };
         api.postMethod("invoice_referral_amount", inputData)
             .then(response => {
+                console.log(response.data);
                 if (response.data.success) {
                     if (response.data.data.pay_amount <= 0) {
                         // Hide promocode section
@@ -408,9 +409,7 @@ class PayPerView extends Helper {
                                                                         videoDetailsFirst.currency
                                                                     }
                                                                     {
-                                                                        this
-                                                                            .state
-                                                                            .pay_amount
+                                                                        videoDetailsFirst.ppv_amount
                                                                     }
                                                                 </td>
                                                             </tr>

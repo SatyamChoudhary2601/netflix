@@ -53,7 +53,6 @@ class ReferalFriend extends Helper {
                         data: response.data.data,
                         loading: false
                     });
-                    console.log("data", response.data.data);
                 } else {
                     if (response.data.error) {
                         ToastDemo(
@@ -282,7 +281,7 @@ class ReferalFriend extends Helper {
                                         </strong>
                                     </p>
                                     <p className="desc no-margin">
-                                        {t("total_credits")}
+                                        {t("referral_earnings")}
                                         <strong>
                                             <span className="float-right">
                                                 {
@@ -291,7 +290,34 @@ class ReferalFriend extends Helper {
                                             </span>
                                         </strong>
                                     </p>
-
+                                    <p className="desc no-margin">
+                                        {t("referee_earnings")}
+                                        <strong>
+                                            <span className="float-right">
+                                                {
+                                                    data.referee_earnings_formatted
+                                                }
+                                            </span>
+                                        </strong>
+                                    </p>
+                                    <p className="desc no-margin">
+                                        {t("total_credits")}
+                                        <strong>
+                                            <span className="float-right">
+                                                {data.currency}
+                                                {data.amount_total}
+                                            </span>
+                                        </strong>
+                                    </p>
+                                    <p className="desc no-margin">
+                                        {t("used_credits")}
+                                        <strong>
+                                            <span className="float-right">
+                                                {data.currency}
+                                                {data.amount_used}
+                                            </span>
+                                        </strong>
+                                    </p>
                                     <p className="desc no-margin">
                                         {t("remaining_credits")}
                                         <strong>
