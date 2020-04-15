@@ -64,7 +64,7 @@ class VideoComponent extends Helper {
         const { loadingFirst } = this.state;
         let mainVideo;
         let videoTitle;
-        let videoLists;
+        let videoType;
 
         if (loadingFirst) {
             return <ContentLoader />;
@@ -82,11 +82,16 @@ class VideoComponent extends Helper {
                 }
 
                 videoTitle = this.props.location.state.videoDetailsFirst.name;
+
+                videoType = this.props.location.state.videoDetailsFirst.video_type;
+
             } else {
                 mainVideo = this.props.location.state.videoDetailsFirst
                     .main_video;
 
                 videoTitle = this.props.location.state.videoDetailsFirst.title;
+
+                videoType = this.props.location.state.videoDetailsFirst.video_type;
             }
 
             return (
@@ -152,9 +157,11 @@ class VideoComponent extends Helper {
                                     }
                                     alt="arrow"
                                 />
-                                <span className="txt-overflow capitalize ml-3">
-                                    {videoTitle}
-                                </span>
+                                {videoType == 2 ? (
+                                ''
+                                ) : <span className="txt-overflow capitalize ml-3">
+                                {videoTitle}
+                                </span>}
                             </Link>
                         </div>
                     </div>
