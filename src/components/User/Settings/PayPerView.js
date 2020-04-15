@@ -218,7 +218,7 @@ class PayPerView extends Helper {
                 data,
                 loadingPromoCode,
                 promoCode,
-                paymentMode
+                paymentMode,freePayPerView
             } = this.state;
 
             const onSuccess = payment => {
@@ -267,7 +267,7 @@ class PayPerView extends Helper {
                 sandbox: configuration.get("configData.PAYPAL_ID"),
                 production: configuration.get("configData.PAYPAL_ID")
             };
-
+            
             return (
                 <div>
                     <div className="main">
@@ -470,7 +470,7 @@ class PayPerView extends Helper {
                                                 {/* <!-- table --> */}
 
                                                 {/* <!-- coupon --> */}
-                                                {this.freePayPerView ==
+                                                {freePayPerView ==
                                                 false ? (
                                                     <div className="mt-4">
                                                         <h5 className="capitalize">
