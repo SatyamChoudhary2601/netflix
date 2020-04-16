@@ -1,7 +1,5 @@
 import React, { Component } from "react";
-
 import Slider from "../../SliderView/MainSlider";
-
 import api from "../../../Environment";
 import ContentLoader from "../../Static/contentLoader";
 import { translate, t } from "react-multi-lang";

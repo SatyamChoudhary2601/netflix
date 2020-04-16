@@ -1,17 +1,11 @@
-import React, { Component } from "react";
-
+import React from "react";
 import { Link } from "react-router-dom";
-
 import ReactPlayer from "react-player";
-
 import Helper from "../../Helper/helper";
-
 import ContentLoader from "../../Static/contentLoader";
 
 import api from "../../../Environment";
-
 import io from "socket.io-client";
-
 import { apiConstants } from "../../Services/Constants";
 
 const socket = io(apiConstants.socketUrl);
@@ -178,6 +172,7 @@ class VideoComponent extends Helper {
     const { loadingFirst } = this.state;
     let mainVideo;
     let videoTitle;
+    let videoType;
 
     if (loadingFirst) {
       return <ContentLoader />;
@@ -195,11 +190,14 @@ class VideoComponent extends Helper {
 
         videoTitle = this.props.location.state.videoDetailsFirst.name;
 
+        videoType = this.props.location.state.videoDetailsFirst.video_type;
         
       } else {
         mainVideo = this.props.location.state.videoDetailsFirst.main_video;
 
         videoTitle = this.props.location.state.videoDetailsFirst.title;
+
+        videoType = this.props.location.state.videoDetailsFirst.video_type;
 
       }
 
@@ -267,9 +265,11 @@ class VideoComponent extends Helper {
                   src={window.location.origin + "/assets/img/left-arrow.png"}
                   alt="arrow"
                 />
-                <span className="txt-overflow capitalize ml-3">
-                  {videoTitle}
-                </span>
+                {videoType == 2 ? (
+                    ''
+                ) : <span className="txt-overflow capitalize ml-3">
+                    {videoTitle}
+                </span>}
               </Link>
             </div>
           </div>

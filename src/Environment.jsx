@@ -8,7 +8,7 @@ import {
 
 const apiUrl = "http://adminview.streamhash.com/userApi/"; // Production Mode
 
-// const apiUrl = "http://localhost:8000/userApi/"; // Development Mode
+// const apiUrl = "http://localhost:8000/userApi/"; // Local Mode
 
 const Environment = {
     postMethod(action, object) {

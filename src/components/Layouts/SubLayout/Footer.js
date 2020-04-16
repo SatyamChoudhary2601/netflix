@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import api from "../../../Environment";
 import { Link } from "react-router-dom";
+
 import {
     setTranslations,
     setDefaultLanguage,
@@ -10,6 +11,7 @@ import {
 } from "react-multi-lang";
 import en from "../../translation/en.json";
 import pt from "../../translation/pt.json";
+
 import configuration from "react-global-configuration";
 
 const $ = window.$;

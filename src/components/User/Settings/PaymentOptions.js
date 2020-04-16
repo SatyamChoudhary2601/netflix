@@ -4,13 +4,7 @@ import { Link } from "react-router-dom";
 
 import ContentLoader from "../../Static/contentLoader";
 
-import {
-    setTranslations,
-    setDefaultLanguage,
-    translate
-} from "react-multi-lang";
-import en from "../../translation/en.json";
-import pt from "../../translation/pt.json";
+import { translate } from "react-multi-lang";
 
 class PaymentOptions extends Component {
     state = {
@@ -44,7 +38,7 @@ class PaymentOptions extends Component {
                                         <div className="payment-note">
                                             <p className="mb-0">
                                                 <span className="bold">
-                                                   {t("note")}:
+                                                    {t("note")}:
                                                 </span>{" "}
                                                 {t("payment_option_note")}
                                             </p>
@@ -55,7 +49,9 @@ class PaymentOptions extends Component {
                                                 <h4>{t("plans")}</h4>
                                             </div>
                                             <div className="right">
-                                                <h4>{t("subscription_plan")}</h4>
+                                                <h4>
+                                                    {t("subscription_plan")}
+                                                </h4>
                                                 <Link
                                                     to="/subscription"
                                                     className="btn-link"
@@ -103,7 +99,7 @@ class PaymentOptions extends Component {
                                                     }}
                                                     className="btn-link"
                                                 >
-                                                    {t("click_to_pay")} 
+                                                    {t("click_to_pay")}
                                                 </Link>
                                             </div>
                                         </div>

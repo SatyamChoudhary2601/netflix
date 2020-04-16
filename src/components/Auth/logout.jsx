@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import { withToastManager } from "react-toast-notifications";
 import ToastDemo from "../Helper/toaster";
 

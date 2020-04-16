@@ -1,8 +1,6 @@
 import React, { Component } from "react";
-
 import { Link } from "react-router-dom";
 import configuration from "react-global-configuration";
-
 import { translate, t } from "react-multi-lang";
 
 class EditProfilesComponent extends Component {

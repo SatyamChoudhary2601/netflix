@@ -4,7 +4,7 @@ import Emitter from "./components/Services/EventEmitter";
 
 import { Router, Switch, Route, Redirect } from "react-router-dom";
 
-import createHistory from "history/createBrowserHistory";
+import { createBrowserHistory as createHistory } from "history";
 
 //Layouts
 
@@ -377,7 +377,7 @@ class App extends Component {
                                 />
                                 <PrivateRoute
                                     authentication={this.state.authentication}
-                                    path={"/referal"}
+                                    path={"/referfriends"}
                                     component={ReferalFriend}
                                     layout={UserLayout}
                                     screenProps={this.eventEmitter}

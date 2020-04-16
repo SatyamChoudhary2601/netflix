@@ -314,6 +314,9 @@ body,html{
     .referal .referal-arrow {
         display: none;
     }
+    .nav-item .nav-link .fa-gift {
+        display: none;
+    }
 }
 
 /* Tablets */
@@ -448,6 +451,9 @@ body,html{
     }
     .referal .referal-info .referal-info-desc {
         font-size: 0.85em;
+    }
+    .nav-item .nav-link .fa-gift {
+        display: none;
     }
 }
 
