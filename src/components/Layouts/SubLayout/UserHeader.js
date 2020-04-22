@@ -1,18 +1,13 @@
-import React, { Component } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import Helper from "../../Helper/helper";
 import { apiConstants } from "../../Constant/constants";
-import SuggestionInputSearch from "suggestion-react-input-search";
 import api from "../../../Environment";
 import { withToastManager } from "react-toast-notifications";
 import ToastDemo from "../../Helper/toaster";
 import configuration from "react-global-configuration";
 
-import {
-    setTranslations,
-    setDefaultLanguage,
-    translate
-} from "react-multi-lang";
+import { translate } from "react-multi-lang";
 
 const $ = window.$;
 
@@ -411,7 +406,11 @@ class UserHeader extends Helper {
                                                         className=""
                                                         key="suggestion-no-result"
                                                     >
-                                                        <span>{t("no_results_found")}</span>
+                                                        <span>
+                                                            {t(
+                                                                "no_results_found"
+                                                            )}
+                                                        </span>
                                                     </li>
                                                 )}
                                             </ul>
@@ -419,6 +418,11 @@ class UserHeader extends Helper {
                                     </div>
                                 </div>
                             </form>
+                        </li>
+                        <li className="nav-item">
+                            <Link to="/referfriends" className="nav-link">
+                                <i className="fas fa-gift"></i>
+                            </Link>
                         </li>
                         <li className="nav-item dropdown mobile-view">
                             <Link
@@ -517,7 +521,7 @@ class UserHeader extends Helper {
                             <div className="dropdown-menu profile-drop">
                                 <div className="pro-sec-height">
                                     {loading
-                                        ? "Loading"
+                                        ? t("loading")
                                         : this.renderList(activeProfile)}
 
                                     <Link

@@ -65,13 +65,13 @@ class PaymentHistory extends Component {
                                         </div>
                                         <div className="col-md-6 text-right">
                                             {/* <h4 className="grey-clr">Total</h4>
-                      <h4 className="bold grey-clr">$4052.00</h4> */}
+                                                <h4 className="bold grey-clr">$4052.00</h4> */}
                                         </div>
                                     </div>
                                 </div>
                                 <div className="payment-history">
                                     {loading
-                                        ? "Loading..."
+                                        ? t("loading")
                                         : ppvList.length > 0
                                         ? ppvList.map(ppv => (
                                               <div key={ppv.admin_video_id}>

@@ -1,9 +1,7 @@
 import React, { Component } from "react";
-
 import { Link } from "react-router-dom";
-
 import api from "../../../Environment";
-import { translate, t } from "react-multi-lang";
+import { t } from "react-multi-lang";
 
 class SubscriptionComponent extends Component {
     state = {
@@ -88,7 +86,7 @@ class SubscriptionComponent extends Component {
                             <div className="col-sm-10 col-md-10 col-lg-11 col-xl-10 auto-margin">
                                 <div className="row">
                                     {loading
-                                        ? "Loading"
+                                        ? t("loading")
                                         : this.renderSubscription(
                                               subscriptions
                                           )}

@@ -1,14 +1,6 @@
 import React, { Component } from "react";
 
-// import {Link} from 'react-router-dom';
-
-import {
-    setTranslations,
-    setDefaultLanguage,
-    translate
-} from "react-multi-lang";
-import en from "../../translation/en.json";
-import pt from "../../translation/pt.json";
+import { translate } from "react-multi-lang";
 
 class PaymentViewDetails extends Component {
     state = {
@@ -27,7 +19,7 @@ class PaymentViewDetails extends Component {
 
         const { loadingFirst } = this.state;
         if (loadingFirst) {
-            return "Loading...";
+            return t("loading");
         } else {
             const ppvDetails = this.props.location.state;
             var videoImg = {
@@ -126,6 +118,26 @@ class PaymentViewDetails extends Component {
                                                             }
                                                         </h4>
                                                     </li>
+                                                    {ppvDetails.wallet_amount >=
+                                                    0 ? (
+                                                        <li className="">
+                                                            <p>
+                                                                {t(
+                                                                    "referral_amount"
+                                                                )}
+                                                            </p>
+                                                            <h4>
+                                                                {
+                                                                    ppvDetails.currency
+                                                                }
+                                                                {
+                                                                    ppvDetails.wallet_amount
+                                                                }
+                                                            </h4>
+                                                        </li>
+                                                    ) : (
+                                                        ""
+                                                    )}
                                                 </ul>
                                             </div>
                                             <div className="col-sm-12 col-md-12">

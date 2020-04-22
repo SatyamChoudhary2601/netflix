@@ -1,30 +1,15 @@
-import React, { Component } from "react";
-
+import React from "react";
 import { Link } from "react-router-dom";
-
 import api from "../../Environment";
-
 import Helper from "../Helper/helper";
-
 import { withToastManager } from "react-toast-notifications";
-
 import ToastDemo from "../Helper/toaster";
-
 import GoogleLogin from "react-google-login";
-
 import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
-import { Helmet } from "react-helmet";
 import configuration from "react-global-configuration";
-
-import {
-    setTranslations,
-    setDefaultLanguage,
-    translate
-} from "react-multi-lang";
-
+import { translate } from "react-multi-lang";
 import { apiConstants } from "../Constant/constants";
 
-const $ = window.$;
 var const_time_zone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
 class LoginCommponent extends Helper {
@@ -162,9 +147,8 @@ class LoginCommponent extends Helper {
 
     responseGoogle = response => {
         const path = this.props.location;
-        console.log("googleId", response.profileObj);
 
-        if (response.profileObj != "undefined") {
+        if (response.profileObj) {
             const googleLoginInput = {
                 social_unique_id: response.profileObj.googleId,
                 login_by: "google",

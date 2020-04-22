@@ -19,7 +19,11 @@ class PayPerView extends Helper {
         loadingContent: null,
         buttonDisable: false,
         loadingContentCard: null,
-        buttonDisableCard: false
+        buttonDisableCard: false,
+        referralData: null,
+        loadingReferral: true,
+        pay_amount: 0,
+        freePayPerView: false
     };
     componentDidMount() {
         if (this.props.location.state) {
@@ -27,7 +31,56 @@ class PayPerView extends Helper {
         } else {
             window.location = "/home";
         }
+
+        this.setState({
+            pay_amount: this.props.location.state.videoDetailsFirst.ppv_amount,
+            freePayPerView:
+                this.props.location.state.videoDetailsFirst.ppv_amount <= 0
+                    ? true
+                    : false
+        });
+
+        this.checkReferralInvoice();
     }
+
+    checkReferralInvoice = event => {
+        let inputData = {
+            amount: this.props.location.state.videoDetailsFirst.ppv_amount
+        };
+        api.postMethod("invoice_referral_amount", inputData)
+            .then(response => {
+                console.log(response.data);
+                if (response.data.success) {
+                    if (response.data.data.pay_amount <= 0) {
+                        // Hide promocode section
+                        // Enable subscribe now button
+                        this.setState({
+                            freePayPerView: true
+                        });
+                    }
+
+                    this.setState({
+                        referralData: response.data.data,
+                        pay_amount: response.data.data.pay_amount,
+                        loadingReferral: false
+                    });
+                } else {
+                    ToastDemo(
+                        this.props.toastManager,
+                        response.data.error_messages,
+                        "error"
+                    );
+                    this.setState({
+                        loadingContent: null,
+                        buttonDisable: false
+                    });
+                }
+            })
+            .catch(error => {
+                // ToastDemo(this.props.toastManager, error, "error");
+                // this.setState({ loadingContent: null, buttonDisable: false });
+            });
+    };
 
     handlePromoCode = event => {
         event.preventDefault();
@@ -50,13 +103,10 @@ class PayPerView extends Helper {
                     );
                     this.setState({
                         loadingContent: null,
-                        buttonDisable: false,
                         loadingPromoCode: false,
-                        promoCode: response.data.data
-                    });
-                    this.setState({
-                        loadingContent: null,
-                        buttonDisable: false
+                        promoCode: response.data.data,
+                        buttonDisable: false,
+                        pay_amount: response.data.data.remaining_amount
                     });
                 } else {
                     ToastDemo(
@@ -168,7 +218,7 @@ class PayPerView extends Helper {
                 data,
                 loadingPromoCode,
                 promoCode,
-                paymentMode
+                paymentMode,freePayPerView
             } = this.state;
 
             const onSuccess = payment => {
@@ -211,15 +261,13 @@ class PayPerView extends Helper {
 
             let env = configuration.get("configData.PAYPAL_MODE"); // you can set here to 'production' for production
             let currency = "USD"; // or you can set this value from your props or state
-            let total = loadingPromoCode
-                ? videoDetailsFirst.ppv_amount
-                : promoCode.remaining_amount; // same as above, this is the total amount (based on currency) to be paid by using Paypal express checkout
+            let total = this.pay_amount; // same as above, this is the total amount (based on currency) to be paid by using Paypal express checkout
 
             const client = {
                 sandbox: configuration.get("configData.PAYPAL_ID"),
                 production: configuration.get("configData.PAYPAL_ID")
             };
-
+            
             return (
                 <div>
                     <div className="main">
@@ -380,6 +428,27 @@ class PayPerView extends Helper {
                                                                         : promoCode.coupon_amount}
                                                                 </td>
                                                             </tr>
+                                                            {this.state
+                                                                .loadingReferral ==
+                                                            false ? (
+                                                                <tr>
+                                                                    <td>
+                                                                        {t(
+                                                                            "referral_amount_applied"
+                                                                        )}
+                                                                    </td>
+                                                                    <td>
+                                                                        {
+                                                                            this
+                                                                                .state
+                                                                                .referralData
+                                                                                .referral_amount_formatted
+                                                                        }
+                                                                    </td>
+                                                                </tr>
+                                                            ) : (
+                                                                ""
+                                                            )}
                                                             <tr className="table-secondary">
                                                                 <td>
                                                                     {t("total")}
@@ -388,9 +457,11 @@ class PayPerView extends Helper {
                                                                     {
                                                                         videoDetailsFirst.currency
                                                                     }
-                                                                    {loadingPromoCode
-                                                                        ? videoDetailsFirst.ppv_amount
-                                                                        : promoCode.remaining_amount}
+                                                                    {
+                                                                        this
+                                                                            .state
+                                                                            .pay_amount
+                                                                    }
                                                                 </td>
                                                             </tr>
                                                         </tbody>
@@ -399,182 +470,227 @@ class PayPerView extends Helper {
                                                 {/* <!-- table --> */}
 
                                                 {/* <!-- coupon --> */}
-                                                <div className="mt-4">
-                                                    <h5 className="capitalize">
-                                                        {t("have_a_coupon")}
-                                                    </h5>
-                                                    <form
-                                                        className="auth-form"
-                                                        onSubmit={
-                                                            this.handlePromoCode
-                                                        }
-                                                    >
-                                                        <div className="form-group mt-3">
-                                                            <div className="input-group mb-3 mt-1">
-                                                                <input
-                                                                    type="text"
-                                                                    className="form-control m-0 mb-0"
-                                                                    placeholder="promo code"
-                                                                    name="coupon_code"
-                                                                    value={
-                                                                        data.coupon_code
-                                                                    }
-                                                                    onChange={
-                                                                        this
-                                                                            .handleChange
-                                                                    }
-                                                                />
-                                                                <div className="input-group-append">
-                                                                    <button
-                                                                        className="btn btn-danger"
-                                                                        type="submit"
-                                                                    >
-                                                                        {this
-                                                                            .state
-                                                                            .loadingContent !=
-                                                                        null
-                                                                            ? this
-                                                                                  .state
-                                                                                  .loadingContent
-                                                                            : "send"}
-                                                                    </button>
+                                                {freePayPerView ==
+                                                false ? (
+                                                    <div className="mt-4">
+                                                        <h5 className="capitalize">
+                                                            {t("have_a_coupon")}
+                                                        </h5>
+                                                        <form
+                                                            className="auth-form"
+                                                            onSubmit={
+                                                                this
+                                                                    .handlePromoCode
+                                                            }
+                                                        >
+                                                            <div className="form-group mt-3">
+                                                                <div className="input-group mb-3 mt-1">
+                                                                    <input
+                                                                        type="text"
+                                                                        className="form-control m-0 mb-0"
+                                                                        placeholder={t(
+                                                                            "promocode"
+                                                                        )}
+                                                                        name="coupon_code"
+                                                                        value={
+                                                                            data.coupon_code
+                                                                        }
+                                                                        onChange={
+                                                                            this
+                                                                                .handleChange
+                                                                        }
+                                                                    />
+                                                                    <div className="input-group-append">
+                                                                        <button
+                                                                            className="btn btn-danger"
+                                                                            type="submit"
+                                                                        >
+                                                                            {this
+                                                                                .state
+                                                                                .loadingContent !=
+                                                                            null
+                                                                                ? this
+                                                                                      .state
+                                                                                      .loadingContent
+                                                                                : t(
+                                                                                      "send"
+                                                                                  )}
+                                                                        </button>
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                    </form>
-                                                    {loadingPromoCode ? (
-                                                        ""
-                                                    ) : (
-                                                        <p className="capitalize">
-                                                            Promo code applied -{" "}
-                                                            {
-                                                                promoCode.coupon_code
-                                                            }{" "}
-                                                            for{" "}
-                                                            {
-                                                                promoCode.original_coupon_amount
-                                                            }{" "}
-                                                            -{" "}
-                                                            <Link
-                                                                to="#"
-                                                                className="btn-danger"
-                                                                onClick={
-                                                                    this
-                                                                        .handlePromoCodeCancel
-                                                                }
-                                                            >
-                                                                {t("cancel")}
-                                                            </Link>
-                                                        </p>
-                                                    )}
-                                                </div>
+                                                        </form>
+                                                        {loadingPromoCode ? (
+                                                            ""
+                                                        ) : (
+                                                            <p className="capitalize">
+                                                                Promo code
+                                                                applied -{" "}
+                                                                {
+                                                                    promoCode.coupon_code
+                                                                }{" "}
+                                                                for{" "}
+                                                                {
+                                                                    promoCode.original_coupon_amount
+                                                                }{" "}
+                                                                -{" "}
+                                                                <Link
+                                                                    to="#"
+                                                                    className="btn-danger"
+                                                                    onClick={
+                                                                        this
+                                                                            .handlePromoCodeCancel
+                                                                    }
+                                                                >
+                                                                    {t(
+                                                                        "cancel"
+                                                                    )}
+                                                                </Link>
+                                                            </p>
+                                                        )}
+                                                    </div>
+                                                ) : (
+                                                    ""
+                                                )}
                                                 {/* <!-- coupon --> */}
 
                                                 {/* <!-- payment option --> */}
-                                                <div className="mt-4">
-                                                    <h5 className="capitalize">
-                                                        {t(
-                                                            "choose_payment_option"
-                                                        )}
-                                                    </h5>
-                                                    <form
-                                                        className="mt-3"
-                                                        action=""
-                                                    >
-                                                        {configuration.get(
-                                                            "configData.PAYPAL_ID"
-                                                        ) ? (
+                                                {this.freePayPerView ==
+                                                false ? (
+                                                    <div className="mt-4">
+                                                        <h5 className="capitalize">
+                                                            {t(
+                                                                "choose_payment_option"
+                                                            )}
+                                                        </h5>
+                                                        <form
+                                                            className="mt-3"
+                                                            action=""
+                                                        >
+                                                            {configuration.get(
+                                                                "configData.PAYPAL_ID"
+                                                            ) ? (
+                                                                <div className="form-check-inline">
+                                                                    <input
+                                                                        type="radio"
+                                                                        id="paypal"
+                                                                        name="payment_mode"
+                                                                        value="paypal"
+                                                                        onChange={
+                                                                            this
+                                                                                .handleChangePayment
+                                                                        }
+                                                                    />
+                                                                    <label htmlFor="paypal">
+                                                                        {t(
+                                                                            "paypal"
+                                                                        )}
+                                                                    </label>
+                                                                </div>
+                                                            ) : (
+                                                                ""
+                                                            )}
                                                             <div className="form-check-inline">
                                                                 <input
                                                                     type="radio"
-                                                                    id="paypal"
+                                                                    id="card"
                                                                     name="payment_mode"
-                                                                    value="paypal"
+                                                                    defaultChecked={
+                                                                        true
+                                                                    }
+                                                                    value="card"
                                                                     onChange={
                                                                         this
                                                                             .handleChangePayment
                                                                     }
                                                                 />
-                                                                <label htmlFor="paypal">
-                                                                    paypal
+                                                                <label htmlFor="card">
+                                                                    {t(
+                                                                        "card_payment"
+                                                                    )}
                                                                 </label>
                                                             </div>
-                                                        ) : (
-                                                            ""
-                                                        )}
-                                                        <div className="form-check-inline">
-                                                            <input
-                                                                type="radio"
-                                                                id="card"
-                                                                name="payment_mode"
-                                                                defaultChecked={
-                                                                    true
-                                                                }
-                                                                value="card"
-                                                                onChange={
-                                                                    this
-                                                                        .handleChangePayment
-                                                                }
-                                                            />
-                                                            <label htmlFor="card">
-                                                                card payment
-                                                            </label>
-                                                        </div>
-                                                        <Link
-                                                            to="/add-card"
-                                                            className="float-right btn-link"
-                                                        >
-                                                            add card
-                                                        </Link>
-                                                        <div className="text-right mb-3 mt-3">
-                                                            {paymentMode ==
-                                                            "card" ? (
-                                                                <button
-                                                                    className="btn btn-danger"
-                                                                    onClick={
-                                                                        this
-                                                                            .handlePayment
-                                                                    }
-                                                                    disabled={
-                                                                        this
+                                                            <Link
+                                                                to="/add-card"
+                                                                className="float-right btn-link"
+                                                            >
+                                                                {t("add_card")}
+                                                            </Link>
+                                                            <div className="text-right mb-3 mt-3">
+                                                                {paymentMode ==
+                                                                "card" ? (
+                                                                    <button
+                                                                        className="btn btn-danger"
+                                                                        onClick={
+                                                                            this
+                                                                                .handlePayment
+                                                                        }
+                                                                        disabled={
+                                                                            this
+                                                                                .state
+                                                                                .buttonDisableCard
+                                                                        }
+                                                                    >
+                                                                        {this
                                                                             .state
-                                                                            .buttonDisableCard
-                                                                    }
-                                                                >
-                                                                    {this.state
-                                                                        .loadingContentCard !=
-                                                                    null
-                                                                        ? this
-                                                                              .state
-                                                                              .loadingContentCard
-                                                                        : "pay now using Card"}
-                                                                </button>
-                                                            ) : (
-                                                                <PaypalExpressBtn
-                                                                    env={env}
-                                                                    client={
-                                                                        client
-                                                                    }
-                                                                    currency={
-                                                                        currency
-                                                                    }
-                                                                    total={
-                                                                        total
-                                                                    }
-                                                                    onError={
-                                                                        onError
-                                                                    }
-                                                                    onSuccess={
-                                                                        onSuccess
-                                                                    }
-                                                                    onCancel={
-                                                                        onCancel
-                                                                    }
-                                                                />
-                                                            )}
+                                                                            .loadingContentCard !=
+                                                                        null
+                                                                            ? this
+                                                                                  .state
+                                                                                  .loadingContentCard
+                                                                            : t(
+                                                                                  "pay_now_using_card"
+                                                                              )}
+                                                                    </button>
+                                                                ) : (
+                                                                    <PaypalExpressBtn
+                                                                        env={
+                                                                            env
+                                                                        }
+                                                                        client={
+                                                                            client
+                                                                        }
+                                                                        currency={
+                                                                            currency
+                                                                        }
+                                                                        total={
+                                                                            total
+                                                                        }
+                                                                        onError={
+                                                                            onError
+                                                                        }
+                                                                        onSuccess={
+                                                                            onSuccess
+                                                                        }
+                                                                        onCancel={
+                                                                            onCancel
+                                                                        }
+                                                                    />
+                                                                )}
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                ) : (
+                                                    <div className="mt-4">
+                                                        <div className="text-right mb-3 mt-3">
+                                                            <button
+                                                                className="btn btn-danger"
+                                                                onClick={
+                                                                    this
+                                                                        .handlePayment
+                                                                }
+                                                                disabled={
+                                                                    this.state
+                                                                        .buttonDisableCard
+                                                                }
+                                                            >
+                                                                {t(
+                                                                    "watch_now_free"
+                                                                )}
+                                                            </button>
                                                         </div>
-                                                    </form>
-                                                </div>
+                                                    </div>
+                                                )}
                                                 {/* <!-- payment option --> */}
                                             </div>
                                         </div>

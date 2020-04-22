@@ -103,7 +103,7 @@ class Home extends Component {
                               mainDa.data.length === 0
                                   ? ""
                                   : loading
-                                  ? "loading"
+                                  ? t("loading")
                                   : this.renderVideoList(mainDa, index)
                           )}
 

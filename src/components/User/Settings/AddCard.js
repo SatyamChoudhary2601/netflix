@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 
 import { Link } from "react-router-dom";
 import Helper from "../../Helper/helper";
@@ -7,13 +7,7 @@ import api from "../../../Environment";
 import { withToastManager } from "react-toast-notifications";
 import ToastDemo from "../../Helper/toaster";
 
-import {
-    setTranslations,
-    setDefaultLanguage,
-    translate
-} from "react-multi-lang";
-import en from "../../translation/en.json";
-import pt from "../../translation/pt.json";
+import { translate, t } from "react-multi-lang";
 
 class AddCardComponent extends Helper {
     state = {
@@ -30,7 +24,7 @@ class AddCardComponent extends Helper {
     addCard = ev => {
         ev.preventDefault();
         this.setState({
-            loadingContent: "Loading... Please wait..",
+            loadingContent: t("loading_text"),
             buttonDisable: true
         });
         if (this.props.stripe) {
