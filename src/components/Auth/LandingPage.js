@@ -51,10 +51,7 @@ class LandingPage extends Component {
                         <div className="landing-banner-sec">
                             <img
                                 className="landing-banner-img"
-                                src="assets/img/banner_small.jpg"
-                                srcSet="assets/img/banner_small.jpg 1000w, 
-                            assets/img/banner_medium.jpg 1500w, 
-                            assets/img/banner_large.jpg 1800w"
+                                src="assets/img/home-banner.jpg"
                                 alt="banner_image"
                             />
                             <div className="banner-black-overlay">
