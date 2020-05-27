@@ -61,8 +61,7 @@ export const apiConstants = {
 
     // Social Login Credentials
 
-    GOOGLE_CLIENT_ID:
-        "476054132464-f8qo28a3lmdahr1odt5e77af3410634s.apps.googleusercontent.com",
+    GOOGLE_CLIENT_ID: "",
 
     FACEBOOK_APP_ID: "",
 
@@ -70,6 +69,7 @@ export const apiConstants = {
 
     settingsUrl: "http://adminview.streamhash.com/userApi/get_settings_json",
 
-    homeSettingsUrl:
-        "http://adminview.streamhash.com/userApi/get_home_settings_json"
+    homeSettingsUrl: "http://adminview.streamhash.com/userApi/get_home_settings_json",
+
+    socketUrl: "http://adminview.streamhash.com:3003/"
 };
