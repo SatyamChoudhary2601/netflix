@@ -992,6 +992,13 @@ a, a:hover, a:focus {
 .search-form:focus {
     color: #fff;
     box-shadow: none;
+    background-color: rgba(0,0,0,.9);
+    border:1px solid #fff;
+    padding:.5em 1em .5em 2.8em;
+}
+.search-focus {
+    color: #fff;
+    box-shadow: none;
     width:230px;
     background-color: rgba(0,0,0,.9);
     border:1px solid #fff;
@@ -3689,25 +3696,40 @@ display: none!important;
 }
 .suggestions-container ul{
     color: #fff;
+    position: absolute;
+    top: 4em;
+    background: black;
+    min-width: 400px;
+    padding: 20px !important;
+}
+.suggestions-container li{
+    list-style-type: none;
+}
+.suggestions-container li {
+    list-style-type: none;
+    padding: 5px;
+    border-bottom: 1px solid #80808038;
 }
 
 .suggestions-container{
     background-color: #000!important;
     width: 280px!important;
     right: 0;
-    top: 3em;
+    top: 5em;
 }
 .suggestions-container ul li.selected{
     background-color: #e4070c!important;
+}
+
+
+.suggestions-container li:hover {
+    background:red; 
 }
 
 .banner-wishlist-icon{
     width: 15px!important;
     height: 15px;
     margin-top: 4px;
-}
-.suggestions-container li:hover {
-    background:red;
 }
 
 /*Referal Friend CSS*/
@@ -3916,4 +3938,8 @@ display: none!important;
 .css-e110bw {
     top:10%!important;
     right: 1%!important;
+}
+
+.main {
+    min-height: 40em;
 }

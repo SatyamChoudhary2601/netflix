@@ -28,7 +28,8 @@ class UserHeader extends Helper {
         suggestions: null,
         mobileSidebar: false,
         loadingSuggesstion: true,
-        displaySuggesstion: "none"
+        displaySuggesstion: "none",
+        searchInputFocusClass: ""
     };
 
     componentDidMount() {
@@ -49,7 +50,7 @@ class UserHeader extends Helper {
                 } else {
                 }
             })
-            .catch(function(error) {});
+            .catch(function (error) { });
         // Notification count API
         let notificationInputData = {
             skip: 0,
@@ -68,7 +69,7 @@ class UserHeader extends Helper {
                 } else {
                 }
             })
-            .catch(function(error) {});
+            .catch(function (error) { });
     }
 
     handleSearchChange = ({ currentTarget: input }) => {
@@ -76,7 +77,7 @@ class UserHeader extends Helper {
         if (input.value != "") {
             this.setState({ displaySuggesstion: "block" });
         } else {
-            this.setState({ displaySuggesstion: "none" });
+            this.setState({ displaySuggesstion: "none", searchInputFocusClass: "" });
         }
         api.postMethod("search_videos", { key: input.value })
             .then(response => {
@@ -86,10 +87,21 @@ class UserHeader extends Helper {
                         suggestions: response.data.data,
                         loadingSuggesstion: false
                     });
+                    if (response.data.data.length <= 0) {
+                        this.setState({
+                            searchInputFocusClass: "",
+                        });
+                    }
                 } else {
                 }
             })
-            .catch(function(error) {});
+            .catch(function (error) { });
+    };
+
+    searchInputFocus = ({ currentTarget: input }) => {
+
+        this.setState({ searchInputFocusClass: "search-focus" });
+
     };
 
     handleOnSubmit = (event, value) => {
@@ -111,7 +123,7 @@ class UserHeader extends Helper {
                 } else {
                 }
             })
-            .catch(function(error) {});
+            .catch(function (error) { });
     };
 
     handleNotificationChange = ({ currentTarget: input }) => {
@@ -131,7 +143,7 @@ class UserHeader extends Helper {
                 } else {
                 }
             })
-            .catch(function(error) {});
+            .catch(function (error) { });
     };
 
     changeProfile = (profile, event) => {
@@ -171,28 +183,28 @@ class UserHeader extends Helper {
             <div>
                 {activeProfile.map(profile =>
                     profile.sub_profile_id ==
-                    localStorage.getItem("active_profile_id") ? (
-                        ""
-                    ) : (
-                        <Link
-                            className="dropdown-item"
-                            key={profile.sub_profile_id}
-                            to="/view-profiles"
-                            onClick={event =>
-                                this.changeProfile(profile, event)
-                            }
-                        >
-                            <div className="display-inline">
-                                <div className="left-sec">
-                                    <img
-                                        src={profile.picture}
-                                        alt="profile_img"
-                                    />
+                        localStorage.getItem("active_profile_id") ? (
+                            ""
+                        ) : (
+                            <Link
+                                className="dropdown-item"
+                                key={profile.sub_profile_id}
+                                to="/view-profiles"
+                                onClick={event =>
+                                    this.changeProfile(profile, event)
+                                }
+                            >
+                                <div className="display-inline">
+                                    <div className="left-sec">
+                                        <img
+                                            src={profile.picture}
+                                            alt="profile_img"
+                                        />
+                                    </div>
+                                    <div className="right-name">{profile.name}</div>
                                 </div>
-                                <div className="right-name">{profile.name}</div>
-                            </div>
-                        </Link>
-                    )
+                            </Link>
+                        )
                 )}
             </div>
         );
@@ -290,14 +302,14 @@ class UserHeader extends Helper {
                                 {loadingCategory
                                     ? ""
                                     : categories.map((category, index) => (
-                                          <Link
-                                              className="dropdown-item"
-                                              to="#"
-                                              key={`category-drop-${index}`}
-                                          >
-                                              {category.name}
-                                          </Link>
-                                      ))}
+                                        <Link
+                                            className="dropdown-item"
+                                            to="#"
+                                            key={`category-drop-${index}`}
+                                        >
+                                            {category.name}
+                                        </Link>
+                                    ))}
                             </div>
                         </li>
                     </ul>
@@ -343,14 +355,14 @@ class UserHeader extends Helper {
                                 {loadingCategory
                                     ? ""
                                     : categories.map(category => (
-                                          <Link
-                                              key={category.category_id}
-                                              className="dropdown-item"
-                                              to={`/category/${category.category_id}`}
-                                          >
-                                              {category.name}
-                                          </Link>
-                                      ))}
+                                        <Link
+                                            key={category.category_id}
+                                            className="dropdown-item"
+                                            to={`/category/${category.category_id}`}
+                                        >
+                                            {category.name}
+                                        </Link>
+                                    ))}
                             </div>
                         </li>
                     </ul>
@@ -363,8 +375,9 @@ class UserHeader extends Helper {
                                             type="text"
                                             name="search"
                                             placeholder="title..."
-                                            className="form-control search-form"
+                                            className={"form-control search-form " + this.state.searchInputFocusClass}
                                             onChange={this.handleSearchChange}
+                                            onClick={this.searchInputFocus}
                                         />
                                         <div
                                             className="suggestions-container center"
@@ -383,36 +396,36 @@ class UserHeader extends Helper {
                                                             suggesstion,
                                                             index
                                                         ) => (
-                                                            <li
-                                                                className=""
-                                                                key={`suggestion-video/${index}`}
-                                                                onClick={event =>
-                                                                    this.handlePlayVideo(
-                                                                        event,
-                                                                        suggesstion.admin_video_id
-                                                                    )
-                                                                }
-                                                            >
-                                                                <span>
-                                                                    {
-                                                                        suggesstion.title
+                                                                <li
+                                                                    className=""
+                                                                    key={`suggestion-video/${index}`}
+                                                                    onClick={event =>
+                                                                        this.handlePlayVideo(
+                                                                            event,
+                                                                            suggesstion.admin_video_id
+                                                                        )
                                                                     }
-                                                                </span>
-                                                            </li>
-                                                        )
+                                                                >
+                                                                    <span>
+                                                                        {
+                                                                            suggesstion.title
+                                                                        }
+                                                                    </span>
+                                                                </li>
+                                                            )
                                                     )
                                                 ) : (
-                                                    <li
-                                                        className=""
-                                                        key="suggestion-no-result"
-                                                    >
-                                                        <span>
-                                                            {t(
-                                                                "no_results_found"
-                                                            )}
-                                                        </span>
-                                                    </li>
-                                                )}
+                                                            <li
+                                                                className=""
+                                                                key="suggestion-no-result"
+                                                            >
+                                                                <span>
+                                                                    {t(
+                                                                        "no_results_found"
+                                                                    )}
+                                                                </span>
+                                                            </li>
+                                                        )}
                                             </ul>
                                         </div>
                                     </div>
@@ -461,40 +474,40 @@ class UserHeader extends Helper {
                                     {loadingNotification
                                         ? ""
                                         : notifications.map(notification => (
-                                              <Link
-                                                  className="dropdown-item"
-                                                  to="#"
-                                                  onClick={event =>
-                                                      this.handlePlayVideo(
-                                                          event,
-                                                          notification.admin_video_id
-                                                      )
-                                                  }
-                                              >
-                                                  <div className="display-inline">
-                                                      <div className="video-left">
-                                                          <img
-                                                              src={
-                                                                  notification.img
-                                                              }
-                                                              alt="Notification"
-                                                          />
-                                                      </div>
-                                                      <div className="video-right-details">
-                                                          <h5>
-                                                              {
-                                                                  notification.title
-                                                              }
-                                                          </h5>
-                                                          <p>
-                                                              {
-                                                                  notification.time
-                                                              }
-                                                          </p>
-                                                      </div>
-                                                  </div>
-                                              </Link>
-                                          ))}
+                                            <Link
+                                                className="dropdown-item"
+                                                to="#"
+                                                onClick={event =>
+                                                    this.handlePlayVideo(
+                                                        event,
+                                                        notification.admin_video_id
+                                                    )
+                                                }
+                                            >
+                                                <div className="display-inline">
+                                                    <div className="video-left">
+                                                        <img
+                                                            src={
+                                                                notification.img
+                                                            }
+                                                            alt="Notification"
+                                                        />
+                                                    </div>
+                                                    <div className="video-right-details">
+                                                        <h5>
+                                                            {
+                                                                notification.title
+                                                            }
+                                                        </h5>
+                                                        <p>
+                                                            {
+                                                                notification.time
+                                                            }
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </Link>
+                                        ))}
                                 </div>
                                 <div className="notification-seeall">
                                     <Link to={"notification/view-all"}>
@@ -622,14 +635,14 @@ class UserHeader extends Helper {
                                     {loadingCategory
                                         ? ""
                                         : categories.map(category => (
-                                              <Link
-                                                  key={category.category_id}
-                                                  className="dropdown-item"
-                                                  to={`/category/${category.category_id}`}
-                                              >
-                                                  {category.name}
-                                              </Link>
-                                          ))}
+                                            <Link
+                                                key={category.category_id}
+                                                className="dropdown-item"
+                                                to={`/category/${category.category_id}`}
+                                            >
+                                                {category.name}
+                                            </Link>
+                                        ))}
                                 </div>
                             </li>
                         </ul>
