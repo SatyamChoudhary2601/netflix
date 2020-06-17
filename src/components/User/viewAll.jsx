@@ -114,7 +114,7 @@ class ViewAll extends Component {
         } else {
         }
       })
-      .catch(function(error) {});
+      .catch(function (error) {});
   };
 
   chunkArray(myArray, chunk_size) {

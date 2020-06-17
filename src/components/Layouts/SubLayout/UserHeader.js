@@ -281,12 +281,12 @@ class UserHeader extends Helper {
                         <img
                             src={configuration.get("configData.site_logo")}
                             className="logo-img desktop-logo"
-                            alt="Streamview"
+                            alt={configuration.get("configData.site_name")}
                         />
                         <img
                             src={configuration.get("configData.site_icon")}
                             className="logo-img mobile-logo"
-                            alt="Streamview"
+                            alt={configuration.get("configData.site_name")}
                         />
                     </Link>
                     <ul className="navbar-nav mobile-nav">
