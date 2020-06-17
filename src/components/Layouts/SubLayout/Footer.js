@@ -66,7 +66,7 @@ class Footer extends Component {
         console.log(input.value);
         setLanguage(input.value);
         localStorage.setItem("lang", input.value);
-        // window.location.reload();
+        window.location.reload();
     };
 
     render() {
