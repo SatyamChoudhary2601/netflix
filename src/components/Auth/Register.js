@@ -44,17 +44,42 @@ class RegisterComponent extends Helper {
         api.postMethod("v4/register", this.state.data)
             .then(response => {
                 if (response.data.success) {
+                    localStorage.setItem(
+                        "userId",
+                        response.data.data.user_id
+                    );
+                    localStorage.setItem(
+                        "accessToken",
+                        response.data.data.token
+                    );
+                    localStorage.setItem(
+                        "userType",
+                        response.data.data.user_type
+                    );
+                    localStorage.setItem(
+                        "push_status",
+                        response.data.data.push_status
+                    );
+                    localStorage.setItem(
+                        "username",
+                        response.data.data.name
+                    );
+                    localStorage.setItem(
+                        "active_profile_id",
+                        response.data.data.sub_profile_id
+                    );
                     ToastDemo(
                         this.props.toastManager,
                         response.data.message,
                         "success"
                     );
+                    this.props.history.push("/view-profiles");
                     this.setState({
                         loadingContent: null,
                         buttonDisable: false
                     });
-                    console.log("Yes");
-                    window.location = state ? state.from.pathname : "/";
+
+                    // window.location = state ? state.from.pathname : "/";
                 } else {
                     ToastDemo(
                         this.props.toastManager,
