@@ -3632,6 +3632,15 @@ display: none!important;
     .slider-overlay .slider{
         z-index: 999;
     }
+    @media (max-width: 900px) {
+        .content{
+            height: 30em!important;
+            margin-bottom: 1em;
+        } 
+        .mobile-sidebar{
+            z-index: 99999!important;
+        } 
+    }
 
     @media (max-width: 800px) {
         .item{
@@ -3641,8 +3650,17 @@ display: none!important;
             width: 85%;
         }
         .content{
-            height: 28em!important;
+            height:30!important;
             margin-bottom: 1em;
+        }
+        .mobile-sidebar{
+            z-index: 99999!important;
+        }
+        .mobile-view {
+            display: block;
+        }
+        .gift{
+            display: block;
         }
     }
 
@@ -3660,7 +3678,7 @@ display: none!important;
 
         }
         .mobile-sidebar{
-            z-index: 9999;
+            z-index: 99999!important;
         }
 .content{
     height: 30em!important;
