@@ -106,9 +106,9 @@ body,html{
 .single-banner-content{
     right: 30%;
 }
-.mobile-view{
+/* .mobile-view{
     display: none;
-}
+} */
 .main-nav.navbar {
     padding: .5rem 4%;
 }
@@ -121,7 +121,6 @@ body,html{
     border: 1px solid #fff;
     padding: .4em 1em .4em 1em !important;
     background-image: none;
-    margin-top: 0;
 }
 .white-search-form{
     width: 230px;
@@ -156,6 +155,16 @@ body,html{
 }
 .kids-char .kids-char-sec{
     width: 33.33%;
+}
+
+.search-focus {
+    width: 100%;
+}
+.search-form{
+    width: 100%;
+}
+.dropdown-toggle::after {
+    display:none;
 }
 }
 
@@ -262,7 +271,6 @@ body,html{
     border: 1px solid #fff;
     padding: .4em 1em .4em 1em !important;
     background-image: none;
-    margin-top: 0;
 }
 .white-search-form{
     width: 230px;
@@ -270,7 +278,6 @@ body,html{
     border: 1px solid #4d4d4d;
     padding: .4em 1em .4em 1em !important;
     background-image: none;
-    margin-top: 0;
 }
 .menu-icon img{
     height: 1.7em;
@@ -295,6 +302,9 @@ body,html{
 .kids-char .kids-char-sec{
     width: 25%;
 }
+.dropdown-toggle::after {
+    display:none;
+}
 
 }
 @media (max-width: 767.98px) {
@@ -314,8 +324,26 @@ body,html{
     .referal .referal-arrow {
         display: none;
     }
-    .nav-item .nav-link .fa-gift {
+
+    /* .gift{
         display: none;
+    } */
+    /* .nav-item .nav-link .fa-gift {
+        display: none;
+    } */
+
+    .suggestions-container {
+        width:100%!important;
+    }
+    .suggestions-container ul {
+        left: -10em;
+        min-width: 270px;
+    }
+    .banner_video_title {
+        font-size: 2em;
+    }
+    .content__close {
+        top: 12px!important;
     }
 }
 
@@ -391,16 +419,16 @@ body,html{
 .main-nav.navbar.trans-bg{
     background-color: rgba(0,0,0,.97) !important;
 }
-.mobile-view{
+/* .mobile-view{
     display: none;
-}
+} */
 .search-form{
     width: 230px;
     background-color: rgba(0,0,0,.9);
     border: 1px solid #fff;
     padding: .5em 1em .5em 1em !important;
     background-image: none;
-    margin-top: 0;
+    /* margin-top: 0; */
 }
 .white-search-form{
     width: 230px;
@@ -408,7 +436,7 @@ body,html{
     border: 1px solid #4d4d4d;
     padding: .5em 1em .5em 1em !important;
     background-image: none;
-    margin-top: 0;
+    /* margin-top: 0; */
 }
 .menu-icon img{
     height: 2em;
@@ -452,9 +480,9 @@ body,html{
     .referal .referal-info .referal-info-desc {
         font-size: 0.85em;
     }
-    .nav-item .nav-link .fa-gift {
+    /* .nav-item .nav-link .fa-gift {
         display: none;
-    }
+    } */
 }
 
  /*Medium Devices, */
