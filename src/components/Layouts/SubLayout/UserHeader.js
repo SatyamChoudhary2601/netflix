@@ -432,7 +432,7 @@ class UserHeader extends Helper {
                                 </div>
                             </form>
                         </li>
-                        <li className="nav-item">
+                        <li className="nav-item gift">
                             <Link to="/referfriends" className="nav-link">
                                 <i className="fas fa-gift"></i>
                             </Link>
