@@ -114,7 +114,7 @@ class ViewAll extends Component {
         } else {
         }
       })
-      .catch(function (error) {});
+      .catch(function(error) {});
   };
 
   chunkArray(myArray, chunk_size) {
@@ -138,7 +138,6 @@ class ViewAll extends Component {
     } else {
       result = this.chunkArray(this.state.videoList, 5);
     }
-
     // Outputs : [ [1,2,3] , [4,5,6] ,[7,8] ]
 
     return (
@@ -168,7 +167,7 @@ class ViewAll extends Component {
           >
             {this.state.loadingContent != null
               ? this.state.loadingContent
-              : "Load More"}
+              : t("load_more")}
           </button>
         </div>
         <div className="height-100" />

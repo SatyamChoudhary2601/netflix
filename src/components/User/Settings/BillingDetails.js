@@ -1,7 +1,5 @@
 import React from "react";
-
 import { Link } from "react-router-dom";
-
 import api from "../../../Environment";
 import ToastDemo from "../../Helper/toaster";
 import { withToastManager } from "react-toast-notifications";
