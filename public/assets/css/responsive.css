@@ -483,6 +483,9 @@ body,html{
     /* .nav-item .nav-link .fa-gift {
         display: none;
     } */
+    .mobile-sidebar {
+        z-index: 9999;
+    }
 }
 
  /*Medium Devices, */
@@ -528,6 +531,9 @@ body,html{
 }
 .landing-header-height{
     height: unset !important;
+}
+.mobile-sidebar {
+    z-index: 9999;
 }
 }
 
