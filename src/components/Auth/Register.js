@@ -341,7 +341,7 @@ class RegisterComponent extends Helper {
                   >
                     {this.state.loadingContent != null
                       ? this.state.loadingContent
-                      : "sign up"}
+                      : t("signup")}
                   </button>
                 </form>
 

@@ -42,7 +42,7 @@ class SubscriptionComponent extends Component {
                                         : "")
                                 }
                             >
-                                <p>plan</p>
+                                <p>{t("plan")}</p>
                                 <h4>
                                     {subscription.currency}
                                     {subscription.amount} / {subscription.plan}{" "}
@@ -50,7 +50,7 @@ class SubscriptionComponent extends Component {
                                 </h4>
                             </div>
                             <div className="subcsription-details">
-                                <h4>maintain account</h4>
+                            <h4>{t("maintain_account")}</h4>
                                 <h5>
                                     <i className="fas fa-user-plus" />
                                     {subscription.no_of_account}
@@ -66,7 +66,7 @@ class SubscriptionComponent extends Component {
                                         }}
                                         className="btn btn-danger"
                                     >
-                                        pay now
+                                        {t("pay_now")}
                                     </Link>
                                 </div>
                             </div>

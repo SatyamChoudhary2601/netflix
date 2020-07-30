@@ -194,5 +194,9 @@
   "promocode": "Codigo Promocional",
   "watch_now_free": "Ver ahora",
   "load_more": "Carga más",
-  "about": "acerca de"
+  "about": "acerca de",
+  "home" : "hogar",
+  "pay_now" : "Pagar ahora",
+  "plan": "plan",
+  "maintain_account": "mantener cuenta"
 }
