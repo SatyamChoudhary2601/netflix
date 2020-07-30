@@ -198,5 +198,6 @@
   "home" : "hogar",
   "pay_now" : "Pagar ahora",
   "plan": "plan",
-  "maintain_account": "mantener cuenta"
+  "maintain_account": "mantener cuenta",
+  "invoice":"factura"
 }
