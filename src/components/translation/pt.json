@@ -70,7 +70,7 @@
   "card_details": "Detalles Tarjeta de Credito",
   "card_default": "Tarjeta de Credito por Defecto",
   "set_card_default": "Poner como Tarjeta de credito predeterminada",
-  "play": "Play",
+  "play": "Jugar",
   "my_list": "Mi lista",
   "trailer_and_more": "Trailer y mas",
   "more_like_this": "Mas como esto",
@@ -142,8 +142,9 @@
   "check_referral_code_valid": "Comprobar Referencias",
   "copy_link": "Copiar Link",
   "whatsapp": "WhatsApp",
-  "email": "Email",
+  "email": "correo electrónico",
   "reddit": "Reddit",
+  "twitter": "gorjeo",
   "referral_amount_applied": "Ganancias por recomendación aplicadas",
   "referral_amount": "Descuento por recomendación",
   "total_credits": "Creditos Totales",
@@ -192,5 +193,11 @@
   "add_card": "Añadir Tarjeta de credito",
   "promocode": "Codigo Promocional",
   "watch_now_free": "Ver ahora",
-  "load_more": "Carga más"
+  "load_more": "Carga más",
+  "about": "acerca de",
+  "home" : "hogar",
+  "pay_now" : "Pagar ahora",
+  "plan": "plan",
+  "maintain_account": "mantener cuenta",
+  "invoice":"factura"
 }
