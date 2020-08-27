@@ -19,6 +19,7 @@ import LandingPage from "../src/components/Auth/LandingPage";
 import RegisterComponent from "../src/components/Auth/Register";
 import LoginCommponent from "../src/components/Auth/Login";
 import ForgotPasswordComponent from "../src/components/Auth/ForgotPassword";
+import LatestLandingPage from "../src/components/LatestLandingPage/LatestLandingPage";
 
 //Empty layout
 import Sample from "../src/components/Static/Sample";
@@ -251,6 +252,12 @@ class App extends Component {
                   exact
                   path={"/"}
                   component={LandingPage}
+                  layout={AuthLayout}
+                  screenProps={this.eventEmitter}
+                />
+                <AppRoute
+                  path={"/landing-page"}
+                  component={LatestLandingPage}
                   layout={AuthLayout}
                   screenProps={this.eventEmitter}
                 />
