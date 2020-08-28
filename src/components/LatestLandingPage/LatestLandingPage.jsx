@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import "./LatestLandingPageResponsive.css";
 import "./LatestLandingPage.css";
 import BannerImageBg from "./banner-new-bg.jpg";
 
@@ -73,10 +74,11 @@ class LatestLandingPage extends Component {
                 <div className="about-video-sec">
                   <video
                     className="our-about-card-video"
-                    autoplay=""
+                    autoplay="true"
                     playsinline=""
                     muted=""
-                    loop=""
+                    loop="true"
+                    id="vid"
                   >
                     <source
                       src="assets/img/video-tv-in-0819.m4v"
@@ -91,6 +93,17 @@ class LatestLandingPage extends Component {
         <div className="latest-download-sec">
           <div className="container">
             <div className="row">
+              <div className="col-md-6 d-block d-sm-none">
+                <div className="download-details">
+                  <h2 className="download-title">
+                    Download your shows to watch offline.
+                  </h2>
+                  <h4 className="download-desc">
+                    Save your favourites easily and always have something to
+                    watch.
+                  </h4>
+                </div>
+              </div>
               <div className="col-md-6">
                 <div className="mobile-img-sec">
                   <img src="assets/img/mobile.jpg" className="mobile-img" />
@@ -117,7 +130,7 @@ class LatestLandingPage extends Component {
                   </div>
                 </div>
               </div>
-              <div className="col-md-6">
+              <div className="col-md-6 d-none d-sm-block">
                 <div className="download-details">
                   <h2 className="download-title">
                     Download your shows to watch offline.
@@ -153,10 +166,11 @@ class LatestLandingPage extends Component {
                 <div className="watch-everywhere-video-sec">
                   <video
                     className="our-watch-everywhere-card-video"
-                    autoplay=""
+                    autoplay="true"
                     playsinline=""
                     muted=""
-                    loop=""
+                    loop="true"
+                    id="vid"
                   >
                     <source
                       src="assets/img/video-devices-in.m4v"
@@ -177,22 +191,21 @@ class LatestLandingPage extends Component {
                   <div className="card-header" id="headingOne">
                     <h2 className="mb-0">
                       <button
-                        className="btn btn-link btn-block text-left heading-title"
+                        className="btn btn-link btn-block text-left heading-title collapsed"
                         type="button"
                         data-toggle="collapse"
                         data-target="#collapseOne"
-                        aria-expanded="true"
+                        aria-expanded="false"
                         aria-controls="collapseOne"
                       >
                         What is Netflix
-                        <i class="fas fa-plus"></i>
                       </button>
                     </h2>
                   </div>
 
                   <div
                     id="collapseOne"
-                    className="collapse show"
+                    className="collapse"
                     aria-labelledby="headingOne"
                     data-parent="#accordionExample"
                   >
@@ -224,7 +237,6 @@ class LatestLandingPage extends Component {
                         aria-controls="collapseTwo"
                       >
                         How much does Netflix cost?
-                        <i class="fas fa-plus"></i>
                       </button>
                     </h2>
                   </div>
@@ -256,7 +268,6 @@ class LatestLandingPage extends Component {
                         aria-controls="collapseThree"
                       >
                         Where can I watch?
-                        <i class="fas fa-plus"></i>
                       </button>
                     </h2>
                   </div>
@@ -296,7 +307,6 @@ class LatestLandingPage extends Component {
                         aria-controls="collapseFour"
                       >
                         How do I cancel?
-                        <i class="fas fa-plus"></i>
                       </button>
                     </h2>
                   </div>
@@ -328,7 +338,6 @@ class LatestLandingPage extends Component {
                         aria-controls="collapseFive"
                       >
                         What can I watch on Netflix?
-                        <i class="fas fa-plus"></i>
                       </button>
                     </h2>
                   </div>
