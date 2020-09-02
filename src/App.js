@@ -250,13 +250,13 @@ class App extends Component {
 
                 <AppRoute
                   exact
-                  path={"/"}
+                  path={"/old-landing-page"}
                   component={LandingPage}
                   layout={AuthLayout}
                   screenProps={this.eventEmitter}
                 />
                 <AppRoute
-                  path={"/landing-page"}
+                  path={"/"}
                   component={LatestLandingPage}
                   layout={AuthLayout}
                   screenProps={this.eventEmitter}

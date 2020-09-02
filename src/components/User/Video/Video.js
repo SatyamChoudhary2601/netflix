@@ -29,7 +29,7 @@ class VideoComponent extends Helper {
     onSeekPlay: true,
     socketConnection: true,
     videoDuration: 0,
-    socketConnected: false
+    socketConnected: false,
   };
 
   componentDidMount() {
@@ -95,23 +95,23 @@ class VideoComponent extends Helper {
         } else {
         }
       })
-      .catch(function (error) { });
+      .catch(function(error) {});
   };
 
   socketConnectionfun = (userId, accessToken) => {
     if (apiConstants.socketUrl) {
       let videoId = this.props.location.state.videoDetailsFirst.admin_video_id;
 
-      socket.on("connect", function () {
+      socket.on("connect", function() {
         let query = `user_id=` + userId + `&video_id=` + videoId;
       });
 
-      socket.on("connected", function () {
+      socket.on("connected", function() {
         console.log("Connected");
         this.setState({ socketConnected: true });
       });
 
-      socket.on("disconnect", function () {
+      socket.on("disconnect", function() {
         console.log("disconnect");
         this.setState({ socketConnected: false });
       });
@@ -236,6 +236,7 @@ class VideoComponent extends Helper {
               }
               onEnded={this.onCompleteVideo}
               onTimeUpdate={this.onVideoTimeUpdate.bind(this)}
+              light={this.props.location.state.videoDetailsFirst.default_image}
               config={{
                 file: {
                   tracks: [
@@ -261,10 +262,10 @@ class VideoComponent extends Helper {
                 {videoType == 2 ? (
                   ""
                 ) : (
-                    <span className="txt-overflow capitalize ml-3">
-                      {videoTitle}
-                    </span>
-                  )}
+                  <span className="txt-overflow capitalize ml-3">
+                    {videoTitle}
+                  </span>
+                )}
               </Link>
             </div>
           </div>

@@ -3,39 +3,65 @@ import { Link } from "react-router-dom";
 import "./LatestLandingPageResponsive.css";
 import "./LatestLandingPage.css";
 import BannerImageBg from "./banner-new-bg.jpg";
+import configuration from "react-global-configuration";
+import { apiConstants } from "../../components/Constant/constants";
+import { translate, getLanguage, t } from "react-multi-lang";
+import LatestFooter from "./LatestFooter";
+import Footer from "../Layouts/SubLayout/Footer";
 
 class LatestLandingPage extends Component {
+  state = {
+    HomeSettings: [],
+    loading: true,
+  };
+  componentDidMount() {
+    this.fetchConfig();
+  }
+
+  async fetchConfig() {
+    const response = await fetch(apiConstants.homeSettingsUrl);
+    const homeResonse = await response.json();
+
+    this.setState({
+      loading: false,
+      HomeSettings: homeResonse.data,
+    });
+  }
   render() {
+    const { loading, HomeSettings } = this.state;
     return (
       <>
         <div
           className="latest-landing-sec"
           style={{
-            backgroundImage: `url(${BannerImageBg})`,
+            backgroundImage: `url(${HomeSettings.home_page_bg_image})`,
           }}
         >
           <div className="latest-landing-header">
-            <img src="assets/img/new-logo.png" className="new-logo" />
-            <Link to="#" className="signin-btn">
-              Sign In
+            <img
+              src={configuration.get("configData.site_logo")}
+              className="new-logo"
+              alt={configuration.get("configData.site_name")}
+            />
+            <Link to="/login" className="signin-btn">
+              {t("signin")}
             </Link>
           </div>
           <div className="latest-banner-content">
             <div className="latest-banner-content-info">
               <h1 className="banner-title">
-                Unlimited movies, TV shows and more.
+                {HomeSettings.home_banner_heading}
               </h1>
               <h2 className="banner-subtitle">
                 Watch anywhere. Cancel anytime.
               </h2>
               <p className="banner-desc">
-                Ready to watch? Enter your email to create or restart your
-                membership.
+                {HomeSettings.home_banner_description}
               </p>
             </div>
             <div className="latest-banner-content-info-form">
               <ul className="list-unstyled banner-theme-form">
-                <li>
+                {/* <li>
                   <form className="theme-form-sec">
                     <div className="form-group">
                       <input
@@ -45,10 +71,13 @@ class LatestLandingPage extends Component {
                       />
                     </div>
                   </form>
-                </li>
+                </li> */}
                 <li>
                   <button className="btn btn-search">
-                    GET STARTED <i className="fas fa-chevron-right ml-2"></i>
+                    <Link to="/register">
+                      {t("getting_started")}{" "}
+                      <i className="fas fa-chevron-right ml-2"></i>
+                    </Link>
                   </button>
                 </li>
               </ul>
@@ -198,7 +227,7 @@ class LatestLandingPage extends Component {
                         aria-expanded="false"
                         aria-controls="collapseOne"
                       >
-                        What is Netflix
+                        What is {configuration.get("configData.site_name")}
                       </button>
                     </h2>
                   </div>
@@ -211,10 +240,10 @@ class LatestLandingPage extends Component {
                   >
                     <div className="card-body">
                       <p>
-                        Netflix is a streaming service that offers a wide
-                        variety of award-winning TV shows, movies, anime,
-                        documentaries and more – on thousands of
-                        internet-connected devices.
+                        {configuration.get("configData.site_name")} is a
+                        streaming service that offers a wide variety of
+                        award-winning TV shows, movies, anime, documentaries and
+                        more – on thousands of internet-connected devices.
                       </p>
                       <p>
                         You can watch as much as you want, whenever you want,
@@ -236,7 +265,8 @@ class LatestLandingPage extends Component {
                         aria-expanded="false"
                         aria-controls="collapseTwo"
                       >
-                        How much does Netflix cost?
+                        How much does{" "}
+                        {configuration.get("configData.site_name")} cost?
                       </button>
                     </h2>
                   </div>
@@ -248,10 +278,10 @@ class LatestLandingPage extends Component {
                   >
                     <div className="card-body">
                       <p>
-                        Watch Netflix on your smartphone, tablet, Smart TV,
-                        laptop, or streaming device, all for one fixed monthly
-                        fee. Plans range from ₹ 199 to ₹ 799 a month. No extra
-                        costs, no contracts.
+                        Watch {configuration.get("configData.site_name")} on
+                        your smartphone, tablet, Smart TV, laptop, or streaming
+                        device, all for one fixed monthly fee. Plans range from
+                        ₹ 199 to ₹ 799 a month. No extra costs, no contracts.
                       </p>
                     </div>
                   </div>
@@ -280,17 +310,22 @@ class LatestLandingPage extends Component {
                     <div className="card-body">
                       <p>
                         Watch anywhere, anytime, on an unlimited number of
-                        devices. Sign in with your Netflix account to watch
-                        instantly on the web at netflix.com from your personal
-                        computer or on any internet-connected device that offers
-                        the Netflix app, including smart TVs, smartphones,
-                        tablets, streaming media players and game consoles.
+                        devices. Sign in with your{" "}
+                        {configuration.get("configData.site_name")} account to
+                        watch instantly on the web at{" "}
+                        {configuration.get("configData.site_name")}.com from
+                        your personal computer or on any internet-connected
+                        device that offers the{" "}
+                        {configuration.get("configData.site_name")} app,
+                        including smart TVs, smartphones, tablets, streaming
+                        media players and game consoles.
                       </p>
                       <p>
                         You can also download your favourite shows with the iOS,
                         Android, or Windows 10 app. Use downloads to watch while
                         you're on the go and without an internet connection.
-                        Take Netflix with you anywhere.
+                        Take {configuration.get("configData.site_name")} with
+                        you anywhere.
                       </p>
                     </div>
                   </div>
@@ -318,10 +353,11 @@ class LatestLandingPage extends Component {
                   >
                     <div className="card-body">
                       <p>
-                        Netflix is flexible. There are no annoying contracts and
-                        no commitments. You can easily cancel your account
-                        online in two clicks. There are no cancellation fees –
-                        start or stop your account anytime.
+                        {configuration.get("configData.site_name")} is flexible.
+                        There are no annoying contracts and no commitments. You
+                        can easily cancel your account online in two clicks.
+                        There are no cancellation fees – start or stop your
+                        account anytime.
                       </p>
                     </div>
                   </div>
@@ -337,7 +373,8 @@ class LatestLandingPage extends Component {
                         aria-expanded="false"
                         aria-controls="collapseFive"
                       >
-                        What can I watch on Netflix?
+                        What can I watch on{" "}
+                        {configuration.get("configData.site_name")}?
                       </button>
                     </h2>
                   </div>
@@ -349,8 +386,10 @@ class LatestLandingPage extends Component {
                   >
                     <div className="card-body">
                       <p>
-                        Netflix has an extensive library of feature films,
-                        documentaries, TV shows, anime, award-winning Netflix
+                        {configuration.get("configData.site_name")} has an
+                        extensive library of feature films, documentaries, TV
+                        shows, anime, award-winning{" "}
+                        {configuration.get("configData.site_name")}
                         originals, and more. Watch as much as you want, anytime
                         you want.
                       </p>
@@ -364,7 +403,7 @@ class LatestLandingPage extends Component {
                   membership.
                 </p>
                 <ul className="list-unstyled banner-theme-form form-align-center">
-                  <li>
+                  {/* <li>
                     <form className="theme-form-sec">
                       <div className="form-group">
                         <input
@@ -374,10 +413,13 @@ class LatestLandingPage extends Component {
                         />
                       </div>
                     </form>
-                  </li>
+                  </li> */}
                   <li>
                     <button className="btn btn-search">
-                      GET STARTED <i className="fas fa-chevron-right ml-2"></i>
+                      <Link to="/register">
+                        {t("getting_started")}{" "}
+                        <i className="fas fa-chevron-right ml-2"></i>
+                      </Link>
                     </button>
                   </li>
                 </ul>
@@ -385,123 +427,9 @@ class LatestLandingPage extends Component {
             </div>
           </div>
         </div>
-        <div className="footer-sec">
-          <div className="container">
-                <div className="footer-sec-card">
-                    <div className="footer-site-sec">
-                        <p className="footer-top-title">
-                            Questions? Call 
-                            <Link to="#">000-800-040-1843</Link>
-                        </p>
-                        <ul className="list-unstyled footer-link">
-                            <li className="footer-link-item">
-                                <Link to="#">
-                                    <span>FAQ</span>
-                                </Link>
-                            </li>
-                            <li className="footer-link-item">
-                                <Link to="#">
-                                    <span>Investor Relations</span>
-                                </Link>
-                            </li>
-                            <li className="footer-link-item">
-                                <Link to="#">
-                                    <span>Privacy</span>
-                                </Link>
-                            </li>
-                            <li className="footer-link-item">
-                                <Link to="#">
-                                    <span>Speed Test</span>
-                                </Link>
-                            </li>
-                        </ul>
-                        <ul className="list-unstyled footer-link">
-                            <li className="footer-link-item">
-                                <Link to="#">
-                                    <span>Help Centre</span>
-                                </Link>
-                            </li>
-                            <li className="footer-link-item">
-                                <Link to="#">
-                                    <span>Jobs</span>
-                                </Link>
-                            </li>
-                            <li className="footer-link-item">
-                                <Link to="#">
-                                    <span>Cookie Preferences</span>
-                                </Link>
-                            </li>
-                            <li className="footer-link-item">
-                                <Link to="#">
-                                    <span>Legal Notices</span>
-                                </Link>
-                            </li>
-                        </ul>
-                        <ul className="list-unstyled footer-link">
-                            <li className="footer-link-item">
-                                <Link to="#">
-                                    <span>Account</span>
-                                </Link>
-                            </li>
-                            <li className="footer-link-item">
-                                <Link to="#">
-                                    <span>Ways to Watch</span>
-                                </Link>
-                            </li>
-                            <li className="footer-link-item">
-                                <Link to="#">
-                                    <span>Corporate Information</span>
-                                </Link>
-                            </li>
-                            <li className="footer-link-item">
-                                <Link to="#">
-                                    <span>Netflix Originals</span>
-                                </Link>
-                            </li>
-                        </ul>
-                        <ul className="list-unstyled footer-link">
-                            <li className="footer-link-item">
-                                <Link to="#">
-                                    <span>Media Centre</span>
-                                </Link>
-                            </li>
-                            <li className="footer-link-item">
-                                <Link to="#">
-                                    <span>Terms of Use</span>
-                                </Link>
-                            </li>
-                            <li className="footer-link-item">
-                                <Link to="#">
-                                    <span>Contact Us</span>
-                                </Link>
-                            </li>
-                        </ul>
-                        <div className="row">
-                            <div className="col-md-12">
-                                <div className="row">
-                                    <div className="col-md-2">
-                                        <div class="dropdown">
-                                            <button class="btn btn-secondary dropdown-toggle language-dropdown" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fas fa-globe mr-3"></i>English
-                                            </button>
-                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                            <a class="dropdown-item" href="#">English</a>
-                                            <a class="dropdown-item" href="#">हिन्दी</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="row">
-                            <div className="col-md-12">
-                                <p className="footer-company-name">Netflix India</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-          </div>
-        </div>
+        {/* <LatestFooter></LatestFooter> */}
+
+        {/* <Footer></Footer> */}
       </>
     );
   }
