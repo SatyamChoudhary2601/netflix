@@ -1561,7 +1561,7 @@ label{
     object-fit: cover;
     object-position: center;
 }
-.banner_right_overlay{
+/* .banner_right_overlay{
     background:linear-gradient(to right, #000, transparent);
     position:absolute;
     left: 0;
@@ -1569,9 +1569,21 @@ label{
     top:0;
     bottom: 0;
     height: 100%;
-    /*height:calc(100% + 1px);*/
+    height:calc(100% + 1px);
     width: 100%;
+} */
+
+.banner_right_overlay{
+    content: "";
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(360deg, rgb(34 34 34) 0%, rgba(85, 80, 81, 0.5) 50%);
+    position: absolute;
 }
+
+
 .banner-sec{
     position: relative; 
 }

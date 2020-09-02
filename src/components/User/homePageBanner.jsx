@@ -120,10 +120,10 @@ class HomePageBanner extends Helper {
                     {banner.data.map(video => (
                         <div className="banner-sec" key={video.admin_video_id}>
                             <div className="row m-0">
-                                <div className="col-3 col-md-3 col-lg-3 col-xl-3 p-0">
+                                {/*<div className="col-3 col-md-3 col-lg-3 col-xl-3 p-0">
                                     <div className="banner-home home-left" />
-                                </div>
-                                <div className="col-9 col-md-9 col-lg-9 col-xl-9 p-0">
+                                </div>*/}
+                                <div className="col-12 col-md-12 col-lg-12 col-xl-12 p-0">
                                     <div className="banner-home relative">
                                         <img
                                             className="banner_right_img"

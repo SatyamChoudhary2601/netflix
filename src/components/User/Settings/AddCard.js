@@ -64,7 +64,7 @@ class AddCardComponent extends Helper {
                                 } else {
                                     ToastDemo(
                                         this.props.toastManager,
-                                        response.data.error_message,
+                                        response.data.error_messages,
                                         "error"
                                     );
                                     this.setState({
