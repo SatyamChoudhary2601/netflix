@@ -256,6 +256,7 @@ class App extends Component {
                   screenProps={this.eventEmitter}
                 />
                 <AppRoute
+                  exact
                   path={"/"}
                   component={LatestLandingPage}
                   layout={AuthLayout}
