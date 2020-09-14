@@ -242,7 +242,7 @@ class App extends Component {
             content={configuration.get("configData.meta_author")}
           ></meta>
         </Helmet>
-        <StripeProvider apiKey="pk_test_uDYrTXzzAuGRwDYtu7dkhaF3">
+        
           <ToastProvider>
             <Router history={history}>
               <Switch>
@@ -559,6 +559,9 @@ class App extends Component {
                   layout={StaticLayout}
                   screenProps={this.eventEmitter}
                 />
+              <StripeProvider apiKey={configuration.get(
+                "configData.stripe_publishable_key"
+              )}>
                 <Elements>
                   <PrivateRoute
                     authentication={this.state.authentication}
@@ -568,10 +571,11 @@ class App extends Component {
                     screenProps={this.eventEmitter}
                   />
                 </Elements>
+                </StripeProvider>
               </Switch>
             </Router>
           </ToastProvider>
-        </StripeProvider>
+        
       </div>
     );
   }
