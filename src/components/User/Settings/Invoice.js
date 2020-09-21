@@ -269,7 +269,7 @@ class InvoiceComponent extends Helper {
                 // => sometimes it may take about 0.5 second for everything to get set, or for the button to appear
             };
 
-            let env = "production"; // you can set here to 'production' for production
+            let env = configuration.get("configData.PAYPAL_MODE"); // you can set here to 'production' for production
             let currency = "USD"; // or you can set this value from your props or state
             let total = loadingPromoCode
                 ? subscription.amount
