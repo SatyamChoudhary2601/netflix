@@ -71,5 +71,5 @@ export const apiConstants = {
 
     homeSettingsUrl: "http://adminview.streamhash.com/userApi/get_home_settings_json",
 
-    socketUrl: ""
+    socketUrl: "http://adminview.streamhash.com:3003/"
 };
