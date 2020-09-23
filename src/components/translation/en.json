@@ -201,5 +201,16 @@
   "load_more": "Load More",
   "getting_started": "GET STARTED",
   "pay_now" : "Pay Now",
-  "maintain_account" : "Maintain account"
+  "maintain_account" : "Maintain account",
+  "enjoying_on_your_tv" : "Enjoy on your TV.",
+  "enjoying_on_your_tv_note" : "Watch on smart TVs, PlayStation, Xbox, Chromecast, Apple TV, Blu-ray players and more.",
+  "download_your_shows_to_watch_offline" : "Download your shows to watch offline.",
+  "download_your_shows_to_watch_offline_note" : "Save your favourites easily and always have something to watch.",
+  "watch_everywhere" : "Watch everywhere.",
+  "watch_everywhere_note" : "Stream unlimited movies and TV shows on your phone, tablet, laptop, and TV.",
+  "stranger_things" : "Stranger Things",
+  "downloading" : "Downloading",
+  "ready_to_watch" : "Ready to watch? Enter your email to create or restart your membership.",
+  "faq_title" : "Frequently Asked Questions"
+
 }
