@@ -21,7 +21,7 @@
   "confirm_password": "Confirm Password",
   "button_loading": "Cargando...Porfavor espere...",
   "email_address": "Direccion de Email",
-  "new_to_streamview": "Nuevo en Str?",
+  "new_to_website": "Nuevo en Str?",
   "see_whats_next": "Que es lo siguiente?",
   "watch_and_cancel_text": "DISFRUTA en cualquier lugar. CANCELA en CUALQUIER MOMENTO.",
   "join_free_a_month": "Unete gratis por un mes",
@@ -119,7 +119,6 @@
   "paypal": "Paypal",
   "total": "Total",
   "have_a_coupon": "Tienes un Cupon?",
-  "netflix_india": "StreamView",
   "view_details": "Ver detalles",
   "cast_crews": "Cast",
   "delete_account": "Eliminar Cuenta",
@@ -195,9 +194,9 @@
   "watch_now_free": "Ver ahora",
   "load_more": "Carga más",
   "about": "acerca de",
-  "home" : "hogar",
-  "pay_now" : "Pagar ahora",
+  "home": "hogar",
+  "pay_now": "Pagar ahora",
   "plan": "plan",
   "maintain_account": "mantener cuenta",
-  "invoice":"factura"
+  "invoice": "factura"
 }
