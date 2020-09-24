@@ -309,7 +309,7 @@ class LoginCommponent extends Helper {
                 </div>
 
                 <p className="auth-link">
-                  {t("new_to_streamview")}{" "}
+                  {t("new_to_website")}{" "}
                   <Link to={"/register"} className="btn-link">
                     {t("sign_up_now")}
                   </Link>
