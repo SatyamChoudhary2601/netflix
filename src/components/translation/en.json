@@ -112,8 +112,8 @@
   "who_is_watching": "who's watching?",
   "no_of_accounts": "No of accounts",
   "amount": "Amount",
-  "promo_code_amount": "Promo Code amount",
-  "promo_code_applied": "Promo Code applied",
+  "promo_code_amount": "Promo Code Amount",
+  "promo_code_applied": "Promo Code Applied",
   "choose_payment_option": "choose payment optilon",
   "card_payment": "Card Payment",
   "paypal": "Paypal",
@@ -198,5 +198,7 @@
   "overview": "Overview",
   "episodes": "Episodes",
   "load_more": "Load More",
-  "getting_started": "GET STARTED"
+  "getting_started": "GET STARTED",
+  "pay_now" : "Pay Now",
+  "maintain_account" : "Maintain account"
 }
