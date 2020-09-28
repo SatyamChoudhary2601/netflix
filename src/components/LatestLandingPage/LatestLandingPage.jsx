@@ -106,9 +106,9 @@ class LatestLandingPage extends Component {
             <div className="row">
               <div className="col-md-6">
                 <div className="about-details">
-                  <h2 className="about-title">{t("enjoying_on_your_tv")}</h2>
+                  <h2 className="about-title">{HomeSettings.home_section_1_title}</h2>
                   <h4 className="about-desc">
-                  {t("enjoying_on_your_tv_note")}
+                  {HomeSettings.home_section_1_description}
                   </h4>
                 </div>
               </div>
@@ -126,7 +126,7 @@ class LatestLandingPage extends Component {
                     id="vid"
                   >
                     <source
-                      src="assets/img/video-tv-in-0819.m4v"
+                      src={HomeSettings.home_section_1_video}
                       type="video/mp4"
                     />
                   </video>
@@ -141,28 +141,28 @@ class LatestLandingPage extends Component {
               <div className="col-md-6 d-block d-sm-none">
                 <div className="download-details">
                   <h2 className="download-title">
-                  {t("download_your_shows_to_watch_offline")}
+                  {HomeSettings.home_section_2_title}
                   </h2>
                   <h4 className="download-desc">
-                  {t("download_your_shows_to_watch_offline_note")}
+                  {HomeSettings.home_section_2_description}
                   </h4>
                 </div>
               </div>
               <div className="col-md-6">
                 <div className="mobile-img-sec">
-                  <img src="assets/img/mobile.jpg" className="mobile-img" />
+                  <img src={HomeSettings.home_section_2_image} className="mobile-img" />
                 </div>
                 <div className="our-download-card">
                   <div className="our-download-info">
                     <div className="our-download-card-image">
                       <img
                         alt=""
-                        src="assets/img/boxshot.png"
+                        src={HomeSettings.home_section_2_mob_image}
                         className="book-img"
                       />
                     </div>
                     <div className="our-download-card-text">
-                      <h4 className="download-sub-title">{t("stranger_things")}</h4>
+                      <h4 className="download-sub-title">{HomeSettings.home_section_2_image_title}</h4>
                       <p className="download-sub-desc">{t("downloading")}...</p>
                     </div>
                   </div>
@@ -177,10 +177,10 @@ class LatestLandingPage extends Component {
               <div className="col-md-6 d-none d-sm-block">
                 <div className="download-details">
                   <h2 className="download-title">
-                  {t("download_your_shows_to_watch_offline")}
+                  {HomeSettings.home_section_2_title}
                   </h2>
                   <h4 className="download-desc">
-                  {t("download_your_shows_to_watch_offline_note")}
+                  {HomeSettings.home_section_2_description}
                   </h4>
                 </div>
               </div>
@@ -192,9 +192,9 @@ class LatestLandingPage extends Component {
             <div className="row">
               <div className="col-md-6">
                 <div className="watch-everywhere-details">
-                  <h2 className="watch-everywhere-title">{t("watch_everywhere")}</h2>
+                  <h2 className="watch-everywhere-title">{HomeSettings.home_section_3_title}</h2>
                   <h4 className="watch-everywhere-desc">
-                  {t("watch_everywhere_note")}
+                  {HomeSettings.home_section_3_description}
                   </h4>
                 </div>
               </div>
@@ -215,7 +215,7 @@ class LatestLandingPage extends Component {
                     id="vid"
                   >
                     <source
-                      src="assets/img/video-devices-in.m4v"
+                      src={HomeSettings.home_section_3_video}
                       type="video/mp4"
                     />
                   </video>
