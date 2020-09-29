@@ -200,5 +200,9 @@
   "load_more": "Load More",
   "getting_started": "GET STARTED",
   "pay_now" : "Pay Now",
-  "maintain_account" : "Maintain account"
+  "maintain_account" : "Maintain account",
+  "downloading" : "Downloading",
+  "ready_to_watch" : "Ready to watch? Enter your email to create or restart your membership.",
+  "faq_title" : "Frequently Asked Questions"
+
 }

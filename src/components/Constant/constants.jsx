@@ -70,6 +70,6 @@ export const apiConstants = {
     settingsUrl: "http://adminview.streamhash.com/userApi/get_settings_json",
 
     homeSettingsUrl: "http://adminview.streamhash.com/userApi/get_home_settings_json",
-
+    
     socketUrl: "http://adminview.streamhash.com:3003/"
 };

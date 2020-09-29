@@ -8,14 +8,19 @@ import { apiConstants } from "../../components/Constant/constants";
 import { translate, getLanguage, t } from "react-multi-lang";
 import LatestFooter from "./LatestFooter";
 import Footer from "../Layouts/SubLayout/Footer";
+import api from "../../Environment";
+import renderHTML from "react-render-html";
 
 class LatestLandingPage extends Component {
   state = {
     HomeSettings: [],
     loading: true,
+    loadingData: true,
+    faqData: null,
   };
   componentDidMount() {
     this.fetchConfig();
+    this.getFaqs();
   }
 
   async fetchConfig() {
@@ -27,14 +32,27 @@ class LatestLandingPage extends Component {
       HomeSettings: homeResonse.data,
     });
   }
+
+  async getFaqs () {
+    api.getMethod("faqs/list").then((response) => {
+      if (response.data.success) {
+        this.setState({
+          faqData: response.data.data,
+          loadingData: false,
+        });
+      } else {
+      }
+    });
+  }
   render() {
-    const { loading, HomeSettings } = this.state;
+    const { loading, HomeSettings,loadingData, faqData } = this.state;
+
     if (
       localStorage.getItem("userId") &&
       localStorage.getItem("active_profile_id") &&
       localStorage.getItem("accessToken")
     )
-      return <Redirect to="/home" />;
+    return <Redirect to="/home" />;
     return (
       <>
         <div
@@ -59,7 +77,7 @@ class LatestLandingPage extends Component {
                 {HomeSettings.home_banner_heading}
               </h1>
               <h2 className="banner-subtitle">
-                Watch anywhere. Cancel anytime.
+                {HomeSettings.home_banner_note}
               </h2>
               <p className="banner-desc">
                 {HomeSettings.home_banner_description}
@@ -95,10 +113,9 @@ class LatestLandingPage extends Component {
             <div className="row">
               <div className="col-md-6">
                 <div className="about-details">
-                  <h2 className="about-title">Enjoy on your TV.</h2>
+                  <h2 className="about-title">{HomeSettings.home_section_1_title}</h2>
                   <h4 className="about-desc">
-                    Watch on smart TVs, PlayStation, Xbox, Chromecast, Apple TV,
-                    Blu-ray players and more.
+                  {HomeSettings.home_section_1_description}
                   </h4>
                 </div>
               </div>
@@ -116,7 +133,7 @@ class LatestLandingPage extends Component {
                     id="vid"
                   >
                     <source
-                      src="assets/img/video-tv-in-0819.m4v"
+                      src={HomeSettings.home_section_1_video}
                       type="video/mp4"
                     />
                   </video>
@@ -131,30 +148,29 @@ class LatestLandingPage extends Component {
               <div className="col-md-6 d-block d-sm-none">
                 <div className="download-details">
                   <h2 className="download-title">
-                    Download your shows to watch offline.
+                  {HomeSettings.home_section_2_title}
                   </h2>
                   <h4 className="download-desc">
-                    Save your favourites easily and always have something to
-                    watch.
+                  {HomeSettings.home_section_2_description}
                   </h4>
                 </div>
               </div>
               <div className="col-md-6">
                 <div className="mobile-img-sec">
-                  <img src="assets/img/mobile.jpg" className="mobile-img" />
+                  <img src={HomeSettings.home_section_2_image} className="mobile-img" />
                 </div>
                 <div className="our-download-card">
                   <div className="our-download-info">
                     <div className="our-download-card-image">
                       <img
                         alt=""
-                        src="assets/img/boxshot.png"
+                        src={HomeSettings.home_section_2_mob_image}
                         className="book-img"
                       />
                     </div>
                     <div className="our-download-card-text">
-                      <h4 className="download-sub-title">Stranger Things</h4>
-                      <p className="download-sub-desc">Downloading...</p>
+                      <h4 className="download-sub-title">{HomeSettings.home_section_2_image_title}</h4>
+                      <p className="download-sub-desc">{t("downloading")}...</p>
                     </div>
                   </div>
                   <div className="download-gif-img-sec">
@@ -168,11 +184,10 @@ class LatestLandingPage extends Component {
               <div className="col-md-6 d-none d-sm-block">
                 <div className="download-details">
                   <h2 className="download-title">
-                    Download your shows to watch offline.
+                  {HomeSettings.home_section_2_title}
                   </h2>
                   <h4 className="download-desc">
-                    Save your favourites easily and always have something to
-                    watch.
+                  {HomeSettings.home_section_2_description}
                   </h4>
                 </div>
               </div>
@@ -184,10 +199,9 @@ class LatestLandingPage extends Component {
             <div className="row">
               <div className="col-md-6">
                 <div className="watch-everywhere-details">
-                  <h2 className="watch-everywhere-title">Watch everywhere.</h2>
+                  <h2 className="watch-everywhere-title">{HomeSettings.home_section_3_title}</h2>
                   <h4 className="watch-everywhere-desc">
-                    Stream unlimited movies and TV shows on your phone, tablet,
-                    laptop, and TV.
+                  {HomeSettings.home_section_3_description}
                   </h4>
                 </div>
               </div>
@@ -208,7 +222,7 @@ class LatestLandingPage extends Component {
                     id="vid"
                   >
                     <source
-                      src="assets/img/video-devices-in.m4v"
+                      src={HomeSettings.home_section_3_video}
                       type="video/mp4"
                     />
                   </video>
@@ -220,193 +234,44 @@ class LatestLandingPage extends Component {
         <div className="latest-faq-section">
           <div className="container">
             <div className="faq-lists-sec">
-              <h1 className="section-title">Frequently Asked Questions</h1>
+              <h1 className="section-title">{t("faq_title")}</h1>
               <div className="accordion" id="accordionExample">
-                <div className="card">
-                  <div className="card-header" id="headingOne">
-                    <h2 className="mb-0">
-                      <button
-                        className="btn btn-link btn-block text-left heading-title collapsed"
-                        type="button"
-                        data-toggle="collapse"
-                        data-target="#collapseOne"
-                        aria-expanded="false"
-                        aria-controls="collapseOne"
-                      >
-                        What is {configuration.get("configData.site_name")}
-                      </button>
-                    </h2>
-                  </div>
 
-                  <div
-                    id="collapseOne"
-                    className="collapse"
-                    aria-labelledby="headingOne"
-                    data-parent="#accordionExample"
-                  >
-                    <div className="card-body">
-                      <p>
-                        {configuration.get("configData.site_name")} is a
-                        streaming service that offers a wide variety of
-                        award-winning TV shows, movies, anime, documentaries and
-                        more – on thousands of internet-connected devices.
-                      </p>
-                      <p>
-                        You can watch as much as you want, whenever you want,
-                        without a single ad – all for one low monthly price.
-                        There's always something new to discover, and new TV
-                        shows and movies are added every week!
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div className="card">
-                  <div className="card-header" id="headingTwo">
-                    <h2 className="mb-0">
-                      <button
-                        className="btn btn-link btn-block text-left heading-title collapsed"
-                        type="button"
-                        data-toggle="collapse"
-                        data-target="#collapseTwo"
-                        aria-expanded="false"
-                        aria-controls="collapseTwo"
+                {loadingData ? ( "Loading..." ) : faqData.length > 0 ? (
+                  faqData.map((faq) => (
+                    <div className="card">
+                      <div className="card-header" id={faq.unique_id}>
+                        <h2 className="mb-0">
+                          <button
+                            className="btn btn-link btn-block text-left heading-title collapsed"
+                            type="button"
+                            data-toggle="collapse"
+                            data-target={`#${faq.faq_id}`}
+                            aria-expanded="false"
+                            aria-controls="collapseOne"
+                          >
+                            {faq.question}
+                          </button>
+                        </h2>
+                      </div>
+
+                      <div
+                        id={faq.faq_id}
+                        className="collapse"
+                        aria-labelledby={faq.unique_id}
+                        data-parent="#accordionExample"
                       >
-                        How much does{" "}
-                        {configuration.get("configData.site_name")} cost?
-                      </button>
-                    </h2>
-                  </div>
-                  <div
-                    id="collapseTwo"
-                    className="collapse"
-                    aria-labelledby="headingTwo"
-                    data-parent="#accordionExample"
-                  >
-                    <div className="card-body">
-                      <p>
-                        Watch {configuration.get("configData.site_name")} on
-                        your smartphone, tablet, Smart TV, laptop, or streaming
-                        device, all for one fixed monthly fee. Plans range from
-                        ₹ 199 to ₹ 799 a month. No extra costs, no contracts.
-                      </p>
+                        <div className="card-body">
+                          {renderHTML(faq.answer)}
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
-                <div className="card">
-                  <div className="card-header" id="headingThree">
-                    <h2 className="mb-0">
-                      <button
-                        className="btn btn-link btn-block text-left heading-title collapsed"
-                        type="button"
-                        data-toggle="collapse"
-                        data-target="#collapseThree"
-                        aria-expanded="false"
-                        aria-controls="collapseThree"
-                      >
-                        Where can I watch?
-                      </button>
-                    </h2>
-                  </div>
-                  <div
-                    id="collapseThree"
-                    className="collapse"
-                    aria-labelledby="headingThree"
-                    data-parent="#accordionExample"
-                  >
-                    <div className="card-body">
-                      <p>
-                        Watch anywhere, anytime, on an unlimited number of
-                        devices. Sign in with your{" "}
-                        {configuration.get("configData.site_name")} account to
-                        watch instantly on the web at{" "}
-                        {configuration.get("configData.site_name")}.com from
-                        your personal computer or on any internet-connected
-                        device that offers the{" "}
-                        {configuration.get("configData.site_name")} app,
-                        including smart TVs, smartphones, tablets, streaming
-                        media players and game consoles.
-                      </p>
-                      <p>
-                        You can also download your favourite shows with the iOS,
-                        Android, or Windows 10 app. Use downloads to watch while
-                        you're on the go and without an internet connection.
-                        Take {configuration.get("configData.site_name")} with
-                        you anywhere.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div className="card">
-                  <div className="card-header" id="headingFour">
-                    <h2 className="mb-0">
-                      <button
-                        className="btn btn-link btn-block text-left heading-title collapsed"
-                        type="button"
-                        data-toggle="collapse"
-                        data-target="#collapseFour"
-                        aria-expanded="false"
-                        aria-controls="collapseFour"
-                      >
-                        How do I cancel?
-                      </button>
-                    </h2>
-                  </div>
-                  <div
-                    id="collapseFour"
-                    className="collapse"
-                    aria-labelledby="headingFour"
-                    data-parent="#accordionExample"
-                  >
-                    <div className="card-body">
-                      <p>
-                        {configuration.get("configData.site_name")} is flexible.
-                        There are no annoying contracts and no commitments. You
-                        can easily cancel your account online in two clicks.
-                        There are no cancellation fees – start or stop your
-                        account anytime.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div className="card">
-                  <div className="card-header" id="headingFive">
-                    <h2 className="mb-0">
-                      <button
-                        className="btn btn-link btn-block text-left heading-title collapsed"
-                        type="button"
-                        data-toggle="collapse"
-                        data-target="#collapseFive"
-                        aria-expanded="false"
-                        aria-controls="collapseFive"
-                      >
-                        What can I watch on{" "}
-                        {configuration.get("configData.site_name")}?
-                      </button>
-                    </h2>
-                  </div>
-                  <div
-                    id="collapseFive"
-                    className="collapse"
-                    aria-labelledby="headingFive"
-                    data-parent="#accordionExample"
-                  >
-                    <div className="card-body">
-                      <p>
-                        {configuration.get("configData.site_name")} has an
-                        extensive library of feature films, documentaries, TV
-                        shows, anime, award-winning{" "}
-                        {configuration.get("configData.site_name")}
-                        originals, and more. Watch as much as you want, anytime
-                        you want.
-                      </p>
-                    </div>
-                  </div>
-                </div>
+                  ))
+                ) : ("")}
               </div>
               <div className="latest-banner-content-info-form">
                 <p className="faq-desc">
-                  Ready to watch? Enter your email to create or restart your
-                  membership.
+                {t("ready_to_watch")}
                 </p>
                 <ul className="list-unstyled banner-theme-form form-align-center">
                   {/* <li>
