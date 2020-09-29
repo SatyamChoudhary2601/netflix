@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import "./LatestLandingPageResponsive.css";
 import "./LatestLandingPage.css";
 import BannerImageBg from "./banner-new-bg.jpg";
@@ -46,6 +46,13 @@ class LatestLandingPage extends Component {
   }
   render() {
     const { loading, HomeSettings,loadingData, faqData } = this.state;
+
+    if (
+      localStorage.getItem("userId") &&
+      localStorage.getItem("active_profile_id") &&
+      localStorage.getItem("accessToken")
+    )
+    return <Redirect to="/home" />;
     return (
       <>
         <div
