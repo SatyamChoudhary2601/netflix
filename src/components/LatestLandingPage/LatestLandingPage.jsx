@@ -131,6 +131,7 @@ class LatestLandingPage extends Component {
                     muted=""
                     loop="true"
                     id="vid"
+                    key={HomeSettings.home_section_1_video}
                   >
                     <source
                       src={HomeSettings.home_section_1_video}
@@ -220,6 +221,7 @@ class LatestLandingPage extends Component {
                     muted=""
                     loop="true"
                     id="vid"
+                    key={HomeSettings.home_section_3_video}
                   >
                     <source
                       src={HomeSettings.home_section_3_video}
