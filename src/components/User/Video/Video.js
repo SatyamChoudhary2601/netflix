@@ -179,7 +179,8 @@ class VideoComponent extends Helper {
       // Check the whether we need to play the trailer or main video
 
       if (this.props.location.state.videoFrom != undefined) {
-        subTitle = this.props.location.state.videoDetailsFirst.video_subtitle;
+        subTitle = this.props.location.state.videoDetailsFirst
+          .video_subtitle_vtt;
 
         if (this.props.location.state.videoFrom == "trailer") {
           mainVideo = this.props.location.state.videoDetailsFirst.resolutions
@@ -197,7 +198,8 @@ class VideoComponent extends Helper {
       } else {
         mainVideo = this.props.location.state.videoDetailsFirst.main_video;
 
-        subTitle = this.props.location.state.videoDetailsFirst.video_subtitle;
+        subTitle = this.props.location.state.videoDetailsFirst
+          .video_subtitle_vtt;
 
         videoTitle = this.props.location.state.videoDetailsFirst.title;
 
