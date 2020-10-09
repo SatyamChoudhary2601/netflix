@@ -22,7 +22,7 @@ class AccountComponent extends Helper {
         return (
             <div>
                 <div className="main">
-                    <div className="top-bottom-spacing">
+                    <div className="top-bottom-spacing resp-align-center">
                         {loading ? (
                             <ContentLoader />
                         ) : (
@@ -134,7 +134,7 @@ class AccountComponent extends Helper {
                                                         className="account-profile-img"
                                                         alt="profile_img"
                                                     />
-                                                    <span className="capitalize size-16">
+                                                    <span className="capitalize size-16 resp-padding-left">
                                                         {data.name}
                                                     </span>
                                                 </div>

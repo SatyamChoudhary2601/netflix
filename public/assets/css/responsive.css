@@ -79,9 +79,9 @@ body,html{
     width:100%;
     float: unset;
 }
-.banner-sec, .slider-content{
+/* .banner-sec, .slider-content{
     display: none;
-}
+} */
 .slider-frame .slider-arrow-btn svg{
     opacity: 1 !important;
 }
@@ -94,7 +94,7 @@ body,html{
 .home-slider .sliderthumb:hover .sliderthumb-img.hoverin-img{
     opacity: 0;
 }
-.home-slider .slick-prev. .home-slider .slick-next{
+.home-slider .slick-prev .home-slider .slick-next{
     display: none;
 }
 .home-slider .slick-prev, .home-slider .slick-next, .kids-category-slider .slick-next, .kids-category-slider .slick-prev{
@@ -166,11 +166,58 @@ body,html{
 .dropdown-toggle::after {
     display:none;
 }
+.common-bg-img{
+    min-height: 65vh;
+}
+.register-box{
+    margin: 2em 2em;
+}
+/* .resp-align-center{
+    text-align:center;
+} */
+/* .account-nav-link li{
+    text-align: center;
+} */
+.resp-padding-left{
+    padding-left:1em;
+}
+.banner-home {
+    height: 50vw;
+}
+.banner-content{
+    height: unset;
+}
+.banner_video_title{
+    width: 300px;
+}
+.banner_video_text{
+    width: 300px;
+}
 }
 
 /*small devices*/
 @media (min-width: 576px) and (max-width: 767px) {
-
+.banner-home {
+    height: 50vw;
+}
+.banner_video_text{
+    width: 300px;
+}
+.banner_video_title{
+    width: 300px;
+}
+.banner-content{
+    height: unset;
+}
+.common-bg-img{
+    min-height: 65vh;
+}
+.register-box{
+    margin: 2em 2em;
+}
+.resp-padding-left{
+    padding-left:1em;
+}
 body,html{
     font-size:13px;
 }
@@ -232,9 +279,9 @@ body,html{
 .billing-img, .billing-img-overlay, .billing-content-sec{
     height:unset;
 }
-.banner-sec, .slider-content{
+/* .banner-sec, .slider-content{
     display: none;
-}
+} */
 .slider-frame .slider-arrow-btn svg{
     opacity: 1 !important;
 }
@@ -247,7 +294,7 @@ body,html{
 .home-slider .sliderthumb:hover .sliderthumb-img.hoverin-img{
     opacity: 0;
 }
-.home-slider .slick-prev. .home-slider .slick-next{
+.home-slider .slick-prev .home-slider .slick-next{
     display: none;
 }
 .home-slider .slick-prev, .home-slider .slick-next, .kids-category-slider .slick-next, .kids-category-slider .slick-prev{
@@ -349,6 +396,18 @@ body,html{
 
 /* Tablets */
 @media (min-width: 768px) and (max-width: 991px) {
+.banner-home {
+    height: 60vw;
+}
+.banner-content{
+    height: unset;
+}
+.banner_video_title{
+    width: 400px;
+}
+.banner_video_text{
+    width: 400px;
+}
 .head-section{
     font-size: 13px;
 }
@@ -398,9 +457,9 @@ body,html{
 .desktop-nav{
     display: none;
 } 
-.banner-sec, .slider-content{
+/* .banner-sec, .slider-content{
     display: none;
-}
+} */
 .slider-frame .slider-arrow-btn svg{
     opacity: 1 !important;
 }

@@ -37,7 +37,7 @@ class StaticLayout extends Component {
     return (
       <div className="wrapper">
         <StaticHeader />
-        <div className="main-sec-content">
+        <div className="main-sec-content sm-margin-top">
           <div className="main pl-5 pr-5">
             <div className="row">
               <div className="col-sm-12 col-md-3 col-lg-2">
