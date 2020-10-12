@@ -70,6 +70,8 @@
     -moz-border-radius-topright: 0;
     border-top-right-radius: 0;
     font-size: 1.1em;
+    border-color:white;
+    border-bottom: 2px solid white;
 }
 
 .theme-form-sec {
@@ -87,7 +89,7 @@
    display: none;
 } */
 
-.banner-theme-form .form-control:focus::-webkit-input-placeholder {
+/* .banner-theme-form .form-control:focus::-webkit-input-placeholder {
     font-size: .75em;
     position: relative;
     top: -15px; 
@@ -105,7 +107,7 @@
     color: #8c8c8c;
     font-size: 1em;
     font-weight: 600;
-}
+} */
 
 .banner-theme-form .btn.btn-search {
     font-size: 1.625rem;
@@ -492,3 +494,41 @@
     right: 2rem;
 }
 
+
+.theme-form-sec{
+    display: inline-block;
+  }
+  .theme-form-sec .form-control {
+    padding-top: 10px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: none!important;
+  }
+  .theme-form-sec label {
+    order: -1;
+    transition: all 0.3s ease-in;
+    transform: translate(10px,-40px);
+    pointer-events: none;
+    color: #828282;
+  }
+  .theme-form-sec input:focus + label {
+    transform: translate(10px,-57px);
+  }
+
+  .theme-form-sec .form-control:focus{
+    outline: none!important;
+    box-shadow: none!important;
+    border-bottom: 2px solid #ffa00a;
+    min-width: 450px;
+    height: 60px;
+    -webkit-border-bottom-right-radius: 0;
+    -moz-border-radius-bottomright: 0;
+    border-bottom-right-radius: 0;
+    -webkit-border-top-right-radius: 0;
+    -moz-border-radius-topright: 0;
+    border-top-right-radius: 0;
+    font-size: 1.1em;
+    border-top-color: white;
+    border-left-color:white;
+    border-right-color: white;
+  }
