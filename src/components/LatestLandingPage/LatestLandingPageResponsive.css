@@ -114,7 +114,8 @@ Template Name: StreamView New Landing Page
     }
     .banner-theme-form .form-control {
         min-width: 325px!important;
-        height: 48px!important
+        height: 55px!important;
+        border-top: 0;
     }
     .latest-landing-sec .latest-landing-header {
         padding: 2em 2em!important;
@@ -194,6 +195,12 @@ Template Name: StreamView New Landing Page
     .latest-watch-everywhere-sec .watch-everywhere-video-sec {
         max-width: 58%!important;
     }
+    .theme-form-sec label{
+        transform: translate(-84px,-52px)!important;
+    }
+    /* .theme-form-sec input:focus + label {
+        transform: translate(-84px,-52px)!important;
+    } */
 }
 
 @media (max-width: 375px) {

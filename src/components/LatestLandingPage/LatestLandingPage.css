@@ -507,13 +507,21 @@
   .theme-form-sec label {
     order: -1;
     transition: all 0.3s ease-in;
-    transform: translate(10px,-40px);
+    transform: translate(12px,-55px);
     pointer-events: none;
     color: #828282;
+    opacity: 0;
   }
   .theme-form-sec input:focus + label {
-    transform: translate(10px,-57px);
+    /* transform: translate(10px,-57px); */
+    opacity: 1;
   }
+
+  input:focus::-webkit-input-placeholder
+{
+    color: #fff;
+}
+
 
   .theme-form-sec .form-control:focus{
     outline: none!important;
