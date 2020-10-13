@@ -88,7 +88,7 @@ class Home extends Component {
     return (
       <div className="main-sec-content">
         {loading ? <ContentLoader /> : <HomePageBanner banner={banner} />}
-        <div className="main p-40">
+        <div className="main p-40 home-slider-top">
           {/* {renderMyList} */}
 
           {loading
