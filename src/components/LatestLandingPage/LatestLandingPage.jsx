@@ -93,7 +93,6 @@ class LatestLandingPage extends Component {
                         className="form-control"
                         placeholder="Email address"
                       />
-                      <label>Email address</label>
                     </div>
                   </form>
                 </li> 
