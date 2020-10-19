@@ -60,9 +60,9 @@ class EditAccountComponent extends Helper {
             )})`
         };
         return (
-            <div>
+            <div className="edit-profile-sec-1">
                 <div className="common-bg-img" style={bgImg}>
-                    <div className="main">
+                    <div className="main padding-top-md">
                         <div className="row">
                             <div className="col-sm-9 col-md-7 col-lg-5 col-xl-4 auto-margin">
                                 <div className="register-box">

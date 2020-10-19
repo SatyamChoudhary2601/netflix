@@ -23,7 +23,7 @@ class EditProfilesComponent extends Component {
                     </Link>
                 </div>
 
-                <div className="main">
+                <div className="main padding-top-lg">
                     <div className="view-profile">
                         <div className="edit-profile-content">
                             <div className="head-section">

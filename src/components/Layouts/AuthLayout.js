@@ -33,7 +33,7 @@ class AuthLayout extends Component {
     const { isAuthenticated } = this.state;
 
     return (
-      <div className="wrapper">
+      <div className="wrapper no-overlay">
         {/* <AuthHeader /> */}
         {React.cloneElement(this.props.children, {
           eventEmitter: this.eventEmitter,

@@ -80,7 +80,7 @@ class SubscriptionComponent extends Component {
         const { loading, subscriptions } = this.state;
         return (
             <div>
-                <div className="main">
+                <div className="main padding-top-md">
                     <div className="top-bottom-spacing">
                         <div className="row">
                             <div className="col-sm-10 col-md-10 col-lg-11 col-xl-10 auto-margin">

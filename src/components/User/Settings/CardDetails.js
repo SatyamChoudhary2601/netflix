@@ -102,7 +102,7 @@ class CardDetailsComponent extends Component {
         const { loading, cardDetails } = this.state;
         return (
             <div>
-                <div className="main">
+                <div className="main padding-top-md">
                     <div className="top-bottom-spacing">
                         <div className="row">
                             <div className="col-sm-10 col-md-11 col-lg-9 col-xl-8 auto-margin">

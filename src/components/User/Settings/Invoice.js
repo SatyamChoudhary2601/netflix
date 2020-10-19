@@ -282,7 +282,7 @@ class InvoiceComponent extends Helper {
 
             return (
                 <div>
-                    <div className="main">
+                    <div className="main padding-top-md">
                         <div className="top-bottom-spacing">
                             <div className="row">
                                 <div className="col-sm-10 col-md-8 col-lg-7 col-xl-6 auto-margin">

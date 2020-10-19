@@ -267,50 +267,54 @@ class RegisterComponent extends Helper {
             <div className="col-sm-9 col-md-7 col-lg-5 col-xl-4 auto-margin">
               <div className="register-box">
                 <h3 className="register-box-head">{t("signup")}</h3>
-                <form className="auth-form" onSubmit={this.handleSubmit}>
+                <form className="auth-form login-new-form" onSubmit={this.handleSubmit}>
                   <div className="form-group">
-                    <label htmlFor="name">{t("full_name")}</label>
+                    {/*<label htmlFor="name">{t("full_name")}</label>*/}
                     <input
                       onChange={this.handleChange}
                       className="form-control"
                       id="name"
                       name="name"
+                      placeholder="Name"
                       value={data.name}
                     />
                   </div>
                   <div className="form-group">
-                    <label htmlFor="email">{t("email_address")}</label>
+                    {/*<label htmlFor="email">{t("email_address")}</label>*/}
                     <input
                       type="email"
                       onChange={this.handleChange}
                       className="form-control"
                       id="email"
                       name="email"
+                      placeholder="Email address"
                       value={data.email}
                     />
                   </div>
                   <div className="form-group">
-                    <label htmlFor="pwd">{t("password")}</label>
+                    {/*<label htmlFor="pwd">{t("password")}</label>*/}
                     <input
                       type="password"
                       onChange={this.handleChange}
                       className="form-control"
                       id="pwd"
                       name="password"
+                      placeholder="Password"
                       value={data.password}
                     />
                   </div>
 
                   <div className="form-group">
-                    <label htmlFor="referral_code">
+                   {/* <label htmlFor="referral_code">
                       {t("signup_referral_code_label")}
-                    </label>
+                    </label>*/}
                     <input
                       type="text"
                       onChange={this.handleChange}
                       className="form-control"
                       id="referral_code"
                       name="referral_code"
+                      placeholder="Referral Code"
                       value={this.state.data.referral_code}
                     />
 
@@ -399,7 +403,7 @@ class RegisterComponent extends Helper {
                 </div>
 
                 <p className="auth-link">
-                  {t("already_have_account")}{" "}
+                <span className="grey-text"> {t("already_have_account")}{" "}</span>
                   <Link to={"/login"} className="btn-link">
                     {t("sign_in_now")}
                   </Link>

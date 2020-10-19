@@ -42,10 +42,10 @@ class Footer extends Component {
             })
             .catch(function(error) {});
 
-        var footerHeight = $("#footer").outerHeight();
-        var deviceheight = $(window).outerHeight();
-        var contentheight = deviceheight - footerHeight - 66;
-        $(".main-sec-content").css("min-height", contentheight);
+        // var footerHeight = $("#footer").outerHeight();
+        // var deviceheight = $(window).outerHeight();
+        // var contentheight = deviceheight - footerHeight - 66;
+        // $(".main-sec-content").css("min-height", contentheight);
 
         // $(".bottom-height").height(footerHeight);
         // Call api function

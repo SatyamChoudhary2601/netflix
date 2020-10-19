@@ -51,7 +51,7 @@ class Notifications extends Component {
             result = this.chunkArray(this.state.notifications.notifications, 5);
         }
         return (
-            <div className="main p-40">
+            <div className="main p-40 padding-top-lg">
                 <div className="main-slidersec">
                     <h3 className="">
                         {t("view_all_notification")}

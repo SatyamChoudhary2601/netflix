@@ -21,7 +21,7 @@ class AccountComponent extends Helper {
 
         return (
             <div>
-                <div className="main">
+                <div className="main padding-top-md">
                     <div className="top-bottom-spacing resp-align-center">
                         {loading ? (
                             <ContentLoader />

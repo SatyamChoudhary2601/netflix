@@ -360,7 +360,7 @@ a, a:hover, a:focus {
     background : #000000; 
     position   : absolute;
     width      : 100%;
-    height     : 100vh;
+    height     : 100%;
     opacity    : 0.6; 
 }
 .auth-page-header{
@@ -395,7 +395,8 @@ a, a:hover, a:focus {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    color: #333;
+    color: #ffffff;
+    height: 60px;
     box-shadow: none;
 }
 .auth-form .form-control:focus{
@@ -730,6 +731,12 @@ a, a:hover, a:focus {
     color: #ccc;
     text-transform: capitalize;
     padding: .85em 1em;  
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    -webkit-line-clamp: 1;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
 }
 .main-nav .dropdown-menu.browse .dropdown-item:hover{
     color: #fff;
@@ -3836,6 +3843,9 @@ display: none!important;
 
 .referal .social-link {
     padding-top: 0.8em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 .referal .social-link i {
     color: #373737;
@@ -3891,14 +3901,14 @@ display: none!important;
     color: #373737;
     position: absolute;
     left: 35.6%;
-    top: 54%;
+    top: 61%;
 }
 
 .referal .referal-arrow-1 {
     color: #373737;
     position: absolute;
     left: 63.8%;
-    top: 54%;
+    top: 61%;
 }
 
 .border-thick {
@@ -3957,6 +3967,12 @@ display: none!important;
     font-size: 1.5em;
     color:#167af6;
 }
+
+.flex-box-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 /*Manage Profile */
 .image-upload>input {
     display: none;
@@ -3975,6 +3991,14 @@ display: none!important;
 
 .main-sec-content{
     min-height: 60vh;
+}
+
+.padding-top-lg {
+    padding-top:8em;
+}
+
+.padding-top-md {
+    padding-top: 6em;
 }
 
 .edit-profile-imgsec input[type="file"] {
@@ -4056,4 +4080,86 @@ display: none!important;
     justify-content: space-between;
     width: 12.5em;
 }
+
+.no-overlay .register-box{
+    background-color: rgba(0,0,0,.75);
+    padding: 60px 40px;
+    margin-bottom: 90px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -moz-box-orient: vertical;
+    -moz-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-height: 515px;
+    width: 100%;
+}
+
+.no-overlay .auth-form .form-control{
+    background-color: #333;
+    border-color: #333;
+    font-weight: 300!important;
+}
+
+.edit-profile-sec-1 .auth-form .form-control {
+    color: #333;
+    height: 48px;
+}
+
+.payment-option .auth-form .form-control{
+    color: #333;
+    height: 48px;
+}
+
+.no-overlay .register-box-head{
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.login-new-form .form-control:focus::-webkit-input-placeholder {
+    font-size: .8em;
+    position: relative;
+    top: -20px; 
+}
+
+.login-new-form .form-control:focus .login-new-form .form-control {
+    font-size: .75em;
+}
+
+.login-new-form .form-control:focus .login-new-form .form-label{
+    top: -20px!important; 
+}
+
+.login-new-form .form-control::placeholder{
+    color: #8c8c8c;
+    font-size: 1em;
+    font-weight: 500;
+}
+
+.grey-text{
+    color: #737373;
+    margin-right: 0.5em;
+}
+
+.no-overlay .btn-link {
+    color: #ffffff;
+}
+
+.padding-center {
+    padding-top: 8em;
+    padding-bottom: 2em;
+}
+
 

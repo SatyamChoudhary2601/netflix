@@ -83,9 +83,9 @@ class ForgotPasswordComponent extends Helper {
             <div className="col-sm-9 col-md-7 col-lg-5 col-xl-4 auto-margin">
               <div className="register-box">
                 <h3 className="register-box-head">{t("forgot_password")}</h3>
-                <form className="auth-form" onSubmit={this.handleSubmit}>
+                <form className="auth-form login-new-form" onSubmit={this.handleSubmit}>
                   <div className="form-group">
-                    <label htmlFor="email">{t("email_address")}</label>
+                   {/* <label htmlFor="email">{t("email_address")}</label>*/}
                     <input
                       type="email"
                       onChange={this.handleChange}
@@ -96,7 +96,7 @@ class ForgotPasswordComponent extends Helper {
                       value={this.state.data.email}
                     />
                   </div>
-                  <p className="mt-4 black-clr">{t("forgot_password_text")}</p>
+                  <p className="mt-4 grey-text">{t("forgot_password_text")}</p>
                   <button
                     className="btn btn-danger auth-btn"
                     disabled={this.state.buttonDisable}

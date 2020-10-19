@@ -6,7 +6,7 @@ class BillingDeatilsView extends Component {
   render() {
     return (
       <div>
-        <div className="main">
+        <div className="main padding-top-md">
           <div className="top-bottom-spacing">
             <div className="row">
               <div className="col-sm-10 col-md-10 col-lg-8 col-xl-8 auto-margin">
