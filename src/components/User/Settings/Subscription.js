@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import api from "../../../Environment";
 import { t } from "react-multi-lang";
+import SubscriptionLoader from "../../Loader/SubscriptionLoader";
 
 class SubscriptionComponent extends Component {
     state = {
@@ -81,6 +82,9 @@ class SubscriptionComponent extends Component {
         return (
             <div>
                 <div className="main padding-top-md">
+                {loading ? (
+                <SubscriptionLoader />
+            ) : (
                     <div className="top-bottom-spacing">
                         <div className="row">
                             <div className="col-sm-10 col-md-10 col-lg-11 col-xl-10 auto-margin">
@@ -94,6 +98,7 @@ class SubscriptionComponent extends Component {
                             </div>
                         </div>
                     </div>
+            )}
                 </div>
             </div>
         );

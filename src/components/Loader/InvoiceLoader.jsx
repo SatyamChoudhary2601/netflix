@@ -1,7 +1,7 @@
 import React from "react"
 import ContentLoader from "react-content-loader"
 
-const VideoLoader = (props) => (
+const InvoiceLoader = (props) => (
   <ContentLoader 
     speed={2}
     width={1200}
@@ -12,8 +12,10 @@ const VideoLoader = (props) => (
     opacity="0.2"
     {...props}
   >
-    <rect x="30" y="120" rx="0" ry="0" width="1130" height="407" />
+    <rect x="9" y="17" rx="0" ry="0" width="582" height="49" /> 
+    <rect x="147" y="99" rx="0" ry="0" width="302" height="348" /> 
+    <rect x="9" y="479" rx="0" ry="0" width="582" height="65" />
   </ContentLoader>
 )
 
-export default VideoLoader;
+export default InvoiceLoader;

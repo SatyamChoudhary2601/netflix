@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { withToastManager } from "react-toast-notifications";
 import api from "../../../Environment";
 import ToastDemo from "../../Helper/toaster";
+import PaymentHistoryLoader from "../../Loader/PaymentHistoryLoader";
 
 import {
     // setTranslations,
@@ -52,6 +53,9 @@ class PaymentHistory extends Component {
         return (
             <div>
                 <div className="main padding-top-md">
+                {loading ? (
+                        <PaymentHistoryLoader />
+                    ) : (
                     <div className="top-bottom-spacing">
                         <div className="row">
                             <div className="col-sm-10 col-md-10 col-lg-7 col-xl-6 auto-margin">
@@ -116,6 +120,7 @@ class PaymentHistory extends Component {
                             </div>
                         </div>
                     </div>
+                    )}
                 </div>
             </div>
         );

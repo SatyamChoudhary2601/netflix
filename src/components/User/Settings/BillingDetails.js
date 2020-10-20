@@ -4,6 +4,7 @@ import api from "../../../Environment";
 import ToastDemo from "../../Helper/toaster";
 import { withToastManager } from "react-toast-notifications";
 import Helper from "../../Helper/helper";
+import BillingDetailsLoader from "../../Loader/BillingDetailsLoader";
 
 import { t, translate } from "react-multi-lang";
 
@@ -135,6 +136,9 @@ class BillingDetailsComponent extends Helper {
     return (
       <div>
         <div className="main padding-top-md">
+        {loading ? (
+                        <BillingDetailsLoader />
+                    ) : (
           <div className="top-bottom-spacing">
             <div className="row">
               <div className="col-sm-10 col-md-11 col-lg-9 col-xl-8 auto-margin">
@@ -320,6 +324,7 @@ class BillingDetailsComponent extends Helper {
               </div>
             </div>
           </div>
+          )}
         </div>
 
         <div className="modal fade confirmation-popup" id="cancel-subs">

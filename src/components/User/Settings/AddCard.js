@@ -6,6 +6,7 @@ import { injectStripe, CardElement } from "react-stripe-elements";
 import api from "../../../Environment";
 import { withToastManager } from "react-toast-notifications";
 import ToastDemo from "../../Helper/toaster";
+import AddCardLoader from "../../Loader/AddCardLoader"
 
 import { translate, t } from "react-multi-lang";
 
