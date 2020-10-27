@@ -395,7 +395,8 @@ a, a:hover, a:focus {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    color: #333;
+    color: #ffffff;
+    height: 60px;
     box-shadow: none;
 }
 .auth-form .form-control:focus{
@@ -479,7 +480,7 @@ a, a:hover, a:focus {
     margin:0 1vw;
 }
 .choose-profile .profile .profile-img{
-    height: 100%;
+    height: 10em;
     width: 100%;
     object-position: center;
     object-fit: cover;
@@ -701,6 +702,7 @@ a, a:hover, a:focus {
 }
 .main-nav.navbar{
     background-color: rgba(0,0,0,.97);
+    z-index: 999999;
 }
 .main-nav.navbar.trans-bg{
     background-color: transparent;
@@ -729,6 +731,12 @@ a, a:hover, a:focus {
     color: #ccc;
     text-transform: capitalize;
     padding: .85em 1em;  
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    -webkit-line-clamp: 1;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
 }
 .main-nav .dropdown-menu.browse .dropdown-item:hover{
     color: #fff;
@@ -1579,7 +1587,8 @@ label{
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(360deg, rgb(34 34 34) 0%, rgba(85, 80, 81, 0.5) 50%);
+    /* background: linear-gradient(360deg, rgb(34 34 34) 0%, rgba(85, 80, 81, 0.5) 40%); */
+    background: -webkit-linear-gradient(90deg,rgb(34 34 34) 0%,rgba(0,0,0,0) 100%);
     position: absolute;
 }
 
@@ -1589,9 +1598,9 @@ label{
 }
 .banner-content{
     position: absolute;
-    left:8%;
+    left:4%;
     right:40%;
-    top:0;
+    top:15%;
     bottom:0;
     height:39vw;
 }
@@ -1610,7 +1619,7 @@ label{
     white-space: nowrap;
     overflow: hidden !important;
     text-overflow: ellipsis;
-    width: 700px;
+    width:30em;
 }
 .banner_video_text{
     font-size: 1.14em;
@@ -1620,6 +1629,7 @@ label{
     overflow: hidden;
     text-align: left;
     font-family: 'Regular';
+    width:30em;
 }
 /*.block-with-text {
   overflow: hidden;
@@ -1651,7 +1661,7 @@ label{
 }
 .btn.btn-grey{
     font-weight: 400;
-    background-color: rgba(51,51,51,.4);
+    background-color: rgba(51,51,51,.6);
     border:0;
     margin-right: .75em;
     padding: .6em 2.3em;
@@ -3833,6 +3843,9 @@ display: none!important;
 
 .referal .social-link {
     padding-top: 0.8em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 .referal .social-link i {
     color: #373737;
@@ -3888,14 +3901,14 @@ display: none!important;
     color: #373737;
     position: absolute;
     left: 35.6%;
-    top: 54%;
+    top: 61%;
 }
 
 .referal .referal-arrow-1 {
     color: #373737;
     position: absolute;
     left: 63.8%;
-    top: 54%;
+    top: 61%;
 }
 
 .border-thick {
@@ -3954,6 +3967,12 @@ display: none!important;
     font-size: 1.5em;
     color:#167af6;
 }
+
+.flex-box-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 /*Manage Profile */
 .image-upload>input {
     display: none;
@@ -3970,6 +3989,177 @@ display: none!important;
     right: 1%!important;
 }
 
-.main {
-    min-height: 40em;
+.main-sec-content{
+    min-height: 60vh;
 }
+
+.padding-top-lg {
+    padding-top:8em;
+}
+
+.padding-top-md {
+    padding-top: 6em;
+}
+
+.edit-profile-imgsec input[type="file"] {
+    display: none;
+}
+
+.sm-margin-top{
+    margin-top: 5em;
+}
+
+.home-slider-top{
+    position: relative;
+    z-index: 99999;
+    padding-top: 1em;
+}
+
+.btn.btn-white{
+    font-weight: 400;
+    background-color: #ffffff;
+    border: 0;
+    margin-right: .75em;
+    padding: .7em 2.3em;
+    color: #000000;
+    font-family: 'Regular';
+    letter-spacing: .7px;
+    -webkit-box-shadow: 2px 4px 10px rgba(0,0,0,.1);
+    -moz-box-shadow: 2px 4px 10px rgba(0,0,0,.1);
+    box-shadow: 2px 4px 10px rgba(0,0,0,.1);
+}
+.btn.btn-grey:hover {
+    color: #000000;
+}
+
+.btn.btn-white:hover{
+    background-color: rgba(51,51,51,.4);
+    color: #ffffff;
+}
+
+.banner-action-right {
+    position: absolute;
+    right: 0%;
+    top: 80%;
+    bottom: 0;
+    height: 39vw;
+}
+
+.audio-action-icons {
+    width: 3em;
+    height: 3em;
+    border: 1px solid #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%
+}
+
+.rating-count-sec{
+    border: solid 3px #dcdcdc;
+    border-style: none none none solid;
+    background-color: rgba(51,51,51,.6);
+    font-size: 1.1vw;
+    padding: .5vw 4vw .5vw .8vw;
+}
+
+.rating-count-sec h4 {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    text-transform: uppercase;
+    padding: 0 .4em;
+    unicode-bidi: normal;
+    font-size: 1.1em;
+    margin-bottom: 0;
+}
+
+.banner-action-sec{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 12.5em;
+}
+
+.no-overlay .register-box{
+    background-color: rgba(0,0,0,.75);
+    padding: 60px 40px;
+    margin-bottom: 90px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -moz-box-orient: vertical;
+    -moz-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-height: 515px;
+    width: 100%;
+}
+
+.no-overlay .auth-form .form-control{
+    background-color: #333;
+    border-color: #333;
+    font-weight: 300!important;
+}
+
+.edit-profile-sec-1 .auth-form .form-control {
+    color: #333;
+    height: 48px;
+}
+
+.payment-option .auth-form .form-control{
+    color: #333;
+    height: 48px;
+}
+
+.no-overlay .register-box-head{
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.login-new-form .form-control:focus::-webkit-input-placeholder {
+    font-size: .8em;
+    position: relative;
+    top: -20px; 
+}
+
+.login-new-form .form-control:focus .login-new-form .form-control {
+    font-size: .75em;
+}
+
+.login-new-form .form-control:focus .login-new-form .form-label{
+    top: -20px!important; 
+}
+
+.login-new-form .form-control::placeholder{
+    color: #8c8c8c;
+    font-size: 1em;
+    font-weight: 500;
+}
+
+.grey-text{
+    color: #737373;
+    margin-right: 0.5em;
+}
+
+.no-overlay .btn-link {
+    color: #ffffff;
+}
+
+.padding-center {
+    padding-top: 8em;
+    padding-bottom: 2em;
+}
+
+

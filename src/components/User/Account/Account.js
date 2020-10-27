@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Helper from "../../Helper/helper";
 import ContentLoader from "../../Static/contentLoader";
+import AccountLoader from "../../Loader/AccountLoader"
 
 import { translate } from "react-multi-lang";
 
@@ -21,10 +22,10 @@ class AccountComponent extends Helper {
 
         return (
             <div>
-                <div className="main">
-                    <div className="top-bottom-spacing">
+                <div className="main padding-top-md">
+                    <div className="top-bottom-spacing resp-align-center">
                         {loading ? (
-                            <ContentLoader />
+                            <AccountLoader />
                         ) : (
                             <div className="row">
                                 <div className="col-sm-12 col-md-11 col-lg-10 col-xl-9 auto-margin">
@@ -134,7 +135,7 @@ class AccountComponent extends Helper {
                                                         className="account-profile-img"
                                                         alt="profile_img"
                                                     />
-                                                    <span className="capitalize size-16">
+                                                    <span className="capitalize size-16 resp-padding-left">
                                                         {data.name}
                                                     </span>
                                                 </div>

@@ -218,26 +218,28 @@ class LoginCommponent extends Helper {
             <div className="col-sm-9 col-md-7 col-lg-5 col-xl-4 auto-margin">
               <div className="register-box">
                 <h3 className="register-box-head">{t("signin")}</h3>
-                <form onSubmit={this.handleSubmit} className="auth-form">
+                <form onSubmit={this.handleSubmit} className="auth-form login-new-form">
                   <div className="form-group">
-                    <label htmlFor="email">{t("email_address")}</label>
+                    {/*<label htmlFor="email">{t("email_address")}</label>*/}
                     <input
                       type="email"
                       onChange={this.handleChange}
                       className="form-control"
                       id="email"
                       name="email"
+                      placeholder="Email or phone number"
                       value={data.email}
                     />
                   </div>
                   <div className="form-group">
-                    <label htmlFor="pwd">{t("password")}</label>
+                    {/*<label htmlFor="pwd">{t("password")}</label>*/}
                     <input
                       type="password"
                       onChange={this.handleChange}
                       className="form-control"
                       id="pwd"
                       name="password"
+                      placeholder="Password"
                       value={data.password}
                     />
                   </div>
@@ -309,7 +311,7 @@ class LoginCommponent extends Helper {
                 </div>
 
                 <p className="auth-link">
-                  {t("new_to_website")}{" "}
+                  <span className="grey-text">{t("new_to_website")}{" "}</span>
                   <Link to={"/register"} className="btn-link">
                     {t("sign_up_now")}
                   </Link>

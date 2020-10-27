@@ -41,7 +41,7 @@ class Header extends Component {
                         />
                     </Link>
                 </nav>
-                <div className="header-height"></div>
+                {/*<div className="header-height"></div>*/}
             </div>
         );
     }

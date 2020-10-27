@@ -33,9 +33,9 @@ class UserHeader extends Helper {
     };
 
     componentDidMount() {
-        var headerHeight = $("#header").outerHeight();
+        // var headerHeight = $("#header").outerHeight();
 
-        $(".header-height").height(headerHeight);
+        // $(".header-height").height(headerHeight);
         this.viewProfiles();
         let inputData = {};
         api.postMethod("v4/categories/list", inputData)

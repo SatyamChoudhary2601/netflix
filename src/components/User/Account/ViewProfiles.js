@@ -7,6 +7,7 @@ import ProgressiveImage from "react-progressive-image";
 
 import { translate } from "react-multi-lang";
 import configuration from "react-global-configuration";
+import ViewProfileLoader from "../../Loader/ViewProfileLoader";
 
 class ViewProfilesComponent extends Helper {
     state = {
@@ -84,6 +85,9 @@ class ViewProfilesComponent extends Helper {
                     </div>
 
                     <div className="main">
+                    {loading ? (
+                        <ViewProfileLoader />
+                    ) : (
                         <div className="view-profile">
                             <div className="view-profile-content">
                                 <div className="head-section">
@@ -108,6 +112,7 @@ class ViewProfilesComponent extends Helper {
                                 </div>
                             </div>
                         </div>
+                        )}
                     </div>
                 </div>
             </div>

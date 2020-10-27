@@ -74,7 +74,7 @@ class ReferalFriend extends Helper {
 
     return (
       <div>
-        <div className="bg-color-white referal sm-padding">
+        <div className="bg-color-white referal padding-center">
           <div className="container">
             <div className="row">
               <div className="col-md-12">
@@ -140,7 +140,7 @@ class ReferalFriend extends Helper {
                           <h2 className="social-desc big">Or</h2>
                         </div>
                       </div>
-                      <div className="col-md-2 border-right-1 resp-width-1 resp-width-5">
+                      <div className="col-md-2 border-right-1 resp-width-1 resp-width-5 flex-box-content">
                         <div className="text-center social-link">
                           <div className="Demo__some-network">
                             <EmailShareButton
@@ -159,7 +159,7 @@ class ReferalFriend extends Helper {
                           <h2 className="social-desc">{t("email")}</h2>
                         </div>
                       </div>
-                      <div className="col-md-2 border-right-1 resp-width-1 resp-width-5">
+                      <div className="col-md-2 border-right-1 resp-width-1 resp-width-5 flex-box-content">
                         <div className="text-center social-link">
                           <WhatsappShareButton
                             url={data.referrals_signup_url}
@@ -172,7 +172,7 @@ class ReferalFriend extends Helper {
                           <h2 className="social-desc">{t("whatsapp")}</h2>
                         </div>
                       </div>
-                      <div className="col-md-2 border-right-1 resp-width-1 resp-width-5">
+                      <div className="col-md-2 border-right-1 resp-width-1 resp-width-5 flex-box-content">
                         <div className="text-center social-link">
                           <FacebookShareButton
                             url={data.referrals_signup_url}
@@ -184,7 +184,7 @@ class ReferalFriend extends Helper {
                           <h2 className="social-desc">{t("facebook")}</h2>
                         </div>
                       </div>
-                      <div className="col-md-2 border-right-1 resp-width-1 resp-width-5">
+                      <div className="col-md-2 border-right-1 resp-width-1 resp-width-5 flex-box-content">
                         <div className="text-center social-link">
                           <TwitterShareButton
                             url={data.referrals_signup_url}
@@ -196,7 +196,7 @@ class ReferalFriend extends Helper {
                           <h2 className="social-desc">{t("twitter")}</h2>
                         </div>
                       </div>
-                      <div className="col-md-2 border-right-1 resp-width-1 resp-width-5">
+                      <div className="col-md-2 border-right-1 resp-width-1 resp-width-5 flex-box-content">
                         <div className="text-center social-link">
                           <RedditShareButton
                             url={data.referrals_signup_url}

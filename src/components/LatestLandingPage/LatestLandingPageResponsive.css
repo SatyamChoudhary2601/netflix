@@ -89,7 +89,7 @@ Template Name: StreamView New Landing Page
 
 @media (max-width: 767.98px) {
     .latest-landing-sec {
-        min-height: 70vh!important;
+        min-height: 65vh!important;
     }
     .latest-banner-content-info {
         max-width: 350px!important;
@@ -114,7 +114,8 @@ Template Name: StreamView New Landing Page
     }
     .banner-theme-form .form-control {
         min-width: 325px!important;
-        height: 48px!important
+        height: 55px!important;
+        border-top: 0;
     }
     .latest-landing-sec .latest-landing-header {
         padding: 2em 2em!important;
@@ -198,7 +199,7 @@ Template Name: StreamView New Landing Page
 
 @media (max-width: 375px) {
     .latest-landing-sec {
-        min-height: 80vh!important;
+        min-height: 65vh!important;
     }
     .banner-theme-form .form-control {
         min-width: 270px!important;

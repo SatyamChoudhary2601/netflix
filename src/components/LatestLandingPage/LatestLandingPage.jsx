@@ -85,7 +85,7 @@ class LatestLandingPage extends Component {
             </div>
             <div className="latest-banner-content-info-form">
               <ul className="list-unstyled banner-theme-form">
-                {/* <li>
+                 <li>
                   <form className="theme-form-sec">
                     <div className="form-group">
                       <input
@@ -95,7 +95,7 @@ class LatestLandingPage extends Component {
                       />
                     </div>
                   </form>
-                </li> */}
+                </li> 
                 <li>
                   <button className="btn btn-search">
                     <Link to="/register">

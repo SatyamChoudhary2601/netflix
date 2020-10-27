@@ -160,7 +160,7 @@ class HomePageBanner extends Helper {
                                                         video.admin_video_id
                                                     )
                                                 }
-                                                className="btn btn-grey"
+                                                className="btn btn-white"
                                             >
                                                 <i className="fas fa-play mr-2" />
                                                 {t("play")}
@@ -184,14 +184,15 @@ class HomePageBanner extends Helper {
                                                                 display: "none"
                                                             }}
                                                         />
-                                                        <img
+                                                        {/*<img
                                                             src={
                                                                 window.location
                                                                     .origin +
                                                                 "/images/tick.png"
                                                             }
                                                             className="mr-2 banner-wishlist-icon"
-                                                        />
+                                                        />*/}
+                                                        <i class="fas fa-plus mr-2 banner-wishlist-icon"></i>
                                                         {t("my_list")}
                                                     </div>
                                                 ) : (
@@ -202,19 +203,30 @@ class HomePageBanner extends Helper {
                                                                 display: "none"
                                                             }}
                                                         ></i>
-                                                        <img
+                                                        {/*<img
                                                             src={
                                                                 window.location
                                                                     .origin +
                                                                 "/images/add.png"
                                                             }
                                                             className="mr-2 banner-wishlist-icon"
-                                                        />
+                                                        />*/}
+                                                        <i class="fas fa-plus mr-2 banner-wishlist-icon"></i>
                                                         {t("my_list")}
                                                     </div>
                                                 )}
                                             </Link>
                                         </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="banner-action-right">
+                                <div className="banner-action-sec">
+                                    <div className="audio-action-icons">
+                                        <i className="material-icons playlist-icon-1">volume_up</i>
+                                    </div>
+                                    <div className="rating-count-sec">
+                                        <h4>13+</h4>
                                     </div>
                                 </div>
                             </div>

@@ -6,6 +6,7 @@ import { injectStripe, CardElement } from "react-stripe-elements";
 import api from "../../../Environment";
 import { withToastManager } from "react-toast-notifications";
 import ToastDemo from "../../Helper/toaster";
+import AddCardLoader from "../../Loader/AddCardLoader"
 
 import { translate, t } from "react-multi-lang";
 
@@ -100,7 +101,7 @@ class AddCardComponent extends Helper {
     };
     return (
       <div>
-        <div className="main">
+        <div className="main padding-top-md">
           <div className="top-bottom-spacing">
             <div className="row">
               <div className="col-sm-10 col-md-11 col-lg-9 col-xl-8 auto-margin">

@@ -3,10 +3,11 @@ import { Link } from "react-router-dom";
 
 import Slider from "../SliderView/MainSlider";
 import HomePageBanner from "./homePageBanner";
-import ContentLoader from "../Static/contentLoader";
+// import ContentLoader from "../Static/contentLoader";
 import { apiConstants } from "../Constant/constants";
 import Helper from "../Helper/helper";
 import { t } from "react-multi-lang";
+import HomeLoader from "../Loader/HomeLoader";
 
 let inputData = {};
 
@@ -106,7 +107,7 @@ class Genres extends Helper {
         return (
             <div>
                 {loading ? (
-                    <ContentLoader />
+                    <HomeLoader />
                 ) : (
                     <HomePageBanner banner={banner} />
                 )}
