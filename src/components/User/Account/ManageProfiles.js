@@ -262,6 +262,12 @@ class ManageProfilesComponent extends Helper {
                                                             <input
                                                                 id="file-input"
                                                                 type="file"
+                                                                accept="image/*"
+                                                                onChange={
+                                                                    this
+                                                                        .handleChangeImage
+                                                                }
+                                                                name="picture"
                                                             />
                                                         </div>
                                                     </div>
@@ -351,7 +357,21 @@ class ManageProfilesComponent extends Helper {
                                                             }
                                                             name="picture"
                                                         />
-                                                        <i className="fas fa-pencil-alt" />
+                                                        <div class="image-upload">
+                                                            <label for="file-input">
+                                                                <i className="fas fa-pencil-alt" />
+                                                            </label>
+                                                            <input
+                                                                id="file-input"
+                                                                type="file"
+                                                                accept="image/*"
+                                                                onChange={
+                                                                    this
+                                                                        .handleChangeImage
+                                                                }
+                                                                name="picture"
+                                                            />
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
