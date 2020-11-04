@@ -244,17 +244,7 @@ class ManageProfilesComponent extends Helper {
                                                 />
                                                 <div className="edit-icon">
                                                     <div className="edit-icon-circle">
-                                                        <input
-                                                            type="file"
-                                                            className="form-control"
-                                                            accept="image/*"
-                                                            onChange={
-                                                                this
-                                                                    .handleChangeImage
-                                                            }
-                                                            name="picture"
-                                                        />
-                                                        
+                                                       
                                                         <div class="image-upload">
                                                             <label for="file-input">
                                                                 
