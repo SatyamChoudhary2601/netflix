@@ -257,8 +257,7 @@ class ManageProfilesComponent extends Helper {
                                                         
                                                         <div class="image-upload">
                                                             <label for="file-input">
-                                                                <i className="fas fa-pencil-alt" />
-                                                            </label>
+                                                                
                                                             <input
                                                                 id="file-input"
                                                                 type="file"
@@ -269,6 +268,8 @@ class ManageProfilesComponent extends Helper {
                                                                 }
                                                                 name="picture"
                                                             />
+                                                            <i className="fas fa-pencil-alt" />
+                                                            </label>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -357,10 +358,10 @@ class ManageProfilesComponent extends Helper {
                                                             }
                                                             name="picture"
                                                         />
+                                                        <label for="file-input">
                                                         <div class="image-upload">
-                                                            <label for="file-input">
-                                                                <i className="fas fa-pencil-alt" />
-                                                            </label>
+                                                            
+                                                                
                                                             <input
                                                                 id="file-input"
                                                                 type="file"
@@ -372,6 +373,8 @@ class ManageProfilesComponent extends Helper {
                                                                 name="picture"
                                                             />
                                                         </div>
+                                                        <i className="fas fa-pencil-alt" />
+                                                            </label>
                                                     </div>
                                                 </div>
                                             </div>
