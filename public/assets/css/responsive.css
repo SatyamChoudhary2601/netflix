@@ -394,6 +394,9 @@ body,html{
     .content__close {
         top: 12px!important;
     }
+    .mobile-sidebar {
+        z-index: 999999!important;
+    }
 }
 
 /* Tablets */
@@ -551,9 +554,6 @@ body,html{
 
  /*Medium Devices, */
 @media (min-width : 992px) and (max-width: 1199px){
-.mobile-sidebar {
-    z-index: 999999!important;
-}
 .referal .referal-arrow {
     left: 34%;
     top:55%;
