@@ -138,6 +138,7 @@ body,html{
 }
 .mobile-sidebar{
     top:45px;
+    z-index: 999999!important;
 }
 .sidebar-content{
     height: calc(100vh - 45px);
@@ -334,6 +335,7 @@ body,html{
 }
 .mobile-sidebar{
     top:48px;
+    z-index: 999999!important;
 }
 .sidebar-content{
     height: calc(100vh - 48px);
@@ -543,12 +545,15 @@ body,html{
         display: none;
     } */
     .mobile-sidebar {
-        z-index: 9999;
+        z-index: 999999!important;
     }
 }
 
  /*Medium Devices, */
 @media (min-width : 992px) and (max-width: 1199px){
+.mobile-sidebar {
+    z-index: 999999!important;
+}
 .referal .referal-arrow {
     left: 34%;
     top:55%;
@@ -592,7 +597,7 @@ body,html{
     height: unset !important;
 }
 .mobile-sidebar {
-    z-index: 9999;
+    z-index: 999999!important;
 }
 }
 
