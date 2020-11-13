@@ -3664,7 +3664,7 @@ display: none!important;
             margin-bottom: 1em;
         } 
         .mobile-sidebar{
-            z-index: 99999!important;
+            z-index: 9999999!important;
         } 
     }
 
@@ -3680,7 +3680,7 @@ display: none!important;
             margin-bottom: 1em;
         }
         .mobile-sidebar{
-            z-index: 99999!important;
+            z-index: 9999999!important;
         }
         .mobile-view {
             display: block;
@@ -3704,7 +3704,7 @@ display: none!important;
 
         }
         .mobile-sidebar{
-            z-index: 99999!important;
+            z-index: 9999999!important;
         }
 .content{
     height: 30em!important;

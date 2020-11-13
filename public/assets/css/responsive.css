@@ -138,6 +138,7 @@ body,html{
 }
 .mobile-sidebar{
     top:45px;
+    z-index: 9999999!important;
 }
 .sidebar-content{
     height: calc(100vh - 45px);
@@ -334,6 +335,7 @@ body,html{
 }
 .mobile-sidebar{
     top:48px;
+    z-index: 9999999!important;
 }
 .sidebar-content{
     height: calc(100vh - 48px);
@@ -391,6 +393,9 @@ body,html{
     }
     .content__close {
         top: 12px!important;
+    }
+    .mobile-sidebar {
+        z-index: 9999999!important;
     }
 }
 
@@ -543,7 +548,7 @@ body,html{
         display: none;
     } */
     .mobile-sidebar {
-        z-index: 9999;
+        z-index: 9999999!important;
     }
 }
 
@@ -592,7 +597,7 @@ body,html{
     height: unset !important;
 }
 .mobile-sidebar {
-    z-index: 9999;
+    z-index: 9999999!important;
 }
 }
 
