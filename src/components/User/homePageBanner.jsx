@@ -10,6 +10,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 
 import { translate } from "react-multi-lang";
+import ImageLoader from "../Helper/ImageLoader";
 
 class HomePageBanner extends Helper {
   state = {
@@ -134,6 +135,11 @@ class HomePageBanner extends Helper {
                       }
                       alt="banner img"
                     />
+                    {/* <ImageLoader
+                      alt="banner img"
+                      className="banner_right_img"
+                      image={video.default_image}
+                    /> */}
                     <div className="banner_right_overlay" />
                   </div>
                 </div>

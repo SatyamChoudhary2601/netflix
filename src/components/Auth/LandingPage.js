@@ -3,6 +3,7 @@ import { translate, getLanguage } from "react-multi-lang";
 import { Link } from "react-router-dom";
 import configuration from "react-global-configuration";
 import { apiConstants } from "../../components/Constant/constants";
+import ImageLoader from "../Helper/ImageLoader";
 
 class LandingPage extends Component {
     state = {
@@ -35,11 +36,12 @@ class LandingPage extends Component {
             <div>
                 <div className="landing-page-header">
                     <Link to="/">
-                        <img
-                            src={configuration.get("configData.site_logo")}
-                            className="site-logo"
-                            alt="site_logo"
+                    <ImageLoader
+                        image={configuration.get("configData.site_logo")}
+                        className="site-logo"
+                        alt="site-logo"
                         />
+                       
                     </Link>
                     <Link to="/login" className="btn btn-danger">
                         {t("signin")}
