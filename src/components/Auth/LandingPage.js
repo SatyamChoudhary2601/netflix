@@ -243,9 +243,8 @@ class LandingPage extends Component {
                                         >
                                             <div className="text-center">
                                                 <h3 className="devices-text">
-                                                    {t(
-                                                        "watch_instantly_in_browser_text"
-                                                    )}
+                                                    
+                                                    {t('watch_instantly_in_browser_text.Title', {param: configuration.get('configData.site_name')})}
                                                 </h3>
                                                 <Link
                                                     to={"/register"}

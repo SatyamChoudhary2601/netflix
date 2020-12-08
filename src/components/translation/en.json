@@ -39,7 +39,9 @@
   "watch_instantly_text": "Available on phone and tablet, wherever you go.",
   "use_any_computer": "use any computer",
   "watch_instantly_in_browser": "Watch instantly in your browser.",
-  "watch_instantly_in_browser_text": "The Website is programmed to start subscription based on-demand video streaming sites like Netflix and Amazon Prime. Any business idea with this core concept can be easily developed using Streamview. From admin uploading a video to users making payment to users watching the videos, it’s all automated by a dynamic and responsive admin panel with multiple monetization channels",
+  "watch_instantly_in_browser_text": {
+    "Title": "The Website is programmed to start subscription based on-demand video streaming sites like Netflix and Amazon Prime. Any business idea with this core concept can be easily developed using {param}. From admin uploading a video to users making payment to users watching the videos, it’s all automated by a dynamic and responsive admin panel with multiple monetization channels"
+  },
   "full_name": "Full name",
   "questions_contact_us": "Questions? Contact us",
   "about_us": "Aabout us",
