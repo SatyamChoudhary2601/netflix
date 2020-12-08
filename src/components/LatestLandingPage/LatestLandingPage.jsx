@@ -10,6 +10,7 @@ import LatestFooter from "./LatestFooter";
 import Footer from "../Layouts/SubLayout/Footer";
 import api from "../../Environment";
 import renderHTML from "react-render-html";
+import ImageLoader from "../Helper/ImageLoader";
 
 class LatestLandingPage extends Component {
   state = {
@@ -160,17 +161,18 @@ class LatestLandingPage extends Component {
               </div>
               <div className="col-md-6">
                 <div className="mobile-img-sec">
-                  <img
-                    src={HomeSettings.home_section_2_image}
+                  <ImageLoader
+                    image={HomeSettings.home_section_2_image}
                     className="mobile-img"
+                    alt="mobile-img"
                   />
                 </div>
                 <div className="our-download-card">
                   <div className="our-download-info">
                     <div className="our-download-card-image">
-                      <img
+                      <ImageLoader
                         alt=""
-                        src={HomeSettings.home_section_2_mob_image}
+                        image={HomeSettings.home_section_2_mob_image}
                         className="book-img"
                       />
                     </div>
@@ -217,8 +219,11 @@ class LatestLandingPage extends Component {
               </div>
               <div className="col-md-6">
                 <div className="all-device-img-sec">
-                  <img
-                    src="assets/img/all-device.png"
+                  <ImageLoader
+                    alt=""
+                    image={
+                      window.location.origin + "/assets/img/all-device.png"
+                    }
                     className="all-device-img"
                   />
                 </div>
