@@ -10,7 +10,9 @@ import configuration from "react-global-configuration";
 import { translate } from "react-multi-lang";
 import { apiConstants } from "../Constant/constants";
 
+const ct = require('countries-and-timezones');
 var const_time_zone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+var country_code = ct.getCountryForTimezone(const_time_zone);
 
 class LoginCommponent extends Helper {
   state = {
@@ -18,6 +20,7 @@ class LoginCommponent extends Helper {
       email: "",
       password: "",
       timezone: const_time_zone,
+      country_code: country_code.id,
     },
     loadingContent: null,
     buttonDisable: false,
@@ -87,6 +90,7 @@ class LoginCommponent extends Helper {
         device_type: "web",
         device_token: "123466",
         timezone: const_time_zone,
+        country_code: country_code.id,
       };
       api
         .postMethod("v4/register", facebookLoginInput)
@@ -144,6 +148,7 @@ class LoginCommponent extends Helper {
         device_type: "web",
         device_token: "123466",
         timezone: const_time_zone,
+        country_code: country_code.id,
       };
       api
         .postMethod("v4/register", googleLoginInput)
