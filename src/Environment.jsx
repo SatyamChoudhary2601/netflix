@@ -10,6 +10,10 @@ const apiUrl = "http://adminview.streamhash.com/userApi/"; // Production Mode
 
 // const apiUrl = "http://localhost:8000/userApi/"; // Local Mode
 
+const ct = require('countries-and-timezones');
+var const_time_zone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+var country_code = ct.getCountryForTimezone(const_time_zone);
+
 const Environment = {
     postMethod(action, object) {
         let userId =
@@ -60,7 +64,7 @@ const Environment = {
 
         formData.append("device_type", apiConstants.DEVICE_TYPE);
         formData.append("device_token", apiConstants.DEVICE_TOKEN);
-
+        formData.append("country_code", country_code.id);
         return axios.post(url, formData);
     },
 
