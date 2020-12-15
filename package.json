@@ -17,6 +17,7 @@
     "react-google-login": "^5.0.5",
     "react-helmet": "^5.2.1",
     "react-jw-player": "^1.19.0",
+    "react-lazy-load-image-component": "^1.5.1",
     "react-multi-lang": "^1.0.7",
     "react-paypal-express-checkout": "^1.0.5",
     "react-player": "^1.12.0",

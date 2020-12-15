@@ -229,6 +229,14 @@ class App extends Component {
             href={configuration.get("configData.site_icon")}
             sizes="16x16"
           />
+          <link rel="apple-touch-icon" href={configuration.get("configData.site_icon")} />
+
+          <link rel="apple-touch-icon" sizes="72x72" href={configuration.get("configData.site_icon")} />
+
+          <link rel="apple-touch-icon" sizes="114x114" href={configuration.get("configData.site_icon")} />
+
+          <link rel="apple-touch-icon" sizes="144x144" href={configuration.get("configData.site_icon")} />
+                    
           <meta
             name="description"
             content={configuration.get("configData.meta_description")}
@@ -559,6 +567,7 @@ class App extends Component {
                   layout={StaticLayout}
                   screenProps={this.eventEmitter}
                 />
+                
               <StripeProvider apiKey={configuration.get(
                 "configData.stripe_publishable_key"
               )}>
