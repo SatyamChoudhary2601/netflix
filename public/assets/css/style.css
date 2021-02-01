@@ -1224,6 +1224,9 @@ input:checked + .switch-slider:before {
     padding: 1em;
     color: #999;
 }
+.checkbox_portrait{
+    text-align: end;
+}
 .subcsription-details h4 {
     font-size: 1.14em;
     line-height: 1.14;

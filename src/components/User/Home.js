@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 import api from "../../Environment";
 
@@ -7,6 +8,7 @@ import Slider from "../SliderView/MainSlider";
 import HomePageBanner from "./homePageBanner";
 // import ContentLoader from "../Static/contentLoader";
 import HomeLoader from "../Loader/HomeLoader";
+import GridView from "./MovieGridView/GridView";
 
 import {
   // setTranslations,
@@ -15,6 +17,7 @@ import {
 } from "react-multi-lang";
 // import en from "../translation/en.json";
 // import pt from "../translation/pt.json";
+import Switch from "react-switch";
 
 class Home extends Component {
   state = {
@@ -22,6 +25,7 @@ class Home extends Component {
     errorHandle: 0,
     loading: true,
     banner: null,
+    checked: false,
   };
 
   componentDidMount() {
@@ -30,11 +34,12 @@ class Home extends Component {
     };
     api
       .postMethod("home_first_section", inputData)
+      // .then((response) => response.json())
       .then((response) => {
         if (response.data.success === true) {
           let maindata = response.data.data;
           let banner = response.data.banner;
-
+          console.log(maindata, "maindata==================");
           this.setState({
             loading: false,
             maindata: maindata,
@@ -45,8 +50,16 @@ class Home extends Component {
           this.setState({ errorHandle });
         }
       })
-      .catch(function(error) {});
+      .catch(function(error) {
+        console.log(error);
+      });
   }
+
+  onChangeHandler = () => {
+    this.setState({
+      checked: !this.state.checked,
+    });
+  };
 
   renderVideoList = (maindata, index) => {
     return (
@@ -64,18 +77,30 @@ class Home extends Component {
             }}
           >
             <h3 className="">
-              {maindata.title}
-              <i className="fas fa-angle-right ml-2" />
+              {/* {maindata.title} */}
+              {/* All Movies */}
+              {/* <i className="fas fa-angle-right ml-2" /> */}
             </h3>
           </Link>
 
+          {/* <div><h4>Enable Portrait</h4>
+          <input type="checkbox"/>
+          </div> */}
           <Slider>
             {maindata.data.map((movie) => (
-              <Slider.Item movie={movie} key={movie.admin_video_id}>
+              <Slider.Item
+                movie={movie}
+                key={movie.admin_video_id}
+                checked={this.state.checked}
+              >
                 item1
               </Slider.Item>
             ))}
           </Slider>
+          {/* {maindata.data.map((movie) => (
+              
+               <GridView movie={movie} key={movie.admin_video_id}/> 
+             ))} */}
         </div>
       </React.Fragment>
     );
@@ -86,11 +111,23 @@ class Home extends Component {
 
     const { loading, maindata, banner } = this.state;
 
+    console.log(this.state.checked, "this is checked");
+
     return (
       <div className="main-sec-content">
         {loading ? <HomeLoader /> : <HomePageBanner banner={banner} />}
         <div className="main p-40 home-slider-top">
           {/* {renderMyList} */}
+          <div className="checkbox_portrait">
+            <label>
+              <span style={{ marginRight: "10px" }}>Portrait Mode</span>
+              <Switch
+                type="checkbox"
+                checked={this.state.checked}
+                onChange={this.onChangeHandler}
+              />
+            </label>
+          </div>
 
           {loading
             ? ""
