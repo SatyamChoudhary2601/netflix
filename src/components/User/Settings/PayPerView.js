@@ -362,6 +362,7 @@ class PayPerView extends Helper {
                               </p>
                             </div> */}
                           {/* </div> */}
+                          {/* new */}
                           <div className="clearfix" />
                         </div>
                       </div>
